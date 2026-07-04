@@ -1,0 +1,17 @@
+[Unit]
+Description=Price Tracker Telegram Bot
+After=network.target xvfb.service
+Requires=xvfb.service
+
+[Service]
+Type=simple
+User=yury
+WorkingDirectory=/home/yury/price-tracker
+Environment=DISPLAY=:99
+EnvironmentFile=-/home/yury/price-tracker/.env
+ExecStart=/home/yury/price-tracker/venv/bin/python main.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

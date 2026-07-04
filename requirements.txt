@@ -1,0 +1,5 @@
+nodriver==0.50.3
+aiosqlite==0.20.0
+apscheduler==3.10.4
+python-telegram-bot[socks]==20.7
+python-dotenv==1.0.1
