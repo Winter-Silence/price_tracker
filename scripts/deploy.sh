@@ -32,9 +32,11 @@ fi
 asdf plugin add python
 asdf install
 
-# 5. Python venv
+# 5. Python venv (remove stale venv from previous failed runs)
+rm -rf venv
 asdf exec python -m venv venv
 source venv/bin/activate
+echo ">>> Python version: $(python --version)"
 pip install --upgrade pip
 pip install -r requirements.txt
 
