@@ -5,7 +5,7 @@ echo "=== Price Tracker — Deploy Script ==="
 
 # 1. System deps
 sudo apt-get update -qq
-sudo apt-get install -y -qq python3 python3-venv xvfb wget fluxbox
+sudo apt-get install -y -qq python3 python3-venv xvfb wget fluxbox build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libffi-dev liblzma-dev libncursesw5-dev
 
 # 2. Google Chrome
 if ! command -v google-chrome-stable &>/dev/null; then
@@ -35,6 +35,7 @@ asdf install
 # 5. Python venv
 asdf exec python -m venv venv
 source venv/bin/activate
+pip install --upgrade pip
 pip install -r requirements.txt
 
 # 6. .env
