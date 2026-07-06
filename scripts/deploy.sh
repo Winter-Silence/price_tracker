@@ -19,21 +19,32 @@ else
 fi
 
 # 3. Project (assuming it's already cloned/copied)
-cd /home/$(whoami)/price-tracker
+cd /home/$(whoami)/price_tracker
 
-# 4. Python venv
-python3 -m venv venv
+# 4. Python via asdf
+if ! command -v asdf &>/dev/null; then
+    echo ">>> Installing asdf..."
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.16.0
+    echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc
+    . "$HOME/.asdf/asdf.sh"
+fi
+. "$HOME/.asdf/asdf.sh"
+asdf plugin add python
+asdf install
+
+# 5. Python venv
+asdf exec python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 
-# 5. .env
+# 6. .env
 if [ ! -f .env ]; then
     cp .env.example .env
     echo ">>> Edit .env and set TELEGRAM_BOT_TOKEN <<<"
     exit 1
 fi
 
-# 6. Xvfb systemd service
+# 7. Xvfb systemd service
 sudo tee /etc/systemd/system/price-tracker-xvfb.service > /dev/null <<EOF
 [Unit]
 Description=X Virtual Framebuffer for Price Tracker
@@ -49,7 +60,7 @@ RestartSec=5
 WantedBy=multi-user.target
 EOF
 
-# 7. fluxbox systemd service (requires running Xvfb)
+# 8. fluxbox systemd service (requires running Xvfb)
 sudo tee /etc/systemd/system/price-tracker-fluxbox.service > /dev/null <<EOF
 [Unit]
 Description=fluxbox window manager for Price Tracker
@@ -70,7 +81,7 @@ Environment=DISPLAY=:99
 WantedBy=multi-user.target
 EOF
 
-# 8. Bot systemd service
+# 9. Bot systemd service
 sudo tee /etc/systemd/system/price-tracker.service > /dev/null <<EOF
 [Unit]
 Description=Price Tracker Telegram Bot
@@ -80,10 +91,10 @@ Requires=price-tracker-xvfb.service price-tracker-fluxbox.service
 [Service]
 Type=simple
 User=$(whoami)
-WorkingDirectory=/home/$(whoami)/price-tracker
+WorkingDirectory=/home/$(whoami)/price_tracker
 Environment=DISPLAY=:99
-EnvironmentFile=-/home/$(whoami)/price-tracker/.env
-ExecStart=/home/$(whoami)/price-tracker/venv/bin/python main.py
+EnvironmentFile=-/home/$(whoami)/price_tracker/.env
+ExecStart=/home/$(whoami)/price_tracker/venv/bin/python main.py
 Restart=always
 RestartSec=10
 
@@ -91,7 +102,7 @@ RestartSec=10
 WantedBy=multi-user.target
 EOF
 
-# 9. Enable and start
+# 10. Enable and start
 sudo systemctl daemon-reload
 sudo systemctl enable --now price-tracker-xvfb.service
 sleep 2
