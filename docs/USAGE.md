@@ -5,7 +5,11 @@
 ## Запуск
 
 ```bash
+# bash / zsh:
 source venv/bin/activate
+# fish:
+source venv/bin/activate.fish
+
 python main.py
 ```
 

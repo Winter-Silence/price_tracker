@@ -1,5 +1,5 @@
 [Unit]
-Description=X Virtual Framebuffer (Xvfb)
+Description=X Virtual Framebuffer for Price Tracker
 After=network.target
 
 [Service]

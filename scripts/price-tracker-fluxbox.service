@@ -1,0 +1,17 @@
+[Unit]
+Description=fluxbox window manager for Price Tracker
+After=price-tracker-xvfb.service
+Requires=price-tracker-xvfb.service
+BindsTo=price-tracker-xvfb.service
+
+[Service]
+Type=simple
+User=yury
+ExecStartPre=/usr/bin/sleep 1
+ExecStart=/usr/bin/fluxbox
+Restart=always
+RestartSec=5
+Environment=DISPLAY=:99
+
+[Install]
+WantedBy=multi-user.target

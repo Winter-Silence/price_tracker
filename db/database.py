@@ -40,11 +40,42 @@ CREATE TABLE IF NOT EXISTS price_history (
 CREATE TABLE IF NOT EXISTS alerts (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER REFERENCES users(id),
-    link_id INTEGER REFERENCES marketplace_links(id),
+    link_id INTEGER NOT NULL,
+    link_kind TEXT NOT NULL DEFAULT 'product',
     threshold_price REAL NOT NULL,
     is_active BOOLEAN DEFAULT 1,
     triggered_at TIMESTAMP,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS user_privileges (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL REFERENCES users(id),
+    marketplace TEXT NOT NULL,
+    privilege_type TEXT NOT NULL,
+    UNIQUE(user_id, marketplace, privilege_type)
+);
+
+CREATE TABLE IF NOT EXISTS search_links (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    product_id INTEGER REFERENCES products(id),
+    marketplace TEXT NOT NULL,
+    search_url TEXT NOT NULL,
+    title_filter TEXT NOT NULL,
+    last_price REAL,
+    last_resolved_url TEXT,
+    last_resolved_title TEXT,
+    last_checked_at TIMESTAMP,
+    is_active BOOLEAN DEFAULT 1
+);
+
+CREATE TABLE IF NOT EXISTS search_price_history (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    search_link_id INTEGER REFERENCES search_links(id),
+    price REAL NOT NULL,
+    resolved_url TEXT,
+    resolved_title TEXT,
+    recorded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 """
 
@@ -64,9 +95,21 @@ async def db_connection():
         await conn.close()
 
 
+MIGRATIONS = [
+    "ALTER TABLE price_history ADD COLUMN privilege_type TEXT NOT NULL DEFAULT 'standard'",
+    "ALTER TABLE alerts ADD COLUMN link_kind TEXT NOT NULL DEFAULT 'product'",
+]
+
+
 async def init_db():
     async with db_connection() as conn:
         await conn.executescript(SCHEMA)
+        for migration in MIGRATIONS:
+            try:
+                await conn.execute(migration)
+                logger.info("Migration applied: %s", migration[:60])
+            except Exception:
+                pass
         await conn.commit()
     logger.info("Database initialized")
 
@@ -124,11 +167,11 @@ async def get_active_links() -> list[dict]:
     return [dict(r) for r in rows]
 
 
-async def save_price(link_id: int, price: float):
+async def save_price(link_id: int, price: float, privilege_type: str = "standard"):
     async with db_connection() as conn:
         await conn.execute(
-            "INSERT INTO price_history (link_id, price) VALUES (?, ?)",
-            (link_id, price),
+            "INSERT INTO price_history (link_id, price, privilege_type) VALUES (?, ?, ?)",
+            (link_id, price, privilege_type),
         )
         await conn.execute(
             "UPDATE marketplace_links SET last_price = ?, last_checked_at = CURRENT_TIMESTAMP "
@@ -136,93 +179,44 @@ async def save_price(link_id: int, price: float):
             (price, link_id),
         )
         await conn.commit()
-        logger.info("Saved price %.2f for link_id=%d", price, link_id)
+        logger.info("Saved price %.2f (tier=%s) for link_id=%d", price, privilege_type, link_id)
 
 
-async def get_price_history(link_id: int, limit: int = 10) -> list[dict]:
+async def get_price_history(link_id: int, privilege_type: str | None = None, limit: int = 10) -> list[dict]:
     async with db_connection() as conn:
-        cursor = await conn.execute(
-            "SELECT id, link_id, price, recorded_at FROM price_history "
-            "WHERE link_id = ? ORDER BY recorded_at DESC LIMIT ?",
-            (link_id, limit),
-        )
+        if privilege_type:
+            cursor = await conn.execute(
+                "SELECT id, link_id, price, privilege_type, recorded_at FROM price_history "
+                "WHERE link_id = ? AND privilege_type = ? ORDER BY recorded_at DESC LIMIT ?",
+                (link_id, privilege_type, limit),
+            )
+        else:
+            cursor = await conn.execute(
+                "SELECT id, link_id, price, privilege_type, recorded_at FROM price_history "
+                "WHERE link_id = ? ORDER BY recorded_at DESC LIMIT ?",
+                (link_id, limit),
+            )
         rows = await cursor.fetchall()
     return [dict(r) for r in rows]
 
 
-async def add_alert(user_id: int, link_id: int, threshold_price: float):
+async def add_alert(
+    user_id: int, link_id: int, threshold_price: float, link_kind: str = "product",
+):
     async with db_connection() as conn:
         await conn.execute(
-            "INSERT INTO alerts (user_id, link_id, threshold_price) VALUES (?, ?, ?)",
-            (user_id, link_id, threshold_price),
+            "INSERT INTO alerts (user_id, link_id, link_kind, threshold_price) "
+            "VALUES (?, ?, ?, ?)",
+            (user_id, link_id, link_kind, threshold_price),
         )
         await conn.commit()
         logger.info(
-            "Added alert user_id=%d link_id=%d threshold=%.2f",
-            user_id, link_id, threshold_price,
+            "Added alert user_id=%d link_id=%d link_kind=%s threshold=%.2f",
+            user_id, link_id, link_kind, threshold_price,
         )
 
 
-async def get_triggered_alerts(link_id: int, new_price: float) -> list[dict]:
-    async with db_connection() as conn:
-        cursor = await conn.execute(
-            "SELECT id, user_id, link_id, threshold_price FROM alerts "
-            "WHERE link_id = ? AND is_active = 1 AND threshold_price >= ? AND triggered_at IS NULL",
-            (link_id, new_price),
-        )
-        rows = await cursor.fetchall()
-    return [dict(r) for r in rows]
 
-
-async def reset_alerts_above_threshold(link_id: int, new_price: float):
-    async with db_connection() as conn:
-        await conn.execute(
-            "UPDATE alerts SET triggered_at = NULL "
-            "WHERE link_id = ? AND is_active = 1 AND triggered_at IS NOT NULL AND threshold_price < ?",
-            (link_id, new_price),
-        )
-        await conn.commit()
-
-
-async def mark_alert_triggered(alert_id: int):
-    async with db_connection() as conn:
-        await conn.execute(
-            "UPDATE alerts SET triggered_at = CURRENT_TIMESTAMP WHERE id = ?",
-            (alert_id,),
-        )
-        await conn.commit()
-
-
-async def get_user_alerts(user_id: int) -> list[dict]:
-    async with db_connection() as conn:
-        cursor = await conn.execute(
-            """
-            SELECT a.id, a.user_id, a.link_id, a.threshold_price, a.is_active, a.created_at,
-                   ml.marketplace, ml.url, p.name AS product_name, p.id AS product_id
-            FROM alerts a
-            JOIN marketplace_links ml ON ml.id = a.link_id
-            JOIN products p ON p.id = ml.product_id
-            WHERE a.user_id = ? AND a.is_active = 1 AND ml.is_active = 1
-            ORDER BY a.created_at DESC
-            """,
-            (user_id,),
-        )
-        rows = await cursor.fetchall()
-    return [dict(r) for r in rows]
-
-
-async def update_alert_threshold(alert_id: int, user_id: int, new_threshold: float):
-    async with db_connection() as conn:
-        cursor = await conn.execute(
-            """
-            UPDATE alerts SET threshold_price = ?
-            WHERE id = ? AND user_id = ? AND is_active = 1
-            """,
-            (new_threshold, alert_id, user_id),
-        )
-        await conn.commit()
-    logger.info("Updated alert_id=%d threshold=%.2f for user_id=%d", alert_id, new_threshold, user_id)
-    return cursor.rowcount > 0
 
 
 async def get_user_products(user_id: int) -> list[dict]:
@@ -261,15 +255,181 @@ async def get_product_by_id(product_id: int) -> dict | None:
     return dict(row) if row else None
 
 
+# ===== Search links =====
+
+
+async def add_search_link(
+    product_id: int, marketplace: str, search_url: str, title_filter: str,
+) -> int:
+    async with db_connection() as conn:
+        cursor = await conn.execute(
+            "INSERT INTO search_links (product_id, marketplace, search_url, title_filter) "
+            "VALUES (?, ?, ?, ?)",
+            (product_id, marketplace, search_url, title_filter),
+        )
+        await conn.commit()
+        logger.info(
+            "Added search link %s (filter=%s) for product_id=%d",
+            search_url, title_filter, product_id,
+        )
+        return cursor.lastrowid
+
+
+async def get_active_search_links() -> list[dict]:
+    async with db_connection() as conn:
+        cursor = await conn.execute(
+            "SELECT id, product_id, marketplace, search_url, title_filter, "
+            "last_price, last_resolved_url, last_resolved_title, last_checked_at "
+            "FROM search_links WHERE is_active = 1"
+        )
+        rows = await cursor.fetchall()
+    return [dict(r) for r in rows]
+
+
+async def save_search_price(
+    search_link_id: int, price: float, resolved_url: str, resolved_title: str,
+):
+    async with db_connection() as conn:
+        await conn.execute(
+            "INSERT INTO search_price_history "
+            "(search_link_id, price, resolved_url, resolved_title) VALUES (?, ?, ?, ?)",
+            (search_link_id, price, resolved_url, resolved_title),
+        )
+        await conn.execute(
+            "UPDATE search_links SET last_price = ?, last_resolved_url = ?, "
+            "last_resolved_title = ?, last_checked_at = CURRENT_TIMESTAMP WHERE id = ?",
+            (price, resolved_url, resolved_title, search_link_id),
+        )
+        await conn.commit()
+        logger.info(
+            "Saved search price %.2f for search_link_id=%d (%s)",
+            price, search_link_id, resolved_title,
+        )
+
+
+async def get_search_link_by_id(search_link_id: int) -> dict | None:
+    async with db_connection() as conn:
+        cursor = await conn.execute(
+            "SELECT id, product_id, marketplace, search_url, title_filter, "
+            "last_price, last_resolved_url, last_resolved_title, last_checked_at, is_active "
+            "FROM search_links WHERE id = ?",
+            (search_link_id,),
+        )
+        row = await cursor.fetchone()
+    return dict(row) if row else None
+
+
+async def get_user_search_links(user_id: int) -> list[dict]:
+    async with db_connection() as conn:
+        cursor = await conn.execute(
+            "SELECT p.id AS product_id, p.name, p.created_at, "
+            "sl.id AS search_link_id, sl.marketplace, sl.search_url, "
+            "sl.title_filter, sl.last_price, sl.last_resolved_url, "
+            "sl.last_resolved_title, sl.last_checked_at "
+            "FROM products p "
+            "JOIN search_links sl ON sl.product_id = p.id "
+            "WHERE p.created_by = ? AND sl.is_active = 1 "
+            "ORDER BY p.created_at DESC",
+            (user_id,),
+        )
+        rows = await cursor.fetchall()
+    return [dict(r) for r in rows]
+
+
+async def delete_search_link(search_link_id: int, user_id: int):
+    async with db_connection() as conn:
+        await conn.execute(
+            "UPDATE search_links SET is_active = 0 "
+            "WHERE id = ? AND product_id IN (SELECT id FROM products WHERE created_by = ?)",
+            (search_link_id, user_id),
+        )
+        await conn.commit()
+        logger.info("Deactivated search_link_id=%d for user_id=%d", search_link_id, user_id)
+
+
+async def get_search_price_history(search_link_id: int, limit: int = 15) -> list[dict]:
+    async with db_connection() as conn:
+        cursor = await conn.execute(
+            "SELECT id, search_link_id, price, resolved_url, resolved_title, recorded_at "
+            "FROM search_price_history WHERE search_link_id = ? "
+            "ORDER BY recorded_at DESC LIMIT ?",
+            (search_link_id, limit),
+        )
+        rows = await cursor.fetchall()
+    return [dict(r) for r in rows]
+
+
+# ===== Privileges =====
+
+
+async def add_user_privilege(user_id: int, marketplace: str, privilege_type: str):
+    async with db_connection() as conn:
+        try:
+            await conn.execute(
+                "INSERT INTO user_privileges (user_id, marketplace, privilege_type) VALUES (?, ?, ?)",
+                (user_id, marketplace, privilege_type),
+            )
+            await conn.commit()
+            logger.info("Added privilege %s/%s for user_id=%d", marketplace, privilege_type, user_id)
+        except Exception:
+            logger.warning("Privilege %s/%s already exists for user_id=%d", marketplace, privilege_type, user_id)
+
+
+async def remove_user_privilege(user_id: int, marketplace: str, privilege_type: str):
+    async with db_connection() as conn:
+        await conn.execute(
+            "DELETE FROM user_privileges WHERE user_id = ? AND marketplace = ? AND privilege_type = ?",
+            (user_id, marketplace, privilege_type),
+        )
+        await conn.commit()
+        logger.info("Removed privilege %s/%s for user_id=%d", marketplace, privilege_type, user_id)
+
+
+async def get_user_privileges(user_id: int) -> list[dict]:
+    async with db_connection() as conn:
+        cursor = await conn.execute(
+            "SELECT id, user_id, marketplace, privilege_type FROM user_privileges WHERE user_id = ?",
+            (user_id,),
+        )
+        rows = await cursor.fetchall()
+    return [dict(r) for r in rows]
+
+
+async def get_user_privileges_for_marketplace(user_id: int, marketplace: str) -> list[str]:
+    async with db_connection() as conn:
+        cursor = await conn.execute(
+            "SELECT privilege_type FROM user_privileges WHERE user_id = ? AND marketplace = ?",
+            (user_id, marketplace),
+        )
+        rows = await cursor.fetchall()
+    return [r["privilege_type"] for r in rows]
+
+
+# ===== Alerts =====
+
+
+async def get_alerts_for_link(link_id: int, link_kind: str = "product") -> list[dict]:
+    async with db_connection() as conn:
+        cursor = await conn.execute(
+            "SELECT id, user_id, link_id, link_kind, threshold_price, triggered_at FROM alerts "
+            "WHERE link_id = ? AND link_kind = ? AND is_active = 1",
+            (link_id, link_kind),
+        )
+        rows = await cursor.fetchall()
+    return [dict(r) for r in rows]
+
+
 async def get_user_alerts(user_id: int) -> list[dict]:
     async with db_connection() as conn:
         cursor = await conn.execute(
             """
-            SELECT a.id, a.link_id, a.threshold_price, a.is_active,
-                   p.name AS product_name, ml.marketplace
+            SELECT a.id, a.link_id, a.link_kind, a.threshold_price, a.is_active,
+                   p.name AS product_name,
+                   COALESCE(ml.marketplace, sl.marketplace) AS marketplace
             FROM alerts a
-            JOIN marketplace_links ml ON ml.id = a.link_id
-            JOIN products p ON p.id = ml.product_id
+            LEFT JOIN marketplace_links ml ON ml.id = a.link_id AND a.link_kind = 'product'
+            LEFT JOIN search_links sl ON sl.id = a.link_id AND a.link_kind = 'search'
+            LEFT JOIN products p ON p.id = COALESCE(ml.product_id, sl.product_id)
             WHERE a.user_id = ? AND a.is_active = 1
             ORDER BY p.name
             """,
@@ -287,3 +447,21 @@ async def update_alert_threshold(alert_id: int, user_id: int, new_threshold: flo
         )
         await conn.commit()
     return cursor.rowcount > 0
+
+
+async def mark_alert_triggered(alert_id: int):
+    async with db_connection() as conn:
+        await conn.execute(
+            "UPDATE alerts SET triggered_at = CURRENT_TIMESTAMP WHERE id = ?",
+            (alert_id,),
+        )
+        await conn.commit()
+
+
+async def reset_alert_triggered(alert_id: int):
+    async with db_connection() as conn:
+        await conn.execute(
+            "UPDATE alerts SET triggered_at = NULL WHERE id = ?",
+            (alert_id,),
+        )
+        await conn.commit()

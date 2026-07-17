@@ -9,6 +9,12 @@ PARSERS: list[type[BaseParser]] = [
     CitilinkParser,
 ]
 
+MARKETPLACE_TIERS: dict[str, list[str]] = {
+    "wildberries": ["card", "wb_club"],
+    "ozon": ["card", "premium"],
+    "citilink": ["card"],
+}
+
 
 def get_parser(url: str) -> BaseParser | None:
     for parser_cls in PARSERS:

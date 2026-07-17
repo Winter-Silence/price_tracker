@@ -1,6 +1,7 @@
 /.idea/
 /.opencode/
 /.env
+/.deploy.env
 /screenshots/*
 /data/*
 /venv/

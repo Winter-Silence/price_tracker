@@ -2,6 +2,7 @@ import random
 import asyncio
 import shutil
 from abc import ABC, abstractmethod
+from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 
@@ -25,6 +26,35 @@ CHROME_ARGS = [
 ]
 
 
+TIER_LABELS: dict[str, str] = {
+    "standard": "Стандартная",
+    "card": "По карте",
+    "premium": "По подписке",
+    "wb_club": "WB Клуб",
+}
+
+
+@dataclass
+class SearchResult:
+    price: float
+    product_url: str
+    product_title: str
+    tiers: dict[str, float] | None = field(default=None)
+
+
+def matches_title_filter(card_title: str, title_filter: str) -> bool:
+    """
+    Token containment check (case-insensitive, words order agnostic):
+    every non-empty token of title_filter must appear as a substring
+    inside card_title.
+    """
+    if not title_filter or not title_filter.strip():
+        return True
+    title_lower = card_title.lower()
+    tokens = [t for t in title_filter.lower().split() if t]
+    return all(tok and tok in title_lower for tok in tokens)
+
+
 class BaseParser(ABC):
     marketplace: str = ""
     delay_min: float = 1.0
@@ -33,6 +63,13 @@ class BaseParser(ABC):
     homepage_delay_max: float = 4.0
     _root_url: str = ""
 
+    # Threshold for "parser can't find prices this many times in a row".
+    #admins are notified once the counter reaches this value.
+    FAILURE_THRESHOLD: int = 5
+
+    def __init__(self):
+        self._consecutive_failures: int = 0
+
     @classmethod
     @abstractmethod
     def can_handle(cls, url: str) -> bool:
@@ -40,6 +77,18 @@ class BaseParser(ABC):
 
     @abstractmethod
     async def get_price(self, url: str) -> float | None:
+        pass
+
+    async def get_price_tiers(self, url: str) -> dict[str, float] | None:
+        price = await self.get_price(url)
+        if price is None:
+            return None
+        return {"standard": price}
+
+    @abstractmethod
+    async def get_cheapest_from_search(
+        self, search_url: str, title_filter: str,
+    ) -> SearchResult | None:
         pass
 
     async def start_session(self):
@@ -109,3 +158,33 @@ class BaseParser(ABC):
         except Exception as exc:
             logger.error("Failed to take screenshot: %s", exc)
             return None
+
+    def register_parse_failure(self) -> bool:
+        """Increment the consecutive-failures counter.
+
+        Returns True if the counter has just reached FAILURE_THRESHOLD
+        (this transition should trigger a service notification). Returns
+        False otherwise (still below threshold or already past it).
+        """
+        self._consecutive_failures += 1
+        reached = self._consecutive_failures == self.FAILURE_THRESHOLD
+        if reached:
+            logger.error(
+                "%s parser failed %d times in a row — likely layout change",
+                self.marketplace, self._consecutive_failures,
+            )
+        else:
+            logger.debug(
+                "%s consecutive failures: %d",
+                self.marketplace, self._consecutive_failures,
+            )
+        return reached
+
+    def register_parse_success(self):
+        """Reset the consecutive-failures counter on a successful parse."""
+        if self._consecutive_failures > 0:
+            logger.debug(
+                "%s parse success — resetting failures counter from %d",
+                self.marketplace, self._consecutive_failures,
+            )
+        self._consecutive_failures = 0
