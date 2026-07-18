@@ -11,7 +11,7 @@ async def send_alert_notification(
 ):
     async with db_connection() as conn:
         cursor = await conn.execute(
-            "SELECT ml.url, ml.marketplace, p.name, u.telegram_id "
+            "SELECT ml.url, ml.marketplace, p.name, u.telegram_id "#TODO: 
             "FROM marketplace_links ml "
             "JOIN products p ON p.id = ml.product_id "
             "JOIN users u ON u.id = ? "

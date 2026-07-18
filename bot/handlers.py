@@ -87,6 +87,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def add_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data.clear()
     await update.message.reply_text(
         "🔗 Пришли ссылку на товар или на страницу поиска с сортировкой по цене "
         "(Wildberries, Ozon, Citilink)"
@@ -329,6 +330,7 @@ async def cancel_delete(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def history_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data.clear()
     telegram_id = update.effective_user.id
     user_id = await get_or_create_user(telegram_id)
     products = await get_user_products(user_id)
@@ -525,6 +527,7 @@ async def history_back(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # ===== /link command =====
 
 async def link_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data.clear()
     telegram_id = update.effective_user.id
     user_id = await get_or_create_user(telegram_id)
     products = await get_user_products(user_id)
@@ -616,6 +619,7 @@ async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # ===== /threshold command =====
 
 async def threshold_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data.clear()
     telegram_id = update.effective_user.id
     user_id = await get_or_create_user(telegram_id)
     alerts = await get_user_alerts(user_id)
@@ -678,6 +682,7 @@ async def threshold_input(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def privileges_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data.clear()
     telegram_id = update.effective_user.id
     user_id = await get_or_create_user(telegram_id)
     privileges = await get_user_privileges(user_id)
@@ -839,6 +844,19 @@ async def privileges_close(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 def setup_handlers(application: Application):
+    conversation_fallbacks = [
+        CommandHandler("cancel", cancel),
+        CommandHandler("add", add_start),
+        CommandHandler("link", link_start),
+        CommandHandler("threshold", threshold_start),
+        CommandHandler("privileges", privileges_start),
+        CommandHandler("history", history_start),
+        CommandHandler("list", list_products),
+        CommandHandler("delete", delete_start),
+        CommandHandler("start", start),
+        CommandHandler("help", help_command),
+    ]
+
     add_conv = ConversationHandler(
         entry_points=[CommandHandler("add", add_start)],
         states={
@@ -848,7 +866,7 @@ def setup_handlers(application: Application):
             ADD_NAME: [MessageHandler(filters.TEXT & ~filters.COMMAND, add_name)],
             ADD_TARGET_PRICE: [MessageHandler(filters.TEXT & ~filters.COMMAND, add_target_price)],
         },
-        fallbacks=[CommandHandler("cancel", cancel)],
+        fallbacks=conversation_fallbacks,
     )
 
     history_conv = ConversationHandler(
@@ -866,7 +884,7 @@ def setup_handlers(application: Application):
                 CallbackQueryHandler(history_search_back, pattern=r"^hist_search_back$"),
             ],
         },
-        fallbacks=[CommandHandler("cancel", cancel)],
+        fallbacks=conversation_fallbacks,
     )
 
     link_conv = ConversationHandler(
@@ -876,7 +894,7 @@ def setup_handlers(application: Application):
             LINK_URL: [MessageHandler(filters.TEXT & ~filters.COMMAND, link_url)],
             LINK_TARGET_PRICE: [MessageHandler(filters.TEXT & ~filters.COMMAND, link_target_price)],
         },
-        fallbacks=[CommandHandler("cancel", cancel)],
+        fallbacks=conversation_fallbacks,
     )
 
     threshold_conv = ConversationHandler(
@@ -885,7 +903,7 @@ def setup_handlers(application: Application):
             THRESHOLD_SELECT: [CallbackQueryHandler(threshold_select, pattern=r"^thresh_\d+$")],
             THRESHOLD_INPUT: [MessageHandler(filters.TEXT & ~filters.COMMAND, threshold_input)],
         },
-        fallbacks=[CommandHandler("cancel", cancel)],
+        fallbacks=conversation_fallbacks,
     )
 
     privileges_conv = ConversationHandler(
@@ -900,7 +918,7 @@ def setup_handlers(application: Application):
                 CallbackQueryHandler(privileges_back, pattern=r"^priv_back$"),
             ],
         },
-        fallbacks=[CommandHandler("cancel", cancel)],
+        fallbacks=conversation_fallbacks,
     )
 
     application.add_handler(CommandHandler("start", start))
