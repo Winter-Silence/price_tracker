@@ -14,6 +14,9 @@ class Product:
     id: int
     name: str
     created_by: int
+    threshold_price: float
+    alert_active: bool
+    triggered_at: datetime | None
     created_at: datetime
 
 
@@ -35,17 +38,6 @@ class PriceRecord:
     price: float
     privilege_type: str
     recorded_at: datetime
-
-
-@dataclass
-class Alert:
-    id: int
-    user_id: int
-    link_id: int
-    threshold_price: float
-    is_active: bool
-    triggered_at: datetime | None
-    created_at: datetime
 
 
 @dataclass

@@ -14,20 +14,17 @@ from db.database import (
     get_or_create_user,
     add_product,
     add_marketplace_link,
-    add_alert,
     get_user_products,
     get_product_by_id,
     get_price_history,
     delete_link,
-    get_user_alerts,
-    update_alert_threshold,
+    update_product_threshold,
     get_user_privileges,
     add_user_privilege,
     remove_user_privilege,
     add_search_link,
     get_user_search_links,
     delete_search_link,
-    get_search_link_by_id,
     get_search_price_history,
 )
 from parsers import get_parser, MARKETPLACE_TIERS
@@ -37,7 +34,7 @@ from utils.logger import logger
 ADD_URL, ADD_MODE, ADD_NAME, ADD_TARGET_PRICE, ADD_TITLE_FILTER = range(5)
 HISTORY_LINK, HISTORY_TIER = range(10, 12)
 HISTORY_SEARCH_LINK = 13
-LINK_SELECT, LINK_URL, LINK_TARGET_PRICE = range(20, 23)
+LINK_SELECT, LINK_URL = range(20, 22)
 THRESHOLD_SELECT, THRESHOLD_INPUT = range(30, 32)
 PRIVILEGES_MENU, PRIVILEGES_MARKETPLACE = range(40, 42)
 MARKETPLACE_NAMES = {
@@ -53,8 +50,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "👋 Привет! Я бот для отслеживания цен на маркетплейсах.\n\n"
             "Команды:\n"
             "/add — добавить новый товар для отслеживания\n"
-            "/link — привязать ссылку к существующему товару\n"
-            "/threshold — изменить пороговую цену уведомления\n"
+            "/link — привязать ещё одну ссылку к существующему товару (на другом маркетплейсе)\n"
+            "/threshold — задать/изменить пороговую цену товара\n"
             "/privileges — настроить привилегии на маркетплейсах\n"
             "/list — список твоих товаров\n"
             "/delete — удалить товар\n"
@@ -73,8 +70,8 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "    ссылку на товар или <b>страницу поиска</b> с сортировкой по\n"
             "    цене — бот найдёт самый дешёвый товар, подходящий под\n"
             "    поисковую строку.\n"
-            "/link — привязать ссылку к уже существующему товару\n"
-            "/threshold — изменить пороговую цену уведомления (или 0 — отключить)\n"
+            "/link — привязать ещё одну ссылку к существующему товару (например, на другом маркетплейсе). Пороговая цена общая для всех ссылок товара\n"
+            "/threshold — задать/изменить пороговую цену товара (или 0 — отключить). Уведомление придёт, как только цена на любой площадке опустится до порога\n"
             "/privileges — указать какие привилегии у тебя есть на маркетплейсах (скидка по карте, подписка), чтобы бот учитывал их при расчёте цены\n"
             "/list — показать все твои товары с текущими ценами\n"
             "/delete — удалить товар (с подтверждением)\n"
@@ -164,26 +161,21 @@ async def add_target_price(update: Update, context: ContextTypes.DEFAULT_TYPE):
     telegram_id = update.effective_user.id
 
     user_id = await get_or_create_user(telegram_id)
-    product_id = await add_product(name, user_id)
+    product_id = await add_product(name, user_id, threshold_price=target_price)
 
     if mode == "search":
         title_filter = context.user_data.get("title_filter", "")
-        link_id = await add_search_link(product_id, marketplace, url, title_filter)
-        link_kind = "search"
-    else:
-        link_id = await add_marketplace_link(product_id, marketplace, url)
-        link_kind = "product"
-
-    if target_price > 0:
-        await add_alert(user_id, link_id, target_price, link_kind=link_kind)
-
-    if mode == "search":
+        await add_search_link(product_id, marketplace, url, title_filter)
         await update.message.reply_text(
             "✅ Поиск добавлен! Буду проверять цены каждый час и "
             "найду самый дешёвый товар по запросу."
         )
     else:
-        await update.message.reply_text("✅ Товар добавлен! Буду проверять цену каждый час.")
+        await add_marketplace_link(product_id, marketplace, url)
+        await update.message.reply_text(
+            "✅ Товар добавлен! Буду проверять цену каждый час. "
+            "Сразу сообщу, как только она упадёт до твоей цели."
+        )
     return ConversationHandler.END
 
 
@@ -206,8 +198,13 @@ async def list_products(update: Update, context: ContextTypes.DEFAULT_TYPE):
     for p in products:
         marketplace = p["marketplace"]
         price = f"{p['last_price']:.0f}₽" if p["last_price"] else "—"
+        threshold = p.get("threshold_price") or 0
+        alert_active = bool(p.get("alert_active"))
 
-        line = f"🔹 {p['name']}\n   🏪 {marketplace} | Цена: {price}\n"
+        line = f"🔹 {p['name']}\n   🏪 {marketplace} | Цена: {price}"
+        if alert_active and threshold > 0:
+            line += f" | 🎯 {threshold:.0f}₽"
+        line += "\n"
 
         user_tiers = priv_by_mp.get(marketplace, [])
         if user_tiers and p["last_price"]:
@@ -224,11 +221,16 @@ async def list_products(update: Update, context: ContextTypes.DEFAULT_TYPE):
         for sp in search_products:
             marketplace = sp["marketplace"]
             price = f"{sp['last_price']:.0f}₽" if sp["last_price"] else "—"
+            threshold = sp.get("threshold_price") or 0
+            alert_active = bool(sp.get("alert_active"))
             line = (
                 f"🔹 {sp['name']}\n"
-                f"   🏪 {marketplace} | Цена: {price}\n"
-                f"   🔍 Запрос: \"{sp['title_filter']}\"\n"
+                f"   🏪 {marketplace} | Цена: {price}"
             )
+            if alert_active and threshold > 0:
+                line += f" | 🎯 {threshold:.0f}₽"
+            line += "\n"
+            line += f"   🔍 Запрос: \"{sp['title_filter']}\"\n"
             if sp["last_resolved_title"]:
                 line += f"   📦 Найден: {sp['last_resolved_title']}\n"
             line += f"   🔗 ID: {sp['search_link_id']}\n\n"
@@ -577,35 +579,34 @@ async def link_url(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("❌ Неподдерживаемый магазин. Поддерживаются: Wildberries, Ozon, Citilink")
         return ConversationHandler.END
 
-    context.user_data["link_url"] = url
-    context.user_data["link_marketplace"] = parser.marketplace
-    await update.message.reply_text("💰 Введи пороговую цену (или 0, чтобы просто отслеживать):")
-    return LINK_TARGET_PRICE
-
-
-async def link_target_price(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    try:
-        target_price = float(update.message.text.strip())
-    except ValueError:
-        await update.message.reply_text("❌ Введи число")
-        return LINK_TARGET_PRICE
-
     product_id = context.user_data["link_product_id"]
     product_name = context.user_data["link_product_name"]
-    url = context.user_data["link_url"]
-    marketplace = context.user_data["link_marketplace"]
+    marketplace = parser.marketplace
     telegram_id = update.effective_user.id
 
-    user_id = await get_or_create_user(telegram_id)
-    link_id = await add_marketplace_link(product_id, marketplace, url)
+    await get_or_create_user(telegram_id)
+    await add_marketplace_link(product_id, marketplace, url)
 
-    if target_price > 0:
-        await add_alert(user_id, link_id, target_price)
+    product = await get_product_by_id(product_id)
+    threshold = product["threshold_price"] if product else 0
+    alert_active = bool(product["alert_active"]) if product else False
+
+    if alert_active and threshold > 0:
+        threshold_line = (
+            f"\n🎯 Порог из товара: <b>{threshold:.0f}₽</b> "
+            "(общий для всех ссылок этого товара. Изменить — через /threshold)"
+        )
+    else:
+        threshold_line = (
+            "\nℹ️ У товара пока нет порога. Задай его через /threshold, "
+            "чтобы получать уведомления."
+        )
 
     await update.message.reply_text(
         f"✅ Ссылка привязана к товару <b>{product_name}</b>!\n"
         f"🏪 Маркетплейс: {marketplace}\n"
-        "Буду проверять цену каждый час.",
+        "Буду проверять цену каждый час."
+        f"{threshold_line}",
         parse_mode="HTML"
     )
     return ConversationHandler.END
@@ -622,21 +623,36 @@ async def threshold_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data.clear()
     telegram_id = update.effective_user.id
     user_id = await get_or_create_user(telegram_id)
-    alerts = await get_user_alerts(user_id)
 
-    if not alerts:
-        await update.message.reply_text("📭 У тебя нет активных уведомлений о цене. Добавь через /add или /link")
+    # Show all user's products — including those without a threshold yet,
+    # so the user can set one for the first time.
+    async with db_connection() as conn:
+        cursor = await conn.execute(
+            "SELECT id, name, threshold_price, alert_active "
+            "FROM products WHERE created_by = ? "
+            "ORDER BY name",
+            (user_id,),
+        )
+        products = [dict(r) for r in await cursor.fetchall()]
+
+    if not products:
+        await update.message.reply_text("📭 У тебя пока нет товаров. Добавь через /add")
         return ConversationHandler.END
 
-    keyboard = [
-        [InlineKeyboardButton(
-            f"📦 {a['product_name']} | 🏪 {a['marketplace']} | 💰 {a['threshold_price']:.0f}₽",
-            callback_data=f"thresh_{a['id']}",
-        )]
-        for a in alerts
-    ]
+    keyboard = []
+    for p in products:
+        threshold = p["threshold_price"] or 0
+        active = bool(p["alert_active"]) and threshold > 0
+        if active:
+            label = f"📦 {p['name']} | 🎯 {threshold:.0f}₽"
+        else:
+            label = f"📦 {p['name']} | ⚪ без порога"
+        keyboard.append([InlineKeyboardButton(label, callback_data=f"thresh_{p['id']}")])
+
     await update.message.reply_text(
-        "🔔 Выбери уведомление для изменения порога:",
+        "🎯 Выбери товар, чтобы задать или изменить пороговую цену.\n"
+        "Это общая цена для всех ссылок этого товара — уведомление сработает, "
+        "как только на любой из площадок цена опустится до неё или ниже.",
         reply_markup=InlineKeyboardMarkup(keyboard),
     )
     return THRESHOLD_SELECT
@@ -645,11 +661,11 @@ async def threshold_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def threshold_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
-    alert_id = int(query.data.split("_")[1])
+    product_id = int(query.data.split("_")[1])
 
-    context.user_data["threshold_alert_id"] = alert_id
+    context.user_data["threshold_product_id"] = product_id
     await query.edit_message_text(
-        "💰 Введи новый пороговую цену (или 0, чтобы отключить уведомление):"
+        "💰 Введи пороговую цену для этого товара (или 0, чтобы отключить уведомление):"
     )
     return THRESHOLD_INPUT
 
@@ -661,17 +677,21 @@ async def threshold_input(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("❌ Введи число")
         return THRESHOLD_INPUT
 
-    alert_id = context.user_data["threshold_alert_id"]
+    product_id = context.user_data["threshold_product_id"]
     telegram_id = update.effective_user.id
     user_id = await get_or_create_user(telegram_id)
 
-    updated = await update_alert_threshold(alert_id, user_id, new_threshold)
+    updated = await update_product_threshold(product_id, user_id, new_threshold)
     if not updated:
-        await update.message.reply_text("❌ Не удалось обновить. Уведомление не найдено.")
+        await update.message.reply_text("❌ Не удалось обновить. Товар не найден.")
         return ConversationHandler.END
 
     if new_threshold > 0:
-        await update.message.reply_text(f"✅ Порог обновлён: {new_threshold:.0f}₽")
+        await update.message.reply_text(
+            f"✅ Порог обновлён: {new_threshold:.0f}₽\n"
+            "Уведомление сработает, как только цена на любой из площадок "
+            "товара опустится до этого значения или ниже."
+        )
     else:
         await update.message.reply_text("✅ Уведомление отключено (порог = 0)")
 
@@ -892,7 +912,6 @@ def setup_handlers(application: Application):
         states={
             LINK_SELECT: [CallbackQueryHandler(link_select_product, pattern=r"^linkprod_\d+$")],
             LINK_URL: [MessageHandler(filters.TEXT & ~filters.COMMAND, link_url)],
-            LINK_TARGET_PRICE: [MessageHandler(filters.TEXT & ~filters.COMMAND, link_target_price)],
         },
         fallbacks=conversation_fallbacks,
     )

@@ -7,14 +7,13 @@ from urllib.parse import urlparse
 from db.database import (
     get_active_links,
     save_price,
-    get_alerts_for_link,
     get_user_privileges_for_marketplace,
-    mark_alert_triggered,
-    reset_alert_triggered,
-    get_active_search_links,
+    mark_product_triggered,
+    reset_product_triggered,
+    get_active_search_links_with_product,
     save_search_price,
 )
-from parsers import get_parser, PARSERS
+from parsers import PARSERS
 from bot.notifications import send_alert_notification, send_search_alert_notification
 from utils.logger import logger
 
@@ -40,6 +39,9 @@ async def poll_prices():
     logger.info("poll_prices started")
     links = await get_active_links()
     logger.info("poll_prices: got %d active links", len(links))
+
+    # Track latest effective price per link during this poll run.
+    latest_price_by_link: dict[int, float] = {}
 
     domain_links: dict[str, list[dict]] = defaultdict(list)
     for link in links:
@@ -95,33 +97,40 @@ async def poll_prices():
                     await save_price(link_id, tier_price, tier_type)
                 logger.info("Saved prices %s for link_id=%d", prices, link_id)
 
-                alerts = await get_alerts_for_link(link_id)
-                for alert in alerts:
-                    user_tiers = await get_user_privileges_for_marketplace(
-                        alert["user_id"], marketplace,
+                threshold_price = link.get("threshold_price") or 0
+                alert_active = bool(link.get("alert_active"))
+                if not alert_active or threshold_price <= 0:
+                    continue
+
+                user_id = link["user_id"]
+                triggered_at = link.get("triggered_at")
+
+                user_tiers = await get_user_privileges_for_marketplace(
+                    user_id, marketplace,
+                )
+
+                effective_price = prices.get("standard")
+                effective_tier = "standard"
+                if effective_price is None and prices:
+                    effective_price = min(prices.values())
+
+                for tier in user_tiers:
+                    if tier in prices and prices[tier] < effective_price:
+                        effective_price = prices[tier]
+                        effective_tier = tier
+
+                latest_price_by_link[link_id] = effective_price
+
+                should_trigger = effective_price <= threshold_price
+                product_id = link["product_id"]
+
+                if should_trigger and triggered_at is None:
+                    await send_alert_notification(
+                        user_id, link_id,
+                        effective_price, threshold_price,
+                        effective_tier,
                     )
-
-                    effective_price = prices.get("standard")
-                    effective_tier = "standard"
-                    if effective_price is None and prices:
-                        effective_price = min(prices.values())
-
-                    for tier in user_tiers:
-                        if tier in prices and prices[tier] < effective_price:
-                            effective_price = prices[tier]
-                            effective_tier = tier
-
-                    should_trigger = effective_price <= alert["threshold_price"]
-
-                    if should_trigger and alert["triggered_at"] is None:
-                        await send_alert_notification(
-                            alert["user_id"], link_id,
-                            effective_price, alert["threshold_price"],
-                            effective_tier,
-                        )
-                        await mark_alert_triggered(alert["id"])
-                    elif not should_trigger and alert["triggered_at"] is not None:
-                        await reset_alert_triggered(alert["id"])
+                    await mark_product_triggered(product_id)
 
             except Exception as exc:
                 logger.error("Parser failed for %s: %s", url, exc)
@@ -135,7 +144,27 @@ async def poll_prices():
             try:
                 await parser.end_session()
             except Exception as exc:
-                logger.error("Failed to end browser session for %s: %s", domain, exc)
+                logger.error("Failed to end browser session for %s", domain, exc)
+
+    # Re-evaluate triggers: a product is "out of trigger" only when every
+    # polled link is above the threshold. This avoids flapping alerts when
+    # one of several marketplaces briefly slips above the threshold while
+    # another still holds below it.
+    product_triggered: dict[int, bool] = {}
+    for link in links:
+        threshold_price = link.get("threshold_price") or 0
+        if threshold_price <= 0 or not link.get("alert_active"):
+            continue
+        product_id = link["product_id"]
+        link_id = link["id"]
+        if link_id not in latest_price_by_link:
+            continue
+        below = latest_price_by_link[link_id] <= threshold_price
+        product_triggered[product_id] = product_triggered.get(product_id, False) or below
+
+    for product_id, any_below in product_triggered.items():
+        if not any_below:
+            await reset_product_triggered(product_id)
 
 
 async def poll_search_prices():
@@ -145,10 +174,16 @@ async def poll_search_prices():
     because the search listing usually exposes only a single (standard) price per card.
     """
     logger.info("poll_search_prices started")
-    search_links = await get_active_search_links()
+    search_links = await get_active_search_links_with_product()
     logger.info("poll_search_prices: got %d active search links", len(search_links))
     if not search_links:
         return
+
+    # Track latest price per search link to reset product trigger at the end
+    # (mirrors the product-links poller logic).
+    latest_price_by_search_link: dict[int, float] = {}
+    # Track which product had at least one search link below threshold this run.
+    product_any_below: dict[int, bool] = {}
 
     domain_links: dict[str, list[dict]] = defaultdict(list)
     for link in search_links:
@@ -211,25 +246,35 @@ async def poll_search_prices():
                     result.price, link_id, result.product_title,
                 )
 
-                alerts = await get_alerts_for_link(link_id, link_kind="search")
-                for alert in alerts:
-                    effective_price = result.price
-                    effective_tier = "standard"
+                threshold_price = link.get("threshold_price") or 0
+                alert_active = bool(link.get("alert_active"))
+                product_id = link["product_id"]
+                user_id = link["user_id"]
+                triggered_at = link.get("triggered_at")
 
-                    should_trigger = effective_price <= alert["threshold_price"]
+                latest_price_by_search_link[link_id] = result.price
 
-                    if should_trigger and alert["triggered_at"] is None:
-                        await send_search_alert_notification(
-                            alert["user_id"], link_id,
-                            effective_price, alert["threshold_price"],
-                            result.product_url, result.product_title,
-                            link.get("last_resolved_url"),
-                            marketplace,
-                            effective_tier,
-                        )
-                        await mark_alert_triggered(alert["id"])
-                    elif not should_trigger and alert["triggered_at"] is not None:
-                        await reset_alert_triggered(alert["id"])
+                if not alert_active or threshold_price <= 0:
+                    continue
+
+                effective_price = result.price
+                effective_tier = "standard"
+
+                should_trigger = effective_price <= threshold_price
+                product_any_below[product_id] = (
+                    product_any_below.get(product_id, False) or should_trigger
+                )
+
+                if should_trigger and triggered_at is None:
+                    await send_search_alert_notification(
+                        user_id, link_id,
+                        effective_price, threshold_price,
+                        result.product_url, result.product_title,
+                        link.get("last_resolved_url"),
+                        marketplace,
+                        effective_tier,
+                    )
+                    await mark_product_triggered(product_id)
 
             except Exception as exc:
                 logger.error("Search parser failed for %s: %s", search_url, exc)
@@ -243,7 +288,22 @@ async def poll_search_prices():
             try:
                 await parser.end_session()
             except Exception as exc:
-                logger.error("Failed to end browser session for search %s: %s", domain, exc)
+                logger.error("Failed to end browser session for search %s", domain, exc)
+
+    # Reset triggers for products whose every polled search link is above
+    # the threshold (mirrors the product-links reset logic).
+    for link in search_links:
+        threshold_price = link.get("threshold_price") or 0
+        if threshold_price <= 0 or not link.get("alert_active"):
+            continue
+        product_id = link["product_id"]
+        if product_id in product_any_below:
+            continue
+        link_id = link["id"]
+        if link_id not in latest_price_by_search_link:
+            continue
+        if latest_price_by_search_link[link_id] > threshold_price:
+            await reset_product_triggered(product_id)
 
 
 async def _run_periodic():

@@ -1,4 +1,3 @@
-from telegram import Bot
 from db.database import db_connection
 from parsers.base import TIER_LABELS
 from utils.logger import logger
@@ -11,7 +10,7 @@ async def send_alert_notification(
 ):
     async with db_connection() as conn:
         cursor = await conn.execute(
-            "SELECT ml.url, ml.marketplace, p.name, u.telegram_id "#TODO: 
+            "SELECT ml.url, ml.marketplace, p.name, u.telegram_id "
             "FROM marketplace_links ml "
             "JOIN products p ON p.id = ml.product_id "
             "JOIN users u ON u.id = ? "
