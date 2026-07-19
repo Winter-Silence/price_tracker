@@ -1,0 +1,248 @@
+- generic [active] [ref=f6e1]:
+  - generic [ref=f6e2]:
+    - generic [ref=f6e3]:
+      - banner [ref=f6e4]:
+        - generic [ref=f6e6]:
+          - link [ref=f6e7] [cursor=pointer]:
+            - /url: https://www.citilink.ru/promo/yandexsplit/?erid=2SDnjepqdiU
+          - button [ref=f6e13] [cursor=pointer]
+        - generic [ref=f6e21]:
+          - link [ref=f6e23] [cursor=pointer]:
+            - /url: /
+          - generic [ref=f6e28]:
+            - generic [ref=f6e29]:
+              - button "Астрахань" [ref=f6e30] [cursor=pointer]
+              - link "+7 (851) 227-07-07" [ref=f6e36] [cursor=pointer]:
+                - /url: tel:+78512270707
+            - generic [ref=f6e37]:
+              - link "Юридическим лицам" [ref=f6e38] [cursor=pointer]:
+                - /url: /corporate/
+              - link "Журнал" [ref=f6e44] [cursor=pointer]:
+                - /url: https://journal.citilink.ru
+              - link "Акции" [ref=f6e45] [cursor=pointer]:
+                - /url: /actions/
+              - link "Конфигуратор ПК" [ref=f6e46] [cursor=pointer]:
+                - /url: /configurator/
+              - link "Доставка" [ref=f6e47] [cursor=pointer]:
+                - /url: /about/delivery/
+              - link "Магазины" [ref=f6e48] [cursor=pointer]:
+                - /url: /about/stores/
+              - generic [ref=f6e49] [cursor=pointer]: Обратная связь
+      - generic [ref=f6e54]:
+        - link "Каталог товаров" [ref=f6e57] [cursor=pointer]:
+          - /url: /catalog/
+        - generic [ref=f6e68]:
+          - generic [ref=f6e73]:
+            - searchbox [ref=f6e74]
+            - button [ref=f6e77] [cursor=pointer]
+          - generic [ref=f6e81]:
+            - button "Войти" [ref=f6e82] [cursor=pointer]
+            - link [ref=f6e90] [cursor=pointer]:
+              - /url: /profile/wishlist/
+              - button "Избранное" [ref=f6e91]
+            - link [ref=f6e100] [cursor=pointer]:
+              - /url: /compare/
+              - button "Сравнение" [ref=f6e101]
+            - link [ref=f6e113] [cursor=pointer]:
+              - /url: /order/
+              - button "Корзина" [ref=f6e114]
+      - main [ref=f6e123]:
+        - generic [ref=f6e124]:
+          - generic [ref=f6e126]:
+            - link "Авто, дом и дача /" [ref=f6e128] [cursor=pointer]:
+              - /url: /catalog/dom-i-dacha/
+            - link "Освещение /" [ref=f6e130] [cursor=pointer]:
+              - /url: /catalog/osveschenie/
+            - link "Трековые системы /" [ref=f6e132] [cursor=pointer]:
+              - /url: /catalog/trekovye-sistemy/
+            - link "FERON" [ref=f6e134] [cursor=pointer]:
+              - /url: /catalog/trekovye-sistemy/FERON/
+          - generic [ref=f6e136]:
+            - heading "Соединитель FERON Cab1005 [41985]" [level=1] [ref=f6e138]
+            - generic [ref=f6e143]:
+              - text: "Код товара:"
+              - button [ref=f6e147] [cursor=pointer]:
+                - button "1960544" [ref=f6e149]
+            - generic [ref=f6e151]:
+              - img "noProductImage" [ref=f6e161]
+              - generic [ref=f6e164]:
+                - link "Все трековые системы FERON" [ref=f6e167] [cursor=pointer]:
+                  - /url: /catalog/trekovye-sistemy/FERON/
+                - generic [ref=f6e175]:
+                  - generic [ref=f6e176]:
+                    - generic [ref=f6e177]: Появились вопросы о товаре?
+                    - button "Консультация специалиста" [ref=f6e178] [cursor=pointer]
+                  - button [ref=f6e186] [cursor=pointer]
+              - generic [ref=f6e196]:
+                - generic [ref=f6e198]:
+                  - generic [ref=f6e199]: Нет в наличии
+                  - generic [ref=f6e201]: Последний раз товар был 19 января
+                  - generic [ref=f6e204]:
+                    - generic [ref=f6e205]:
+                      - generic [ref=f6e207]:
+                        - textbox "Введите ваш e-mail *" [ref=f6e208]:
+                          - /placeholder: ""
+                        - generic [ref=f6e209]: Введите ваш e-mail *
+                      - paragraph [ref=f6e210]
+                    - button "Сообщить о поступлении" [disabled] [ref=f6e211]
+                - generic [ref=f6e214]:
+                  - button [ref=f6e217] [cursor=pointer]
+                  - button [ref=f6e226] [cursor=pointer]
+          - generic [ref=f6e238]:
+            - tab "tab" [ref=f6e241]:
+              - generic [ref=f6e242] [cursor=pointer]:
+                - text: О товаре
+                - radio "О товаре" [checked]
+            - link [ref=f6e244] [cursor=pointer]:
+              - /url: /product/soedinitel-feron-cab1005-41985-1960544/properties/
+              - tab "tab" [ref=f6e245]:
+                - generic [ref=f6e246]:
+                  - text: Характеристики
+                  - radio "Характеристики"
+            - link [ref=f6e248] [cursor=pointer]:
+              - /url: /product/soedinitel-feron-cab1005-41985-1960544/otzyvy/
+              - tab "tab" [ref=f6e249]:
+                - generic [ref=f6e250]:
+                  - text: Отзывы
+                  - radio "Отзывы"
+            - link [ref=f6e252] [cursor=pointer]:
+              - /url: /product/soedinitel-feron-cab1005-41985-1960544/vopros-otvet/
+              - tab "tab" [ref=f6e253]:
+                - generic [ref=f6e254]:
+                  - text: Вопрос-ответ
+                  - radio "Вопрос-ответ"
+            - link [ref=f6e256] [cursor=pointer]:
+              - /url: /product/soedinitel-feron-cab1005-41985-1960544/obzory/
+              - tab "tab" [ref=f6e257]:
+                - generic [ref=f6e258]:
+                  - text: Обзоры
+                  - radio "Обзоры"
+          - text: "0"
+      - contentinfo [ref=f6e262]:
+        - generic [ref=f6e264]:
+          - generic [ref=f6e267]:
+            - generic [ref=f6e268]: Хочу быть в курсе акций и новинок
+            - generic [ref=f6e270]:
+              - textbox [ref=f6e273]:
+                - /placeholder: Мой e-mail
+              - paragraph
+            - button "Подписаться" [disabled] [ref=f6e275]
+          - generic [ref=f6e277]:
+            - list [ref=f6e279]:
+              - listitem [ref=f6e280]:
+                - generic [ref=f6e281]:
+                  - heading "Покупателям" [level=5] [ref=f6e282]
+                  - list [ref=f6e283]:
+                    - listitem [ref=f6e284]:
+                      - link "Доставка" [ref=f6e285] [cursor=pointer]:
+                        - /url: /about/delivery/
+                    - listitem [ref=f6e286]:
+                      - link "Гарантия" [ref=f6e287] [cursor=pointer]:
+                        - /url: /about/warranty/
+                    - listitem [ref=f6e288]:
+                      - link "Кредит и рассрочка" [ref=f6e289] [cursor=pointer]:
+                        - /url: /about/credit/
+                    - listitem [ref=f6e290]:
+                      - link "Конфигуратор ПК" [ref=f6e291] [cursor=pointer]:
+                        - /url: /configurator/
+                    - listitem [ref=f6e292]:
+                      - link "Информация" [ref=f6e293] [cursor=pointer]:
+                        - /url: /about/
+                    - listitem [ref=f6e294]:
+                      - link "Корпоративным клиентам" [ref=f6e295] [cursor=pointer]:
+                        - /url: /corporate/
+                    - listitem [ref=f6e296]:
+                      - link "Подбор расходных материалов" [ref=f6e297] [cursor=pointer]:
+                        - /url: /supplies/
+              - listitem [ref=f6e298]:
+                - generic [ref=f6e299]:
+                  - heading "Информация" [level=5] [ref=f6e300]
+                  - list [ref=f6e301]:
+                    - listitem [ref=f6e302]:
+                      - link "Акции" [ref=f6e303] [cursor=pointer]:
+                        - /url: /actions/
+                    - listitem [ref=f6e304]:
+                      - link "Клуб Ситилинк" [ref=f6e305] [cursor=pointer]:
+                        - /url: /about/club/
+                    - listitem [ref=f6e306]:
+                      - link "Журнал" [ref=f6e307] [cursor=pointer]:
+                        - /url: https://journal.citilink.ru
+                    - listitem [ref=f6e308]:
+                      - link "Обзоры" [ref=f6e309] [cursor=pointer]:
+                        - /url: /reviews/
+                    - listitem [ref=f6e310]:
+                      - link "Услуги" [ref=f6e311] [cursor=pointer]:
+                        - /url: /services/
+                    - listitem [ref=f6e312]:
+                      - link "Для вебмастеров" [ref=f6e313] [cursor=pointer]:
+                        - /url: https://advcake.com/lp/citilink
+              - listitem [ref=f6e314]:
+                - generic [ref=f6e315]:
+                  - heading "Компания" [level=5] [ref=f6e316]
+                  - list [ref=f6e317]:
+                    - listitem [ref=f6e318]:
+                      - link "О Ситилинк" [ref=f6e319] [cursor=pointer]:
+                        - /url: /about/citilink/
+                    - listitem [ref=f6e320]:
+                      - link "Документы" [ref=f6e321] [cursor=pointer]:
+                        - /url: /doc/
+                    - listitem [ref=f6e322]:
+                      - link "Новости" [ref=f6e323] [cursor=pointer]:
+                        - /url: /news/
+                    - listitem [ref=f6e324]:
+                      - link "Аренда помещений" [ref=f6e325] [cursor=pointer]:
+                        - /url: /rent/
+                    - listitem [ref=f6e326]:
+                      - link "Вакансии" [ref=f6e327] [cursor=pointer]:
+                        - /url: https://job.citilink.ru
+                    - listitem [ref=f6e328]:
+                      - link "Сервисные центры" [ref=f6e329] [cursor=pointer]:
+                        - /url: /warranty/services/
+            - generic [ref=f6e331]:
+              - heading "Контакты" [level=5] [ref=f6e333]
+              - generic [ref=f6e334]:
+                - button "Астрахань" [ref=f6e336] [cursor=pointer]
+                - link "+7 (851) 227-07-07" [ref=f6e343] [cursor=pointer]:
+                  - /url: tel:+78512270707
+                - link "Адреса магазинов" [ref=f6e345] [cursor=pointer]:
+                  - /url: /about/stores/
+              - button "Задать вопрос" [ref=f6e347] [cursor=pointer]
+            - generic [ref=f6e351]:
+              - generic [ref=f6e352]: Скачайте приложение Ситилинк
+              - generic [ref=f6e355]:
+                - link [ref=f6e356] [cursor=pointer]:
+                  - /url: https://redirect.appmetrica.yandex.com/serve/244931008867139415
+                - link [ref=f6e362] [cursor=pointer]:
+                  - /url: https://redirect.appmetrica.yandex.com/serve/1037564539090015321
+                - link [ref=f6e374] [cursor=pointer]:
+                  - /url: https://redirect.appmetrica.yandex.com/serve/172873419073839504
+                - link [ref=f6e385] [cursor=pointer]:
+                  - /url: https://redirect.appmetrica.yandex.com/serve/172873412681695790
+          - generic [ref=f6e397]:
+            - link [ref=f6e398] [cursor=pointer]:
+              - /url: https://www.youtube.com/user/CitilinkTV
+            - link [ref=f6e403] [cursor=pointer]:
+              - /url: https://vk.com/citilink_ru
+            - link [ref=f6e407] [cursor=pointer]:
+              - /url: https://ok.ru/citilink.ru
+            - link [ref=f6e412] [cursor=pointer]:
+              - /url: https://zen.yandex.ru/citilink
+            - link [ref=f6e417] [cursor=pointer]:
+              - /url: https://t.me/citilink_official
+          - generic [ref=f6e422]:
+            - generic [ref=f6e423]: © Ситилинк, 2008 – 2026
+            - generic [ref=f6e426]:
+              - link "Политика обработки персональных данных" [ref=f6e427] [cursor=pointer]:
+                - /url: /about/privacy-policy/
+              - link "Рекомендательные технологии" [ref=f6e428] [cursor=pointer]:
+                - /url: /application/recommendation-technology/
+      - generic [ref=f6e431]:
+        - generic [ref=f6e432]: Мы используем файлы cookie для вашего удобства. Продолжая пользоваться сайтом, вы соглашаетесь с политикой использования cookie. Подробнее
+        - button "Я согласен" [ref=f6e435] [cursor=pointer]
+    - iframe [ref=f6e437]:
+      
+  - alert [ref=f6e438]
+  - iframe [ref=f6e439]:
+    
+  - iframe [ref=f6e440]:
+    

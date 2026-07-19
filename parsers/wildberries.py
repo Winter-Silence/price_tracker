@@ -36,19 +36,40 @@ class WildberriesParser(BaseParser):
 
             prices = await self._eval(page, '''
                 (() => {
-                    function extract(sel) {
-                        let el = document.querySelector(sel);
+                    function extractText(el) {
                         return el ? el.innerText.trim() : null;
                     }
+                    function extractNum(el) {
+                        if (!el) return null;
+                        let t = el.innerText.trim();
+                        let m = t.match(/(\\d[\\d\\s\\u2009\\u00a0]*\\d)/);
+                        return m ? m[0] : t;
+                    }
 
-                    let standard = extract('.price-block__final-price')
-                        || extract('.product-page__price-wrap ins');
+                    // Standard price: <ins> with class containing "priceBlockFinalPrice"
+                    let standard = null;
+                    let standardEl = document.querySelector('ins[class*="priceBlockFinalPrice"]');
+                    if (standardEl) standard = extractNum(standardEl);
 
-                    let card = extract('.price-block__card-price')
-                        || extract('.price-block__wallet-price');
+                    // Wallet/card price: <button> with class containing "priceBlockWalletPrice"
+                    let card = null;
+                    let cardEl = document.querySelector('button[class*="priceBlockWalletPrice"]')
+                        || document.querySelector('[class*="priceBlockWalletPrice"]');
+                    if (cardEl) card = extractNum(cardEl);
 
-                    let club = extract('.price-block__club-price');
+                    // Fallback: old selectors (may still work on some pages)
+                    if (!standard) {
+                        let el = document.querySelector('.price-block__final-price')
+                            || document.querySelector('.product-page__price-wrap ins');
+                        if (el) standard = extractNum(el);
+                    }
+                    if (!card) {
+                        let el = document.querySelector('.price-block__card-price')
+                            || document.querySelector('.price-block__wallet-price');
+                        if (el) card = extractNum(el);
+                    }
 
+                    // Last resort: regex on page text
                     let fallback = null;
                     if (!standard) {
                         let m = document.body.innerText.match(/(\\d[\\d\\s]*\\d)\\s*₽/);
@@ -58,7 +79,7 @@ class WildberriesParser(BaseParser):
                     return {
                         standard: standard || fallback,
                         card: card,
-                        club: club
+                        club: null
                     };
                 })()
             ''')
@@ -80,7 +101,7 @@ class WildberriesParser(BaseParser):
                     result["wb_club"] = p
 
             if not result:
-                logger.warning("No prices found at %s", url)
+                logger.warning("No prices found at %s (raw: %s)", url, prices)
                 await self._take_screenshot(page, "no_price")
                 self.register_parse_failure()
                 return None

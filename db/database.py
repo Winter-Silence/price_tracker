@@ -283,11 +283,17 @@ async def save_price(link_id: int, price: float, privilege_type: str = "standard
             "INSERT INTO price_history (link_id, price, privilege_type) VALUES (?, ?, ?)",
             (link_id, price, privilege_type),
         )
-        await conn.execute(
-            "UPDATE marketplace_links SET last_price = ?, last_checked_at = CURRENT_TIMESTAMP "
-            "WHERE id = ?",
-            (price, link_id),
-        )
+        if privilege_type == "standard":
+            await conn.execute(
+                "UPDATE marketplace_links SET last_price = ?, last_checked_at = CURRENT_TIMESTAMP "
+                "WHERE id = ?",
+                (price, link_id),
+            )
+        else:
+            await conn.execute(
+                "UPDATE marketplace_links SET last_checked_at = CURRENT_TIMESTAMP WHERE id = ?",
+                (link_id,),
+            )
         await conn.commit()
         logger.info("Saved price %.2f (tier=%s) for link_id=%d", price, privilege_type, link_id)
 

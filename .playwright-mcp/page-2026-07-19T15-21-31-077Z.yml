@@ -1,0 +1,2663 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - list [ref=e6]:
+            - listitem [ref=e7]:
+              - generic [ref=e8] [cursor=pointer]: Москва
+            - listitem [ref=e80]:
+              - list [ref=e82]:
+                - listitem
+                - listitem [ref=e83] [cursor=pointer]:
+                  - link "Wibes" [ref=e84]:
+                    - /url: https://wibes.ru/clips?utm_source=main_topbar&utm_medium=inner_wb
+                - listitem [ref=e85] [cursor=pointer]:
+                  - link "Отели" [ref=e86]:
+                    - /url: /travel/hotel?entry_point=tab_header
+                - listitem [ref=e87] [cursor=pointer]:
+                  - link "Авиабилеты" [ref=e88]:
+                    - /url: /travel/avia?entry_point=tab_header
+                - listitem [ref=e89] [cursor=pointer]:
+                  - link "Ресейл" [ref=e90]:
+                    - /url: /catalog/resale
+                - listitem [ref=e91] [cursor=pointer]:
+                  - link "WB Клуб" [ref=e92]:
+                    - /url: /subscription
+                - listitem [ref=e93] [cursor=pointer]:
+                  - link "Бренды" [ref=e94]:
+                    - /url: /wbrands
+                - listitem [ref=e95] [cursor=pointer]:
+                  - link "Новостройки" [ref=e96]:
+                    - /url: /realty?entry_point=tab_header
+                - listitem [ref=e97] [cursor=pointer]:
+                  - link "WB Track" [ref=e98]:
+                    - /url: /track
+                - listitem [ref=e99] [cursor=pointer]:
+                  - generic [ref=e100]: Для бизнеса
+                - listitem [ref=e101] [cursor=pointer]:
+                  - link "Еаптека" [ref=e102]:
+                    - /url: /eapteka
+                - listitem [ref=e103] [cursor=pointer]:
+                  - generic [ref=e104]: Работа в RWB
+          - generic [ref=e9]:
+            - generic [ref=e10]: Кешбэк
+            - generic [ref=e12]: RUB
+        - generic [ref=e16]:
+          - generic [ref=e17]:
+            - link [ref=e18] [cursor=pointer]:
+              - /url: /
+            - button "Навигация по сайту" [ref=e21] [cursor=pointer]
+          - searchbox "Найти на Wildberries" [ref=e26]
+          - generic [ref=e27]:
+            - link [ref=e29] [cursor=pointer]:
+              - /url: /services/besplatnaya-dostavka?
+              - paragraph [ref=e31]: Адреса
+            - link "Войти" [ref=e33] [cursor=pointer]:
+              - /url: /security/login?returnUrl=https%3A%2F%2Fwww.wildberries.ru%2Fcatalog%2F112612828%2Fdetail.aspx
+              - paragraph [ref=e35]: Войти
+            - link "Корзина" [ref=e37] [cursor=pointer]:
+              - /url: /lk/basket
+              - paragraph [ref=e39]: Корзина
+    - list [ref=e42]:
+      - listitem [ref=e114]:
+        - link "РАСПРОДАЖА" [ref=e115] [cursor=pointer]:
+          - /url: /promotions/skidki
+      - listitem [ref=e116]:
+        - link "Находки из Китая" [ref=e117] [cursor=pointer]:
+          - /url: /seller/nahodki-iz-kitaya
+      - listitem [ref=e118]:
+        - link "Скидки WB Клуба" [ref=e119] [cursor=pointer]:
+          - /url: /subscription
+      - listitem [ref=e43]:
+        - link "Сертификаты Wildberries" [ref=e44] [cursor=pointer]:
+          - /url: /gift/certificates
+      - listitem [ref=e120]:
+        - link "Еаптека" [ref=e121] [cursor=pointer]:
+          - /url: /eapteka?entry_point=catalog
+      - listitem [ref=e122]:
+        - link "РИВ ГОШ" [ref=e123] [cursor=pointer]:
+          - /url: /seller/rivegauche
+      - listitem [ref=e124]:
+        - link "Ресейл" [ref=e125] [cursor=pointer]:
+          - /url: /catalog/resale
+      - listitem [ref=e126]:
+        - link "Услуги" [ref=e127] [cursor=pointer]:
+          - /url: /landings/sale-of-services
+      - listitem [ref=e128]:
+        - link "Бренды" [ref=e129] [cursor=pointer]:
+          - /url: /wbrands
+      - listitem [ref=e130]:
+        - link "Travel" [ref=e131] [cursor=pointer]:
+          - /url: https://www.wildberries.ru/travel
+      - listitem [ref=e132]:
+        - link "Мужчины выбирают" [ref=e133] [cursor=pointer]:
+          - /url: /astro/MensClub
+      - listitem [ref=e134]:
+        - link "Покупайте как бизнес" [ref=e135] [cursor=pointer]:
+          - /url: /business
+      - listitem [ref=e136]:
+        - link "Wibes" [ref=e137] [cursor=pointer]:
+          - /url: https://wibes-web-header.onelink.me/XPJ8?af_xp=custom&pid=katalogwb&c=wibesyellow&af_dp=wbwibes%3A%2F%2F
+      - listitem [ref=e138]:
+        - link "Лотерея Мечталлион" [ref=e139] [cursor=pointer]:
+          - /url: /mechtallionlottery
+      - listitem [ref=e140]:
+        - link "Новостройки" [ref=e141] [cursor=pointer]:
+          - /url: /realty?entryPoint=Catalog
+      - listitem [ref=e142]:
+        - link "Экспресс":
+          - /url: /catalog/ekspress-dostavka
+      - listitem [ref=e143]:
+        - link "WB Track" [ref=e144] [cursor=pointer]:
+          - /url: https://www.wildberries.ru/track
+      - listitem [ref=e145]:
+        - link "RWB Участие" [ref=e146] [cursor=pointer]:
+          - /url: https://esg.rwb.ru/charity?utm_source=wb&utm_content=catalog_web
+      - listitem [ref=e45]:
+        - link "Женщинам":
+          - /url: /catalog/zhenshchinam
+      - listitem [ref=e46]:
+        - link "Обувь":
+          - /url: /catalog/obuv
+      - listitem [ref=e47]:
+        - link "Детям":
+          - /url: /catalog/detyam
+      - listitem [ref=e48]:
+        - link "Мужчинам":
+          - /url: /catalog/muzhchinam
+      - listitem [ref=e49]:
+        - link "Дом":
+          - /url: /catalog/dom-i-dacha
+      - listitem [ref=e50]:
+        - link "Красота":
+          - /url: /catalog/krasota
+      - listitem [ref=e51]:
+        - link "Аксессуары":
+          - /url: /catalog/aksessuary
+      - listitem [ref=e52]:
+        - link "Электроника":
+          - /url: /catalog/elektronika
+      - listitem [ref=e53]:
+        - link "Игрушки":
+          - /url: /catalog/igrushki
+      - listitem [ref=e54]:
+        - link "Мебель":
+          - /url: /catalog/dom/mebel
+      - listitem [ref=e55]:
+        - link "Товары для взрослых":
+          - /url: /catalog/aksessuary/tovary-dlya-vzroslyh
+      - listitem [ref=e56]:
+        - link "Продукты":
+          - /url: /catalog/pitanie
+      - listitem [ref=e147]:
+        - link "Цветы" [ref=e148] [cursor=pointer]:
+          - /url: /catalog/tsvety
+      - listitem [ref=e57]:
+        - link "Бытовая техника":
+          - /url: /catalog/bytovaya-tehnika
+      - listitem [ref=e58]:
+        - link "Зоотовары":
+          - /url: /catalog/tovary-dlya-zhivotnyh
+      - listitem [ref=e59]:
+        - link "Спорт":
+          - /url: /catalog/sport
+      - listitem [ref=e60]:
+        - link "Автотовары":
+          - /url: /catalog/aksessuary/avtotovary
+      - listitem [ref=e149]:
+        - link "Транспортные средства" [ref=e150] [cursor=pointer]:
+          - /url: /catalog/transportnye-sredstva
+      - listitem [ref=e61]:
+        - link "Книги":
+          - /url: /catalog/knigi
+      - listitem [ref=e62]:
+        - link "Ювелирные изделия":
+          - /url: /catalog/yuvelirnye-ukrasheniya
+      - listitem [ref=e63]:
+        - link "Для ремонта":
+          - /url: /catalog/dom-i-dacha/instrumenty
+      - listitem [ref=e64]:
+        - link "Сад и дача":
+          - /url: /catalog/dachniy-sezon
+      - listitem [ref=e65]:
+        - link "Здоровье":
+          - /url: /catalog/dom-i-dacha/zdorove
+      - listitem [ref=e151]:
+        - link "Адаптивные товары":
+          - /url: /catalog/adaptivnye-tovary
+      - listitem [ref=e152]:
+        - link "Лекарственные препараты" [ref=e153] [cursor=pointer]:
+          - /url: /catalog/lekarstvennye-preparaty
+      - listitem [ref=e66]:
+        - link "Канцтовары":
+          - /url: /catalog/knigi-i-diski/kantstovary
+      - listitem [ref=e154]:
+        - link "Сделано в России":
+          - /url: /catalog/sdelano-v-rossii
+      - listitem [ref=e155]:
+        - link "Товары оптом" [ref=e156] [cursor=pointer]:
+          - /url: /catalog/tovary-optom
+      - listitem [ref=e157]:
+        - link "Грузовая доставка":
+          - /url: /catalog/gruzovaya-dostavka
+      - listitem [ref=e158]:
+        - link "Культурный код":
+          - /url: /catalog/kulturnyy-kod
+      - listitem [ref=e159]:
+        - link "Баллы за отзыв" [ref=e160] [cursor=pointer]:
+          - /url: /promotions/bally-za-otzyvy
+      - listitem [ref=e69]:
+        - link "Акции" [ref=e70] [cursor=pointer]:
+          - /url: /promotions
+      - listitem [ref=e161]:
+        - link "Цифровые товары" [ref=e162] [cursor=pointer]:
+          - /url: /catalog/tsifrovye-tovary
+    - main [ref=e75]:
+      - generic [ref=e76]:
+        - generic [ref=e165]:
+          - region "Notifications alt+T"
+          - generic [ref=e166]:
+            - generic [ref=e168]:
+              - link [ref=e170] [cursor=pointer]:
+                - /url: https://www.wildberries.ru/catalog/112612828/detail.aspx
+                - img "Зонт автомат складной антиветер облегченный" [ref=e171]
+              - generic [ref=e172]:
+                - generic [ref=e173]:
+                  - link "JOYCITY / Зонт автомат складной антиветер облегченный" [ref=e174] [cursor=pointer]:
+                    - /url: https://www.wildberries.ru/catalog/112612828/detail.aspx
+                  - generic [ref=e179]:
+                    - link "4,9 · 44 963 оценки" [ref=e180] [cursor=pointer]:
+                      - /url: /catalog/112612828/feedbacks?size=203286960
+                      - generic [ref=e184]: 4,9
+                      - generic [ref=e185]: ·
+                      - generic [ref=e186]: 44 963 оценки
+                    - 'link "Цвет: фиолетовый, фиолетово-баклажанный, пастельно-фиолетовый, глубокий фиолетовый, сине-фиолетовый" [ref=e188] [cursor=pointer]':
+                      - /url: https://www.wildberries.ru/catalog/112612828/detail.aspx
+                - generic [ref=e191]:
+                  - generic [ref=e192]: 397 ₽
+                  - generic [ref=e194]:
+                    - generic [ref=e195]: 406 ₽
+                    - generic [ref=e197]: 2 094 ₽
+              - generic [ref=e199]:
+                - button "Купить" [ref=e200] [cursor=pointer]
+                - button "В корзину" [ref=e204] [cursor=pointer]
+                - button "Добавить в избранное" [ref=e208] [cursor=pointer]
+            - generic [ref=e214]:
+              - generic [ref=e215]:
+                - button "К предыдущей странице" [ref=e216] [cursor=pointer]
+                - list [ref=e224]:
+                  - listitem [ref=e225]:
+                    - link "Главная" [ref=e226] [cursor=pointer]:
+                      - /url: /
+                    - text: /
+                  - listitem [ref=e227]:
+                    - link "Аксессуары" [ref=e228] [cursor=pointer]:
+                      - /url: /catalog/aksessuary
+                    - text: /
+                  - listitem [ref=e229]:
+                    - link "Зонты" [ref=e230] [cursor=pointer]:
+                      - /url: /catalog/aksessuary/zonty
+                    - text: /
+                  - listitem [ref=e231]:
+                    - link "JOYCITY" [ref=e232] [cursor=pointer]:
+                      - /url: /brands/joycity
+              - generic [ref=e233]:
+                - button "Добавить в избранное" [ref=e234] [cursor=pointer]
+                - button "Поделиться ссылкой на товар" [ref=e241] [cursor=pointer]
+              - button "Пожаловаться" [ref=e248] [cursor=pointer]
+            - generic [ref=e256]:
+              - generic [ref=e259]:
+                - generic [ref=e260]:
+                  - generic [ref=e261]:
+                    - generic [ref=e263] [cursor=pointer]:
+                      - region "Video Player" [ref=e265]:  
+                      - img "video-poster" [ref=e267]
+                    - img "Product image 1" [ref=e273] [cursor=pointer]
+                    - img "Product image 2" [ref=e275] [cursor=pointer]
+                    - img "Product image 3" [ref=e277] [cursor=pointer]
+                    - img "Product image 4" [ref=e279] [cursor=pointer]
+                    - img "Product image 5" [ref=e281] [cursor=pointer]
+                    - img "Product image 6" [ref=e283] [cursor=pointer]
+                    - img "Product image 7" [ref=e285] [cursor=pointer]
+                    - img "Product image 8" [ref=e287] [cursor=pointer]
+                    - img "Product image 9" [ref=e289] [cursor=pointer]
+                    - img "Product image 10" [ref=e291] [cursor=pointer]
+                    - img "Product image 11" [ref=e293] [cursor=pointer]
+                    - img "Product image 12" [ref=e295] [cursor=pointer]
+                    - img "Product image 13" [ref=e297] [cursor=pointer]
+                    - img "Product image 14" [ref=e299] [cursor=pointer]
+                    - img "Product image 15" [ref=e301] [cursor=pointer]
+                    - img "Product image 16" [ref=e303] [cursor=pointer]
+                    - img "Product image 17" [ref=e305] [cursor=pointer]
+                    - img "Product image 18" [ref=e307] [cursor=pointer]
+                    - img "Product image 19" [ref=e309] [cursor=pointer]
+                    - img "Product image 20" [ref=e311] [cursor=pointer]
+                  - button "Следующие миниатюры" [ref=e312] [cursor=pointer]
+                - generic [ref=e316]:
+                  - generic [ref=e317]:
+                    - generic [ref=e319] [cursor=pointer]:
+                      - region "Video Player" [ref=e321]:  
+                      - generic:
+                        - button "Приостановить"
+                        - generic:
+                          - generic: 0:11
+                          - generic: 0:13
+                        - button "Включить звук"
+                    - img "Product image 1" [ref=e327] [cursor=pointer]
+                    - img "Product image 2" [ref=e332] [cursor=pointer]
+                    - img "Product image 3" [ref=e337] [cursor=pointer]
+                    - img "Product image 4" [ref=e342] [cursor=pointer]
+                    - img "Product image 5" [ref=e347] [cursor=pointer]
+                    - img "Product image 6" [ref=e352] [cursor=pointer]
+                    - img "Product image 7" [ref=e357] [cursor=pointer]
+                    - img "Product image 8" [ref=e362] [cursor=pointer]
+                    - img "Product image 9" [ref=e367] [cursor=pointer]
+                    - img "Product image 10" [ref=e372] [cursor=pointer]
+                    - img "Product image 11" [ref=e377] [cursor=pointer]
+                    - img "Product image 12" [ref=e382] [cursor=pointer]
+                    - img "Product image 13" [ref=e387] [cursor=pointer]
+                    - img "Product image 14" [ref=e392] [cursor=pointer]
+                    - img "Product image 15" [ref=e397] [cursor=pointer]
+                    - img "Product image 16" [ref=e402] [cursor=pointer]
+                    - img "Product image 17" [ref=e407] [cursor=pointer]
+                    - img "Product image 18" [ref=e412] [cursor=pointer]
+                    - img "Product image 19" [ref=e417] [cursor=pointer]
+                    - img "Product image 20" [ref=e422] [cursor=pointer]
+                  - link "РОЗЫГРЫШ" [ref=e423] [cursor=pointer]:
+                    - /url: /promotions/skidki-rozygrysh
+                  - button "Предыдущее фото" [ref=e426] [cursor=pointer]
+                  - button "Следующее фото" [ref=e430] [cursor=pointer]
+              - generic [ref=e434]:
+                - generic [ref=e436]:
+                  - generic [ref=e437]:
+                    - generic [ref=e438]:
+                      - link "JOYCITY" [ref=e439] [cursor=pointer]:
+                        - /url: /brands/joycity
+                      - button "что означает метка Оригинал?" [ref=e443] [cursor=pointer]:
+                        - generic [ref=e444]: Оригинал
+                    - heading "Зонт автомат складной антиветер облегченный" [level=2] [ref=e451]
+                  - generic [ref=e452]:
+                    - link "4,9 · 44 963 оценки" [ref=e453] [cursor=pointer]:
+                      - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960
+                    - link "429 вопросов" [ref=e461] [cursor=pointer]:
+                      - /url: /catalog/112612828/questions?imtId=30866661&size=203286960
+                - generic [ref=e470]:
+                  - generic [ref=e471]:
+                    - generic [ref=e473]:
+                      - link [ref=e475] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/112612828/detail.aspx
+                        - img "Зонт автомат складной антиветер облегченный" [ref=e477]
+                      - link [ref=e479] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/465115399/detail.aspx
+                        - img "Зонт складной автомат антиветер усиленный легкий" [ref=e481]
+                      - link [ref=e483] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/465115400/detail.aspx
+                        - img "Зонт складной автомат антиветер усиленный легкий" [ref=e485]
+                      - link [ref=e487] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/41175635/detail.aspx
+                        - img "Зонт автомат антиветер компактный легкий" [ref=e489]
+                      - link [ref=e491] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/263733467/detail.aspx
+                        - img "Зонт автомат трость антиветер компактный легкий" [ref=e493]
+                      - link [ref=e495] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/465115401/detail.aspx
+                        - img "Зонт складной автомат антиветер усиленный легкий" [ref=e497]
+                      - link [ref=e499] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/148748593/detail.aspx
+                        - img "Зонт автомат антиветер компактный легкий" [ref=e501]
+                      - link [ref=e503] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/263735347/detail.aspx
+                        - img "Зонт автомат антиветер компактный легкий" [ref=e505]
+                      - link [ref=e507] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/112612827/detail.aspx
+                        - img "Зонт автомат антиветер усиленный компактный легкий" [ref=e509]
+                      - link [ref=e511] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/465115402/detail.aspx
+                        - img "Зонт мини механический компактный" [ref=e513]
+                    - button "Следующие цвета" [ref=e514] [cursor=pointer]
+                  - generic [ref=e518]:
+                    - generic [ref=e519]: фиолетовый, фиолетово-баклажанный, пастельно-фиолетовый, глубокий фиолетовый, сине-фиолетовый
+                    - button "Все 10" [ref=e520] [cursor=pointer]:
+                      - generic [ref=e523]:
+                        - generic [ref=e524]: Все
+                        - generic [ref=e525]: "10"
+                - generic [ref=e531]:
+                  - table [ref=e533]:
+                    - rowgroup [ref=e534]:
+                      - row [ref=e535]:
+                        - rowheader "Артикул" [ref=e536]
+                        - cell [ref=e539]:
+                          - button "112612828" [ref=e540] [cursor=pointer]
+                      - row [ref=e545]:
+                        - rowheader "Тип зонта" [ref=e546]
+                        - cell "складной; семейный; компактный" [ref=e549]
+                      - row [ref=e551]:
+                        - rowheader "Механизм складывания зонта" [ref=e552]
+                        - cell "полный автомат; 3 сложения; автомат" [ref=e555]
+                      - row [ref=e557]:
+                        - rowheader "Диаметр купола зонта (см)" [ref=e558]
+                        - cell "117 см" [ref=e561]
+                      - row [ref=e563]:
+                        - rowheader "Длина зонта в сложенном виде (см)" [ref=e564]
+                        - cell "29 см" [ref=e567]
+                      - row [ref=e569]:
+                        - rowheader "Материал ручки зонта" [ref=e570]
+                        - cell "пластик" [ref=e573]
+                      - row [ref=e575]:
+                        - rowheader "Декоративные элементы" [ref=e576]
+                        - cell "без элементов" [ref=e579]
+                  - button "Характеристики и описание" [ref=e581] [cursor=pointer]
+                - generic [ref=e586]:
+                  - list [ref=e588]:
+                    - listitem [ref=e589]:
+                      - generic [ref=e594]: 14 дней на возврат
+                  - generic [ref=e595]:
+                    - link "зонты JOYCITY В каталог бренда" [ref=e597] [cursor=pointer]:
+                      - /url: /brands/joycity/zonty
+                      - generic [ref=e606]:
+                        - generic [ref=e607]:
+                          - generic [ref=e608]: зонты
+                          - generic [ref=e609]: JOYCITY
+                        - generic [ref=e610]: В каталог бренда
+                    - link "зонты Все товары категории" [ref=e612] [cursor=pointer]:
+                      - /url: /catalog/aksessuary/zonty?xsubject=61
+                      - generic [ref=e620]:
+                        - generic [ref=e621]: зонты
+                        - generic [ref=e623]: Все товары категории
+              - generic [ref=e626]:
+                - generic [ref=e627]: 05:37:30до конца акции
+                - generic [ref=e635] [cursor=pointer]:
+                  - generic [ref=e636]:
+                    - button [ref=e637]:
+                      - heading "397 ₽" [level=2] [ref=e644]
+                    - insertion [ref=e645]: 406 ₽
+                  - generic [ref=e646]: 2 094 ₽
+                - generic [ref=e647]: Хорошая цена
+                - generic [ref=e660]:
+                  - button "Купить сейчас" [ref=e661] [cursor=pointer]
+                  - button "Добавить в корзину" [ref=e666] [cursor=pointer]
+                - generic [ref=e672]:
+                  - generic [ref=e673]: Завтра,
+                  - generic [ref=e679]: склад WB
+                - region "Информация о продавце" [ref=e681]:
+                  - link "Подробнее о продавце" [ref=e685] [cursor=pointer]:
+                    - /url: /seller/1418867
+                    - generic [ref=e688]:
+                      - generic [ref=e692]: JOYCITY
+                      - generic [ref=e696]: 4,8
+            - generic [ref=e700]:
+              - list [ref=e702]:
+                - listitem [ref=e703]:
+                  - button "Оценки 44 963":
+                    - text: Оценки
+                    - generic: 44 963
+                - listitem [ref=e704]:
+                  - button "Вопросы 429" [ref=e705] [cursor=pointer]:
+                    - text: Вопросы
+                    - generic [ref=e706]: "429"
+              - generic [ref=e707]:
+                - generic [ref=e708]:
+                  - generic [ref=e710]:
+                    - heading "4,9" [level=1] [ref=e713]
+                    - generic [ref=e715]:
+                      - generic [ref=e716]: Выбор покупателей
+                      - generic [ref=e724]: 44 963 оценки
+                  - button "Смотреть все фото и видео" [ref=e726] [cursor=pointer]
+                - generic [ref=e730]:
+                  - button "Назад" [ref=e731] [cursor=pointer]
+                  - generic [ref=e733]:
+                    - img "photo" [ref=e735] [cursor=pointer]
+                    - img "photo" [ref=e737] [cursor=pointer]
+                    - img "photo" [ref=e739] [cursor=pointer]
+                    - img "photo" [ref=e741] [cursor=pointer]
+                    - generic [ref=e742] [cursor=pointer]:
+                      - img "video" [ref=e743]
+                      - link "Wibes" [ref=e744]:
+                        - /url: https://wibes.ru/clips/7130183
+                    - img "photo" [ref=e747] [cursor=pointer]
+                    - img "photo" [ref=e749] [cursor=pointer]
+                    - img "photo" [ref=e751] [cursor=pointer]
+                    - img "photo" [ref=e753] [cursor=pointer]
+                    - img "photo" [ref=e755] [cursor=pointer]
+                    - generic [ref=e756] [cursor=pointer]:
+                      - img "video" [ref=e757]
+                      - link "Wibes" [ref=e758]:
+                        - /url: https://wibes.ru/clips/6528978
+                    - img "photo" [ref=e761] [cursor=pointer]
+                    - img "photo" [ref=e763] [cursor=pointer]
+                    - img "photo" [ref=e765] [cursor=pointer]
+                    - generic [ref=e766] [cursor=pointer]:
+                      - img "video" [ref=e767]
+                      - link "Wibes" [ref=e768]:
+                        - /url: https://wibes.ru/clips/6060934
+                    - img "photo" [ref=e771] [cursor=pointer]
+                    - img "photo" [ref=e773] [cursor=pointer]
+                    - img "photo" [ref=e775] [cursor=pointer]
+                    - img "photo" [ref=e777] [cursor=pointer]
+                    - generic [ref=e778] [cursor=pointer]:
+                      - img "video" [ref=e779]
+                      - link "Wibes" [ref=e780]:
+                        - /url: https://wibes.ru/clips/1791252
+                    - img "photo" [ref=e783] [cursor=pointer]
+                    - img "photo" [ref=e785] [cursor=pointer]
+                    - img "photo" [ref=e787] [cursor=pointer]
+                    - img "photo" [ref=e789] [cursor=pointer]
+                    - generic [ref=e790] [cursor=pointer]:
+                      - img "video" [ref=e791]
+                      - link "Wibes" [ref=e792]:
+                        - /url: https://wibes.ru/clips/632906
+                    - img "video" [ref=e795] [cursor=pointer]
+                    - img "photo" [ref=e797] [cursor=pointer]
+                    - img "photo" [ref=e799] [cursor=pointer]
+                    - img "photo" [ref=e801] [cursor=pointer]
+                    - generic [ref=e802] [cursor=pointer]:
+                      - img "video" [ref=e803]
+                      - link "Wibes" [ref=e804]:
+                        - /url: https://wibes.ru/clips/410814
+                      - generic [ref=e806]: "+91"
+                - generic [ref=e807]:
+                  - generic [ref=e808]:
+                    - button "Назад" [ref=e809] [cursor=pointer]
+                    - generic [ref=e811]:
+                      - generic [ref=e813]:
+                        - generic [ref=e816]:
+                          - paragraph [ref=e817]: Василиса К
+                          - paragraph [ref=e818]: Закреплён
+                        - generic [ref=e821]:
+                          - link "Перейти к отзывам" [ref=e822] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#WOUKhEG64FDqQtYl8yQc
+                          - generic [ref=e824]:
+                            - generic [ref=e825]: Достоинства:Качественный и удобный зонтик
+                            - generic [ref=e826]: Недостатки:Нету
+                            - generic [ref=e827]: Комментарий:Размер соответствует, красивый, аккуратный зонтик
+                      - generic [ref=e829]:
+                        - generic [ref=e832]:
+                          - paragraph [ref=e833]: Валерия
+                          - paragraph [ref=e834]: Закреплён
+                        - generic [ref=e837]:
+                          - link "Перейти к отзывам" [ref=e838] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#9Naea2rZsb1kSEVLeytF
+                          - generic [ref=e839]: Хороший зонт!) покупала бабушке, она очень довольна) легко открывать и закрывать, порадовал диаметр купола зонта, достаточно большой!) спасибо продавцу!)
+                      - generic [ref=e843]:
+                        - generic [ref=e846]:
+                          - paragraph [ref=e847]: Сергей
+                          - paragraph [ref=e848]: 19 июля
+                        - generic [ref=e851]:
+                          - link "Перейти к отзывам" [ref=e852] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#VFvuXxnN2MMJNuiGam32
+                          - generic [ref=e854]:
+                            - text: Плюсы товара
+                            - list [ref=e855]:
+                              - listitem [ref=e856]: удобно пользоваться
+                              - listitem [ref=e857]: качество
+                              - listitem [ref=e858]: внешний вид
+                      - generic [ref=e860]:
+                        - generic [ref=e863]:
+                          - paragraph [ref=e864]: Елена
+                          - paragraph [ref=e865]: 19 июля
+                        - generic [ref=e868]:
+                          - link "Перейти к отзывам" [ref=e869] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#gT5911WbLQd4lOrY2aEX
+                          - generic [ref=e870]: Это уже третий зонт который беру у Вас, в этот раз для подарка. Зная, что он хорошего качества.
+                      - generic [ref=e874]:
+                        - generic [ref=e877]:
+                          - paragraph [ref=e878]: Екатерина
+                          - paragraph [ref=e879]: 19 июля
+                        - generic [ref=e882]:
+                          - link "Перейти к отзывам" [ref=e883] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#3QSpd3dTBmdPusCpI14e
+                          - generic [ref=e884]: Достоинства:Дождалась проверки Антиветер) выгнул купол, но спицы не сломались, пока целые. Как выгнулось, так и встало на место. Зонт пришел целый, в чехле. Под дождем проводила пальцем со внутренней стороны купола, палец и ткань остались сухие
+                      - generic [ref=e888]:
+                        - generic [ref=e891]:
+                          - paragraph [ref=e892]: Галина
+                          - paragraph [ref=e893]: 19 июля
+                        - generic [ref=e896]:
+                          - link "Перейти к отзывам" [ref=e897] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#BO3F8pRgJyezpHOBXAMv
+                          - generic [ref=e899]:
+                            - text: Плюсы товара
+                            - list [ref=e900]:
+                              - listitem [ref=e901]: внешний вид
+                      - generic [ref=e903]:
+                        - generic [ref=e906]:
+                          - paragraph [ref=e908] [cursor=pointer]: Покупатель
+                          - paragraph [ref=e910]: 19 июля
+                        - generic [ref=e913]:
+                          - link "Перейти к отзывам" [ref=e914] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#bBxWIssUknbjf8R97Uwt
+                          - generic [ref=e916]:
+                            - generic [ref=e917]: Достоинства:Очень хороший
+                            - generic [ref=e918]: Недостатки:Все нармадьно
+                      - generic [ref=e920]:
+                        - generic [ref=e923]:
+                          - paragraph [ref=e924]: Светлана
+                          - paragraph [ref=e925]: 19 июля
+                        - generic [ref=e928]:
+                          - link "Перейти к отзывам" [ref=e929] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#5CxqRWihz9i1r9kBWo05
+                          - generic [ref=e930]: Хороший зонт, рекомендую 👍
+                      - generic [ref=e934]:
+                        - generic [ref=e937]:
+                          - paragraph [ref=e939] [cursor=pointer]: Светлана
+                          - paragraph [ref=e941]: 19 июля
+                        - generic [ref=e944]:
+                          - link "Перейти к отзывам" [ref=e945] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#Iq1HDDB4dGoM8Qml0C6E
+                          - generic [ref=e946]: Отличный зонт, рекомендую продавца 👍
+                      - generic [ref=e950]:
+                        - generic [ref=e953]:
+                          - paragraph [ref=e954]: Покупатель
+                          - paragraph [ref=e955]: 19 июля
+                        - generic [ref=e958]:
+                          - link "Перейти к отзывам" [ref=e959] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#926J5uD6iRwQrzPZ6pV7
+                          - generic [ref=e961]:
+                            - text: Плюсы товара
+                            - list [ref=e962]:
+                              - listitem [ref=e963]: удобно пользоваться
+                              - listitem [ref=e964]: размер
+                              - listitem [ref=e965]: внешний вид
+                      - generic [ref=e967]:
+                        - generic [ref=e970]:
+                          - paragraph [ref=e971]: Юлия
+                          - paragraph [ref=e972]: 19 июля
+                        - generic [ref=e975]:
+                          - link "Перейти к отзывам" [ref=e976] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#duANspMgqtLUfKaG8ZJH
+                          - generic [ref=e978]:
+                            - text: Плюсы товара
+                            - list [ref=e979]:
+                              - listitem [ref=e980]: качество
+                      - generic [ref=e982]:
+                        - generic [ref=e985]:
+                          - paragraph [ref=e986]: Александр
+                          - paragraph [ref=e987]: 19 июля
+                        - generic [ref=e990]:
+                          - link "Перейти к отзывам" [ref=e991] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#o2QPKwWHmHSBIsdVSJy2
+                          - generic [ref=e992]: Зонт хороший.
+                      - generic [ref=e996]:
+                        - generic [ref=e999]:
+                          - paragraph [ref=e1000]: Елена
+                          - paragraph [ref=e1001]: 19 июля
+                        - generic [ref=e1004]:
+                          - link "Перейти к отзывам" [ref=e1005] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#a7lCzFgFYELRVG1yORHZ
+                          - generic [ref=e1006]: Очень удобный 👍
+                      - generic [ref=e1010]:
+                        - generic [ref=e1013]:
+                          - paragraph [ref=e1014]: Евгений
+                          - paragraph [ref=e1015]: 19 июля
+                        - generic [ref=e1018]:
+                          - link "Перейти к отзывам" [ref=e1019] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#FbXdBFOccxw5IfIiFhrQ
+                          - generic [ref=e1021]:
+                            - generic [ref=e1022]: Достоинства:Отличный зонтик
+                            - generic [ref=e1023]: Комментарий:Функции выполняет, цена отличная
+                      - generic [ref=e1025]:
+                        - generic [ref=e1028]:
+                          - paragraph [ref=e1029]: Покупатель
+                          - paragraph [ref=e1030]: 19 июля
+                        - generic [ref=e1033]:
+                          - link "Перейти к отзывам" [ref=e1034] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#J7xRRvRXzL4I38vUem8g
+                          - generic [ref=e1035]: Мне очень понравился тем, что в сумочку входит, лёгкий и большой- правда пока им ещё не пользовалась)))
+                      - generic [ref=e1039]:
+                        - generic [ref=e1042]:
+                          - paragraph [ref=e1043]: Надежда
+                          - paragraph [ref=e1044]: 19 июля
+                        - generic [ref=e1047]:
+                          - link "Перейти к отзывам" [ref=e1048] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#dGyEHDB3esHQsTSudTDb
+                          - generic [ref=e1049]:
+                            - generic [ref=e1050]: Большой ,удобный
+                            - generic [ref=e1052]:
+                              - text: Плюсы товара
+                              - list [ref=e1053]:
+                                - listitem [ref=e1054]: качество
+                                - listitem [ref=e1055]: внешний вид
+                      - generic [ref=e1057]:
+                        - generic [ref=e1060]:
+                          - paragraph [ref=e1062] [cursor=pointer]: Ольга
+                          - paragraph [ref=e1064]: 19 июля
+                        - generic [ref=e1067]:
+                          - link "Перейти к отзывам" [ref=e1068] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#7aSZJqnO1FMdPTBUWLKI
+                          - generic [ref=e1070]:
+                            - text: Плюсы товара
+                            - list [ref=e1071]:
+                              - listitem [ref=e1072]: удобно пользоваться
+                              - listitem [ref=e1073]: размер
+                              - listitem [ref=e1074]: качество
+                              - listitem [ref=e1075]: внешний вид
+                      - generic [ref=e1077]:
+                        - generic [ref=e1080]:
+                          - paragraph [ref=e1081]: Покупатель
+                          - paragraph [ref=e1082]: 19 июля
+                        - generic [ref=e1085]:
+                          - link "Перейти к отзывам" [ref=e1086] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#SucZWsnKZYCF1acWmcSq
+                          - generic [ref=e1088]:
+                            - text: Минусы товара
+                            - list [ref=e1089]:
+                              - listitem [ref=e1090]: неудобно пользоваться
+                              - listitem [ref=e1091]: плохое качество
+                      - generic [ref=e1093]:
+                        - generic [ref=e1096]:
+                          - paragraph [ref=e1097]: Юлия
+                          - paragraph [ref=e1098]: 19 июля
+                        - generic [ref=e1101]:
+                          - link "Перейти к отзывам" [ref=e1102] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#ekBGM0KaLFQiZ2UChPVi
+                          - generic [ref=e1104]:
+                            - text: Плюсы товара
+                            - list [ref=e1105]:
+                              - listitem [ref=e1106]: качество
+                      - generic [ref=e1108]:
+                        - generic [ref=e1111]:
+                          - paragraph [ref=e1112]: Анна
+                          - paragraph [ref=e1113]: 19 июля
+                        - generic [ref=e1116]:
+                          - link "Перейти к отзывам" [ref=e1117] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#QSVhwVIeGe4zqRNYtQpd
+                          - generic [ref=e1119]:
+                            - text: Плюсы товара
+                            - list [ref=e1120]:
+                              - listitem [ref=e1121]: размер
+                              - listitem [ref=e1122]: внешний вид
+                      - generic [ref=e1124]:
+                        - generic [ref=e1127]:
+                          - paragraph [ref=e1129] [cursor=pointer]: Юлия
+                          - paragraph [ref=e1131]: 19 июля
+                        - generic [ref=e1134]:
+                          - link "Перейти к отзывам" [ref=e1135] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#qxgN9iIS5jc60pRZxk3V
+                          - generic [ref=e1137]:
+                            - text: Плюсы товара
+                            - list [ref=e1138]:
+                              - listitem [ref=e1139]: размер
+                              - listitem [ref=e1140]: качество
+                      - generic [ref=e1142]:
+                        - generic [ref=e1145]:
+                          - paragraph [ref=e1146]: Олеся
+                          - paragraph [ref=e1147]: 19 июля
+                        - generic [ref=e1150]:
+                          - link "Перейти к отзывам" [ref=e1151] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#Xk8uytwNoLD3Iily7Yrz
+                          - generic [ref=e1153]:
+                            - text: Плюсы товара
+                            - list [ref=e1154]:
+                              - listitem [ref=e1155]: удобно пользоваться
+                      - generic [ref=e1157]:
+                        - generic [ref=e1160]:
+                          - paragraph [ref=e1161]: Алевтина
+                          - paragraph [ref=e1162]: 19 июля
+                        - generic [ref=e1165]:
+                          - link "Перейти к отзывам" [ref=e1166] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#ocGBi57r2pquuIkg9Zod
+                          - generic [ref=e1167]: Достоинства:Спасибо большое продавцу за заказ
+                      - generic [ref=e1171]:
+                        - generic [ref=e1174]:
+                          - paragraph [ref=e1175]: Покупатель
+                          - paragraph [ref=e1176]: 19 июля
+                        - generic [ref=e1179]:
+                          - link "Перейти к отзывам" [ref=e1180] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#lgbIrkVvwFcevSQCdXAa
+                          - generic [ref=e1181]: Зонтик хороший, легкий , раскладывается хорошо и крепкий , при ветре не выгибается
+                      - generic [ref=e1185]:
+                        - generic [ref=e1188]:
+                          - paragraph [ref=e1189]: Татьяна
+                          - paragraph [ref=e1190]: 19 июля
+                        - generic [ref=e1193]:
+                          - link "Перейти к отзывам" [ref=e1194] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#A2Ewv4E24ldeNXtQNrlB
+                          - generic [ref=e1195]: ❤️❤️❤️❤️❤️🤩🤩🤩🤩🤩🤩🤩🤩🤩
+                      - generic [ref=e1199]:
+                        - generic [ref=e1202]:
+                          - paragraph [ref=e1203]: Марина
+                          - paragraph [ref=e1204]: 19 июля
+                        - generic [ref=e1207]:
+                          - link "Перейти к отзывам" [ref=e1208] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#FDZUgE11wRP6RZFWkwaT
+                          - generic [ref=e1210]:
+                            - text: Плюсы товара
+                            - list [ref=e1211]:
+                              - listitem [ref=e1212]: удобно пользоваться
+                              - listitem [ref=e1213]: внешний вид
+                      - generic [ref=e1215]:
+                        - generic [ref=e1218]:
+                          - paragraph [ref=e1219]: Оюна
+                          - paragraph [ref=e1220]: 19 июля
+                        - generic [ref=e1223]:
+                          - link "Перейти к отзывам" [ref=e1224] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#oKc5oRd2hV4OHeEvSbRR
+                          - generic [ref=e1226]:
+                            - generic [ref=e1227]: Достоинства:Легкий, удобный
+                            - generic [ref=e1228]: Комментарий:Спасибо, за такую цену приобрела хороший легкий и автоматический зонт!
+                      - generic [ref=e1230]:
+                        - generic [ref=e1233]:
+                          - paragraph [ref=e1234]: Анастасия
+                          - paragraph [ref=e1235]: 19 июля
+                        - generic [ref=e1238]:
+                          - link "Перейти к отзывам" [ref=e1239] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#1pkiV9Y01hDLd65Ja9cK
+                          - generic [ref=e1240]: За такую цену качество просто ОГОНЬ🔥! Спасибо!
+                          - list [ref=e1243]:
+                            - listitem [ref=e1244] [cursor=pointer]:
+                              - img "preview" [ref=e1246]
+                            - listitem [ref=e1247] [cursor=pointer]:
+                              - img "preview" [ref=e1249]
+                            - listitem [ref=e1250] [cursor=pointer]:
+                              - img "preview" [ref=e1252]
+                      - generic [ref=e1254]:
+                        - generic [ref=e1257]:
+                          - paragraph [ref=e1258]: Val
+                          - paragraph [ref=e1259]: 19 июля
+                        - generic [ref=e1262]:
+                          - link "Перейти к отзывам" [ref=e1263] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#hT3oR4B95THFbh3bECCA
+                          - generic [ref=e1265]:
+                            - text: Плюсы товара
+                            - list [ref=e1266]:
+                              - listitem [ref=e1267]: удобно пользоваться
+                              - listitem [ref=e1268]: размер
+                              - listitem [ref=e1269]: качество
+                              - listitem [ref=e1270]: внешний вид
+                      - generic [ref=e1272]:
+                        - generic [ref=e1275]:
+                          - paragraph [ref=e1276]: Ольга
+                          - paragraph [ref=e1277]: 19 июля
+                        - generic [ref=e1280]:
+                          - link "Перейти к отзывам" [ref=e1281] [cursor=pointer]:
+                            - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960#wdSbMgNxWjUs9cXtLSOX
+                          - generic [ref=e1282]: Небольшой зонт, на сменку подходит, есть громкий звук на закрытие
+                      - generic [ref=e1286]:
+                        - paragraph [ref=e1287]: Хотите узнать о товаре больше?
+                        - paragraph [ref=e1288] [cursor=pointer]: Смотреть все 59 248 отзывов
+                        - link [ref=e1289] [cursor=pointer]:
+                          - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960
+                  - link "Смотреть все отзывы" [ref=e1290] [cursor=pointer]:
+                    - /url: /catalog/112612828/feedbacks?imtId=30866661&size=203286960
+            - generic [ref=e1291]:
+              - heading "О товаре" [level=2] [ref=e1292]
+              - generic [ref=e1293]:
+                - button "Смотреть полностью" [ref=e1294] [cursor=pointer]
+                - generic [ref=e1298] [cursor=pointer]:
+                  - button "Смотреть полностью" [ref=e1299]
+                  - img "Превью фото о товаре" [ref=e1301]
+            - generic [ref=e1302]:
+              - generic [ref=e1303]: Продавец рекомендует
+              - generic [ref=e1305]:
+                - button "Назад" [ref=e1306] [cursor=pointer]
+                - generic [ref=e1308]:
+                  - article [ref=e1310]:
+                    - generic [ref=e1311]:
+                      - link "Джинсы прямые широкие синие трубы с высокой посадкой JOYCITY" [ref=e1312] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/404104272/detail.aspx
+                      - generic [ref=e1313]:
+                        - img "Джинсы прямые широкие синие трубы с высокой посадкой JOYCITY" [ref=e1315]
+                        - generic [ref=e1316]: −81%
+                      - generic [ref=e1320]:
+                        - generic [ref=e1323]:
+                          - insertion [ref=e1328]: 1 507 ₽
+                          - generic [ref=e1329]: −81%
+                        - heading "Джинсы прямые широкие синие трубы с высокой посадкой" [level=2] [ref=e1330]
+                      - generic [ref=e1333]:
+                        - generic [ref=e1334]: 4,8
+                        - generic [ref=e1335]: 4 453 оценки
+                  - article [ref=e1337]:
+                    - generic [ref=e1338]:
+                      - link "Футболка базовая белая из хлопка JOYCITY" [ref=e1339] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/807019776/detail.aspx
+                      - generic [ref=e1340]:
+                        - img "Футболка базовая белая из хлопка JOYCITY" [ref=e1342]
+                        - generic [ref=e1343]: −72%
+                      - generic [ref=e1347]:
+                        - generic [ref=e1350]:
+                          - insertion [ref=e1355]: 396 ₽
+                          - generic [ref=e1356]: −72%
+                        - heading "Футболка базовая белая из хлопка" [level=2] [ref=e1357]
+                      - generic [ref=e1360]:
+                        - generic [ref=e1361]: 4,7
+                        - generic [ref=e1362]: 320 оценок
+                  - article [ref=e1364]:
+                    - generic [ref=e1365]:
+                      - link "Джинсы прямые широкие черные трубы с высокой посадкой JOYCITY" [ref=e1366] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/416126067/detail.aspx
+                      - generic [ref=e1367]:
+                        - img "Джинсы прямые широкие черные трубы с высокой посадкой JOYCITY" [ref=e1369]
+                        - generic [ref=e1370]: −82%
+                      - generic [ref=e1374]:
+                        - generic [ref=e1377]:
+                          - insertion [ref=e1382]: 995 ₽
+                          - generic [ref=e1383]: −82%
+                        - heading "Джинсы прямые широкие черные трубы с высокой посадкой" [level=2] [ref=e1384]
+                      - generic [ref=e1387]:
+                        - generic [ref=e1388]: 4,7
+                        - generic [ref=e1389]: 1 510 оценок
+                  - article [ref=e1391]:
+                    - generic [ref=e1392]:
+                      - link "Джинсы бананы прямые с высокой посадкой момы JOYCITY" [ref=e1393] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/416126069/detail.aspx
+                      - generic [ref=e1394]:
+                        - img "Джинсы бананы прямые с высокой посадкой момы JOYCITY" [ref=e1396]
+                        - generic [ref=e1397]: −89%
+                      - generic [ref=e1401]:
+                        - generic [ref=e1404]:
+                          - insertion [ref=e1409]: 1 120 ₽
+                          - generic [ref=e1410]: −89%
+                        - heading "Джинсы бананы прямые с высокой посадкой момы" [level=2] [ref=e1411]
+                      - generic [ref=e1414]:
+                        - generic [ref=e1415]: 4,3
+                        - generic [ref=e1416]: 49 оценок
+                  - article [ref=e1418]:
+                    - generic [ref=e1419]:
+                      - link "Прямые джинсы широкие серые трубы с высокой посадкой JOYCITY" [ref=e1420] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/416126066/detail.aspx
+                      - generic [ref=e1421]:
+                        - img "Прямые джинсы широкие серые трубы с высокой посадкой JOYCITY" [ref=e1423]
+                        - generic [ref=e1424]: −89%
+                      - generic [ref=e1428]:
+                        - generic [ref=e1431]:
+                          - insertion [ref=e1436]: 1 225 ₽
+                          - generic [ref=e1437]: −89%
+                        - heading "Прямые джинсы широкие серые трубы с высокой посадкой" [level=2] [ref=e1438]
+                      - generic [ref=e1441]:
+                        - generic [ref=e1442]: 4,8
+                        - generic [ref=e1443]: 2 078 оценок
+                  - article [ref=e1445]:
+                    - generic [ref=e1446]:
+                      - link "Джинсы прямые широкие голубые трубы с высокой посадкой JOYCITY" [ref=e1447] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/416126068/detail.aspx
+                      - generic [ref=e1448]:
+                        - img "Джинсы прямые широкие голубые трубы с высокой посадкой JOYCITY" [ref=e1450]
+                        - generic [ref=e1451]: −87%
+                      - generic [ref=e1455]:
+                        - generic [ref=e1458]:
+                          - insertion [ref=e1463]: 1 514 ₽
+                          - generic [ref=e1464]: −87%
+                        - heading "Джинсы прямые широкие голубые трубы с высокой посадкой" [level=2] [ref=e1465]
+                      - generic [ref=e1468]:
+                        - generic [ref=e1469]: 4,8
+                        - generic [ref=e1470]: 1 772 оценки
+                  - article [ref=e1472]:
+                    - generic [ref=e1473]:
+                      - link "Джинсы скинни с высокой посадкой зауженные стрейч JOYCITY" [ref=e1474] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/416126070/detail.aspx
+                      - generic [ref=e1475]:
+                        - img "Джинсы скинни с высокой посадкой зауженные стрейч JOYCITY" [ref=e1477]
+                        - generic [ref=e1478]: −89%
+                      - generic [ref=e1482]:
+                        - generic [ref=e1485]:
+                          - insertion [ref=e1490]: 823 ₽
+                          - generic [ref=e1491]: −89%
+                        - heading "Джинсы скинни с высокой посадкой зауженные стрейч" [level=2] [ref=e1492]
+                      - generic [ref=e1495]:
+                        - generic [ref=e1496]: 4,7
+                        - generic [ref=e1497]: 69 оценок
+                  - article [ref=e1499]:
+                    - generic [ref=e1500]:
+                      - link "Кроссовки на платформе летние JOYCITY" [ref=e1501] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/184306622/detail.aspx
+                      - generic [ref=e1502]:
+                        - img "Кроссовки на платформе летние JOYCITY" [ref=e1504]
+                        - generic [ref=e1505]: −70%
+                      - generic [ref=e1509]:
+                        - generic [ref=e1512]:
+                          - insertion [ref=e1517]: 1 328 ₽
+                          - generic [ref=e1518]: −70%
+                        - heading "Кроссовки на платформе летние" [level=2] [ref=e1519]
+                      - generic [ref=e1522]:
+                        - generic [ref=e1523]: 4,7
+                        - generic [ref=e1524]: 16 304 оценки
+                  - article [ref=e1526]:
+                    - generic [ref=e1527]:
+                      - link "Кроссовки летние на платформе JOYCITY" [ref=e1528] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/229221209/detail.aspx
+                      - generic [ref=e1529]:
+                        - img "Кроссовки летние на платформе JOYCITY" [ref=e1531]
+                        - generic [ref=e1532]: −70%
+                      - generic [ref=e1536]:
+                        - generic [ref=e1539]:
+                          - insertion [ref=e1544]: 1 314 ₽
+                          - generic [ref=e1545]: −70%
+                        - heading "Кроссовки летние на платформе" [level=2] [ref=e1546]
+                      - generic [ref=e1549]:
+                        - generic [ref=e1550]: 4,7
+                        - generic [ref=e1551]: 9 375 оценок
+                  - article [ref=e1553]:
+                    - generic [ref=e1554]:
+                      - link "Сапоги с острым носом замшевые демисезонные JOYCITY" [ref=e1555] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/485284966/detail.aspx
+                      - generic [ref=e1556]:
+                        - img "Сапоги с острым носом замшевые демисезонные JOYCITY" [ref=e1558]
+                        - generic [ref=e1559]: −81%
+                      - generic [ref=e1563]:
+                        - generic [ref=e1566]:
+                          - insertion [ref=e1571]: 2 520 ₽
+                          - generic [ref=e1572]: −81%
+                        - heading "Сапоги с острым носом замшевые демисезонные" [level=2] [ref=e1573]
+                      - generic [ref=e1576]:
+                        - generic [ref=e1577]: 4,9
+                        - generic [ref=e1578]: 445 оценок
+                  - article [ref=e1580]:
+                    - generic [ref=e1581]:
+                      - link "Сапоги казаки на каблуке демисезонные JOYCITY" [ref=e1582] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/498203727/detail.aspx
+                      - generic [ref=e1583]:
+                        - img "Сапоги казаки на каблуке демисезонные JOYCITY" [ref=e1585]
+                        - generic [ref=e1586]: −85%
+                      - generic [ref=e1590]:
+                        - generic [ref=e1593]:
+                          - insertion [ref=e1598]: 2 596 ₽
+                          - generic [ref=e1599]: −85%
+                        - heading "Сапоги казаки на каблуке демисезонные" [level=2] [ref=e1600]
+                      - generic [ref=e1603]:
+                        - generic [ref=e1604]: 4,9
+                        - generic [ref=e1605]: 455 оценок
+                  - article [ref=e1607]:
+                    - generic [ref=e1608]:
+                      - link "Сапоги трубы демисезонные на каблуке с острым носом JOYCITY" [ref=e1609] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/498223838/detail.aspx
+                      - generic [ref=e1610]:
+                        - img "Сапоги трубы демисезонные на каблуке с острым носом JOYCITY" [ref=e1612]
+                        - generic [ref=e1613]: −82%
+                      - generic [ref=e1617]:
+                        - generic [ref=e1620]:
+                          - insertion [ref=e1625]: 2 612 ₽
+                          - generic [ref=e1626]: −82%
+                        - heading "Сапоги трубы демисезонные на каблуке с острым носом" [level=2] [ref=e1627]
+                      - generic [ref=e1630]:
+                        - generic [ref=e1631]: 4,7
+                        - generic [ref=e1632]: 172 оценки
+                  - article [ref=e1634]:
+                    - generic [ref=e1635]:
+                      - link "Сапоги трубы на каблуке демисезонные JOYCITY" [ref=e1636] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/498223840/detail.aspx
+                      - generic [ref=e1637]:
+                        - img "Сапоги трубы на каблуке демисезонные JOYCITY" [ref=e1639]
+                        - generic [ref=e1640]: −81%
+                      - generic [ref=e1644]:
+                        - generic [ref=e1647]:
+                          - insertion [ref=e1652]: 2 653 ₽
+                          - generic [ref=e1653]: −81%
+                        - heading "Сапоги трубы на каблуке демисезонные" [level=2] [ref=e1654]
+                      - generic [ref=e1657]:
+                        - generic [ref=e1658]: 4,7
+                        - generic [ref=e1659]: 273 оценки
+                  - article [ref=e1661]:
+                    - generic [ref=e1662]:
+                      - link "Ботфорты сапоги чулки на платформе демисезонные JOYCITY" [ref=e1663] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/504224250/detail.aspx
+                      - generic [ref=e1664]:
+                        - img "Ботфорты сапоги чулки на платформе демисезонные JOYCITY" [ref=e1666]
+                        - generic [ref=e1667]: −75%
+                      - generic [ref=e1671]:
+                        - generic [ref=e1674]:
+                          - insertion [ref=e1679]: 3 586 ₽
+                          - generic [ref=e1680]: −75%
+                        - heading "Ботфорты сапоги чулки на платформе демисезонные" [level=2] [ref=e1681]
+                      - generic [ref=e1684]:
+                        - generic [ref=e1685]: 4,7
+                        - generic [ref=e1686]: 245 оценок
+                  - article [ref=e1688]:
+                    - generic [ref=e1689]:
+                      - link "Сапоги трансформеры на низком каблуке демисезонные JOYCITY" [ref=e1690] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/504318612/detail.aspx
+                      - generic [ref=e1691]:
+                        - img "Сапоги трансформеры на низком каблуке демисезонные JOYCITY" [ref=e1693]
+                        - generic [ref=e1694]: −83%
+                      - generic [ref=e1698]:
+                        - generic [ref=e1701]:
+                          - insertion [ref=e1706]: 2 941 ₽
+                          - generic [ref=e1707]: −83%
+                        - heading "Сапоги трансформеры на низком каблуке демисезонные" [level=2] [ref=e1708]
+                      - generic [ref=e1711]:
+                        - generic [ref=e1712]: 4,7
+                        - generic [ref=e1713]: 279 оценок
+                  - article [ref=e1715]:
+                    - generic [ref=e1716]:
+                      - link "Сапоги трубы зимние JOYCITY" [ref=e1717] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/504856249/detail.aspx
+                      - generic [ref=e1718]:
+                        - img "Сапоги трубы зимние JOYCITY" [ref=e1720]
+                        - generic [ref=e1721]: −79%
+                      - generic [ref=e1725]:
+                        - generic [ref=e1728]:
+                          - insertion [ref=e1733]: 2 997 ₽
+                          - generic [ref=e1734]: −79%
+                        - heading "Сапоги трубы зимние" [level=2] [ref=e1735]
+                      - generic [ref=e1738]:
+                        - generic [ref=e1739]: 4,4
+                        - generic [ref=e1740]: 298 оценок
+                  - article [ref=e1742]:
+                    - generic [ref=e1743]:
+                      - link "Сапоги трубы демисезонные на каблуке JOYCITY" [ref=e1744] [cursor=pointer]:
+                        - /url: https://www.wildberries.ru/catalog/524467299/detail.aspx
+                      - generic [ref=e1745]:
+                        - img "Сапоги трубы демисезонные на каблуке JOYCITY" [ref=e1747]
+                        - generic [ref=e1748]: −80%
+                      - generic [ref=e1752]:
+                        - generic [ref=e1755]:
+                          - insertion [ref=e1760]: 2 695 ₽
+                          - generic [ref=e1761]: −80%
+                        - heading "Сапоги трубы демисезонные на каблуке" [level=2] [ref=e1762]
+                      - generic [ref=e1765]:
+                        - generic [ref=e1766]: 4,2
+                        - generic [ref=e1767]: 265 оценок
+            - generic [ref=e1769]:
+              - heading "Смотрите также" [level=2] [ref=e1771]
+              - generic [ref=e1772]:
+                - article [ref=e1773]:
+                  - generic [ref=e1774]:
+                    - link "Зонт автомат легкий антиветер Umbrella World" [ref=e1775] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/254591262/detail.aspx?targetUrl=MI
+                    - generic [ref=e1776]:
+                      - button "Добавить в избранное" [ref=e1778] [cursor=pointer]
+                      - img "Зонт автомат легкий антиветер Umbrella World" [ref=e1780]
+                      - generic [ref=e1781]: −81%
+                    - generic [ref=e1785]:
+                      - generic [ref=e1786]:
+                        - generic [ref=e1788]:
+                          - insertion [ref=e1793]: 392 ₽
+                          - deletion [ref=e1794]: 2 200 ₽
+                        - generic [ref=e1795]: с WB Кошельком
+                      - heading "Umbrella World / Зонт автомат легкий антиветер" [level=2] [ref=e1796]:
+                        - generic [ref=e1797]: Umbrella World
+                        - generic [ref=e1798]: / Зонт автомат легкий антиветер
+                    - generic [ref=e1799]:
+                      - generic [ref=e1800]:
+                        - generic [ref=e1801]: 4,8
+                        - generic [ref=e1802]: 3 723 оценки
+                      - link "Завтра" [ref=e1804] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e1807]:
+                  - generic [ref=e1808]:
+                    - link "Зонт автомат черный антиветер KEANU" [ref=e1809] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/863239425/detail.aspx?targetUrl=MI
+                    - generic [ref=e1810]:
+                      - button "Добавить в избранное" [ref=e1812] [cursor=pointer]
+                      - img "Зонт автомат черный антиветер KEANU" [ref=e1814]
+                      - generic [ref=e1815]: −63%
+                    - generic [ref=e1819]:
+                      - generic [ref=e1820]:
+                        - generic [ref=e1822]:
+                          - insertion [ref=e1827]: 353 ₽
+                          - deletion [ref=e1828]: 978 ₽
+                        - generic [ref=e1829]: с WB Кошельком
+                      - heading "KEANU / Зонт автомат черный антиветер" [level=2] [ref=e1830]:
+                        - generic [ref=e1831]: KEANU
+                        - generic [ref=e1833]: / Зонт автомат черный антиветер
+                    - generic [ref=e1834]:
+                      - generic [ref=e1835]:
+                        - generic [ref=e1836]: 4,8
+                        - generic [ref=e1837]: 1 267 оценок
+                      - link "Послезавтра" [ref=e1839] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e1842]:
+                  - generic [ref=e1843]:
+                    - link "Зонт автомат мини Imperator umbrella" [ref=e1844] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/971769732/detail.aspx?targetUrl=MI
+                    - generic [ref=e1845]:
+                      - button "Добавить в избранное" [ref=e1847] [cursor=pointer]
+                      - img "Зонт автомат мини Imperator umbrella" [ref=e1849]
+                      - generic [ref=e1850]: −27%
+                    - generic [ref=e1854]:
+                      - generic [ref=e1855]:
+                        - generic [ref=e1857]:
+                          - insertion [ref=e1858]: 1 279 ₽
+                          - deletion [ref=e1859]: 1 805 ₽
+                        - generic [ref=e1860]: с WB Кошельком
+                      - heading "Imperator umbrella / Зонт автомат мини" [level=2] [ref=e1861]:
+                        - generic [ref=e1862]: Imperator umbrella
+                        - generic [ref=e1863]: / Зонт автомат мини
+                    - generic [ref=e1864]:
+                      - generic [ref=e1865]:
+                        - generic [ref=e1866]: 4,8
+                        - generic [ref=e1867]: 1 011 оценок
+                      - link "Послезавтра" [ref=e1869] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e1872]:
+                  - generic [ref=e1873]:
+                    - link "Зонт автомат легкий антиветер Umbrella World" [ref=e1874] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/254591257/detail.aspx?targetUrl=MI
+                    - generic [ref=e1875]:
+                      - button "Добавить в избранное" [ref=e1877] [cursor=pointer]
+                      - img "Зонт автомат легкий антиветер Umbrella World" [ref=e1879]
+                      - generic [ref=e1880]: −81%
+                    - generic [ref=e1884]:
+                      - generic [ref=e1885]:
+                        - generic [ref=e1887]:
+                          - insertion [ref=e1892]: 374 ₽
+                          - deletion [ref=e1893]: 2 100 ₽
+                        - generic [ref=e1894]: с WB Кошельком
+                      - heading "Umbrella World / Зонт автомат легкий антиветер" [level=2] [ref=e1895]:
+                        - generic [ref=e1896]: Umbrella World
+                        - generic [ref=e1897]: / Зонт автомат легкий антиветер
+                    - generic [ref=e1898]:
+                      - generic [ref=e1899]:
+                        - generic [ref=e1900]: 4,7
+                        - generic [ref=e1901]: 1 168 оценок
+                      - link "Завтра" [ref=e1903] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e1906]:
+                  - generic [ref=e1907]:
+                    - link "Зонт автомат легкий антиветер Umbrella World" [ref=e1908] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/254591260/detail.aspx?targetUrl=MI
+                    - generic [ref=e1909]:
+                      - button "Добавить в избранное" [ref=e1911] [cursor=pointer]
+                      - img "Зонт автомат легкий антиветер Umbrella World" [ref=e1913]
+                      - generic [ref=e1914]: −81%
+                    - generic [ref=e1918]:
+                      - generic [ref=e1919]:
+                        - generic [ref=e1921]:
+                          - insertion [ref=e1922]: 374 ₽
+                          - deletion [ref=e1923]: 2 100 ₽
+                        - generic [ref=e1924]: с WB Кошельком
+                      - heading "Umbrella World / Зонт автомат легкий антиветер" [level=2] [ref=e1925]:
+                        - generic [ref=e1926]: Umbrella World
+                        - generic [ref=e1927]: / Зонт автомат легкий антиветер
+                    - generic [ref=e1928]:
+                      - generic [ref=e1929]:
+                        - generic [ref=e1930]: 4,8
+                        - generic [ref=e1931]: 1 708 оценок
+                      - link "Завтра" [ref=e1933] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e1936]:
+                  - generic [ref=e1937]:
+                    - link "Зонт автомат антиветер Дождя НЕТ" [ref=e1938] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/957625286/detail.aspx?targetUrl=MI
+                    - generic [ref=e1939]:
+                      - button "Добавить в избранное" [ref=e1941] [cursor=pointer]
+                      - img "Зонт автомат антиветер Дождя НЕТ" [ref=e1943]
+                      - generic [ref=e1944]: −76%
+                    - generic [ref=e1948]:
+                      - generic [ref=e1949]:
+                        - generic [ref=e1951]:
+                          - insertion [ref=e1952]: 626 ₽
+                          - deletion [ref=e1953]: 2 667 ₽
+                        - generic [ref=e1954]: с WB Кошельком
+                      - heading "Дождя НЕТ / Зонт автомат антиветер" [level=2] [ref=e1955]:
+                        - generic [ref=e1956]: Дождя НЕТ
+                        - generic [ref=e1957]: / Зонт автомат антиветер
+                    - generic [ref=e1958]:
+                      - generic [ref=e1959]:
+                        - generic [ref=e1960]: 4,9
+                        - generic [ref=e1961]: 1 184 оценки
+                      - link "Послезавтра" [ref=e1963] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e1966]:
+                  - generic [ref=e1967]:
+                    - link "Зонт автомат легкий антиветер Umbrella World" [ref=e1968] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/254591259/detail.aspx?targetUrl=MI
+                    - generic [ref=e1969]:
+                      - button "Добавить в избранное" [ref=e1971] [cursor=pointer]
+                      - img "Зонт автомат легкий антиветер Umbrella World" [ref=e1973]
+                      - generic [ref=e1974]: −81%
+                    - generic [ref=e1978]:
+                      - generic [ref=e1979]:
+                        - generic [ref=e1981]:
+                          - insertion [ref=e1986]: 374 ₽
+                          - deletion [ref=e1987]: 2 100 ₽
+                        - generic [ref=e1988]: с WB Кошельком
+                      - heading "Umbrella World / Зонт автомат легкий антиветер" [level=2] [ref=e1989]:
+                        - generic [ref=e1990]: Umbrella World
+                        - generic [ref=e1991]: / Зонт автомат легкий антиветер
+                    - generic [ref=e1992]:
+                      - generic [ref=e1993]:
+                        - generic [ref=e1994]: 4,7
+                        - generic [ref=e1995]: 2 285 оценок
+                      - link "Завтра" [ref=e1997] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2000]:
+                  - generic [ref=e2001]:
+                    - link "Зонт автомат антиветер 16 спиц Дождя НЕТ" [ref=e2002] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/946071687/detail.aspx?targetUrl=MI
+                    - generic [ref=e2003]:
+                      - button "Добавить в избранное" [ref=e2005] [cursor=pointer]
+                      - img "Зонт автомат антиветер 16 спиц Дождя НЕТ" [ref=e2007]
+                      - generic [ref=e2008]: −63%
+                    - generic [ref=e2012]:
+                      - generic [ref=e2013]:
+                        - generic [ref=e2015]:
+                          - insertion [ref=e2016]: 1 493 ₽
+                          - deletion [ref=e2017]: 4 210 ₽
+                        - generic [ref=e2018]: с WB Кошельком
+                      - heading "Дождя НЕТ / Зонт автомат антиветер 16 спиц" [level=2] [ref=e2019]:
+                        - generic [ref=e2020]: Дождя НЕТ
+                        - generic [ref=e2021]: / Зонт автомат антиветер 16 спиц
+                    - generic [ref=e2022]:
+                      - generic [ref=e2023]:
+                        - generic [ref=e2024]: 4,9
+                        - generic [ref=e2025]: 544 оценки
+                      - link "Завтра" [ref=e2027] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2030]:
+                  - generic [ref=e2031]:
+                    - link "Зонт автомат мини антиветер баклажановый DINIYA" [ref=e2032] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/59519448/detail.aspx?targetUrl=MI
+                    - generic [ref=e2033]:
+                      - button "Добавить в избранное" [ref=e2035] [cursor=pointer]
+                      - img "Зонт автомат мини антиветер баклажановый DINIYA" [ref=e2037]
+                      - generic [ref=e2038]: −35%
+                    - generic [ref=e2042]:
+                      - generic [ref=e2043]:
+                        - generic [ref=e2045]:
+                          - insertion [ref=e2046]: 777 ₽
+                          - deletion [ref=e2047]: 1 235 ₽
+                        - generic [ref=e2048]: с WB Кошельком
+                      - heading "DINIYA / Зонт автомат мини антиветер баклажановый" [level=2] [ref=e2049]:
+                        - generic [ref=e2050]: DINIYA
+                        - generic [ref=e2052]: / Зонт автомат мини антиветер баклажановый
+                    - generic [ref=e2053]:
+                      - generic [ref=e2054]:
+                        - generic [ref=e2055]: 4,8
+                        - generic [ref=e2056]: 32 568 оценок
+                      - link "Завтра" [ref=e2058] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2061]:
+                  - generic [ref=e2062]:
+                    - link "Зонт женский автомат бежевый складной антиветер Aioi" [ref=e2063] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/35373104/detail.aspx?targetUrl=MI
+                    - generic [ref=e2064]:
+                      - button "Добавить в избранное" [ref=e2066] [cursor=pointer]
+                      - img "Зонт женский автомат бежевый складной антиветер Aioi" [ref=e2068]
+                      - generic [ref=e2069]: −73%
+                    - generic [ref=e2073]:
+                      - generic [ref=e2074]:
+                        - generic [ref=e2076]:
+                          - insertion [ref=e2081]: 1 264 ₽
+                          - deletion [ref=e2082]: 4 950 ₽
+                        - generic [ref=e2083]: с WB Кошельком
+                      - heading "Aioi / Зонт женский автомат бежевый складной антиветер" [level=2] [ref=e2084]:
+                        - generic [ref=e2085]: Aioi
+                        - generic [ref=e2087]: / Зонт женский автомат бежевый складной антиветер
+                    - generic [ref=e2088]:
+                      - generic [ref=e2089]:
+                        - generic [ref=e2090]: 4,9
+                        - generic [ref=e2091]: 4 129 оценок
+                      - link "Завтра" [ref=e2093] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2096]:
+                  - generic [ref=e2097]:
+                    - link "Зонт автомат антиветер черный DINIYA" [ref=e2098] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/492951571/detail.aspx?targetUrl=MI
+                    - generic [ref=e2099]:
+                      - button "Добавить в избранное" [ref=e2101] [cursor=pointer]
+                      - img "Зонт автомат антиветер черный DINIYA" [ref=e2103]
+                      - generic [ref=e2104]: −35%
+                    - generic [ref=e2108]:
+                      - generic [ref=e2109]:
+                        - generic [ref=e2111]:
+                          - insertion [ref=e2116]: 774 ₽
+                          - deletion [ref=e2117]: 1 230 ₽
+                        - generic [ref=e2118]: с WB Кошельком
+                      - heading "DINIYA / Зонт автомат антиветер черный" [level=2] [ref=e2119]:
+                        - generic [ref=e2120]: DINIYA
+                        - generic [ref=e2122]: / Зонт автомат антиветер черный
+                    - generic [ref=e2123]:
+                      - generic [ref=e2124]:
+                        - generic [ref=e2125]: 4,9
+                        - generic [ref=e2126]: 1 229 оценок
+                      - link "Завтра" [ref=e2128] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2131]:
+                  - generic [ref=e2132]:
+                    - link "Зонт автомат легкий антиветер Umbrella World" [ref=e2133] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/254591252/detail.aspx?targetUrl=MI
+                    - generic [ref=e2134]:
+                      - button "Добавить в избранное" [ref=e2136] [cursor=pointer]
+                      - img "Зонт автомат легкий антиветер Umbrella World" [ref=e2138]
+                      - generic [ref=e2139]: −81%
+                    - generic [ref=e2143]:
+                      - generic [ref=e2144]:
+                        - generic [ref=e2146]:
+                          - insertion [ref=e2147]: 374 ₽
+                          - deletion [ref=e2148]: 2 100 ₽
+                        - generic [ref=e2149]: с WB Кошельком
+                      - heading "Umbrella World / Зонт автомат легкий антиветер" [level=2] [ref=e2150]:
+                        - generic [ref=e2151]: Umbrella World
+                        - generic [ref=e2152]: / Зонт автомат легкий антиветер
+                    - generic [ref=e2153]:
+                      - generic [ref=e2154]:
+                        - generic [ref=e2155]: 4,8
+                        - generic [ref=e2156]: 2 618 оценок
+                      - link "Завтра" [ref=e2158] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2161]:
+                  - generic [ref=e2162]:
+                    - link "Зонт автомат мини антиветер неон DINIYA" [ref=e2163] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/59519441/detail.aspx?targetUrl=MI
+                    - generic [ref=e2164]:
+                      - button "Добавить в избранное" [ref=e2166] [cursor=pointer]
+                      - img "Зонт автомат мини антиветер неон DINIYA" [ref=e2168]
+                      - generic [ref=e2169]: −35%
+                    - generic [ref=e2173]:
+                      - generic [ref=e2174]:
+                        - generic [ref=e2176]:
+                          - insertion [ref=e2177]: 777 ₽
+                          - deletion [ref=e2178]: 1 235 ₽
+                        - generic [ref=e2179]: с WB Кошельком
+                      - heading "DINIYA / Зонт автомат мини антиветер неон" [level=2] [ref=e2180]:
+                        - generic [ref=e2181]: DINIYA
+                        - generic [ref=e2183]: / Зонт автомат мини антиветер неон
+                    - generic [ref=e2184]:
+                      - generic [ref=e2185]:
+                        - generic [ref=e2186]: 4,8
+                        - generic [ref=e2187]: 32 568 оценок
+                      - link "Завтра" [ref=e2189] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2192]:
+                  - generic [ref=e2193]:
+                    - link "Зонт антиветер-автомат - подарок golden apple" [ref=e2194] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/233280429/detail.aspx?targetUrl=MI
+                    - generic [ref=e2195]:
+                      - button "Добавить в избранное" [ref=e2197] [cursor=pointer]
+                      - img "Зонт антиветер-автомат - подарок golden apple" [ref=e2199]
+                      - generic [ref=e2200]: −84%
+                    - generic [ref=e2204]:
+                      - generic [ref=e2205]:
+                        - generic [ref=e2207]:
+                          - insertion [ref=e2212]: 1 487 ₽
+                          - deletion [ref=e2213]: 9 990 ₽
+                        - generic [ref=e2214]: с WB Кошельком
+                      - heading "golden apple / Зонт антиветер-автомат - подарок" [level=2] [ref=e2215]:
+                        - generic [ref=e2216]: golden apple
+                        - generic [ref=e2218]: / Зонт антиветер-автомат - подарок
+                    - generic [ref=e2219]:
+                      - generic [ref=e2220]:
+                        - generic [ref=e2221]: 4,9
+                        - generic [ref=e2222]: 9 557 оценок
+                      - link "Завтра" [ref=e2224] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2227]:
+                  - generic [ref=e2228]:
+                    - link "Зонт антиветер-автомат - подарок golden apple" [ref=e2229] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/233282022/detail.aspx?targetUrl=MI
+                    - generic [ref=e2230]:
+                      - button "Добавить в избранное" [ref=e2232] [cursor=pointer]
+                      - img "Зонт антиветер-автомат - подарок golden apple" [ref=e2234]
+                      - generic [ref=e2235]: −84%
+                    - generic [ref=e2239]:
+                      - generic [ref=e2240]:
+                        - generic [ref=e2242]:
+                          - insertion [ref=e2247]: 1 487 ₽
+                          - deletion [ref=e2248]: 9 990 ₽
+                        - generic [ref=e2249]: с WB Кошельком
+                      - heading "golden apple / Зонт антиветер-автомат - подарок" [level=2] [ref=e2250]:
+                        - generic [ref=e2251]: golden apple
+                        - generic [ref=e2253]: / Зонт антиветер-автомат - подарок
+                    - generic [ref=e2254]:
+                      - generic [ref=e2255]:
+                        - generic [ref=e2256]: 4,9
+                        - generic [ref=e2257]: 9 557 оценок
+                      - link "Завтра" [ref=e2259] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2262]:
+                  - generic [ref=e2263]:
+                    - link "Зонт автомат легкий антиветер Umbrella World" [ref=e2264] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/254591261/detail.aspx?targetUrl=MI
+                    - generic [ref=e2265]:
+                      - button "Добавить в избранное" [ref=e2267] [cursor=pointer]
+                      - img "Зонт автомат легкий антиветер Umbrella World" [ref=e2269]
+                      - generic [ref=e2270]: −81%
+                    - generic [ref=e2274]:
+                      - generic [ref=e2275]:
+                        - generic [ref=e2277]:
+                          - insertion [ref=e2278]: 374 ₽
+                          - deletion [ref=e2279]: 2 100 ₽
+                        - generic [ref=e2280]: с WB Кошельком
+                      - heading "Umbrella World / Зонт автомат легкий антиветер" [level=2] [ref=e2281]:
+                        - generic [ref=e2282]: Umbrella World
+                        - generic [ref=e2283]: / Зонт автомат легкий антиветер
+                    - generic [ref=e2284]:
+                      - generic [ref=e2285]:
+                        - generic [ref=e2286]: 4,8
+                        - generic [ref=e2287]: 5 902 оценки
+                      - link "Завтра" [ref=e2289] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2292]:
+                  - generic [ref=e2293]:
+                    - link "Зонт автомат антиветер компактный POPULAR" [ref=e2294] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/12355573/detail.aspx?targetUrl=MI
+                    - generic [ref=e2295]:
+                      - button "Добавить в избранное" [ref=e2297] [cursor=pointer]
+                      - img "Зонт автомат антиветер компактный POPULAR" [ref=e2299]
+                      - generic [ref=e2300]: −81%
+                    - generic [ref=e2304]:
+                      - generic [ref=e2305]:
+                        - generic [ref=e2307]:
+                          - insertion [ref=e2312]: 478 ₽
+                          - deletion [ref=e2313]: 2 700 ₽
+                        - generic [ref=e2314]: с WB Кошельком
+                      - heading "POPULAR / Зонт автомат антиветер компактный" [level=2] [ref=e2315]:
+                        - generic [ref=e2316]: POPULAR
+                        - generic [ref=e2318]: / Зонт автомат антиветер компактный
+                    - generic [ref=e2319]:
+                      - generic [ref=e2320]:
+                        - generic [ref=e2321]: 4,8
+                        - generic [ref=e2322]: 38 801 оценка
+                      - link "Завтра" [ref=e2324] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2327]:
+                  - generic [ref=e2328]:
+                    - link "Зонт автомат антиветер складной Labbra" [ref=e2329] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/212792948/detail.aspx?targetUrl=MI
+                    - generic [ref=e2330]:
+                      - button "Добавить в избранное" [ref=e2332] [cursor=pointer]
+                      - img "Зонт автомат антиветер складной Labbra" [ref=e2334]
+                      - generic [ref=e2335]: −53%
+                    - generic [ref=e2339]:
+                      - generic [ref=e2340]:
+                        - generic [ref=e2342]:
+                          - insertion [ref=e2347]: 2 107 ₽
+                          - deletion [ref=e2348]: 4 666 ₽
+                        - generic [ref=e2349]: с WB Кошельком
+                      - heading "Labbra / Зонт автомат антиветер складной" [level=2] [ref=e2350]:
+                        - generic [ref=e2351]: Labbra
+                        - generic [ref=e2353]: / Зонт автомат антиветер складной
+                    - generic [ref=e2354]:
+                      - generic [ref=e2355]:
+                        - generic [ref=e2356]: 4,9
+                        - generic [ref=e2357]: 229 оценок
+                      - link "Послезавтра" [ref=e2359] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2362]:
+                  - generic [ref=e2363]:
+                    - link "Зонт женский автомат антиветер летний Karolinasss" [ref=e2364] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/146058691/detail.aspx?targetUrl=MI
+                    - generic [ref=e2365]:
+                      - button "Добавить в избранное" [ref=e2367] [cursor=pointer]
+                      - img "Зонт женский автомат антиветер летний Karolinasss" [ref=e2369]
+                      - generic [ref=e2370]: −76%
+                    - generic [ref=e2374]:
+                      - generic [ref=e2375]:
+                        - generic [ref=e2377]:
+                          - insertion [ref=e2382]: 1 234 ₽
+                          - deletion [ref=e2383]: 5 442 ₽
+                        - generic [ref=e2384]: с WB Кошельком
+                      - heading "Karolinasss / Зонт женский автомат антиветер летний" [level=2] [ref=e2385]:
+                        - generic [ref=e2386]: Karolinasss
+                        - generic [ref=e2387]: / Зонт женский автомат антиветер летний
+                    - generic [ref=e2388]:
+                      - generic [ref=e2389]:
+                        - generic [ref=e2390]: 4,7
+                        - generic [ref=e2391]: 280 оценок
+                      - link "Завтра" [ref=e2393] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2396]:
+                  - generic [ref=e2397]:
+                    - link "Зонт наоборот автомат антиветер обратного сложения LEOMAX" [ref=e2398] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/261886112/detail.aspx?targetUrl=MI
+                    - generic [ref=e2399]:
+                      - button "Добавить в избранное" [ref=e2401] [cursor=pointer]
+                      - img "Зонт наоборот автомат антиветер обратного сложения LEOMAX" [ref=e2403]
+                      - generic [ref=e2404]: −65%
+                    - generic [ref=e2408]:
+                      - generic [ref=e2409]:
+                        - generic [ref=e2411]:
+                          - insertion [ref=e2416]: 801 ₽
+                          - deletion [ref=e2417]: 2 341 ₽
+                        - generic [ref=e2418]: с WB Кошельком
+                      - heading "LEOMAX / Зонт наоборот автомат антиветер обратного сложения" [level=2] [ref=e2419]:
+                        - generic [ref=e2420]: LEOMAX
+                        - generic [ref=e2422]: / Зонт наоборот автомат антиветер обратного сложения
+                    - generic [ref=e2423]:
+                      - generic [ref=e2424]:
+                        - generic [ref=e2425]: 4,8
+                        - generic [ref=e2426]: 2 735 оценок
+                      - link "22 июля" [ref=e2428] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2431]:
+                  - generic [ref=e2432]:
+                    - link "Зонт автомат легкий антиветер POPULAR" [ref=e2433] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/174880152/detail.aspx?targetUrl=MI
+                    - generic [ref=e2434]:
+                      - button "Добавить в избранное" [ref=e2436] [cursor=pointer]
+                      - img "Зонт автомат легкий антиветер POPULAR" [ref=e2438]
+                      - generic [ref=e2439]: −82%
+                    - generic [ref=e2443]:
+                      - generic [ref=e2444]:
+                        - generic [ref=e2446]:
+                          - insertion [ref=e2451]: 964 ₽
+                          - deletion [ref=e2452]: 5 513 ₽
+                        - generic [ref=e2453]: с WB Кошельком
+                      - heading "POPULAR / Зонт автомат легкий антиветер" [level=2] [ref=e2454]:
+                        - generic [ref=e2455]: POPULAR
+                        - generic [ref=e2457]: / Зонт автомат легкий антиветер
+                    - generic [ref=e2458]:
+                      - generic [ref=e2459]:
+                        - generic [ref=e2460]: 4,9
+                        - generic [ref=e2461]: 2 734 оценки
+                      - link "Послезавтра" [ref=e2463] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2466]:
+                  - generic [ref=e2467]:
+                    - link "Зонт наоборот автомат антиветер обратного сложения LEOMAX" [ref=e2468] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/261886113/detail.aspx?targetUrl=MI
+                    - generic [ref=e2469]:
+                      - button "Добавить в избранное" [ref=e2471] [cursor=pointer]
+                      - img "Зонт наоборот автомат антиветер обратного сложения LEOMAX" [ref=e2473]
+                      - generic [ref=e2474]: −65%
+                    - generic [ref=e2478]:
+                      - generic [ref=e2479]:
+                        - generic [ref=e2481]:
+                          - insertion [ref=e2486]: 801 ₽
+                          - deletion [ref=e2487]: 2 341 ₽
+                        - generic [ref=e2488]: с WB Кошельком
+                      - heading "LEOMAX / Зонт наоборот автомат антиветер обратного сложения" [level=2] [ref=e2489]:
+                        - generic [ref=e2490]: LEOMAX
+                        - generic [ref=e2492]: / Зонт наоборот автомат антиветер обратного сложения
+                    - generic [ref=e2493]:
+                      - generic [ref=e2494]:
+                        - generic [ref=e2495]: 4,8
+                        - generic [ref=e2496]: 1 621 оценка
+                      - link "22 июля" [ref=e2498] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2501]:
+                  - generic [ref=e2502]:
+                    - link "Зонт автомат антиветер складной City Umbrella" [ref=e2503] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/1008983494/detail.aspx?targetUrl=MI
+                    - generic [ref=e2504]:
+                      - button "Добавить в избранное" [ref=e2506] [cursor=pointer]
+                      - img "Зонт автомат антиветер складной City Umbrella" [ref=e2508]
+                      - generic [ref=e2509]: −81%
+                    - generic [ref=e2513]:
+                      - generic [ref=e2514]:
+                        - generic [ref=e2516]:
+                          - insertion [ref=e2521]: 637 ₽
+                          - deletion [ref=e2522]: 3 600 ₽
+                        - generic [ref=e2523]: с WB Кошельком
+                      - heading "City Umbrella / Зонт автомат антиветер складной" [level=2] [ref=e2524]:
+                        - generic [ref=e2525]: City Umbrella
+                        - generic [ref=e2526]: / Зонт автомат антиветер складной
+                    - generic [ref=e2527]:
+                      - generic [ref=e2528]:
+                        - generic [ref=e2529]: 4,9
+                        - generic [ref=e2530]: 175 оценок
+                      - link "Завтра" [ref=e2532] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2535]:
+                  - generic [ref=e2536]:
+                    - link "Зонт автомат антиветер складной Umbrella World" [ref=e2537] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/236612991/detail.aspx?targetUrl=MI
+                    - generic [ref=e2538]:
+                      - button "Добавить в избранное" [ref=e2540] [cursor=pointer]
+                      - img "Зонт автомат антиветер складной Umbrella World" [ref=e2542]
+                      - generic [ref=e2543]: −81%
+                    - generic [ref=e2547]:
+                      - generic [ref=e2548]:
+                        - generic [ref=e2550]:
+                          - insertion [ref=e2555]: 999 ₽
+                          - deletion [ref=e2556]: 5 600 ₽
+                        - generic [ref=e2557]: с WB Кошельком
+                      - heading "Umbrella World / Зонт автомат антиветер складной" [level=2] [ref=e2558]:
+                        - generic [ref=e2559]: Umbrella World
+                        - generic [ref=e2560]: / Зонт автомат антиветер складной
+                    - generic [ref=e2561]:
+                      - generic [ref=e2562]:
+                        - generic [ref=e2563]: 4,9
+                        - generic [ref=e2564]: 1 725 оценок
+                      - link "Завтра" [ref=e2566] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2569]:
+                  - generic [ref=e2570]:
+                    - link "Зонт мини автомат POPULAR" [ref=e2571] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/174881860/detail.aspx?targetUrl=MI
+                    - generic [ref=e2572]:
+                      - button "Добавить в избранное" [ref=e2574] [cursor=pointer]
+                      - img "Зонт мини автомат POPULAR" [ref=e2576]
+                      - generic [ref=e2577]: −81%
+                    - generic [ref=e2581]:
+                      - generic [ref=e2582]:
+                        - generic [ref=e2584]:
+                          - insertion [ref=e2589]: 1 446 ₽
+                          - deletion [ref=e2590]: 8 159 ₽
+                        - generic [ref=e2591]: с WB Кошельком
+                      - heading "POPULAR / Зонт мини автомат" [level=2] [ref=e2592]:
+                        - generic [ref=e2593]: POPULAR
+                        - generic [ref=e2595]: / Зонт мини автомат
+                    - generic [ref=e2596]:
+                      - generic [ref=e2597]:
+                        - generic [ref=e2598]: 4,8
+                        - generic [ref=e2599]: 2 384 оценки
+                      - link "Завтра" [ref=e2601] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2604]:
+                  - generic [ref=e2605]:
+                    - link "Зонт автомат антиветер складной Zontify" [ref=e2606] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/388198806/detail.aspx?targetUrl=MI
+                    - generic [ref=e2607]:
+                      - button "Добавить в избранное" [ref=e2609] [cursor=pointer]
+                      - img "Зонт автомат антиветер складной Zontify" [ref=e2611]
+                      - generic [ref=e2612]: −81%
+                    - generic [ref=e2616]:
+                      - generic [ref=e2617]:
+                        - generic [ref=e2619]:
+                          - insertion [ref=e2624]: 1 156 ₽
+                          - deletion [ref=e2625]: 6 520 ₽
+                        - generic [ref=e2626]: с WB Кошельком
+                      - heading "Zontify / Зонт автомат антиветер складной" [level=2] [ref=e2627]:
+                        - generic [ref=e2628]: Zontify
+                        - generic [ref=e2629]: / Зонт автомат антиветер складной
+                    - generic [ref=e2630]:
+                      - generic [ref=e2631]:
+                        - generic [ref=e2632]: 4,8
+                        - generic [ref=e2633]: 1 127 оценок
+                      - link "Завтра" [ref=e2635] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2638]:
+                  - generic [ref=e2639]:
+                    - link "Зонт мини карманный антиветер Steki Ame" [ref=e2640] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/367547505/detail.aspx?targetUrl=MI
+                    - generic [ref=e2641]:
+                      - button "Добавить в избранное" [ref=e2643] [cursor=pointer]
+                      - img "Зонт мини карманный антиветер Steki Ame" [ref=e2645]
+                      - generic [ref=e2646]: −80%
+                    - generic [ref=e2650]:
+                      - generic [ref=e2651]:
+                        - generic [ref=e2653]:
+                          - insertion [ref=e2658]: 1 314 ₽
+                          - deletion [ref=e2659]: 6 864 ₽
+                        - generic [ref=e2660]: с WB Кошельком
+                      - heading "Steki Ame / Зонт мини карманный антиветер" [level=2] [ref=e2661]:
+                        - generic [ref=e2662]: Steki Ame
+                        - generic [ref=e2664]: / Зонт мини карманный антиветер
+                    - generic [ref=e2665]:
+                      - generic [ref=e2666]:
+                        - generic [ref=e2667]: 4,6
+                        - generic [ref=e2668]: 1 274 оценки
+                      - link "Завтра" [ref=e2670] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2673]:
+                  - generic [ref=e2674]:
+                    - link "Зонт автомат антиветер складной Umbrella World" [ref=e2675] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/237567964/detail.aspx?targetUrl=MI
+                    - generic [ref=e2676]:
+                      - button "Добавить в избранное" [ref=e2678] [cursor=pointer]
+                      - img "Зонт автомат антиветер складной Umbrella World" [ref=e2680]
+                      - generic [ref=e2681]: −81%
+                    - generic [ref=e2685]:
+                      - generic [ref=e2686]:
+                        - generic [ref=e2688]:
+                          - insertion [ref=e2693]: 609 ₽
+                          - deletion [ref=e2694]: 3 280 ₽
+                        - generic [ref=e2695]: с WB Кошельком
+                      - heading "Umbrella World / Зонт автомат антиветер складной" [level=2] [ref=e2696]:
+                        - generic [ref=e2697]: Umbrella World
+                        - generic [ref=e2698]: / Зонт автомат антиветер складной
+                    - generic [ref=e2699]:
+                      - generic [ref=e2700]:
+                        - generic [ref=e2701]: 4,8
+                        - generic [ref=e2702]: 1 484 оценки
+                      - link "Завтра" [ref=e2704] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2707]:
+                  - generic [ref=e2708]:
+                    - link "Зонт автомат складной компактный антиветер защита от дождя Velton" [ref=e2709] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/246598710/detail.aspx?targetUrl=MI
+                    - generic [ref=e2710]:
+                      - button "Добавить в избранное" [ref=e2712] [cursor=pointer]
+                      - img "Зонт автомат складной компактный антиветер защита от дождя Velton" [ref=e2714]
+                      - generic [ref=e2715]: −63%
+                    - generic [ref=e2719]:
+                      - generic [ref=e2720]:
+                        - generic [ref=e2722]:
+                          - insertion [ref=e2727]: 562 ₽
+                          - deletion [ref=e2728]: 1 577 ₽
+                        - generic [ref=e2729]: с WB Кошельком
+                      - heading "Velton / Зонт автомат складной компактный антиветер защита от дождя" [level=2] [ref=e2730]:
+                        - generic [ref=e2731]: Velton
+                        - generic [ref=e2732]: / Зонт автомат складной компактный антиветер защита от дождя
+                    - generic [ref=e2733]:
+                      - generic [ref=e2734]:
+                        - generic [ref=e2735]: 4,8
+                        - generic [ref=e2736]: 2 976 оценок
+                      - link "Завтра" [ref=e2738] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2741]:
+                  - generic [ref=e2742]:
+                    - link "Зонт автомат антиветер складной City Umbrella" [ref=e2743] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/223025015/detail.aspx?targetUrl=MI
+                    - generic [ref=e2744]:
+                      - button "Добавить в избранное" [ref=e2746] [cursor=pointer]
+                      - img "Зонт автомат антиветер складной City Umbrella" [ref=e2748]
+                      - generic [ref=e2749]: −81%
+                    - generic [ref=e2753]:
+                      - generic [ref=e2754]:
+                        - generic [ref=e2756]:
+                          - insertion [ref=e2761]: 1 347 ₽
+                          - deletion [ref=e2762]: 7 600 ₽
+                        - generic [ref=e2763]: с WB Кошельком
+                      - heading "City Umbrella / Зонт автомат антиветер складной" [level=2] [ref=e2764]:
+                        - generic [ref=e2765]: City Umbrella
+                        - generic [ref=e2766]: / Зонт автомат антиветер складной
+                    - generic [ref=e2767]:
+                      - generic [ref=e2768]:
+                        - generic [ref=e2769]: 4,9
+                        - generic [ref=e2770]: 4 147 оценок
+                      - link "Завтра" [ref=e2772] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2775]:
+                  - generic [ref=e2776]:
+                    - link "Зонт автомат антиветер облегченный Umbrella World" [ref=e2777] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/237643963/detail.aspx?targetUrl=MI
+                    - generic [ref=e2778]:
+                      - button "Добавить в избранное" [ref=e2780] [cursor=pointer]
+                      - img "Зонт автомат антиветер облегченный Umbrella World" [ref=e2782]
+                      - generic [ref=e2783]: −81%
+                    - generic [ref=e2787]:
+                      - generic [ref=e2788]:
+                        - generic [ref=e2790]:
+                          - insertion [ref=e2795]: 483 ₽
+                          - deletion [ref=e2796]: 2 600 ₽
+                        - generic [ref=e2797]: с WB Кошельком
+                      - heading "Umbrella World / Зонт автомат антиветер облегченный" [level=2] [ref=e2798]:
+                        - generic [ref=e2799]: Umbrella World
+                        - generic [ref=e2800]: / Зонт автомат антиветер облегченный
+                    - generic [ref=e2801]:
+                      - generic [ref=e2802]:
+                        - generic [ref=e2803]: 4,8
+                        - generic [ref=e2804]: 975 оценок
+                      - link "Завтра" [ref=e2806] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2809]:
+                  - generic [ref=e2810]:
+                    - link "Зонт автомат легкий антиветер Umbrella World" [ref=e2811] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/254591258/detail.aspx?targetUrl=MI
+                    - generic [ref=e2812]:
+                      - button "Добавить в избранное" [ref=e2814] [cursor=pointer]
+                      - img "Зонт автомат легкий антиветер Umbrella World" [ref=e2816]
+                      - generic [ref=e2817]: −81%
+                    - generic [ref=e2821]:
+                      - generic [ref=e2822]:
+                        - generic [ref=e2824]:
+                          - insertion [ref=e2825]: 374 ₽
+                          - deletion [ref=e2826]: 2 100 ₽
+                        - generic [ref=e2827]: с WB Кошельком
+                      - heading "Umbrella World / Зонт автомат легкий антиветер" [level=2] [ref=e2828]:
+                        - generic [ref=e2829]: Umbrella World
+                        - generic [ref=e2830]: / Зонт автомат легкий антиветер
+                    - generic [ref=e2831]:
+                      - generic [ref=e2832]:
+                        - generic [ref=e2833]: 4,7
+                        - generic [ref=e2834]: 1 532 оценки
+                      - link "Завтра" [ref=e2836] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2839]:
+                  - generic [ref=e2840]:
+                    - link "Зонт автомат антиветер складной Zontify" [ref=e2841] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/467483464/detail.aspx?targetUrl=MI
+                    - generic [ref=e2842]:
+                      - button "Добавить в избранное" [ref=e2844] [cursor=pointer]
+                      - img "Зонт автомат антиветер складной Zontify" [ref=e2846]
+                      - generic [ref=e2847]: −81%
+                    - generic [ref=e2851]:
+                      - generic [ref=e2852]:
+                        - generic [ref=e2854]:
+                          - insertion [ref=e2859]: 1 471 ₽
+                          - deletion [ref=e2860]: 8 300 ₽
+                        - generic [ref=e2861]: с WB Кошельком
+                      - heading "Zontify / Зонт автомат антиветер складной" [level=2] [ref=e2862]:
+                        - generic [ref=e2863]: Zontify
+                        - generic [ref=e2864]: / Зонт автомат антиветер складной
+                    - generic [ref=e2865]:
+                      - generic [ref=e2866]:
+                        - generic [ref=e2867]: 4,9
+                        - generic [ref=e2868]: 959 оценок
+                      - link "Завтра" [ref=e2870] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2873]:
+                  - generic [ref=e2874]:
+                    - link "Зонт автомат антиветер складной Umbrella World" [ref=e2875] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/255384018/detail.aspx?targetUrl=MI
+                    - generic [ref=e2876]:
+                      - button "Добавить в избранное" [ref=e2878] [cursor=pointer]
+                      - img "Зонт автомат антиветер складной Umbrella World" [ref=e2880]
+                      - generic [ref=e2881]: −81%
+                    - generic [ref=e2885]:
+                      - generic [ref=e2886]:
+                        - generic [ref=e2888]:
+                          - insertion [ref=e2889]: 1 285 ₽
+                          - deletion [ref=e2890]: 7 200 ₽
+                        - generic [ref=e2891]: с WB Кошельком
+                      - heading "Umbrella World / Зонт автомат антиветер складной" [level=2] [ref=e2892]:
+                        - generic [ref=e2893]: Umbrella World
+                        - generic [ref=e2894]: / Зонт автомат антиветер складной
+                    - generic [ref=e2895]:
+                      - generic [ref=e2896]:
+                        - generic [ref=e2897]: 4,9
+                        - generic [ref=e2898]: 697 оценок
+                      - link "Завтра" [ref=e2900] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2903]:
+                  - generic [ref=e2904]:
+                    - link "Зонт автомат антиветер складной City Umbrella" [ref=e2905] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/1003216508/detail.aspx?targetUrl=MI
+                    - generic [ref=e2906]:
+                      - button "Добавить в избранное" [ref=e2908] [cursor=pointer]
+                      - img "Зонт автомат антиветер складной City Umbrella" [ref=e2910]
+                      - generic [ref=e2911]: −81%
+                    - generic [ref=e2915]:
+                      - generic [ref=e2916]:
+                        - generic [ref=e2918]:
+                          - insertion [ref=e2923]: 1 382 ₽
+                          - deletion [ref=e2924]: 7 800 ₽
+                        - generic [ref=e2925]: с WB Кошельком
+                      - heading "City Umbrella / Зонт автомат антиветер складной" [level=2] [ref=e2926]:
+                        - generic [ref=e2927]: City Umbrella
+                        - generic [ref=e2928]: / Зонт автомат антиветер складной
+                    - generic [ref=e2929]:
+                      - generic [ref=e2930]:
+                        - generic [ref=e2931]: 4,9
+                        - generic [ref=e2932]: 148 оценок
+                      - link "Завтра" [ref=e2934] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2937]:
+                  - generic [ref=e2938]:
+                    - link "Зонт автомат антиветер складной City Umbrella" [ref=e2939] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/185180878/detail.aspx?targetUrl=MI
+                    - generic [ref=e2940]:
+                      - button "Добавить в избранное" [ref=e2942] [cursor=pointer]
+                      - img "Зонт автомат антиветер складной City Umbrella" [ref=e2944]
+                      - generic [ref=e2945]: −81%
+                    - generic [ref=e2949]:
+                      - generic [ref=e2950]:
+                        - generic [ref=e2952]:
+                          - insertion [ref=e2957]: 637 ₽
+                          - deletion [ref=e2958]: 3 600 ₽
+                        - generic [ref=e2959]: с WB Кошельком
+                      - heading "City Umbrella / Зонт автомат антиветер складной" [level=2] [ref=e2960]:
+                        - generic [ref=e2961]: City Umbrella
+                        - generic [ref=e2962]: / Зонт автомат антиветер складной
+                    - generic [ref=e2963]:
+                      - generic [ref=e2964]:
+                        - generic [ref=e2965]: 4,8
+                        - generic [ref=e2966]: 10 653 оценки
+                      - link "Завтра" [ref=e2968] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e2971]:
+                  - generic [ref=e2972]:
+                    - link "Зонт автомат c двойными спицами антиветер складной Umbrella World" [ref=e2973] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/155424272/detail.aspx?targetUrl=MI
+                    - generic [ref=e2974]:
+                      - button "Добавить в избранное" [ref=e2976] [cursor=pointer]
+                      - img "Зонт автомат c двойными спицами антиветер складной Umbrella World" [ref=e2978]
+                      - generic [ref=e2979]: −81%
+                    - generic [ref=e2983]:
+                      - generic [ref=e2984]:
+                        - generic [ref=e2986]:
+                          - insertion [ref=e2991]: 1 071 ₽
+                          - deletion [ref=e2992]: 6 000 ₽
+                        - generic [ref=e2993]: с WB Кошельком
+                      - heading "Umbrella World / Зонт автомат c двойными спицами антиветер складной" [level=2] [ref=e2994]:
+                        - generic [ref=e2995]: Umbrella World
+                        - generic [ref=e2996]: / Зонт автомат c двойными спицами антиветер складной
+                    - generic [ref=e2997]:
+                      - generic [ref=e2998]:
+                        - generic [ref=e2999]: 4,9
+                        - generic [ref=e3000]: 1 172 оценки
+                      - link "Завтра" [ref=e3002] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3005]:
+                  - generic [ref=e3006]:
+                    - link "Зонт мини автомат антиветер Umbrella World" [ref=e3007] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/251348758/detail.aspx?targetUrl=MI
+                    - generic [ref=e3008]:
+                      - button "Добавить в избранное" [ref=e3010] [cursor=pointer]
+                      - img "Зонт мини автомат антиветер Umbrella World" [ref=e3012]
+                      - generic [ref=e3013]: −81%
+                    - generic [ref=e3017]:
+                      - generic [ref=e3018]:
+                        - generic [ref=e3020]:
+                          - insertion [ref=e3025]: 1 071 ₽
+                          - deletion [ref=e3026]: 6 000 ₽
+                        - generic [ref=e3027]: с WB Кошельком
+                      - heading "Umbrella World / Зонт мини автомат антиветер" [level=2] [ref=e3028]:
+                        - generic [ref=e3029]: Umbrella World
+                        - generic [ref=e3030]: / Зонт мини автомат антиветер
+                    - generic [ref=e3031]:
+                      - generic [ref=e3032]:
+                        - generic [ref=e3033]: 4,8
+                        - generic [ref=e3034]: 723 оценки
+                      - link "Завтра" [ref=e3036] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3039]:
+                  - generic [ref=e3040]:
+                    - link "Зонт автомат легкий антиветер Umbrella World" [ref=e3041] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/254591247/detail.aspx?targetUrl=MI
+                    - generic [ref=e3042]:
+                      - button "Добавить в избранное" [ref=e3044] [cursor=pointer]
+                      - img "Зонт автомат легкий антиветер Umbrella World" [ref=e3046]
+                      - generic [ref=e3047]: −81%
+                    - generic [ref=e3051]:
+                      - generic [ref=e3052]:
+                        - generic [ref=e3054]:
+                          - insertion [ref=e3055]: 374 ₽
+                          - deletion [ref=e3056]: 2 100 ₽
+                        - generic [ref=e3057]: с WB Кошельком
+                      - heading "Umbrella World / Зонт автомат легкий антиветер" [level=2] [ref=e3058]:
+                        - generic [ref=e3059]: Umbrella World
+                        - generic [ref=e3060]: / Зонт автомат легкий антиветер
+                    - generic [ref=e3061]:
+                      - generic [ref=e3062]:
+                        - generic [ref=e3063]: 4,7
+                        - generic [ref=e3064]: 1 717 оценок
+                      - link "Завтра" [ref=e3066] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3069]:
+                  - generic [ref=e3070]:
+                    - link "Зонт автомат легкий антиветер Umbrella World" [ref=e3071] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/254591255/detail.aspx?targetUrl=MI
+                    - generic [ref=e3072]:
+                      - button "Добавить в избранное" [ref=e3074] [cursor=pointer]
+                      - img "Зонт автомат легкий антиветер Umbrella World" [ref=e3076]
+                      - generic [ref=e3077]: −81%
+                    - generic [ref=e3081]:
+                      - generic [ref=e3082]:
+                        - generic [ref=e3084]:
+                          - insertion [ref=e3089]: 374 ₽
+                          - deletion [ref=e3090]: 2 100 ₽
+                        - generic [ref=e3091]: с WB Кошельком
+                      - heading "Umbrella World / Зонт автомат легкий антиветер" [level=2] [ref=e3092]:
+                        - generic [ref=e3093]: Umbrella World
+                        - generic [ref=e3094]: / Зонт автомат легкий антиветер
+                    - generic [ref=e3095]:
+                      - generic [ref=e3096]:
+                        - generic [ref=e3097]: 4,7
+                        - generic [ref=e3098]: 1 137 оценок
+                      - link "Завтра" [ref=e3100] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3103]:
+                  - generic [ref=e3104]:
+                    - link "Зонт автомат антиветер мини Дождя НЕТ" [ref=e3105] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/957622773/detail.aspx?targetUrl=MI
+                    - generic [ref=e3106]:
+                      - button "Добавить в избранное" [ref=e3108] [cursor=pointer]
+                      - img "Зонт автомат антиветер мини Дождя НЕТ" [ref=e3110]
+                      - generic [ref=e3111]: −78%
+                    - generic [ref=e3115]:
+                      - generic [ref=e3116]:
+                        - generic [ref=e3118]:
+                          - insertion [ref=e3123]: 591 ₽
+                          - deletion [ref=e3124]: 2 785 ₽
+                        - generic [ref=e3125]: с WB Кошельком
+                      - heading "Дождя НЕТ / Зонт автомат антиветер мини" [level=2] [ref=e3126]:
+                        - generic [ref=e3127]: Дождя НЕТ
+                        - generic [ref=e3128]: / Зонт автомат антиветер мини
+                    - generic [ref=e3129]:
+                      - generic [ref=e3130]:
+                        - generic [ref=e3131]: 4,9
+                        - generic [ref=e3132]: 1 184 оценки
+                      - link "Завтра" [ref=e3134] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3137]:
+                  - generic [ref=e3138]:
+                    - link "Зонт автомат складной компактный антиветер защита от дождя Velton" [ref=e3139] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/246598703/detail.aspx?targetUrl=MI
+                    - generic [ref=e3140]:
+                      - button "Добавить в избранное" [ref=e3142] [cursor=pointer]
+                      - img "Зонт автомат складной компактный антиветер защита от дождя Velton" [ref=e3144]
+                      - generic [ref=e3145]: −63%
+                    - generic [ref=e3149]:
+                      - generic [ref=e3150]:
+                        - generic [ref=e3152]:
+                          - insertion [ref=e3157]: 562 ₽
+                          - deletion [ref=e3158]: 1 577 ₽
+                        - generic [ref=e3159]: с WB Кошельком
+                      - heading "Velton / Зонт автомат складной компактный антиветер защита от дождя" [level=2] [ref=e3160]:
+                        - generic [ref=e3161]: Velton
+                        - generic [ref=e3162]: / Зонт автомат складной компактный антиветер защита от дождя
+                    - generic [ref=e3163]:
+                      - generic [ref=e3164]:
+                        - generic [ref=e3165]: 4,8
+                        - generic [ref=e3166]: 2 984 оценки
+                      - link "Завтра" [ref=e3168] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3171]:
+                  - generic [ref=e3172]:
+                    - link "Зонт автомат легкий антиветер Umbrella World" [ref=e3173] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/254591251/detail.aspx?targetUrl=MI
+                    - generic [ref=e3174]:
+                      - button "Добавить в избранное" [ref=e3176] [cursor=pointer]
+                      - img "Зонт автомат легкий антиветер Umbrella World" [ref=e3178]
+                      - generic [ref=e3179]: −81%
+                    - generic [ref=e3183]:
+                      - generic [ref=e3184]:
+                        - generic [ref=e3186]:
+                          - insertion [ref=e3191]: 374 ₽
+                          - deletion [ref=e3192]: 2 100 ₽
+                        - generic [ref=e3193]: с WB Кошельком
+                      - heading "Umbrella World / Зонт автомат легкий антиветер" [level=2] [ref=e3194]:
+                        - generic [ref=e3195]: Umbrella World
+                        - generic [ref=e3196]: / Зонт автомат легкий антиветер
+                    - generic [ref=e3197]:
+                      - generic [ref=e3198]:
+                        - generic [ref=e3199]: 4,8
+                        - generic [ref=e3200]: 1 338 оценок
+                      - link "Завтра" [ref=e3202] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3205]:
+                  - generic [ref=e3206]:
+                    - link "Зонт автомат антиветер складной Umbrella World" [ref=e3207] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/306905799/detail.aspx?targetUrl=MI
+                    - generic [ref=e3208]:
+                      - button "Добавить в избранное" [ref=e3210] [cursor=pointer]
+                      - img "Зонт автомат антиветер складной Umbrella World" [ref=e3212]
+                      - generic [ref=e3213]: −81%
+                    - generic [ref=e3217]:
+                      - generic [ref=e3218]:
+                        - generic [ref=e3220]:
+                          - insertion [ref=e3225]: 632 ₽
+                          - deletion [ref=e3226]: 3 400 ₽
+                        - generic [ref=e3227]: с WB Кошельком
+                      - heading "Umbrella World / Зонт автомат антиветер складной" [level=2] [ref=e3228]:
+                        - generic [ref=e3229]: Umbrella World
+                        - generic [ref=e3230]: / Зонт автомат антиветер складной
+                    - generic [ref=e3231]:
+                      - generic [ref=e3232]:
+                        - generic [ref=e3233]: 4,9
+                        - generic [ref=e3234]: 375 оценок
+                      - link "Завтра" [ref=e3236] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3239]:
+                  - generic [ref=e3240]:
+                    - link "Зонт автомат складной от солнца и дождя" [ref=e3241] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/1213898819/detail.aspx?targetUrl=MI
+                    - generic [ref=e3242]:
+                      - button "Добавить в избранное" [ref=e3244] [cursor=pointer]
+                      - img "Зонт автомат складной от солнца и дождя" [ref=e3246]
+                      - generic [ref=e3247]: −68%
+                    - generic [ref=e3251]:
+                      - generic [ref=e3252]:
+                        - generic [ref=e3254]:
+                          - insertion [ref=e3255]: 380 ₽
+                          - deletion [ref=e3256]: 1 214 ₽
+                        - generic [ref=e3257]: с WB Кошельком
+                      - heading "Зонт автомат складной от солнца и дождя" [level=2] [ref=e3258]
+                    - generic [ref=e3260]:
+                      - generic [ref=e3261]:
+                        - generic [ref=e3262]: "5"
+                        - generic [ref=e3263]: 2 оценки
+                      - link "Послезавтра" [ref=e3265] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3268]:
+                  - generic [ref=e3269]:
+                    - link "Зонт автомат антиветер складной Umbrella World" [ref=e3270] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/237648043/detail.aspx?targetUrl=MI
+                    - generic [ref=e3271]:
+                      - button "Добавить в избранное" [ref=e3273] [cursor=pointer]
+                      - img "Зонт автомат антиветер складной Umbrella World" [ref=e3275]
+                      - generic [ref=e3276]: −81%
+                    - generic [ref=e3280]:
+                      - generic [ref=e3281]:
+                        - generic [ref=e3283]:
+                          - insertion [ref=e3288]: 520 ₽
+                          - deletion [ref=e3289]: 2 800 ₽
+                        - generic [ref=e3290]: с WB Кошельком
+                      - heading "Umbrella World / Зонт автомат антиветер складной" [level=2] [ref=e3291]:
+                        - generic [ref=e3292]: Umbrella World
+                        - generic [ref=e3293]: / Зонт автомат антиветер складной
+                    - generic [ref=e3294]:
+                      - generic [ref=e3295]:
+                        - generic [ref=e3296]: 4,8
+                        - generic [ref=e3297]: 1 010 оценок
+                      - link "Завтра" [ref=e3299] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3302]:
+                  - generic [ref=e3303]:
+                    - link "Компактный зонт автомат антиветер" [ref=e3304] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/505030296/detail.aspx?targetUrl=MI
+                    - generic [ref=e3305]:
+                      - button "Добавить в избранное" [ref=e3307] [cursor=pointer]
+                      - img "Компактный зонт автомат антиветер" [ref=e3309]
+                      - generic [ref=e3310]: −71%
+                    - generic [ref=e3314]:
+                      - generic [ref=e3315]:
+                        - generic [ref=e3317]:
+                          - insertion [ref=e3322]: 425 ₽
+                          - deletion [ref=e3323]: 1 501 ₽
+                        - generic [ref=e3324]: с WB Кошельком
+                      - heading "Компактный зонт автомат антиветер" [level=2] [ref=e3325]
+                    - generic [ref=e3327]:
+                      - generic [ref=e3328]:
+                        - generic [ref=e3329]: 4,7
+                        - generic [ref=e3330]: 169 оценок
+                      - link "Завтра" [ref=e3332] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3335]:
+                  - generic [ref=e3336]:
+                    - link "Зонт автомат складной компактный антиветер защита от дождя Velton" [ref=e3337] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/494682990/detail.aspx?targetUrl=MI
+                    - generic [ref=e3338]:
+                      - button "Добавить в избранное" [ref=e3340] [cursor=pointer]
+                      - img "Зонт автомат складной компактный антиветер защита от дождя Velton" [ref=e3342]
+                      - generic [ref=e3343]: −63%
+                    - generic [ref=e3347]:
+                      - generic [ref=e3348]:
+                        - generic [ref=e3350]:
+                          - insertion [ref=e3355]: 642 ₽
+                          - deletion [ref=e3356]: 1 800 ₽
+                        - generic [ref=e3357]: с WB Кошельком
+                      - heading "Velton / Зонт автомат складной компактный антиветер защита от дождя" [level=2] [ref=e3358]:
+                        - generic [ref=e3359]: Velton
+                        - generic [ref=e3360]: / Зонт автомат складной компактный антиветер защита от дождя
+                    - generic [ref=e3361]:
+                      - generic [ref=e3362]:
+                        - generic [ref=e3363]: 4,6
+                        - generic [ref=e3364]: 250 оценок
+                      - link "Завтра" [ref=e3366] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3369]:
+                  - generic [ref=e3370]:
+                    - link "Зонт автомат антиветер складной Umbrella World" [ref=e3371] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/251798435/detail.aspx?targetUrl=MI
+                    - generic [ref=e3372]:
+                      - button "Добавить в избранное" [ref=e3374] [cursor=pointer]
+                      - img "Зонт автомат антиветер складной Umbrella World" [ref=e3376]
+                      - generic [ref=e3377]: −80%
+                    - generic [ref=e3381]:
+                      - generic [ref=e3382]:
+                        - generic [ref=e3384]:
+                          - insertion [ref=e3389]: 1 106 ₽
+                          - deletion [ref=e3390]: 5 800 ₽
+                        - generic [ref=e3391]: с WB Кошельком
+                      - heading "Umbrella World / Зонт автомат антиветер складной" [level=2] [ref=e3392]:
+                        - generic [ref=e3393]: Umbrella World
+                        - generic [ref=e3394]: / Зонт автомат антиветер складной
+                    - generic [ref=e3395]:
+                      - generic [ref=e3396]:
+                        - generic [ref=e3397]: 4,9
+                        - generic [ref=e3398]: 2 410 оценок
+                      - link "Завтра" [ref=e3400] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3403]:
+                  - generic [ref=e3404]:
+                    - link "Зонт автомат антиветер складной City Umbrella" [ref=e3405] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/185180874/detail.aspx?targetUrl=MI
+                    - generic [ref=e3406]:
+                      - button "Добавить в избранное" [ref=e3408] [cursor=pointer]
+                      - img "Зонт автомат антиветер складной City Umbrella" [ref=e3410]
+                      - generic [ref=e3411]: −81%
+                    - generic [ref=e3415]:
+                      - generic [ref=e3416]:
+                        - generic [ref=e3418]:
+                          - insertion [ref=e3423]: 602 ₽
+                          - deletion [ref=e3424]: 3 400 ₽
+                        - generic [ref=e3425]: с WB Кошельком
+                      - heading "City Umbrella / Зонт автомат антиветер складной" [level=2] [ref=e3426]:
+                        - generic [ref=e3427]: City Umbrella
+                        - generic [ref=e3428]: / Зонт автомат антиветер складной
+                    - generic [ref=e3429]:
+                      - generic [ref=e3430]:
+                        - generic [ref=e3431]: 4,8
+                        - generic [ref=e3432]: 3 818 оценок
+                      - link "Завтра" [ref=e3434] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3437]:
+                  - generic [ref=e3438]:
+                    - link "Зонт автомат легкий антиветер City Umbrella" [ref=e3439] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/218037600/detail.aspx?targetUrl=MI
+                    - generic [ref=e3440]:
+                      - button "Добавить в избранное" [ref=e3442] [cursor=pointer]
+                      - img "Зонт автомат легкий антиветер City Umbrella" [ref=e3444]
+                      - generic [ref=e3445]: −81%
+                    - generic [ref=e3449]:
+                      - generic [ref=e3450]:
+                        - generic [ref=e3452]:
+                          - insertion [ref=e3457]: 559 ₽
+                          - deletion [ref=e3458]: 3 160 ₽
+                        - generic [ref=e3459]: с WB Кошельком
+                      - heading "City Umbrella / Зонт автомат легкий антиветер" [level=2] [ref=e3460]:
+                        - generic [ref=e3461]: City Umbrella
+                        - generic [ref=e3462]: / Зонт автомат легкий антиветер
+                    - generic [ref=e3463]:
+                      - generic [ref=e3464]:
+                        - generic [ref=e3465]: 4,8
+                        - generic [ref=e3466]: 4 004 оценки
+                      - link "Завтра" [ref=e3468] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3471]:
+                  - generic [ref=e3472]:
+                    - link "Зонт автомат складной антиветер облегченный" [ref=e3473] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/1146633012/detail.aspx?targetUrl=MI
+                    - generic [ref=e3474]:
+                      - button "Добавить в избранное" [ref=e3476] [cursor=pointer]
+                      - img "Зонт автомат складной антиветер облегченный" [ref=e3478]
+                      - generic [ref=e3479]: −51%
+                    - generic [ref=e3483]:
+                      - generic [ref=e3484]:
+                        - generic [ref=e3486]:
+                          - insertion [ref=e3491]: 380 ₽
+                          - deletion [ref=e3492]: 801 ₽
+                        - generic [ref=e3493]: с WB Кошельком
+                      - heading "Зонт автомат складной антиветер облегченный" [level=2] [ref=e3494]
+                    - generic [ref=e3496]:
+                      - generic [ref=e3497]:
+                        - generic [ref=e3498]: "5"
+                        - generic [ref=e3499]: 4 оценки
+                      - link "Послезавтра" [ref=e3501] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3504]:
+                  - generic [ref=e3505]:
+                    - link "Зонт складной автомат антиветер усиленный легкий" [ref=e3506] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/1146633011/detail.aspx?targetUrl=MI
+                    - generic [ref=e3507]:
+                      - button "Добавить в избранное" [ref=e3509] [cursor=pointer]
+                      - img "Зонт складной автомат антиветер усиленный легкий" [ref=e3511]
+                      - generic [ref=e3512]: −51%
+                    - generic [ref=e3516]:
+                      - generic [ref=e3517]:
+                        - generic [ref=e3519]:
+                          - insertion [ref=e3520]: 368 ₽
+                          - deletion [ref=e3521]: 777 ₽
+                        - generic [ref=e3522]: с WB Кошельком
+                      - heading "Зонт складной автомат антиветер усиленный легкий" [level=2] [ref=e3523]
+                    - generic [ref=e3525]:
+                      - generic [ref=e3526]:
+                        - generic [ref=e3527]: "5"
+                        - generic [ref=e3528]: 3 оценки
+                      - link "Послезавтра" [ref=e3530] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3533]:
+                  - generic [ref=e3534]:
+                    - link "Зонт автомат антиветер складной Zontify" [ref=e3535] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/388198807/detail.aspx?targetUrl=MI
+                    - generic [ref=e3536]:
+                      - button "Добавить в избранное" [ref=e3538] [cursor=pointer]
+                      - img "Зонт автомат антиветер складной Zontify" [ref=e3540]
+                      - generic [ref=e3541]: −81%
+                    - generic [ref=e3545]:
+                      - generic [ref=e3546]:
+                        - generic [ref=e3548]:
+                          - insertion [ref=e3553]: 1 156 ₽
+                          - deletion [ref=e3554]: 6 520 ₽
+                        - generic [ref=e3555]: с WB Кошельком
+                      - heading "Zontify / Зонт автомат антиветер складной" [level=2] [ref=e3556]:
+                        - generic [ref=e3557]: Zontify
+                        - generic [ref=e3558]: / Зонт автомат антиветер складной
+                    - generic [ref=e3559]:
+                      - generic [ref=e3560]:
+                        - generic [ref=e3561]: 4,8
+                        - generic [ref=e3562]: 704 оценки
+                      - link "Завтра" [ref=e3564] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3567]:
+                  - generic [ref=e3568]:
+                    - link "Зонт автомат антиветер складной Umbrella World" [ref=e3569] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/237567963/detail.aspx?targetUrl=MI
+                    - generic [ref=e3570]:
+                      - button "Добавить в избранное" [ref=e3572] [cursor=pointer]
+                      - img "Зонт автомат антиветер складной Umbrella World" [ref=e3574]
+                      - generic [ref=e3575]: −81%
+                    - generic [ref=e3579]:
+                      - generic [ref=e3580]:
+                        - generic [ref=e3582]:
+                          - insertion [ref=e3587]: 520 ₽
+                          - deletion [ref=e3588]: 2 800 ₽
+                        - generic [ref=e3589]: с WB Кошельком
+                      - heading "Umbrella World / Зонт автомат антиветер складной" [level=2] [ref=e3590]:
+                        - generic [ref=e3591]: Umbrella World
+                        - generic [ref=e3592]: / Зонт автомат антиветер складной
+                    - generic [ref=e3593]:
+                      - generic [ref=e3594]:
+                        - generic [ref=e3595]: 4,8
+                        - generic [ref=e3596]: 958 оценок
+                      - link "Завтра" [ref=e3598] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3601]:
+                  - generic [ref=e3602]:
+                    - link "Зонт автомат антиветер складной Umbrella World" [ref=e3603] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/237644620/detail.aspx?targetUrl=MI
+                    - generic [ref=e3604]:
+                      - button "Добавить в избранное" [ref=e3606] [cursor=pointer]
+                      - img "Зонт автомат антиветер складной Umbrella World" [ref=e3608]
+                      - generic [ref=e3609]: −81%
+                    - generic [ref=e3613]:
+                      - generic [ref=e3614]:
+                        - generic [ref=e3616]:
+                          - insertion [ref=e3621]: 520 ₽
+                          - deletion [ref=e3622]: 2 800 ₽
+                        - generic [ref=e3623]: с WB Кошельком
+                      - heading "Umbrella World / Зонт автомат антиветер складной" [level=2] [ref=e3624]:
+                        - generic [ref=e3625]: Umbrella World
+                        - generic [ref=e3626]: / Зонт автомат антиветер складной
+                    - generic [ref=e3627]:
+                      - generic [ref=e3628]:
+                        - generic [ref=e3629]: 4,8
+                        - generic [ref=e3630]: 524 оценки
+                      - link "Завтра" [ref=e3632] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3635]:
+                  - generic [ref=e3636]:
+                    - link "Зонт автомат антиветер складной Umbrella World" [ref=e3637] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/237648039/detail.aspx?targetUrl=MI
+                    - generic [ref=e3638]:
+                      - button "Добавить в избранное" [ref=e3640] [cursor=pointer]
+                      - img "Зонт автомат антиветер складной Umbrella World" [ref=e3642]
+                      - generic [ref=e3643]: −81%
+                    - generic [ref=e3647]:
+                      - generic [ref=e3648]:
+                        - generic [ref=e3650]:
+                          - insertion [ref=e3655]: 520 ₽
+                          - deletion [ref=e3656]: 2 800 ₽
+                        - generic [ref=e3657]: с WB Кошельком
+                      - heading "Umbrella World / Зонт автомат антиветер складной" [level=2] [ref=e3658]:
+                        - generic [ref=e3659]: Umbrella World
+                        - generic [ref=e3660]: / Зонт автомат антиветер складной
+                    - generic [ref=e3661]:
+                      - generic [ref=e3662]:
+                        - generic [ref=e3663]: 4,8
+                        - generic [ref=e3664]: 921 оценка
+                      - link "Завтра" [ref=e3666] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3669]:
+                  - generic [ref=e3670]:
+                    - link "Зонт автомат антиветер складной Umbrella World" [ref=e3671] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/237648038/detail.aspx?targetUrl=MI
+                    - generic [ref=e3672]:
+                      - button "Добавить в избранное" [ref=e3674] [cursor=pointer]
+                      - img "Зонт автомат антиветер складной Umbrella World" [ref=e3676]
+                      - generic [ref=e3677]: −81%
+                    - generic [ref=e3681]:
+                      - generic [ref=e3682]:
+                        - generic [ref=e3684]:
+                          - insertion [ref=e3685]: 520 ₽
+                          - deletion [ref=e3686]: 2 800 ₽
+                        - generic [ref=e3687]: с WB Кошельком
+                      - heading "Umbrella World / Зонт автомат антиветер складной" [level=2] [ref=e3688]:
+                        - generic [ref=e3689]: Umbrella World
+                        - generic [ref=e3690]: / Зонт автомат антиветер складной
+                    - generic [ref=e3691]:
+                      - generic [ref=e3692]:
+                        - generic [ref=e3693]: 4,8
+                        - generic [ref=e3694]: 591 оценка
+                      - link "Завтра" [ref=e3696] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3699]:
+                  - generic [ref=e3700]:
+                    - link "Зонт автомат антиветер складной City Umbrella" [ref=e3701] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/185180877/detail.aspx?targetUrl=MI
+                    - generic [ref=e3702]:
+                      - button "Добавить в избранное" [ref=e3704] [cursor=pointer]
+                      - img "Зонт автомат антиветер складной City Umbrella" [ref=e3706]
+                      - generic [ref=e3707]: −81%
+                    - generic [ref=e3711]:
+                      - generic [ref=e3712]:
+                        - generic [ref=e3714]:
+                          - insertion [ref=e3719]: 602 ₽
+                          - deletion [ref=e3720]: 3 400 ₽
+                        - generic [ref=e3721]: с WB Кошельком
+                      - heading "City Umbrella / Зонт автомат антиветер складной" [level=2] [ref=e3722]:
+                        - generic [ref=e3723]: City Umbrella
+                        - generic [ref=e3724]: / Зонт автомат антиветер складной
+                    - generic [ref=e3725]:
+                      - generic [ref=e3726]:
+                        - generic [ref=e3727]: 4,8
+                        - generic [ref=e3728]: 2 474 оценки
+                      - link "Завтра" [ref=e3730] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3733]:
+                  - generic [ref=e3734]:
+                    - link "Зонт автомат складной антиветер антишторм 105 см 12 спиц ALEXA BLOOM" [ref=e3735] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/103358356/detail.aspx?targetUrl=MI
+                    - generic [ref=e3736]:
+                      - button "Добавить в избранное" [ref=e3738] [cursor=pointer]
+                      - img "Зонт автомат складной антиветер антишторм 105 см 12 спиц ALEXA BLOOM" [ref=e3740]
+                      - generic [ref=e3741]: −63%
+                    - generic [ref=e3745]:
+                      - generic [ref=e3746]:
+                        - generic [ref=e3748]:
+                          - insertion [ref=e3753]: 1 042 ₽
+                          - deletion [ref=e3754]: 2 940 ₽
+                        - generic [ref=e3755]: с WB Кошельком
+                      - heading "ALEXA BLOOM / Зонт автомат складной антиветер антишторм 105 см 12 спиц" [level=2] [ref=e3756]:
+                        - generic [ref=e3757]: ALEXA BLOOM
+                        - generic [ref=e3758]: / Зонт автомат складной антиветер антишторм 105 см 12 спиц
+                    - generic [ref=e3759]:
+                      - generic [ref=e3760]:
+                        - generic [ref=e3761]: 4,7
+                        - generic [ref=e3762]: 2 892 оценки
+                      - link "Завтра" [ref=e3764] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3767]:
+                  - generic [ref=e3768]:
+                    - link "Зонт антиветер-автомат - подарок golden apple" [ref=e3769] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/242545961/detail.aspx?targetUrl=MI
+                    - generic [ref=e3770]:
+                      - button "Добавить в избранное" [ref=e3772] [cursor=pointer]
+                      - img "Зонт антиветер-автомат - подарок golden apple" [ref=e3774]
+                      - generic [ref=e3775]: −83%
+                    - generic [ref=e3779]:
+                      - generic [ref=e3780]:
+                        - generic [ref=e3782]:
+                          - insertion [ref=e3787]: 1 590 ₽
+                          - deletion [ref=e3788]: 9 990 ₽
+                        - generic [ref=e3789]: с WB Кошельком
+                      - heading "golden apple / Зонт антиветер-автомат - подарок" [level=2] [ref=e3790]:
+                        - generic [ref=e3791]: golden apple
+                        - generic [ref=e3793]: / Зонт антиветер-автомат - подарок
+                    - generic [ref=e3794]:
+                      - generic [ref=e3795]:
+                        - generic [ref=e3796]: 4,9
+                        - generic [ref=e3797]: 9 557 оценок
+                      - link "Завтра" [ref=e3799] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3802]:
+                  - generic [ref=e3803]:
+                    - link "Зонт автомат антиветер складной City Umbrella" [ref=e3804] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/1008976985/detail.aspx?targetUrl=MI
+                    - generic [ref=e3805]:
+                      - button "Добавить в избранное" [ref=e3807] [cursor=pointer]
+                      - img "Зонт автомат антиветер складной City Umbrella" [ref=e3809]
+                      - generic [ref=e3810]: −81%
+                    - generic [ref=e3814]:
+                      - generic [ref=e3815]:
+                        - generic [ref=e3817]:
+                          - insertion [ref=e3822]: 567 ₽
+                          - deletion [ref=e3823]: 3 200 ₽
+                        - generic [ref=e3824]: с WB Кошельком
+                      - heading "City Umbrella / Зонт автомат антиветер складной" [level=2] [ref=e3825]:
+                        - generic [ref=e3826]: City Umbrella
+                        - generic [ref=e3827]: / Зонт автомат антиветер складной
+                    - generic [ref=e3828]:
+                      - generic [ref=e3829]:
+                        - generic [ref=e3830]: 4,9
+                        - generic [ref=e3831]: 37 оценок
+                      - link "Завтра" [ref=e3833] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=e3836]:
+                  - generic [ref=e3837]:
+                    - link "Зонт автомат антиветер складной City Umbrella" [ref=e3838] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/1008983495/detail.aspx?targetUrl=MI
+                    - generic [ref=e3839]:
+                      - button "Добавить в избранное" [ref=e3841] [cursor=pointer]
+                      - img "Зонт автомат антиветер складной City Umbrella" [ref=e3843]
+                      - generic [ref=e3844]: −81%
+                    - generic [ref=e3848]:
+                      - generic [ref=e3849]:
+                        - generic [ref=e3851]:
+                          - insertion [ref=e3856]: 567 ₽
+                          - deletion [ref=e3857]: 3 200 ₽
+                        - generic [ref=e3858]: с WB Кошельком
+                      - heading "City Umbrella / Зонт автомат антиветер складной" [level=2] [ref=e3859]:
+                        - generic [ref=e3860]: City Umbrella
+                        - generic [ref=e3861]: / Зонт автомат антиветер складной
+                    - generic [ref=e3862]:
+                      - generic [ref=e3863]:
+                        - generic [ref=e3864]: 4,9
+                        - generic [ref=e3865]: 46 оценок
+                      - link "Завтра" [ref=e3867] [cursor=pointer]:
+                        - /url: /lk/basket
+        - button "Чат" [ref=e3871] [cursor=pointer]
+    - contentinfo [ref=e79]:
+      - generic [ref=e3872]:
+        - generic [ref=e3877]:
+          - link [ref=e3880] [cursor=pointer]:
+            - /url: https://allmoshennikam.net/?utm_source=wildberries-netw&utm_medium=iri-social_cpm&utm_campaign=949-91-01-01_july-2026_na&utm_content=banners_all_n1_na&utm_term=all_18-100_rf_na_all-all_all_na_na&erid=L71GTk1xn
+            - img "Социальная реклама" [ref=e3881]
+          - button "Реклама" [ref=e3882] [cursor=pointer]
+        - generic [ref=e3884]:
+          - generic [ref=e3885]:
+            - generic [ref=e3886]:
+              - heading "Покупателям" [level=2] [ref=e3888]
+              - list [ref=e3889]:
+                - listitem [ref=e3890]:
+                  - link "Частые вопросы" [ref=e3891] [cursor=pointer]:
+                    - /url: /services/voprosy-i-otvety
+                - listitem [ref=e3892]:
+                  - link "Покупать как бизнес" [ref=e3893] [cursor=pointer]:
+                    - /url: /promo/b2b
+                - listitem [ref=e3894]:
+                  - link "Доставка по клику из пункта выдачи" [ref=e3895] [cursor=pointer]:
+                    - /url: https://wbk.wb.ru/click?utm_source=wb&utm_medium=main_footer
+                - listitem [ref=e3896]:
+                  - generic [ref=e3897]: Юридическая информация
+                - listitem [ref=e3898]:
+                  - link "Как обрабатываем ваши персональные данные" [ref=e3899] [cursor=pointer]:
+                    - /url: https://privacy.wildberries.ru
+                - listitem [ref=e3900]:
+                  - link "Гид по безопасности" [ref=e3901] [cursor=pointer]:
+                    - /url: https://security.wildberries.ru/?utm_source=web_wb&utm_medium=bannerru&utm_campaign=gid_po_bezopasnosti&utm_content=e
+            - generic [ref=e3903]:
+              - heading "Продавцам и партнёрам" [level=2] [ref=e3905]
+              - list [ref=e3906]:
+                - listitem [ref=e3907]:
+                  - link "Продавать товары" [ref=e3908] [cursor=pointer]:
+                    - /url: https://seller.wildberries.ru/
+                - listitem [ref=e3909]:
+                  - link "Открыть пункт выдачи" [ref=e3910] [cursor=pointer]:
+                    - /url: https://point-promo.wb.ru/
+                - listitem [ref=e3911]:
+                  - link "Предложить помещение" [ref=e3912] [cursor=pointer]:
+                    - /url: https://rent.wildberries.ru/promo/
+                - listitem [ref=e3913]:
+                  - generic [ref=e3914]: Развозить грузы
+                - listitem [ref=e3915]:
+                  - generic [ref=e3916]: Доставлять заказы
+            - generic [ref=e3917]:
+              - heading "Наши проекты" [level=2] [ref=e3919]
+              - list [ref=e3920]:
+                - listitem [ref=e3921]:
+                  - link "Wibes" [ref=e3922] [cursor=pointer]:
+                    - /url: https://wibes.ru/clips?utm_source=main_footer&utm_medium=inner_wb
+                - listitem [ref=e3923]:
+                  - link "WB Stream" [ref=e3924] [cursor=pointer]:
+                    - /url: /promo/wb-stream
+                - listitem [ref=e3925]:
+                  - link "WB Track" [ref=e3926] [cursor=pointer]:
+                    - /url: https://track.wildberries.ru/
+            - generic [ref=e3927]:
+              - heading "Компания" [level=2] [ref=e3929]
+              - list [ref=e3930]:
+                - listitem [ref=e3931]:
+                  - link "О нас" [ref=e3932] [cursor=pointer]:
+                    - /url: /services/o-nas
+                - listitem [ref=e3933]:
+                  - link "Пресс‑служба" [ref=e3934] [cursor=pointer]:
+                    - /url: /presservice
+                - listitem [ref=e3935]:
+                  - link "Контакты" [ref=e3936] [cursor=pointer]:
+                    - /url: /services/kontakty
+                - listitem [ref=e3937]:
+                  - generic [ref=e3938]: Работа в RWB
+                - listitem [ref=e3939]:
+                  - link "Сообщить о мошенничестве" [ref=e3940] [cursor=pointer]:
+                    - /url: /services/hotline
+                - listitem [ref=e3941]:
+                  - link "Социальные сети" [ref=e3942] [cursor=pointer]:
+                    - /url: /services/sotsialnye-seti
+          - generic [ref=e3944]:
+            - heading "Приложение" [level=2] [ref=e3945]
+            - generic [ref=e3946]: Android и iOS
+            - img "qr-code" [ref=e3948]
+            - link "ОС Аврора" [ref=e3950] [cursor=pointer]:
+              - /url: /services/skachivanie-mobilnogo-prilozheniya-avrora
+        - generic [ref=e3951]:
+          - paragraph [ref=e3952]:
+            - generic [ref=e3953]:
+              - text: © Wildberries 2004–2026.
+              - generic [ref=e3954]: Все права защищены.
+            - generic [ref=e3955]:
+              - text: Применяются
+              - link "рекомендательные технологии" [ref=e3956] [cursor=pointer]:
+                - /url: https://legal.wildberries.ru/rules-for-the-use-of-recommendation-technologies/country/ru/lang/ru/
+          - generic [ref=e3957]:
+            - link "ВКонтакте" [ref=e3959] [cursor=pointer]:
+              - /url: http://vk.com/club9695053
+            - link "Одноклассники" [ref=e3961] [cursor=pointer]:
+              - /url: http://www.odnoklassniki.ru/wildberries
+            - link "Telegram" [ref=e3963] [cursor=pointer]:
+              - /url: /services/sotsialnye-seti
+  - generic:
+    - region "Notifications alt+T"
+  - generic [ref=e3965]:
+    - paragraph [ref=e3966]:
+      - text: Мы используем
+      - link "cookies" [ref=e3967] [cursor=pointer]:
+        - /url: https://legal.wildberries.ru/privacypolicy/country/ru/lang/ru/
+      - text: ", чтобы анализировать, как вы пользуетесь сайтом, рекомендовать полезное и создавать другие удобства на сайте"
+    - button "Окей" [ref=e3968] [cursor=pointer]
+  - generic:
+    - button

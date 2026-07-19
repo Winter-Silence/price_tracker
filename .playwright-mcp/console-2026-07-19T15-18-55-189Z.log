@@ -1,0 +1,109 @@
+[     249ms] [ERROR] Failed to load resource: the server responded with a status of 429 () @ https://www.citilink.ru/product/smartfon-apple-iphone-16-128gb-chernyy-1960544/:0
+[    1530ms] [INFO] Calculated checksum 2097152 @ https://www.citilink.ru/product/smartfon-apple-iphone-16-128gb-chernyy-1960544/:180
+[    1530ms] [INFO] Calculated trim 2 @ https://www.citilink.ru/product/smartfon-apple-iphone-16-128gb-chernyy-1960544/:192
+[    2018ms] [WARNING] <link rel=preload> has an invalid `href` value @ https://www.citilink.ru/product/soedinitel-feron-cab1005-41985-1960544/:0
+[    2800ms] [WARNING] /!\ You are using legacy implementation. Please update your code: use createWrapper() and wrapper.useWrappedStore(). @ https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/pages/_app-d7a0408728c6c8f2.js:324
+[    3001ms] [ERROR] `guid` does not match .+ pattern @ https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/8501.d736c45fe8e3b4fd.js:161
+[    3203ms] Uncaught Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at lh (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:52938)
+    at i (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:127441)
+    at oM (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:105425)
+    at oF (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:105295)
+    at ow (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:100368)
+    at x (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:137419)
+    at T (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:137949)
+[    3203ms] Uncaught Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at lh (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:52938)
+    at i (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:127441)
+    at oM (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:105425)
+    at oF (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:105295)
+    at ow (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:100368)
+    at x (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:137419)
+    at T (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:137949)
+[    3206ms] Uncaught Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at lh (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:52938)
+    at i (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:127441)
+    at oM (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:105425)
+    at oF (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:105295)
+    at ow (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:100368)
+    at x (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:137419)
+    at T (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:137949)
+[    3206ms] Uncaught Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at lh (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:52938)
+    at i (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:127441)
+    at oM (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:105425)
+    at oF (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:105295)
+    at ow (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:100368)
+    at x (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:137419)
+    at T (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:137949)
+[    3206ms] Uncaught Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at lh (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:52938)
+    at i (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:127618)
+    at oM (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:105425)
+    at oF (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:105295)
+    at ow (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:100368)
+    at x (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:137419)
+    at T (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:137949)
+[    3206ms] Uncaught Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at lh (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:52938)
+    at i (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:127441)
+    at oM (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:105425)
+    at oF (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:105295)
+    at ow (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:100368)
+    at x (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:137419)
+    at T (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:137949)
+[    3206ms] Uncaught Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at lh (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:52938)
+    at i (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:127441)
+    at oM (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:105425)
+    at oF (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:105295)
+    at ow (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:100368)
+    at x (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:137419)
+    at T (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:137949)
+[    3206ms] Uncaught Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at lh (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:52938)
+    at i (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:127441)
+    at oM (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:105425)
+    at oF (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:105295)
+    at ow (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:100368)
+    at x (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:137419)
+    at T (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:137949)
+[    3206ms] Uncaught Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at lh (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:52938)
+    at i (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:127441)
+    at oM (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:105425)
+    at oF (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:105295)
+    at ow (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:100368)
+    at x (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:137419)
+    at T (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:137949)
+[    3206ms] Uncaught Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at lh (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:52938)
+    at i (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:127441)
+    at oM (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:105425)
+    at oF (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:105295)
+    at ow (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:100368)
+    at x (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:137419)
+    at T (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:137949)
+[    3206ms] Uncaught Error: Minified React error #423; visit https://reactjs.org/docs/error-decoder.html?invariant=423 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at i (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:127100)
+    at oM (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:105425)
+    at oF (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:105295)
+    at oS (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:102066)
+    at ow (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:100621)
+    at x (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:137419)
+    at T (https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/framework-18f3d10fd924e320.js:0:137949)
+[    3330ms] [WARNING] using deprecated parameters for the initialization function; pass a single object instead @ https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/pages/_app-d7a0408728c6c8f2.js:876
+[    3893ms] [LOG] Data to push to Yandex.Metrika: {ecommerce: Object} @ :0
+[    3903ms] [LOG] Data to push to Yandex.Metrika: {ecommerce: Object} @ :0
+[    4226ms] [LOG] [Sendsay Data Send]: 7/19/2026, 7:18:59 PM @ https://image.sendsay.ru/js/target/tracking_v2.min.js:1
+[    4228ms] [LOG] [Sendsay Data Send]: 7/19/2026, 7:18:59 PM @ https://image.sendsay.ru/js/target/tracking_v2.min.js:1
+[    4230ms] [LOG] %cVIEW_PRODUCT color: #fff;background-color: #444;padding: 2px 4px;border-radius: 2px; @ https://image.sendsay.ru/js/target/tracking_v2.min.js:1
+[    4230ms] [LOG] %cViewProduct color: #fff;background-color: #444;padding: 2px 4px;border-radius: 2px; @ https://image.sendsay.ru/js/target/tracking_v2.min.js:1
+[    4231ms] [LOG] %cssecValidation: VIEW_PRODUCT color: #fff;background-color: #444;padding: 2px 4px;border-radius: 2px; @ https://image.sendsay.ru/js/target/tracking_v2.min.js:1
+[    4232ms] [LOG] {id: 1960544, available: 1, name: Соединитель FERON Cab1005, price: 0.00, url: https://www.citilink.ru/product/soedinitel-feron-cab1005-41985-1960544/} @ https://image.sendsay.ru/js/target/tracking_v2.min.js:1
+[    4232ms] [LOG] %c[ssecEvent:VIEW_PRODUCT] wrong value "picture" (Array<String> is expected) color: #fff;background-color: #444;padding: 2px 4px;border-radius: 2px;background-color: #ba930a;color: black @ https://image.sendsay.ru/js/target/tracking_v2.min.js:1
+[    4232ms] [LOG] %cundefined color: #fff;background-color: #444;padding: 2px 4px;border-radius: 2px; @ https://image.sendsay.ru/js/target/tracking_v2.min.js:1
+[    4233ms] [LOG] [Sendsay Data Send]: 7/19/2026, 7:18:59 PM @ https://image.sendsay.ru/js/target/tracking_v2.min.js:1
+[    4478ms] [ERROR] `guid` does not match .+ pattern @ https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/8501.d736c45fe8e3b4fd.js:161
+[    4479ms] [ERROR] `guid` does not match .+ pattern @ https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/8501.d736c45fe8e3b4fd.js:161
+[    4606ms] [ERROR] A bad HTTP response code (404) was received when fetching the script. @ :0

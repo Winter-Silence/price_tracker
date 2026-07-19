@@ -1,0 +1,11 @@
+[     324ms] [WARNING] Manifest: property 'scope' ignored. Start url should be within scope of scope URL. @ https://st.ozone.ru/s3/ozon-webmanifests/frontend-ozon-ru/desktop.webmanifest:0
+[     324ms] [WARNING] Manifest: one of 'url' or 'id' is required, related application ignored. @ https://st.ozone.ru/s3/ozon-webmanifests/frontend-ozon-ru/desktop.webmanifest:0
+[     479ms] [LOG] --DEBUG_INFO-- {composer: Object, xcid: 49d808cdc3755042da734cff20876b2e} @ https://st.ozone.ru/assets/24a471ee/main.js:0
+[     530ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://www.ozon.ru/p-api/tracker/dlte/multi:0
+[     573ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://www.ozon.ru/api/composer-api.bx/_action/summaryV2:0
+[     785ms] [ERROR] %c[ERROR] color: #ffffff; font-weight: bold; background-color: #9b0010; Request failed with 403 code from service action @ https://st.ozone.ru/assets/24a471ee/vendor-bxfelgr.js:0
+[     786ms] [LOG] {date: Sun Jul 19 2026 22:40:39 GMT+0400 (Samara Standard Time), type: log, url: www.ozon.ru/product/lukum-orehovyy-assorti-500-gra…/?at=VvtzJ0qn8cQ719x8sqGlkovC0g8Rllt79R8zvF5Yvqwg, exception: Request failed with 403 code with payload: {"servi…t.ozone.ru/assets/24a471ee/vendor-core.js:1:77476, stackTrace: Error
+    at new h (https://st.ozone.ru/assets/24a…t.ozone.ru/assets/24a471ee/vendor-core.js:1:77476} @ https://st.ozone.ru/assets/24a471ee/vendor-bxfelgr.js:0
+[    2736ms] [ERROR] Failed to load resource: net::ERR_SSL_VERSION_OR_CIPHER_MISMATCH @ https://gost.stg.ozonru.me/:0
+[    3353ms] [WARNING] [.WebGL-0x36ac000f2600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels @ https://www.ozon.ru/product/lukum-orehovyy-assorti-500-gramm-650235959/?at=VvtzJ0qn8cQ719x8sqGlkovC0g8Rllt79R8zvF5Yvqwg:0
+[   63204ms] [ERROR] Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID @ https://rsa.stg.ozonru.me/:0

@@ -1,0 +1,594 @@
+- generic [active] [ref=f20e1]:
+  - generic [ref=f20e3]:
+    - banner [ref=f20e6]:
+      - generic [ref=f20e8]:
+        - link [ref=f20e9] [cursor=pointer]:
+          - /url: https://www.citilink.ru/promo/yandexsplit/?erid=2SDnjepqdiU
+        - button [ref=f20e15] [cursor=pointer]
+      - generic [ref=f20e23]:
+        - link [ref=f20e25] [cursor=pointer]:
+          - /url: /
+        - generic [ref=f20e30]:
+          - generic [ref=f20e31]:
+            - button "Астрахань" [ref=f20e32] [cursor=pointer]
+            - link "+7 (851) 227-07-07" [ref=f20e38] [cursor=pointer]:
+              - /url: tel:+78512270707
+          - generic [ref=f20e39]:
+            - link "Юридическим лицам" [ref=f20e40] [cursor=pointer]:
+              - /url: /corporate/
+            - link "Журнал" [ref=f20e46] [cursor=pointer]:
+              - /url: https://journal.citilink.ru
+            - link "Акции" [ref=f20e47] [cursor=pointer]:
+              - /url: /actions/
+            - link "Конфигуратор ПК" [ref=f20e48] [cursor=pointer]:
+              - /url: /configurator/
+            - link "Доставка" [ref=f20e49] [cursor=pointer]:
+              - /url: /about/delivery/
+            - link "Магазины" [ref=f20e50] [cursor=pointer]:
+              - /url: /about/stores/
+            - generic [ref=f20e51] [cursor=pointer]: Обратная связь
+    - generic [ref=f20e56]:
+      - link "Каталог товаров" [ref=f20e59] [cursor=pointer]:
+        - /url: /catalog/
+      - generic [ref=f20e70]:
+        - generic [ref=f20e75]:
+          - searchbox [ref=f20e76]
+          - button [ref=f20e79] [cursor=pointer]
+        - generic [ref=f20e83]:
+          - button "Войти" [ref=f20e84] [cursor=pointer]
+          - link [ref=f20e92] [cursor=pointer]:
+            - /url: /profile/wishlist/
+            - button "Избранное" [ref=f20e93]
+          - link [ref=f20e102] [cursor=pointer]:
+            - /url: /compare/
+            - button "Сравнение" [ref=f20e103]
+          - link [ref=f20e115] [cursor=pointer]:
+            - /url: /order/
+            - button "Корзина" [ref=f20e116]
+    - main [ref=f20e125]:
+      - generic [ref=f20e126]:
+        - generic [ref=f20e127]:
+          - generic [ref=f20e128]: К сожалению, указанная страница не найдена.
+          - generic [ref=f20e129]:
+            - text: Воспользуйтесь поиском или перейдите в
+            - link "каталог товаров" [ref=f20e130] [cursor=pointer]:
+              - /url: /catalog/
+        - generic [ref=f20e132]:
+          - generic [ref=f20e135]:
+            - heading "Хиты продаж" [level=3] [ref=f20e137]
+            - link "Все хиты →" [ref=f20e140] [cursor=pointer]:
+              - /url: /top100/
+          - generic [ref=f20e142]:
+            - button [disabled] [ref=f20e143]
+            - generic [ref=f20e150]:
+              - generic [ref=f20e152]:
+                - link "Мультиподписка Яндекс Плюс с привязкой карты на 24 месяца" [ref=f20e153] [cursor=pointer]:
+                  - /url: /product/podpiska-yandeks-plyus-24-mesyacev-2131194/
+                - generic [ref=f20e154]:
+                  - generic [ref=f20e155]:
+                    - link [ref=f20e158] [cursor=pointer]:
+                      - /url: /product/podpiska-yandeks-plyus-24-mesyacev-2131194/
+                      - generic [ref=f20e168]:
+                        - img "Мультиподписка Яндекс Плюс с привязкой карты на 24 месяца" [ref=f20e169]
+                        - img "Мультиподписка Яндекс Плюс с привязкой карты на 24 месяца" [ref=f20e170]
+                        - img "Мультиподписка Яндекс Плюс с привязкой карты на 24 месяца" [ref=f20e171]
+                        - img "Мультиподписка Яндекс Плюс с привязкой карты на 24 месяца" [ref=f20e172]
+                        - img "Мультиподписка Яндекс Плюс с привязкой карты на 24 месяца" [ref=f20e173]
+                        - img "Мультиподписка Яндекс Плюс с привязкой карты на 24 месяца" [ref=f20e174]
+                    - link "Мультиподписка Яндекс Плюс с привязкой карты на 24 месяца" [ref=f20e184] [cursor=pointer]:
+                      - /url: /product/podpiska-yandeks-plyus-24-mesyacev-2131194/
+                  - generic [ref=f20e186]:
+                    - button "8980₽" [ref=f20e188] [cursor=pointer]
+                    - generic [ref=f20e194]:
+                      - generic [ref=f20e195]: Клубная цена
+                      - button "8890 ₽" [ref=f20e199] [cursor=pointer]
+              - generic [ref=f20e207]:
+                - link "Ноутбук игровой ASUS V16 V3607VM-TK220, 16\", IPS, Intel Core 5 210H 2.2ГГц, 8-ядерный, 16ГБ DDR5, 512ГБ SSD, NVIDIA GeForce RTX 5060 для ноутбуков - 8 ГБ, без операционной системы, черный [90nb16k1-m00hk0]" [ref=f20e208] [cursor=pointer]:
+                  - /url: /product/noutbuk-asus-v16-v3607vm-tk220-core-5-210h-16gb-ssd512gb-rtx-5060-8gb-2173635/
+                - generic [ref=f20e209]:
+                  - generic [ref=f20e210]:
+                    - link [ref=f20e213] [cursor=pointer]:
+                      - /url: /product/noutbuk-asus-v16-v3607vm-tk220-core-5-210h-16gb-ssd512gb-rtx-5060-8gb-2173635/
+                      - generic [ref=f20e223]:
+                        - img "Ноутбук игровой ASUS V16 V3607VM-TK220, 16\", IPS, Intel Core 5 210H, 8-ядерный, 16ГБ DDR5, 512ГБ SSD, NVIDIA GeForce RTX 5060 для ноутбуков - 8 ГБ, черный" [ref=f20e224]
+                        - img "Ноутбук игровой ASUS V16 V3607VM-TK220, 16\", IPS, Intel Core 5 210H, 8-ядерный, 16ГБ DDR5, 512ГБ SSD, NVIDIA GeForce RTX 5060 для ноутбуков - 8 ГБ, черный" [ref=f20e225]
+                        - img "Ноутбук игровой ASUS V16 V3607VM-TK220, 16\", IPS, Intel Core 5 210H, 8-ядерный, 16ГБ DDR5, 512ГБ SSD, NVIDIA GeForce RTX 5060 для ноутбуков - 8 ГБ, черный" [ref=f20e226]
+                        - img "Ноутбук игровой ASUS V16 V3607VM-TK220, 16\", IPS, Intel Core 5 210H, 8-ядерный, 16ГБ DDR5, 512ГБ SSD, NVIDIA GeForce RTX 5060 для ноутбуков - 8 ГБ, черный" [ref=f20e227]
+                        - img "Ноутбук игровой ASUS V16 V3607VM-TK220, 16\", IPS, Intel Core 5 210H, 8-ядерный, 16ГБ DDR5, 512ГБ SSD, NVIDIA GeForce RTX 5060 для ноутбуков - 8 ГБ, черный" [ref=f20e228]
+                        - img "Ноутбук игровой ASUS V16 V3607VM-TK220, 16\", IPS, Intel Core 5 210H, 8-ядерный, 16ГБ DDR5, 512ГБ SSD, NVIDIA GeForce RTX 5060 для ноутбуков - 8 ГБ, черный" [ref=f20e229]
+                    - link "Ноутбук игровой ASUS V16 V3607VM-TK220, 16\", IPS, Intel Core 5 210H, 8-ядерный, 16ГБ DDR5, 512ГБ SSD, NVIDIA GeForce RTX 5060 для ноутбуков - 8 ГБ, черный" [ref=f20e239] [cursor=pointer]:
+                      - /url: /product/noutbuk-asus-v16-v3607vm-tk220-core-5-210h-16gb-ssd512gb-rtx-5060-8gb-2173635/
+                  - button "129 990 - 15% 109 990₽" [ref=f20e243] [cursor=pointer]:
+                    - generic [ref=f20e244]:
+                      - generic [ref=f20e245]:
+                        - generic [ref=f20e246]: 129 990
+                        - generic [ref=f20e247]: "- 15%"
+                      - generic [ref=f20e249]: 109 990₽
+              - generic [ref=f20e253]:
+                - link "Процессор AMD Ryzen 7 7800X3D, AM5, OEM [100-000000910]" [ref=f20e254] [cursor=pointer]:
+                  - /url: /product/processor-amd-ryzen-7-7800x3d-am5-oem-100-000000910-1982217/
+                - generic [ref=f20e255]:
+                  - generic [ref=f20e256]:
+                    - link [ref=f20e259] [cursor=pointer]:
+                      - /url: /product/processor-amd-ryzen-7-7800x3d-am5-oem-100-000000910-1982217/
+                      - generic [ref=f20e267]:
+                        - img "Процессор AMD Ryzen 7 7800X3D, OEM" [ref=f20e268]
+                        - img "Процессор AMD Ryzen 7 7800X3D, OEM" [ref=f20e269]
+                        - img "Процессор AMD Ryzen 7 7800X3D, OEM" [ref=f20e270]
+                        - img "Процессор AMD Ryzen 7 7800X3D, OEM" [ref=f20e271]
+                    - link "Процессор AMD Ryzen 7 7800X3D, OEM" [ref=f20e279] [cursor=pointer]:
+                      - /url: /product/processor-amd-ryzen-7-7800x3d-am5-oem-100-000000910-1982217/
+                  - generic [ref=f20e281]:
+                    - button "28 990₽" [ref=f20e283] [cursor=pointer]
+                    - generic [ref=f20e289]:
+                      - generic [ref=f20e290]: Клубная цена
+                      - button "28 700 ₽" [ref=f20e294] [cursor=pointer]
+              - generic [ref=f20e302]:
+                - link "6.7\" Смартфон Samsung Galaxy S25 FE 8/256Gb, SM-S731B, NFC, AMOLED, 120Гц, 4900мAч, черный" [ref=f20e303] [cursor=pointer]:
+                  - /url: /product/smartfon-samsung-galaxy-s25-fe-sm-s731b-256gb-8gb-chernyi-3g-4g-6-7-10-2127836/
+                - generic [ref=f20e304]:
+                  - generic [ref=f20e305]:
+                    - link [ref=f20e308] [cursor=pointer]:
+                      - /url: /product/smartfon-samsung-galaxy-s25-fe-sm-s731b-256gb-8gb-chernyi-3g-4g-6-7-10-2127836/
+                      - generic [ref=f20e318]:
+                        - img "6.7\" Смартфон Samsung Galaxy S25 FE 8/256Gb, SM-S731B, черный" [ref=f20e319]
+                        - img "6.7\" Смартфон Samsung Galaxy S25 FE 8/256Gb, SM-S731B, черный" [ref=f20e320]
+                        - img "6.7\" Смартфон Samsung Galaxy S25 FE 8/256Gb, SM-S731B, черный" [ref=f20e321]
+                        - img "6.7\" Смартфон Samsung Galaxy S25 FE 8/256Gb, SM-S731B, черный" [ref=f20e322]
+                        - img "6.7\" Смартфон Samsung Galaxy S25 FE 8/256Gb, SM-S731B, черный" [ref=f20e323]
+                        - img "6.7\" Смартфон Samsung Galaxy S25 FE 8/256Gb, SM-S731B, черный" [ref=f20e324]
+                    - link "6.7\" Смартфон Samsung Galaxy S25 FE 8/256Gb, SM-S731B, черный" [ref=f20e334] [cursor=pointer]:
+                      - /url: /product/smartfon-samsung-galaxy-s25-fe-sm-s731b-256gb-8gb-chernyi-3g-4g-6-7-10-2127836/
+                  - button "59 990 - 18% 48 990₽" [ref=f20e338] [cursor=pointer]:
+                    - generic [ref=f20e339]:
+                      - generic [ref=f20e340]:
+                        - generic [ref=f20e341]: 59 990
+                        - generic [ref=f20e342]: "- 18%"
+                      - generic [ref=f20e344]: 48 990₽
+              - generic [ref=f20e348]:
+                - link "75\" Телевизор TCL 75A400 (2026) Slim QLED, 4K Ultra HD, СМАРТ ТВ, Google TV, черный" [ref=f20e349] [cursor=pointer]:
+                  - /url: /product/televizor-qled-tcl-75-75a400-smart-chernyi-4k-ultra-hd-60hz-dvb-t-dvb-2173923/
+                - generic [ref=f20e350]:
+                  - generic [ref=f20e351]:
+                    - link [ref=f20e354] [cursor=pointer]:
+                      - /url: /product/televizor-qled-tcl-75-75a400-smart-chernyi-4k-ultra-hd-60hz-dvb-t-dvb-2173923/
+                      - generic [ref=f20e364]:
+                        - img "75\" Телевизор TCL 75A400 (2026) Slim QLED, 4K Ultra HD, СМАРТ ТВ, Google TV, черный" [ref=f20e365]
+                        - img "75\" Телевизор TCL 75A400 (2026) Slim QLED, 4K Ultra HD, СМАРТ ТВ, Google TV, черный" [ref=f20e366]
+                        - img "75\" Телевизор TCL 75A400 (2026) Slim QLED, 4K Ultra HD, СМАРТ ТВ, Google TV, черный" [ref=f20e367]
+                        - img "75\" Телевизор TCL 75A400 (2026) Slim QLED, 4K Ultra HD, СМАРТ ТВ, Google TV, черный" [ref=f20e368]
+                        - img "75\" Телевизор TCL 75A400 (2026) Slim QLED, 4K Ultra HD, СМАРТ ТВ, Google TV, черный" [ref=f20e369]
+                        - img "75\" Телевизор TCL 75A400 (2026) Slim QLED, 4K Ultra HD, СМАРТ ТВ, Google TV, черный" [ref=f20e370]
+                    - link "75\" Телевизор TCL 75A400 (2026) Slim QLED, 4K Ultra HD, СМАРТ ТВ, Google TV, черный" [ref=f20e380] [cursor=pointer]:
+                      - /url: /product/televizor-qled-tcl-75-75a400-smart-chernyi-4k-ultra-hd-60hz-dvb-t-dvb-2173923/
+                  - button "100 224 - 5% 94 999₽" [ref=f20e384] [cursor=pointer]:
+                    - generic [ref=f20e385]:
+                      - generic [ref=f20e386]:
+                        - generic [ref=f20e387]: 100 224
+                        - generic [ref=f20e388]: "- 5%"
+                      - generic [ref=f20e390]: 94 999₽
+              - generic:
+                - generic:
+                  - link "Стиральная машина LG F1296HDS1, с фронтальной загрузкой, 7кг, 1200об/мин, с паром, инверторная":
+                    - /url: /product/stiralnaya-mashina-lg-f1296hds1-kl-a-front-maks-7kg-belyi-2102955/
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - link "Стиральная машина LG F1296HDS1, 7кг, с паром, инверторная Стиральная машина LG F1296HDS1, 7кг, с паром, инверторная Стиральная машина LG F1296HDS1, 7кг, с паром, инверторная Стиральная машина LG F1296HDS1, 7кг, с паром, инверторная Стиральная машина LG F1296HDS1, 7кг, с паром, инверторная Стиральная машина LG F1296HDS1, 7кг, с паром, инверторная":
+                            - /url: /product/stiralnaya-mashina-lg-f1296hds1-kl-a-front-maks-7kg-belyi-2102955/
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - img "Стиральная машина LG F1296HDS1, 7кг, с паром, инверторная"
+                                  - img "Стиральная машина LG F1296HDS1, 7кг, с паром, инверторная"
+                                  - img "Стиральная машина LG F1296HDS1, 7кг, с паром, инверторная"
+                                  - img "Стиральная машина LG F1296HDS1, 7кг, с паром, инверторная"
+                                  - img "Стиральная машина LG F1296HDS1, 7кг, с паром, инверторная"
+                                  - img "Стиральная машина LG F1296HDS1, 7кг, с паром, инверторная"
+                      - generic:
+                        - link "Стиральная машина LG F1296HDS1, 7кг, с паром, инверторная":
+                          - /url: /product/stiralnaya-mashina-lg-f1296hds1-kl-a-front-maks-7kg-belyi-2102955/
+                    - generic:
+                      - generic:
+                        - generic:
+                          - button "34 990₽"
+              - generic:
+                - generic:
+                  - link "SSD накопитель Kingston NV3 SNV3S/1000G 1ТБ, M.2 2280, PCIe 4.0 x4, NVMe, M.2":
+                    - /url: /product/nakopitel-ssd-kingston-pcie-4-0-x4-1tb-snv3s-1000g-nv3-m-2-2280-2054925/
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - link "SSD накопитель Kingston NV3 SNV3S/1000G 1ТБ SSD накопитель Kingston NV3 SNV3S/1000G 1ТБ SSD накопитель Kingston NV3 SNV3S/1000G 1ТБ SSD накопитель Kingston NV3 SNV3S/1000G 1ТБ SSD накопитель Kingston NV3 SNV3S/1000G 1ТБ":
+                            - /url: /product/nakopitel-ssd-kingston-pcie-4-0-x4-1tb-snv3s-1000g-nv3-m-2-2280-2054925/
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - img "SSD накопитель Kingston NV3 SNV3S/1000G 1ТБ"
+                                  - img "SSD накопитель Kingston NV3 SNV3S/1000G 1ТБ"
+                                  - img "SSD накопитель Kingston NV3 SNV3S/1000G 1ТБ"
+                                  - img "SSD накопитель Kingston NV3 SNV3S/1000G 1ТБ"
+                                  - img "SSD накопитель Kingston NV3 SNV3S/1000G 1ТБ"
+                      - generic:
+                        - link "SSD накопитель Kingston NV3 SNV3S/1000G 1ТБ":
+                          - /url: /product/nakopitel-ssd-kingston-pcie-4-0-x4-1tb-snv3s-1000g-nv3-m-2-2280-2054925/
+                    - generic:
+                      - generic:
+                        - generic:
+                          - button "14 990₽"
+                        - generic:
+                          - generic: Клубная цена
+                          - generic:
+                            - generic:
+                              - generic:
+                                - button "14 700 ₽"
+              - generic:
+                - generic:
+                  - link "Холодильник двухкамерный LG GA-B419SLGL Total No Frost, инверторный, графит":
+                    - /url: /product/holodilnik-lg-ga-b419slgl-dvuhkamernyi-grafit-1079025/
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - link "Холодильник двухкамерный LG GA-B419SLGL Total No Frost, инверторный Холодильник двухкамерный LG GA-B419SLGL Total No Frost, инверторный Холодильник двухкамерный LG GA-B419SLGL Total No Frost, инверторный Холодильник двухкамерный LG GA-B419SLGL Total No Frost, инверторный Холодильник двухкамерный LG GA-B419SLGL Total No Frost, инверторный Холодильник двухкамерный LG GA-B419SLGL Total No Frost, инверторный":
+                            - /url: /product/holodilnik-lg-ga-b419slgl-dvuhkamernyi-grafit-1079025/
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - img "Холодильник двухкамерный LG GA-B419SLGL Total No Frost, инверторный"
+                                  - img "Холодильник двухкамерный LG GA-B419SLGL Total No Frost, инверторный"
+                                  - img "Холодильник двухкамерный LG GA-B419SLGL Total No Frost, инверторный"
+                                  - img "Холодильник двухкамерный LG GA-B419SLGL Total No Frost, инверторный"
+                                  - img "Холодильник двухкамерный LG GA-B419SLGL Total No Frost, инверторный"
+                                  - img "Холодильник двухкамерный LG GA-B419SLGL Total No Frost, инверторный"
+                      - generic:
+                        - link "Холодильник двухкамерный LG GA-B419SLGL Total No Frost, инверторный":
+                          - /url: /product/holodilnik-lg-ga-b419slgl-dvuhkamernyi-grafit-1079025/
+                    - generic:
+                      - generic:
+                        - generic:
+                          - button "46 990₽"
+              - generic:
+                - generic:
+                  - link "27\" Монитор Samsung Odyssey G5 S27CG550EI, 2560x1440, VA, 165Гц, 1хHDMI, 1хDP, изогнутый, черный [ls27cg550eixci]":
+                    - /url: /product/monitor-samsung-27-s27cg550ei-va-2k-cher-1ms-hdmi-dp-usb-m-m-piv-300cd-1990835/
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - link "27\" Монитор Samsung Odyssey G5 S27CG550EI, 2560x1440 27\" Монитор Samsung Odyssey G5 S27CG550EI, 2560x1440 27\" Монитор Samsung Odyssey G5 S27CG550EI, 2560x1440 27\" Монитор Samsung Odyssey G5 S27CG550EI, 2560x1440 27\" Монитор Samsung Odyssey G5 S27CG550EI, 2560x1440 27\" Монитор Samsung Odyssey G5 S27CG550EI, 2560x1440":
+                            - /url: /product/monitor-samsung-27-s27cg550ei-va-2k-cher-1ms-hdmi-dp-usb-m-m-piv-300cd-1990835/
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - img "27\" Монитор Samsung Odyssey G5 S27CG550EI, 2560x1440"
+                                  - img "27\" Монитор Samsung Odyssey G5 S27CG550EI, 2560x1440"
+                                  - img "27\" Монитор Samsung Odyssey G5 S27CG550EI, 2560x1440"
+                                  - img "27\" Монитор Samsung Odyssey G5 S27CG550EI, 2560x1440"
+                                  - img "27\" Монитор Samsung Odyssey G5 S27CG550EI, 2560x1440"
+                                  - img "27\" Монитор Samsung Odyssey G5 S27CG550EI, 2560x1440"
+                      - generic:
+                        - link "27\" Монитор Samsung Odyssey G5 S27CG550EI, 2560x1440":
+                          - /url: /product/monitor-samsung-27-s27cg550ei-va-2k-cher-1ms-hdmi-dp-usb-m-m-piv-300cd-1990835/
+                    - generic:
+                      - generic:
+                        - generic:
+                          - button "18 230₽"
+              - generic:
+                - generic:
+                  - link "Сплит-система Hyundai HAC-07/S-PRO настенная, до 18м2, 7000 BTU, (комплект из 2-х коробок)":
+                    - /url: /product/split-sistema-hyundai-hac-07-s-pro-do-18m2-7000-btu-komplekt-iz-2-h-ko-1869349/
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - link "Сплит-система Hyundai HAC-07/S-PRO настенная, до 18м2, 7000 BTU Сплит-система Hyundai HAC-07/S-PRO настенная, до 18м2, 7000 BTU Сплит-система Hyundai HAC-07/S-PRO настенная, до 18м2, 7000 BTU Сплит-система Hyundai HAC-07/S-PRO настенная, до 18м2, 7000 BTU Сплит-система Hyundai HAC-07/S-PRO настенная, до 18м2, 7000 BTU Сплит-система Hyundai HAC-07/S-PRO настенная, до 18м2, 7000 BTU":
+                            - /url: /product/split-sistema-hyundai-hac-07-s-pro-do-18m2-7000-btu-komplekt-iz-2-h-ko-1869349/
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - img "Сплит-система Hyundai HAC-07/S-PRO настенная, до 18м2, 7000 BTU"
+                                  - img "Сплит-система Hyundai HAC-07/S-PRO настенная, до 18м2, 7000 BTU"
+                                  - img "Сплит-система Hyundai HAC-07/S-PRO настенная, до 18м2, 7000 BTU"
+                                  - img "Сплит-система Hyundai HAC-07/S-PRO настенная, до 18м2, 7000 BTU"
+                                  - img "Сплит-система Hyundai HAC-07/S-PRO настенная, до 18м2, 7000 BTU"
+                                  - img "Сплит-система Hyundai HAC-07/S-PRO настенная, до 18м2, 7000 BTU"
+                      - generic:
+                        - link "Сплит-система Hyundai HAC-07/S-PRO настенная, до 18м2, 7000 BTU":
+                          - /url: /product/split-sistema-hyundai-hac-07-s-pro-do-18m2-7000-btu-komplekt-iz-2-h-ko-1869349/
+                    - generic:
+                      - generic:
+                        - generic:
+                          - button "23 058 - 41% 13 490₽":
+                            - generic:
+                              - generic:
+                                - generic: 23 058
+                                - generic: "- 41%"
+                              - generic: 13 490₽
+              - generic:
+                - generic:
+                  - link "Wi-Fi роутер TP-LINK Archer C80, Wi-Fi 5, AC1900, 2.4/5ГГц, 4 LAN, черный":
+                    - /url: /product/wi-fi-router-tp-link-archer-c80-ac1900-chernyi-1383152/
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - link "Wi-Fi роутер TP-LINK Archer C80, Wi-Fi 5, AC1900, 4 LAN, черный Wi-Fi роутер TP-LINK Archer C80, Wi-Fi 5, AC1900, 4 LAN, черный Wi-Fi роутер TP-LINK Archer C80, Wi-Fi 5, AC1900, 4 LAN, черный Wi-Fi роутер TP-LINK Archer C80, Wi-Fi 5, AC1900, 4 LAN, черный Wi-Fi роутер TP-LINK Archer C80, Wi-Fi 5, AC1900, 4 LAN, черный Wi-Fi роутер TP-LINK Archer C80, Wi-Fi 5, AC1900, 4 LAN, черный":
+                            - /url: /product/wi-fi-router-tp-link-archer-c80-ac1900-chernyi-1383152/
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - img "Wi-Fi роутер TP-LINK Archer C80, Wi-Fi 5, AC1900, 4 LAN, черный"
+                                  - img "Wi-Fi роутер TP-LINK Archer C80, Wi-Fi 5, AC1900, 4 LAN, черный"
+                                  - img "Wi-Fi роутер TP-LINK Archer C80, Wi-Fi 5, AC1900, 4 LAN, черный"
+                                  - img "Wi-Fi роутер TP-LINK Archer C80, Wi-Fi 5, AC1900, 4 LAN, черный"
+                                  - img "Wi-Fi роутер TP-LINK Archer C80, Wi-Fi 5, AC1900, 4 LAN, черный"
+                                  - img "Wi-Fi роутер TP-LINK Archer C80, Wi-Fi 5, AC1900, 4 LAN, черный"
+                      - generic:
+                        - link "Wi-Fi роутер TP-LINK Archer C80, Wi-Fi 5, AC1900, 4 LAN, черный":
+                          - /url: /product/wi-fi-router-tp-link-archer-c80-ac1900-chernyi-1383152/
+                    - generic:
+                      - generic:
+                        - generic:
+                          - button "3599₽"
+              - generic:
+                - generic:
+                  - link "Ломтерезка KitFort КТ-9952, черный":
+                    - /url: /product/lomterezka-kitfort-kt-9952-220vt-narez-do-22mm-chernyi-krasnyi-2181835/
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - link "Ломтерезка KitFort КТ-9952, черный Ломтерезка KitFort КТ-9952, черный Ломтерезка KitFort КТ-9952, черный Ломтерезка KitFort КТ-9952, черный Ломтерезка KitFort КТ-9952, черный Ломтерезка KitFort КТ-9952, черный":
+                            - /url: /product/lomterezka-kitfort-kt-9952-220vt-narez-do-22mm-chernyi-krasnyi-2181835/
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - img "Ломтерезка KitFort КТ-9952, черный"
+                                  - img "Ломтерезка KitFort КТ-9952, черный"
+                                  - img "Ломтерезка KitFort КТ-9952, черный"
+                                  - img "Ломтерезка KitFort КТ-9952, черный"
+                                  - img "Ломтерезка KitFort КТ-9952, черный"
+                                  - img "Ломтерезка KitFort КТ-9952, черный"
+                      - generic:
+                        - link "Ломтерезка KitFort КТ-9952, черный":
+                          - /url: /product/lomterezka-kitfort-kt-9952-220vt-narez-do-22mm-chernyi-krasnyi-2181835/
+                    - generic:
+                      - generic:
+                        - generic:
+                          - button "8490₽"
+                        - generic:
+                          - generic: Клубная цена
+                          - generic:
+                            - generic:
+                              - generic:
+                                - button "8200 ₽"
+              - generic:
+                - generic:
+                  - link "Наушники Apple EarPods A3046, USB Type-C, вкладыши, белый [myqy3zm/a]":
+                    - /url: /product/garnitura-vkladyshi-apple-earpods-a3046-1-1m-belyi-provodnye-myqy3zm-a-2086686/
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - link "Наушники Apple EarPods A3046, USB Type-C, белый Наушники Apple EarPods A3046, USB Type-C, белый Наушники Apple EarPods A3046, USB Type-C, белый Наушники Apple EarPods A3046, USB Type-C, белый Наушники Apple EarPods A3046, USB Type-C, белый Наушники Apple EarPods A3046, USB Type-C, белый":
+                            - /url: /product/garnitura-vkladyshi-apple-earpods-a3046-1-1m-belyi-provodnye-myqy3zm-a-2086686/
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - img "Наушники Apple EarPods A3046, USB Type-C, белый"
+                                  - img "Наушники Apple EarPods A3046, USB Type-C, белый"
+                                  - img "Наушники Apple EarPods A3046, USB Type-C, белый"
+                                  - img "Наушники Apple EarPods A3046, USB Type-C, белый"
+                                  - img "Наушники Apple EarPods A3046, USB Type-C, белый"
+                                  - img "Наушники Apple EarPods A3046, USB Type-C, белый"
+                      - generic:
+                        - link "Наушники Apple EarPods A3046, USB Type-C, белый":
+                          - /url: /product/garnitura-vkladyshi-apple-earpods-a3046-1-1m-belyi-provodnye-myqy3zm-a-2086686/
+                    - generic:
+                      - generic:
+                        - generic:
+                          - button "2199₽"
+              - generic:
+                - generic:
+                  - link "МФУ лазерное Pantum M6500W черно-белая печать, A4, черный":
+                    - /url: /product/mfu-lazernyi-pantum-m6500w-cherno-belaya-pechat-a4-cvet-chernyi-1152205/
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - link "МФУ лазерное Pantum M6500W черно-белая печать, A4, черный МФУ лазерное Pantum M6500W черно-белая печать, A4, черный МФУ лазерное Pantum M6500W черно-белая печать, A4, черный МФУ лазерное Pantum M6500W черно-белая печать, A4, черный МФУ лазерное Pantum M6500W черно-белая печать, A4, черный МФУ лазерное Pantum M6500W черно-белая печать, A4, черный":
+                            - /url: /product/mfu-lazernyi-pantum-m6500w-cherno-belaya-pechat-a4-cvet-chernyi-1152205/
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - img "МФУ лазерное Pantum M6500W черно-белая печать, A4, черный"
+                                  - img "МФУ лазерное Pantum M6500W черно-белая печать, A4, черный"
+                                  - img "МФУ лазерное Pantum M6500W черно-белая печать, A4, черный"
+                                  - img "МФУ лазерное Pantum M6500W черно-белая печать, A4, черный"
+                                  - img "МФУ лазерное Pantum M6500W черно-белая печать, A4, черный"
+                                  - img "МФУ лазерное Pantum M6500W черно-белая печать, A4, черный"
+                      - generic:
+                        - link "МФУ лазерное Pantum M6500W черно-белая печать, A4, черный":
+                          - /url: /product/mfu-lazernyi-pantum-m6500w-cherno-belaya-pechat-a4-cvet-chernyi-1152205/
+                    - generic:
+                      - generic:
+                        - generic:
+                          - button "14 790₽"
+              - generic:
+                - generic:
+                  - link "11\" Планшет Xiaomi REDMI Pad 2 O84X 8/256 GB G100 Ultra 4G, 2560 x 1600, 90Гц, Android 15, серый [65587]":
+                    - /url: /product/planshet-xiaomi-redmi-pad-2-g100-8c-8gb-256gb-11-ips-1340x800-4g-seryi-2112201/
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - link "11\" Планшет Xiaomi REDMI Pad 2 O84X 8/256 GB G100 Ultra 4G, 2560 x 1600 11\" Планшет Xiaomi REDMI Pad 2 O84X 8/256 GB G100 Ultra 4G, 2560 x 1600 11\" Планшет Xiaomi REDMI Pad 2 O84X 8/256 GB G100 Ultra 4G, 2560 x 1600 11\" Планшет Xiaomi REDMI Pad 2 O84X 8/256 GB G100 Ultra 4G, 2560 x 1600 11\" Планшет Xiaomi REDMI Pad 2 O84X 8/256 GB G100 Ultra 4G, 2560 x 1600 11\" Планшет Xiaomi REDMI Pad 2 O84X 8/256 GB G100 Ultra 4G, 2560 x 1600":
+                            - /url: /product/planshet-xiaomi-redmi-pad-2-g100-8c-8gb-256gb-11-ips-1340x800-4g-seryi-2112201/
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - img "11\" Планшет Xiaomi REDMI Pad 2 O84X 8/256 GB G100 Ultra 4G, 2560 x 1600"
+                                  - img "11\" Планшет Xiaomi REDMI Pad 2 O84X 8/256 GB G100 Ultra 4G, 2560 x 1600"
+                                  - img "11\" Планшет Xiaomi REDMI Pad 2 O84X 8/256 GB G100 Ultra 4G, 2560 x 1600"
+                                  - img "11\" Планшет Xiaomi REDMI Pad 2 O84X 8/256 GB G100 Ultra 4G, 2560 x 1600"
+                                  - img "11\" Планшет Xiaomi REDMI Pad 2 O84X 8/256 GB G100 Ultra 4G, 2560 x 1600"
+                                  - img "11\" Планшет Xiaomi REDMI Pad 2 O84X 8/256 GB G100 Ultra 4G, 2560 x 1600"
+                      - generic:
+                        - link "11\" Планшет Xiaomi REDMI Pad 2 O84X 8/256 GB G100 Ultra 4G, 2560 x 1600":
+                          - /url: /product/planshet-xiaomi-redmi-pad-2-g100-8c-8gb-256gb-11-ips-1340x800-4g-seryi-2112201/
+                    - generic:
+                      - generic:
+                        - generic:
+                          - button "21 990₽"
+              - generic:
+                - generic:
+                  - link "Газонокосилка электрическая CHAMPION EM3212/1, 32см, несамоходная":
+                    - /url: /product/gazonokosilka-ruchnaya-champion-em3212-1-elektricheskaya-1-2vt-2131051/
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - link "Газонокосилка электрическая CHAMPION EM3212/1, 32см, несамоходная Газонокосилка электрическая CHAMPION EM3212/1, 32см, несамоходная Газонокосилка электрическая CHAMPION EM3212/1, 32см, несамоходная Газонокосилка электрическая CHAMPION EM3212/1, 32см, несамоходная Газонокосилка электрическая CHAMPION EM3212/1, 32см, несамоходная Газонокосилка электрическая CHAMPION EM3212/1, 32см, несамоходная":
+                            - /url: /product/gazonokosilka-ruchnaya-champion-em3212-1-elektricheskaya-1-2vt-2131051/
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - img "Газонокосилка электрическая CHAMPION EM3212/1, 32см, несамоходная"
+                                  - img "Газонокосилка электрическая CHAMPION EM3212/1, 32см, несамоходная"
+                                  - img "Газонокосилка электрическая CHAMPION EM3212/1, 32см, несамоходная"
+                                  - img "Газонокосилка электрическая CHAMPION EM3212/1, 32см, несамоходная"
+                                  - img "Газонокосилка электрическая CHAMPION EM3212/1, 32см, несамоходная"
+                                  - img "Газонокосилка электрическая CHAMPION EM3212/1, 32см, несамоходная"
+                      - generic:
+                        - link "Газонокосилка электрическая CHAMPION EM3212/1, 32см, несамоходная":
+                          - /url: /product/gazonokosilka-ruchnaya-champion-em3212-1-elektricheskaya-1-2vt-2131051/
+                    - generic:
+                      - generic:
+                        - generic:
+                          - button "4990₽"
+            - button [ref=f20e393] [cursor=pointer]
+    - contentinfo [ref=f20e398]:
+      - generic [ref=f20e400]:
+        - generic [ref=f20e403]:
+          - generic [ref=f20e404]: Хочу быть в курсе акций и новинок
+          - generic [ref=f20e406]:
+            - textbox [ref=f20e409]:
+              - /placeholder: Мой e-mail
+            - paragraph
+          - button "Подписаться" [disabled] [ref=f20e411]
+        - generic [ref=f20e413]:
+          - list [ref=f20e415]:
+            - listitem [ref=f20e416]:
+              - generic [ref=f20e417]:
+                - heading "Покупателям" [level=5] [ref=f20e418]
+                - list [ref=f20e419]:
+                  - listitem [ref=f20e420]:
+                    - link "Доставка" [ref=f20e421] [cursor=pointer]:
+                      - /url: /about/delivery/
+                  - listitem [ref=f20e422]:
+                    - link "Гарантия" [ref=f20e423] [cursor=pointer]:
+                      - /url: /about/warranty/
+                  - listitem [ref=f20e424]:
+                    - link "Кредит и рассрочка" [ref=f20e425] [cursor=pointer]:
+                      - /url: /about/credit/
+                  - listitem [ref=f20e426]:
+                    - link "Конфигуратор ПК" [ref=f20e427] [cursor=pointer]:
+                      - /url: /configurator/
+                  - listitem [ref=f20e428]:
+                    - link "Информация" [ref=f20e429] [cursor=pointer]:
+                      - /url: /about/
+                  - listitem [ref=f20e430]:
+                    - link "Корпоративным клиентам" [ref=f20e431] [cursor=pointer]:
+                      - /url: /corporate/
+                  - listitem [ref=f20e432]:
+                    - link "Подбор расходных материалов" [ref=f20e433] [cursor=pointer]:
+                      - /url: /supplies/
+            - listitem [ref=f20e434]:
+              - generic [ref=f20e435]:
+                - heading "Информация" [level=5] [ref=f20e436]
+                - list [ref=f20e437]:
+                  - listitem [ref=f20e438]:
+                    - link "Акции" [ref=f20e439] [cursor=pointer]:
+                      - /url: /actions/
+                  - listitem [ref=f20e440]:
+                    - link "Клуб Ситилинк" [ref=f20e441] [cursor=pointer]:
+                      - /url: /about/club/
+                  - listitem [ref=f20e442]:
+                    - link "Журнал" [ref=f20e443] [cursor=pointer]:
+                      - /url: https://journal.citilink.ru
+                  - listitem [ref=f20e444]:
+                    - link "Обзоры" [ref=f20e445] [cursor=pointer]:
+                      - /url: /reviews/
+                  - listitem [ref=f20e446]:
+                    - link "Услуги" [ref=f20e447] [cursor=pointer]:
+                      - /url: /services/
+                  - listitem [ref=f20e448]:
+                    - link "Для вебмастеров" [ref=f20e449] [cursor=pointer]:
+                      - /url: https://advcake.com/lp/citilink
+            - listitem [ref=f20e450]:
+              - generic [ref=f20e451]:
+                - heading "Компания" [level=5] [ref=f20e452]
+                - list [ref=f20e453]:
+                  - listitem [ref=f20e454]:
+                    - link "О Ситилинк" [ref=f20e455] [cursor=pointer]:
+                      - /url: /about/citilink/
+                  - listitem [ref=f20e456]:
+                    - link "Документы" [ref=f20e457] [cursor=pointer]:
+                      - /url: /doc/
+                  - listitem [ref=f20e458]:
+                    - link "Новости" [ref=f20e459] [cursor=pointer]:
+                      - /url: /news/
+                  - listitem [ref=f20e460]:
+                    - link "Аренда помещений" [ref=f20e461] [cursor=pointer]:
+                      - /url: /rent/
+                  - listitem [ref=f20e462]:
+                    - link "Вакансии" [ref=f20e463] [cursor=pointer]:
+                      - /url: https://job.citilink.ru
+                  - listitem [ref=f20e464]:
+                    - link "Сервисные центры" [ref=f20e465] [cursor=pointer]:
+                      - /url: /warranty/services/
+          - generic [ref=f20e467]:
+            - heading "Контакты" [level=5] [ref=f20e469]
+            - generic [ref=f20e470]:
+              - button "Астрахань" [ref=f20e472] [cursor=pointer]
+              - link "+7 (851) 227-07-07" [ref=f20e479] [cursor=pointer]:
+                - /url: tel:+78512270707
+              - link "Адреса магазинов" [ref=f20e481] [cursor=pointer]:
+                - /url: /about/stores/
+            - button "Задать вопрос" [ref=f20e483] [cursor=pointer]
+          - generic [ref=f20e487]:
+            - generic [ref=f20e488]: Скачайте приложение Ситилинк
+            - generic [ref=f20e491]:
+              - link [ref=f20e492] [cursor=pointer]:
+                - /url: https://redirect.appmetrica.yandex.com/serve/244931008867139415
+              - link [ref=f20e498] [cursor=pointer]:
+                - /url: https://redirect.appmetrica.yandex.com/serve/1037564539090015321
+              - link [ref=f20e510] [cursor=pointer]:
+                - /url: https://redirect.appmetrica.yandex.com/serve/172873419073839504
+              - link [ref=f20e521] [cursor=pointer]:
+                - /url: https://redirect.appmetrica.yandex.com/serve/172873412681695790
+        - generic [ref=f20e533]:
+          - link [ref=f20e534] [cursor=pointer]:
+            - /url: https://www.youtube.com/user/CitilinkTV
+          - link [ref=f20e539] [cursor=pointer]:
+            - /url: https://vk.com/citilink_ru
+          - link [ref=f20e543] [cursor=pointer]:
+            - /url: https://ok.ru/citilink.ru
+          - link [ref=f20e548] [cursor=pointer]:
+            - /url: https://zen.yandex.ru/citilink
+          - link [ref=f20e553] [cursor=pointer]:
+            - /url: https://t.me/citilink_official
+        - generic [ref=f20e558]:
+          - generic [ref=f20e559]: © Ситилинк, 2008 – 2026
+          - generic [ref=f20e562]:
+            - link "Политика обработки персональных данных" [ref=f20e563] [cursor=pointer]:
+              - /url: /about/privacy-policy/
+            - link "Рекомендательные технологии" [ref=f20e564] [cursor=pointer]:
+              - /url: /application/recommendation-technology/
+    - generic [ref=f20e567]:
+      - generic [ref=f20e568]: Мы используем файлы cookie для вашего удобства. Продолжая пользоваться сайтом, вы соглашаетесь с политикой использования cookie. Подробнее
+      - button "Я согласен" [ref=f20e571] [cursor=pointer]
+  - alert [ref=f20e573]

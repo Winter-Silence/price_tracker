@@ -1,0 +1,751 @@
+- generic [active] [ref=f2e1]:
+  - generic [ref=f2e2]:
+    - banner [ref=f2e3]:
+      - generic [ref=f2e4]:
+        - generic [ref=f2e5]:
+          - list [ref=f2e6]:
+            - listitem [ref=f2e7]:
+              - generic [ref=f2e8] [cursor=pointer]: Москва
+            - listitem [ref=f2e9]:
+              - list [ref=f2e11]:
+                - listitem
+                - listitem [ref=f2e12] [cursor=pointer]:
+                  - link "Wibes" [ref=f2e13]:
+                    - /url: https://wibes.ru/clips?utm_source=main_topbar&utm_medium=inner_wb
+                - listitem [ref=f2e14] [cursor=pointer]:
+                  - link "Отели" [ref=f2e15]:
+                    - /url: /travel/hotel?entry_point=tab_header
+                - listitem [ref=f2e16] [cursor=pointer]:
+                  - link "Авиабилеты" [ref=f2e17]:
+                    - /url: /travel/avia?entry_point=tab_header
+                - listitem [ref=f2e18] [cursor=pointer]:
+                  - link "Ресейл" [ref=f2e19]:
+                    - /url: /catalog/resale
+                - listitem [ref=f2e20] [cursor=pointer]:
+                  - link "WB Клуб" [ref=f2e21]:
+                    - /url: /subscription
+                - listitem [ref=f2e22] [cursor=pointer]:
+                  - link "Бренды" [ref=f2e23]:
+                    - /url: /wbrands
+                - listitem [ref=f2e24] [cursor=pointer]:
+                  - link "Новостройки" [ref=f2e25]:
+                    - /url: /realty?entry_point=tab_header
+                - listitem [ref=f2e26] [cursor=pointer]:
+                  - link "WB Track" [ref=f2e27]:
+                    - /url: /track
+                - listitem [ref=f2e28] [cursor=pointer]:
+                  - generic [ref=f2e29]: Для бизнеса
+                - listitem [ref=f2e30] [cursor=pointer]:
+                  - link "Еаптека" [ref=f2e31]:
+                    - /url: /eapteka
+                - listitem [ref=f2e32] [cursor=pointer]:
+                  - generic [ref=f2e33]: Работа в RWB
+          - generic [ref=f2e34]:
+            - generic [ref=f2e35]: Кешбэк
+            - generic [ref=f2e37]: RUB
+        - generic [ref=f2e41]:
+          - generic [ref=f2e42]:
+            - link [ref=f2e43] [cursor=pointer]:
+              - /url: /
+            - button "Навигация по сайту" [ref=f2e46] [cursor=pointer]
+          - searchbox "Найти на Wildberries" [ref=f2e51]
+          - generic [ref=f2e61]:
+            - link [ref=f2e63] [cursor=pointer]:
+              - /url: /services/besplatnaya-dostavka?
+              - paragraph [ref=f2e65]: Адреса
+            - link "Войти" [ref=f2e67] [cursor=pointer]:
+              - /url: /security/login?returnUrl=https%3A%2F%2Fwww.wildberries.ru%2Fcatalog%2F185264966%2Fdetail.aspx
+              - paragraph [ref=f2e69]: Войти
+            - link "Корзина" [ref=f2e71] [cursor=pointer]:
+              - /url: /lk/basket
+              - paragraph [ref=f2e73]: Корзина
+    - list [ref=f2e76]:
+      - listitem [ref=f2e77]:
+        - link "РАСПРОДАЖА" [ref=f2e78] [cursor=pointer]:
+          - /url: /promotions/skidki
+      - listitem [ref=f2e79]:
+        - link "Находки из Китая" [ref=f2e80] [cursor=pointer]:
+          - /url: /seller/nahodki-iz-kitaya
+      - listitem [ref=f2e81]:
+        - link "Скидки WB Клуба" [ref=f2e82] [cursor=pointer]:
+          - /url: /subscription
+      - listitem [ref=f2e83]:
+        - link "Сертификаты Wildberries" [ref=f2e84] [cursor=pointer]:
+          - /url: /gift/certificates
+      - listitem [ref=f2e85]:
+        - link "Еаптека" [ref=f2e86] [cursor=pointer]:
+          - /url: /eapteka?entry_point=catalog
+      - listitem [ref=f2e87]:
+        - link "РИВ ГОШ" [ref=f2e88] [cursor=pointer]:
+          - /url: /seller/rivegauche
+      - listitem [ref=f2e89]:
+        - link "Ресейл" [ref=f2e90] [cursor=pointer]:
+          - /url: /catalog/resale
+      - listitem [ref=f2e91]:
+        - link "Услуги" [ref=f2e92] [cursor=pointer]:
+          - /url: /landings/sale-of-services
+      - listitem [ref=f2e93]:
+        - link "Бренды" [ref=f2e94] [cursor=pointer]:
+          - /url: /wbrands
+      - listitem [ref=f2e95]:
+        - link "Travel" [ref=f2e96] [cursor=pointer]:
+          - /url: https://www.wildberries.ru/travel
+      - listitem [ref=f2e97]:
+        - link "Мужчины выбирают" [ref=f2e98] [cursor=pointer]:
+          - /url: /astro/MensClub
+      - listitem [ref=f2e99]:
+        - link "Покупайте как бизнес" [ref=f2e100] [cursor=pointer]:
+          - /url: /business
+      - listitem [ref=f2e101]:
+        - link "Wibes" [ref=f2e102] [cursor=pointer]:
+          - /url: https://wibes-web-header.onelink.me/XPJ8?af_xp=custom&pid=katalogwb&c=wibesyellow&af_dp=wbwibes%3A%2F%2F
+      - listitem [ref=f2e103]:
+        - link "Лотерея Мечталлион" [ref=f2e104] [cursor=pointer]:
+          - /url: /mechtallionlottery
+      - listitem [ref=f2e105]:
+        - link "Новостройки" [ref=f2e106] [cursor=pointer]:
+          - /url: /realty?entryPoint=Catalog
+      - listitem [ref=f2e107]:
+        - link "Экспресс":
+          - /url: /catalog/ekspress-dostavka
+      - listitem [ref=f2e108]:
+        - link "WB Track" [ref=f2e109] [cursor=pointer]:
+          - /url: https://www.wildberries.ru/track
+      - listitem [ref=f2e110]:
+        - link "RWB Участие" [ref=f2e111] [cursor=pointer]:
+          - /url: https://esg.rwb.ru/charity?utm_source=wb&utm_content=catalog_web
+      - listitem [ref=f2e112]:
+        - link "Женщинам":
+          - /url: /catalog/zhenshchinam
+      - listitem [ref=f2e113]:
+        - link "Обувь":
+          - /url: /catalog/obuv
+      - listitem [ref=f2e114]:
+        - link "Детям":
+          - /url: /catalog/detyam
+      - listitem [ref=f2e115]:
+        - link "Мужчинам":
+          - /url: /catalog/muzhchinam
+      - listitem [ref=f2e116]:
+        - link "Дом":
+          - /url: /catalog/dom-i-dacha
+      - listitem [ref=f2e117]:
+        - link "Красота":
+          - /url: /catalog/krasota
+      - listitem [ref=f2e118]:
+        - link "Аксессуары":
+          - /url: /catalog/aksessuary
+      - listitem [ref=f2e119]:
+        - link "Электроника":
+          - /url: /catalog/elektronika
+      - listitem [ref=f2e120]:
+        - link "Игрушки":
+          - /url: /catalog/igrushki
+      - listitem [ref=f2e121]:
+        - link "Мебель":
+          - /url: /catalog/dom/mebel
+      - listitem [ref=f2e122]:
+        - link "Товары для взрослых":
+          - /url: /catalog/aksessuary/tovary-dlya-vzroslyh
+      - listitem [ref=f2e123]:
+        - link "Продукты":
+          - /url: /catalog/pitanie
+      - listitem [ref=f2e124]:
+        - link "Цветы" [ref=f2e125] [cursor=pointer]:
+          - /url: /catalog/tsvety
+      - listitem [ref=f2e126]:
+        - link "Бытовая техника":
+          - /url: /catalog/bytovaya-tehnika
+      - listitem [ref=f2e127]:
+        - link "Зоотовары":
+          - /url: /catalog/tovary-dlya-zhivotnyh
+      - listitem [ref=f2e128]:
+        - link "Спорт":
+          - /url: /catalog/sport
+      - listitem [ref=f2e129]:
+        - link "Автотовары":
+          - /url: /catalog/aksessuary/avtotovary
+      - listitem [ref=f2e130]:
+        - link "Транспортные средства" [ref=f2e131] [cursor=pointer]:
+          - /url: /catalog/transportnye-sredstva
+      - listitem [ref=f2e132]:
+        - link "Книги":
+          - /url: /catalog/knigi
+      - listitem [ref=f2e133]:
+        - link "Ювелирные изделия":
+          - /url: /catalog/yuvelirnye-ukrasheniya
+      - listitem [ref=f2e134]:
+        - link "Для ремонта":
+          - /url: /catalog/dom-i-dacha/instrumenty
+      - listitem [ref=f2e135]:
+        - link "Сад и дача":
+          - /url: /catalog/dachniy-sezon
+      - listitem [ref=f2e136]:
+        - link "Здоровье":
+          - /url: /catalog/dom-i-dacha/zdorove
+      - listitem [ref=f2e137]:
+        - link "Адаптивные товары":
+          - /url: /catalog/adaptivnye-tovary
+      - listitem [ref=f2e138]:
+        - link "Лекарственные препараты" [ref=f2e139] [cursor=pointer]:
+          - /url: /catalog/lekarstvennye-preparaty
+      - listitem [ref=f2e140]:
+        - link "Канцтовары":
+          - /url: /catalog/knigi-i-diski/kantstovary
+      - listitem [ref=f2e141]:
+        - link "Сделано в России":
+          - /url: /catalog/sdelano-v-rossii
+      - listitem [ref=f2e142]:
+        - link "Товары оптом" [ref=f2e143] [cursor=pointer]:
+          - /url: /catalog/tovary-optom
+      - listitem [ref=f2e144]:
+        - link "Грузовая доставка":
+          - /url: /catalog/gruzovaya-dostavka
+      - listitem [ref=f2e145]:
+        - link "Культурный код":
+          - /url: /catalog/kulturnyy-kod
+      - listitem [ref=f2e146]:
+        - link "Баллы за отзыв" [ref=f2e147] [cursor=pointer]:
+          - /url: /promotions/bally-za-otzyvy
+      - listitem [ref=f2e148]:
+        - link "Акции" [ref=f2e149] [cursor=pointer]:
+          - /url: /promotions
+      - listitem [ref=f2e150]:
+        - link "Цифровые товары" [ref=f2e151] [cursor=pointer]:
+          - /url: /catalog/tsifrovye-tovary
+    - main [ref=f2e152]:
+      - generic [ref=f2e153]:
+        - generic [ref=f2e157]:
+          - heading "По Вашему запросу ничего не найдено" [level=1] [ref=f2e158]
+          - link "Перейти в каталог" [ref=f2e159] [cursor=pointer]:
+            - /url: /recommendation/catalog?type=bestsallers
+          - generic [ref=f2e160]:
+            - heading "Хит продаж" [level=2] [ref=f2e161]
+            - generic [ref=f2e162]:
+              - button "Назад" [ref=f2e163] [cursor=pointer]
+              - generic [ref=f2e165]:
+                - article [ref=f2e167]:
+                  - generic [ref=f2e168]:
+                    - link "Зонт автомат складной антиветер облегченный JOYCITY" [ref=f2e169] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/112612828/detail.aspx
+                    - generic [ref=f2e170]:
+                      - button "Добавить в избранное" [ref=f2e172] [cursor=pointer]
+                      - img "Зонт автомат складной антиветер облегченный JOYCITY" [ref=f2e174]
+                      - generic [ref=f2e175]: −80%
+                    - generic [ref=f2e179]:
+                      - generic [ref=f2e180]:
+                        - generic [ref=f2e182]:
+                          - insertion [ref=f2e187]: 397 ₽
+                          - deletion [ref=f2e188]: 2 094 ₽
+                        - generic [ref=f2e189]: с WB Кошельком
+                      - heading "JOYCITY / Зонт автомат складной антиветер облегченный" [level=2] [ref=f2e190]:
+                        - generic [ref=f2e191]: JOYCITY
+                        - generic [ref=f2e193]: / Зонт автомат складной антиветер облегченный
+                    - generic [ref=f2e194]:
+                      - generic [ref=f2e195]:
+                        - generic [ref=f2e196]: 4,9
+                        - generic [ref=f2e197]: 44 963 оценки
+                      - link "Завтра" [ref=f2e199] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=f2e203]:
+                  - generic [ref=f2e204]:
+                    - link "Шампунь для волос женский и бальзам MIXIT" [ref=f2e205] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/175088486/detail.aspx
+                    - generic [ref=f2e206]:
+                      - button "Добавить в избранное" [ref=f2e208] [cursor=pointer]
+                      - img "Шампунь для волос женский и бальзам MIXIT" [ref=f2e210]
+                      - generic [ref=f2e211]: −50%
+                    - generic [ref=f2e215]:
+                      - generic [ref=f2e216]:
+                        - generic [ref=f2e218]:
+                          - insertion [ref=f2e223]: 752 ₽
+                          - deletion [ref=f2e224]: 1 566 ₽
+                        - generic [ref=f2e225]: с WB Кошельком
+                      - heading "MIXIT / Шампунь для волос женский и бальзам" [level=2] [ref=f2e226]:
+                        - generic [ref=f2e227]: MIXIT
+                        - generic [ref=f2e229]: / Шампунь для волос женский и бальзам
+                    - generic [ref=f2e230]:
+                      - generic [ref=f2e231]:
+                        - generic [ref=f2e232]: 4,9
+                        - generic [ref=f2e233]: 289 301 оценка
+                      - link "Завтра" [ref=f2e235] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=f2e239]:
+                  - generic [ref=f2e240]:
+                    - link "Вешалки для одежды Ridberg" [ref=f2e241] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/193714919/detail.aspx
+                    - generic [ref=f2e242]:
+                      - button "Добавить в избранное" [ref=f2e244] [cursor=pointer]
+                      - img "Вешалки для одежды Ridberg" [ref=f2e246]
+                      - generic [ref=f2e247]: −70%
+                    - generic [ref=f2e251]:
+                      - generic [ref=f2e252]:
+                        - generic [ref=f2e254]:
+                          - insertion [ref=f2e259]: 336 ₽
+                          - deletion [ref=f2e260]: 1 158 ₽
+                        - generic [ref=f2e261]: с WB Кошельком
+                      - heading "Ridberg / Вешалки для одежды" [level=2] [ref=f2e262]:
+                        - generic [ref=f2e263]: Ridberg
+                        - generic [ref=f2e265]: / Вешалки для одежды
+                    - generic [ref=f2e266]:
+                      - generic [ref=f2e267]:
+                        - generic [ref=f2e268]: 4,9
+                        - generic [ref=f2e269]: 33 478 оценок
+                      - link "Завтра" [ref=f2e271] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=f2e275]:
+                  - generic [ref=f2e276]:
+                    - link "Капсулы для стирки белья Color 60 шт Ariel" [ref=f2e277] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/12295464/detail.aspx
+                    - generic [ref=f2e278]:
+                      - button "Добавить в избранное" [ref=f2e280] [cursor=pointer]
+                      - img "Капсулы для стирки белья Color 60 шт Ariel" [ref=f2e282]
+                      - generic [ref=f2e283]: −56%
+                    - generic [ref=f2e287]:
+                      - generic [ref=f2e288]:
+                        - generic [ref=f2e290]:
+                          - insertion [ref=f2e291]: 1 568 ₽
+                          - deletion [ref=f2e292]: 3 639 ₽
+                        - generic [ref=f2e293]: с WB Кошельком
+                      - heading "Ariel / Капсулы для стирки белья Color 60 шт" [level=2] [ref=f2e294]:
+                        - generic [ref=f2e295]: Ariel
+                        - generic [ref=f2e297]: / Капсулы для стирки белья Color 60 шт
+                    - generic [ref=f2e298]:
+                      - generic [ref=f2e299]:
+                        - generic [ref=f2e300]: 4,9
+                        - generic [ref=f2e301]: 25 488 оценок
+                      - link "Завтра" [ref=f2e303] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=f2e307]:
+                  - generic [ref=f2e308]:
+                    - link "Держатель для душа кронштейн OKRA" [ref=f2e309] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/160382234/detail.aspx
+                    - generic [ref=f2e310]:
+                      - button "Добавить в избранное" [ref=f2e312] [cursor=pointer]
+                      - img "Держатель для душа кронштейн OKRA" [ref=f2e314]
+                      - generic [ref=f2e315]: −85%
+                    - generic [ref=f2e319]:
+                      - generic [ref=f2e320]:
+                        - generic [ref=f2e322]:
+                          - insertion [ref=f2e327]: 152 ₽
+                          - deletion [ref=f2e328]: 1 040 ₽
+                        - generic [ref=f2e329]: с WB Кошельком
+                      - heading "OKRA / Держатель для душа кронштейн" [level=2] [ref=f2e330]:
+                        - generic [ref=f2e331]: OKRA
+                        - generic [ref=f2e333]: / Держатель для душа кронштейн
+                    - generic [ref=f2e334]:
+                      - generic [ref=f2e335]:
+                        - generic [ref=f2e336]: 4,9
+                        - generic [ref=f2e337]: 29 385 оценок
+                      - link "Завтра" [ref=f2e339] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=f2e343]:
+                  - generic [ref=f2e344]:
+                    - link "Джинсовые шорты летние Arnold Collection" [ref=f2e345] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/946092871/detail.aspx
+                    - generic [ref=f2e346]:
+                      - button "Добавить в избранное" [ref=f2e348] [cursor=pointer]
+                      - img "Джинсовые шорты летние Arnold Collection" [ref=f2e350]
+                      - generic [ref=f2e351]: −78%
+                    - generic [ref=f2e355]:
+                      - generic [ref=f2e356]:
+                        - generic [ref=f2e358]:
+                          - insertion [ref=f2e363]: 1 977 ₽
+                          - deletion [ref=f2e364]: 9 500 ₽
+                        - generic [ref=f2e365]: с WB Кошельком
+                      - heading "Arnold Collection / Джинсовые шорты летние" [level=2] [ref=f2e366]:
+                        - generic [ref=f2e367]: Arnold Collection
+                        - generic [ref=f2e368]: / Джинсовые шорты летние
+                    - generic [ref=f2e369]:
+                      - generic [ref=f2e370]:
+                        - generic [ref=f2e371]: 4,8
+                        - generic [ref=f2e372]: 12 121 оценка
+                      - link "Завтра" [ref=f2e374] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=f2e378]:
+                  - generic [ref=f2e379]:
+                    - link "Кассеты для бритья женские сменные 5 лезвий Extra Smooth 6шт VENUS" [ref=f2e380] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/8521892/detail.aspx
+                    - generic [ref=f2e381]:
+                      - button "Добавить в избранное" [ref=f2e383] [cursor=pointer]
+                      - img "Кассеты для бритья женские сменные 5 лезвий Extra Smooth 6шт VENUS" [ref=f2e385]
+                      - generic [ref=f2e386]: −40%
+                    - generic [ref=f2e390]:
+                      - generic [ref=f2e391]:
+                        - generic [ref=f2e393]:
+                          - insertion [ref=f2e398]: 1 651 ₽
+                          - deletion [ref=f2e399]: 2 809 ₽
+                        - generic [ref=f2e400]: с WB Кошельком
+                      - heading "VENUS / Кассеты для бритья женские сменные 5 лезвий Extra Smooth 6шт" [level=2] [ref=f2e401]:
+                        - generic [ref=f2e402]: VENUS
+                        - generic [ref=f2e404]: / Кассеты для бритья женские сменные 5 лезвий Extra Smooth 6шт
+                    - generic [ref=f2e405]:
+                      - generic [ref=f2e406]:
+                        - generic [ref=f2e407]: 4,9
+                        - generic [ref=f2e408]: 13 267 оценок
+                      - link "Завтра" [ref=f2e410] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=f2e414]:
+                  - generic [ref=f2e415]:
+                    - link "Футболка поло с коротким рукавом с полоской Stark Cotton" [ref=f2e416] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/286946192/detail.aspx
+                    - generic [ref=f2e417]:
+                      - button "Добавить в избранное" [ref=f2e419] [cursor=pointer]
+                      - img "Футболка поло с коротким рукавом с полоской Stark Cotton" [ref=f2e421]
+                      - generic [ref=f2e422]: −81%
+                    - generic [ref=f2e426]:
+                      - generic [ref=f2e427]:
+                        - generic [ref=f2e429]:
+                          - insertion [ref=f2e434]: 813 ₽
+                          - deletion [ref=f2e435]: 4 399 ₽
+                        - generic [ref=f2e436]: с WB Кошельком
+                      - heading "Stark Cotton / Футболка поло с коротким рукавом с полоской" [level=2] [ref=f2e437]:
+                        - generic [ref=f2e438]: Stark Cotton
+                        - generic [ref=f2e440]: / Футболка поло с коротким рукавом с полоской
+                    - generic [ref=f2e441]:
+                      - generic [ref=f2e442]:
+                        - generic [ref=f2e443]: 4,9
+                        - generic [ref=f2e444]: 2 472 оценки
+                      - link "Завтра" [ref=f2e446] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=f2e450]:
+                  - generic [ref=f2e451]:
+                    - link "Каша кукурузная безмолочная, 180г ФрутоНяня" [ref=f2e452] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/327468652/detail.aspx
+                    - generic [ref=f2e453]:
+                      - button "Добавить в избранное" [ref=f2e455] [cursor=pointer]
+                      - img "Каша кукурузная безмолочная, 180г ФрутоНяня" [ref=f2e457]
+                      - generic [ref=f2e458]: −31%
+                    - generic [ref=f2e462]:
+                      - generic [ref=f2e463]:
+                        - generic [ref=f2e465]:
+                          - insertion [ref=f2e470]: 106 ₽
+                          - deletion [ref=f2e471]: 159 ₽
+                        - generic [ref=f2e472]: с WB Кошельком
+                      - heading "ФрутоНяня / Каша кукурузная безмолочная, 180г" [level=2] [ref=f2e473]:
+                        - generic [ref=f2e474]: ФрутоНяня
+                        - generic [ref=f2e476]: / Каша кукурузная безмолочная, 180г
+                    - generic [ref=f2e477]:
+                      - generic [ref=f2e478]:
+                        - generic [ref=f2e479]: 4,9
+                        - generic [ref=f2e480]: 22 151 оценка
+                      - link "Завтра" [ref=f2e482] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=f2e486]:
+                  - generic [ref=f2e487]:
+                    - link "Вакуумные пакеты для одежды и хранения вещей KIMA home" [ref=f2e488] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/33712095/detail.aspx
+                    - generic [ref=f2e489]:
+                      - button "Добавить в избранное" [ref=f2e491] [cursor=pointer]
+                      - img "Вакуумные пакеты для одежды и хранения вещей KIMA home" [ref=f2e493]
+                      - generic [ref=f2e494]: −72%
+                    - generic [ref=f2e498]:
+                      - generic [ref=f2e499]:
+                        - generic [ref=f2e501]:
+                          - insertion [ref=f2e506]: 627 ₽
+                          - deletion [ref=f2e507]: 2 300 ₽
+                        - generic [ref=f2e508]: с WB Кошельком
+                      - heading "KIMA home / Вакуумные пакеты для одежды и хранения вещей" [level=2] [ref=f2e509]:
+                        - generic [ref=f2e510]: KIMA home
+                        - generic [ref=f2e511]: / Вакуумные пакеты для одежды и хранения вещей
+                    - generic [ref=f2e512]:
+                      - generic [ref=f2e513]:
+                        - generic [ref=f2e514]: 4,9
+                        - generic [ref=f2e515]: 18 018 оценок
+                      - link "Завтра" [ref=f2e517] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=f2e521]:
+                  - generic [ref=f2e522]:
+                    - link "Боди майки для новорожденных Rabiko" [ref=f2e523] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/388226755/detail.aspx
+                    - generic [ref=f2e524]:
+                      - button "Добавить в избранное" [ref=f2e526] [cursor=pointer]
+                      - img "Боди майки для новорожденных Rabiko" [ref=f2e528]
+                      - generic [ref=f2e529]: −56%
+                    - generic [ref=f2e533]:
+                      - generic [ref=f2e534]:
+                        - generic [ref=f2e536]:
+                          - insertion [ref=f2e541]: 1 243 ₽
+                          - deletion [ref=f2e542]: 2 923 ₽
+                        - generic [ref=f2e543]: с WB Кошельком
+                      - heading "Rabiko / Боди майки для новорожденных" [level=2] [ref=f2e544]:
+                        - generic [ref=f2e545]: Rabiko
+                        - generic [ref=f2e547]: / Боди майки для новорожденных
+                    - generic [ref=f2e548]:
+                      - generic [ref=f2e549]:
+                        - generic [ref=f2e550]: 4,9
+                        - generic [ref=f2e551]: 1 840 оценок
+                      - link "Завтра" [ref=f2e553] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=f2e557]:
+                  - generic [ref=f2e558]:
+                    - link "Футболка однотонная базовая хлопок smite" [ref=f2e559] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/76280451/detail.aspx
+                    - generic [ref=f2e560]:
+                      - button "Добавить в избранное" [ref=f2e562] [cursor=pointer]
+                      - img "Футболка однотонная базовая хлопок smite" [ref=f2e564]
+                      - generic [ref=f2e565]: −91%
+                    - generic [ref=f2e569]:
+                      - generic [ref=f2e570]:
+                        - generic [ref=f2e572]:
+                          - insertion [ref=f2e577]: 188 ₽
+                          - deletion [ref=f2e578]: 2 235 ₽
+                        - generic [ref=f2e579]: с WB Кошельком
+                      - heading "smite / Футболка однотонная базовая хлопок" [level=2] [ref=f2e580]:
+                        - generic [ref=f2e581]: smite
+                        - generic [ref=f2e583]: / Футболка однотонная базовая хлопок
+                    - generic [ref=f2e584]:
+                      - generic [ref=f2e585]:
+                        - generic [ref=f2e586]: 4,9
+                        - generic [ref=f2e587]: 273 013 оценок
+                      - link "Завтра" [ref=f2e589] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=f2e593]:
+                  - generic [ref=f2e594]:
+                    - link "Впитывающие пеленки одноразовые 60x90 см, 30 шт Senso Baby" [ref=f2e595] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/234635169/detail.aspx
+                    - generic [ref=f2e596]:
+                      - button "Добавить в избранное" [ref=f2e598] [cursor=pointer]
+                      - img "Впитывающие пеленки одноразовые 60x90 см, 30 шт Senso Baby" [ref=f2e600]
+                      - generic [ref=f2e601]: −63%
+                    - generic [ref=f2e605]:
+                      - generic [ref=f2e606]:
+                        - generic [ref=f2e608]:
+                          - insertion [ref=f2e613]: 392 ₽
+                          - deletion [ref=f2e614]: 1 083 ₽
+                        - generic [ref=f2e615]: с WB Кошельком
+                      - heading "Senso Baby / Впитывающие пеленки одноразовые 60x90 см, 30 шт" [level=2] [ref=f2e616]:
+                        - generic [ref=f2e617]: Senso Baby
+                        - generic [ref=f2e619]: / Впитывающие пеленки одноразовые 60x90 см, 30 шт
+                    - generic [ref=f2e620]:
+                      - generic [ref=f2e621]:
+                        - generic [ref=f2e622]: 4,9
+                        - generic [ref=f2e623]: 113 905 оценок
+                      - link "Завтра" [ref=f2e625] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=f2e629]:
+                  - generic [ref=f2e630]:
+                    - link "Штатив для телефона напольный монопод 170 см HeniX" [ref=f2e631] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/491583593/detail.aspx
+                    - generic [ref=f2e632]:
+                      - button "Добавить в избранное" [ref=f2e634] [cursor=pointer]
+                      - img "Штатив для телефона напольный монопод 170 см HeniX" [ref=f2e636]
+                      - generic [ref=f2e637]: −67%
+                    - generic [ref=f2e641]:
+                      - generic [ref=f2e642]:
+                        - generic [ref=f2e644]:
+                          - insertion [ref=f2e649]: 673 ₽
+                          - deletion [ref=f2e650]: 2 091 ₽
+                        - generic [ref=f2e651]: с WB Кошельком
+                      - heading "HeniX / Штатив для телефона напольный монопод 170 см" [level=2] [ref=f2e652]:
+                        - generic [ref=f2e653]: HeniX
+                        - generic [ref=f2e655]: / Штатив для телефона напольный монопод 170 см
+                    - generic [ref=f2e656]:
+                      - generic [ref=f2e657]:
+                        - generic [ref=f2e658]: 4,8
+                        - generic [ref=f2e659]: 35 624 оценки
+                      - link "Завтра" [ref=f2e661] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=f2e665]:
+                  - generic [ref=f2e666]:
+                    - link "Гель для бритья мужской для чувствительной кожи Series GILLETTE" [ref=f2e667] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/2186618/detail.aspx
+                    - generic [ref=f2e668]:
+                      - button "Добавить в избранное" [ref=f2e670] [cursor=pointer]
+                      - img "Гель для бритья мужской для чувствительной кожи Series GILLETTE" [ref=f2e672]
+                      - generic [ref=f2e673]: −60%
+                    - generic [ref=f2e677]:
+                      - generic [ref=f2e678]:
+                        - generic [ref=f2e680]:
+                          - insertion [ref=f2e681]: 293 ₽
+                          - deletion [ref=f2e682]: 749 ₽
+                        - generic [ref=f2e683]: с WB Кошельком
+                      - heading "GILLETTE / Гель для бритья мужской для чувствительной кожи Series" [level=2] [ref=f2e684]:
+                        - generic [ref=f2e685]: GILLETTE
+                        - generic [ref=f2e687]: / Гель для бритья мужской для чувствительной кожи Series
+                    - generic [ref=f2e688]:
+                      - generic [ref=f2e689]:
+                        - generic [ref=f2e690]: 4,9
+                        - generic [ref=f2e691]: 59 616 оценок
+                      - link "Завтра" [ref=f2e693] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=f2e697]:
+                  - generic [ref=f2e698]:
+                    - link "Солнцезащитный крем спф для лица увлажняющий SPF50 Kottur" [ref=f2e699] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/229806654/detail.aspx
+                    - generic [ref=f2e700]:
+                      - button "Добавить в избранное" [ref=f2e702] [cursor=pointer]
+                      - img "Солнцезащитный крем спф для лица увлажняющий SPF50 Kottur" [ref=f2e704]
+                      - generic [ref=f2e705]: −70%
+                    - generic [ref=f2e709]:
+                      - generic [ref=f2e710]:
+                        - generic [ref=f2e712]:
+                          - insertion [ref=f2e717]: 343 ₽
+                          - deletion [ref=f2e718]: 1 200 ₽
+                        - generic [ref=f2e719]: с WB Кошельком
+                      - heading "Kottur / Солнцезащитный крем спф для лица увлажняющий SPF50" [level=2] [ref=f2e720]:
+                        - generic [ref=f2e721]: Kottur
+                        - generic [ref=f2e723]: / Солнцезащитный крем спф для лица увлажняющий SPF50
+                    - generic [ref=f2e724]:
+                      - generic [ref=f2e725]:
+                        - generic [ref=f2e726]: 4,9
+                        - generic [ref=f2e727]: 184 362 оценки
+                      - link "Завтра" [ref=f2e729] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=f2e733]:
+                  - generic [ref=f2e734]:
+                    - link "Набор для создания украшений 66 элементов Azghar toys" [ref=f2e735] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/175846583/detail.aspx
+                    - generic [ref=f2e736]:
+                      - button "Добавить в избранное" [ref=f2e738] [cursor=pointer]
+                      - img "Набор для создания украшений 66 элементов Azghar toys" [ref=f2e740]
+                      - generic [ref=f2e741]: −68%
+                    - generic [ref=f2e745]:
+                      - generic [ref=f2e746]:
+                        - generic [ref=f2e748]:
+                          - insertion [ref=f2e753]: 616 ₽
+                          - deletion [ref=f2e754]: 1 999 ₽
+                        - generic [ref=f2e755]: с WB Кошельком
+                      - heading "Azghar toys / Набор для создания украшений 66 элементов" [level=2] [ref=f2e756]:
+                        - generic [ref=f2e757]: Azghar toys
+                        - generic [ref=f2e758]: / Набор для создания украшений 66 элементов
+                    - generic [ref=f2e759]:
+                      - generic [ref=f2e760]:
+                        - generic [ref=f2e761]: 4,9
+                        - generic [ref=f2e762]: 9 968 оценок
+                      - link "Завтра" [ref=f2e764] [cursor=pointer]:
+                        - /url: /lk/basket
+                - article [ref=f2e768]:
+                  - generic [ref=f2e769]:
+                    - link "Таблетки для посудомоечной машины Original all in one 84 шт Fairy" [ref=f2e770] [cursor=pointer]:
+                      - /url: https://www.wildberries.ru/catalog/3610889/detail.aspx
+                    - generic [ref=f2e771]:
+                      - button "Добавить в избранное" [ref=f2e773] [cursor=pointer]
+                      - img "Таблетки для посудомоечной машины Original all in one 84 шт Fairy" [ref=f2e775]
+                      - generic [ref=f2e776]: −48%
+                    - generic [ref=f2e780]:
+                      - generic [ref=f2e781]:
+                        - generic [ref=f2e783]:
+                          - insertion [ref=f2e788]: 1 430 ₽
+                          - deletion [ref=f2e789]: 2 809 ₽
+                        - generic [ref=f2e790]: с WB Кошельком
+                      - heading "Fairy / Таблетки для посудомоечной машины Original all in one 84 шт" [level=2] [ref=f2e791]:
+                        - generic [ref=f2e792]: Fairy
+                        - generic [ref=f2e794]: / Таблетки для посудомоечной машины Original all in one 84 шт
+                    - generic [ref=f2e795]:
+                      - generic [ref=f2e796]:
+                        - generic [ref=f2e797]: 4,9
+                        - generic [ref=f2e798]: 21 822 оценки
+                      - link "Завтра" [ref=f2e800] [cursor=pointer]:
+                        - /url: /lk/basket
+        - button "Чат" [ref=f2e804] [cursor=pointer]
+    - contentinfo [ref=f2e805]:
+      - generic [ref=f2e806]:
+        - generic [ref=f2e811]:
+          - link [ref=f2e814] [cursor=pointer]:
+            - /url: https://allmoshennikam.net/?utm_source=wildberries-netw&utm_medium=iri-social_cpm&utm_campaign=949-91-01-01_july-2026_na&utm_content=banners_all_n1_na&utm_term=all_18-100_rf_na_all-all_all_na_na&erid=L71GTk1xn
+            - img "Социальная реклама" [ref=f2e815]
+          - button "Реклама" [ref=f2e816] [cursor=pointer]
+        - generic [ref=f2e818]:
+          - generic [ref=f2e819]:
+            - generic [ref=f2e820]:
+              - heading "Покупателям" [level=2] [ref=f2e822]
+              - list [ref=f2e823]:
+                - listitem [ref=f2e824]:
+                  - link "Частые вопросы" [ref=f2e825] [cursor=pointer]:
+                    - /url: /services/voprosy-i-otvety
+                - listitem [ref=f2e826]:
+                  - link "Покупать как бизнес" [ref=f2e827] [cursor=pointer]:
+                    - /url: /promo/b2b
+                - listitem [ref=f2e828]:
+                  - link "Доставка по клику из пункта выдачи" [ref=f2e829] [cursor=pointer]:
+                    - /url: https://wbk.wb.ru/click?utm_source=wb&utm_medium=main_footer
+                - listitem [ref=f2e830]:
+                  - generic [ref=f2e831]: Юридическая информация
+                - listitem [ref=f2e832]:
+                  - link "Как обрабатываем ваши персональные данные" [ref=f2e833] [cursor=pointer]:
+                    - /url: https://privacy.wildberries.ru
+                - listitem [ref=f2e834]:
+                  - link "Гид по безопасности" [ref=f2e835] [cursor=pointer]:
+                    - /url: https://security.wildberries.ru/?utm_source=web_wb&utm_medium=bannerru&utm_campaign=gid_po_bezopasnosti&utm_content=e
+            - generic [ref=f2e837]:
+              - heading "Продавцам и партнёрам" [level=2] [ref=f2e839]
+              - list [ref=f2e840]:
+                - listitem [ref=f2e841]:
+                  - link "Продавать товары" [ref=f2e842] [cursor=pointer]:
+                    - /url: https://seller.wildberries.ru/
+                - listitem [ref=f2e843]:
+                  - link "Открыть пункт выдачи" [ref=f2e844] [cursor=pointer]:
+                    - /url: https://point-promo.wb.ru/
+                - listitem [ref=f2e845]:
+                  - link "Предложить помещение" [ref=f2e846] [cursor=pointer]:
+                    - /url: https://rent.wildberries.ru/promo/
+                - listitem [ref=f2e847]:
+                  - generic [ref=f2e848]: Развозить грузы
+                - listitem [ref=f2e849]:
+                  - generic [ref=f2e850]: Доставлять заказы
+            - generic [ref=f2e851]:
+              - heading "Наши проекты" [level=2] [ref=f2e853]
+              - list [ref=f2e854]:
+                - listitem [ref=f2e855]:
+                  - link "Wibes" [ref=f2e856] [cursor=pointer]:
+                    - /url: https://wibes.ru/clips?utm_source=main_footer&utm_medium=inner_wb
+                - listitem [ref=f2e857]:
+                  - link "WB Stream" [ref=f2e858] [cursor=pointer]:
+                    - /url: /promo/wb-stream
+                - listitem [ref=f2e859]:
+                  - link "WB Track" [ref=f2e860] [cursor=pointer]:
+                    - /url: https://track.wildberries.ru/
+            - generic [ref=f2e861]:
+              - heading "Компания" [level=2] [ref=f2e863]
+              - list [ref=f2e864]:
+                - listitem [ref=f2e865]:
+                  - link "О нас" [ref=f2e866] [cursor=pointer]:
+                    - /url: /services/o-nas
+                - listitem [ref=f2e867]:
+                  - link "Пресс‑служба" [ref=f2e868] [cursor=pointer]:
+                    - /url: /presservice
+                - listitem [ref=f2e869]:
+                  - link "Контакты" [ref=f2e870] [cursor=pointer]:
+                    - /url: /services/kontakty
+                - listitem [ref=f2e871]:
+                  - generic [ref=f2e872]: Работа в RWB
+                - listitem [ref=f2e873]:
+                  - link "Сообщить о мошенничестве" [ref=f2e874] [cursor=pointer]:
+                    - /url: /services/hotline
+                - listitem [ref=f2e875]:
+                  - link "Социальные сети" [ref=f2e876] [cursor=pointer]:
+                    - /url: /services/sotsialnye-seti
+          - generic [ref=f2e878]:
+            - heading "Приложение" [level=2] [ref=f2e879]
+            - generic [ref=f2e880]: Android и iOS
+            - img "qr-code" [ref=f2e882]
+            - link "ОС Аврора" [ref=f2e884] [cursor=pointer]:
+              - /url: /services/skachivanie-mobilnogo-prilozheniya-avrora
+        - generic [ref=f2e885]:
+          - paragraph [ref=f2e886]:
+            - generic [ref=f2e887]:
+              - text: © Wildberries 2004–2026.
+              - generic [ref=f2e888]: Все права защищены.
+            - generic [ref=f2e889]:
+              - text: Применяются
+              - link "рекомендательные технологии" [ref=f2e890] [cursor=pointer]:
+                - /url: https://legal.wildberries.ru/rules-for-the-use-of-recommendation-technologies/country/ru/lang/ru/
+          - generic [ref=f2e891]:
+            - link "ВКонтакте" [ref=f2e893] [cursor=pointer]:
+              - /url: http://vk.com/club9695053
+            - link "Одноклассники" [ref=f2e895] [cursor=pointer]:
+              - /url: http://www.odnoklassniki.ru/wildberries
+            - link "Telegram" [ref=f2e897] [cursor=pointer]:
+              - /url: /services/sotsialnye-seti
+  - generic:
+    - region "Notifications alt+T"
+  - generic [ref=f2e899]:
+    - paragraph [ref=f2e900]:
+      - text: Мы используем
+      - link "cookies" [ref=f2e901] [cursor=pointer]:
+        - /url: https://legal.wildberries.ru/privacypolicy/country/ru/lang/ru/
+      - text: ", чтобы анализировать, как вы пользуетесь сайтом, рекомендовать полезное и создавать другие удобства на сайте"
+    - button "Окей" [ref=f2e902] [cursor=pointer]
+  - generic:
+    - button

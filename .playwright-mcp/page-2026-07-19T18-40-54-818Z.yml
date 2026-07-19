@@ -1,0 +1,1544 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - banner [ref=e5]:
+        - generic [ref=e7]:
+          - link [ref=e8] [cursor=pointer]:
+            - /url: /
+            - img "Ozon" [ref=e9]
+          - button "Каталог" [ref=e12] [cursor=pointer]
+          - generic [ref=e21]:
+            - generic [ref=e22]:
+              - generic "Везде" [ref=e24]
+              - generic [ref=e28]:
+                - textbox "Искать на Ozon" [ref=e29]
+                - button [ref=e32] [cursor=pointer]
+            - button "Поиск" [ref=e37] [cursor=pointer]
+          - generic [ref=e43]:
+            - generic [ref=e44] [cursor=pointer]: Войти
+            - link "Заказы" [ref=e53] [cursor=pointer]:
+              - /url: /my/orderlist/
+            - link "Избранное" [ref=e58] [cursor=pointer]:
+              - /url: /my/favorites
+            - link "Корзина" [ref=e63] [cursor=pointer]:
+              - /url: /cart
+        - generic [ref=e68]:
+          - list [ref=e71]:
+            - listitem [ref=e72]:
+              - link "Ozon Банк" [ref=e73] [cursor=pointer]:
+                - /url: https://ozon.ru/fintech/signin
+            - listitem [ref=e76]:
+              - link "Билеты, отели" [ref=e77] [cursor=pointer]:
+                - /url: https://www.ozon.ru/travel/?mwc_campaign=oztravel_horizontal-menu_flight
+            - listitem [ref=e80]:
+              - button "Для бизнеса" [ref=e82] [cursor=pointer]
+            - listitem [ref=e87]:
+              - link "Одежда" [ref=e88] [cursor=pointer]:
+                - /url: /category/odezhda-obuv-i-aksessuary-7500/
+            - listitem [ref=e89]:
+              - link "Электроника" [ref=e90] [cursor=pointer]:
+                - /url: /category/elektronika-15500/
+            - listitem [ref=e91]:
+              - link "Дом и сад" [ref=e92] [cursor=pointer]:
+                - /url: /category/dom-i-sad-14500/
+            - listitem [ref=e93]:
+              - link "Товары за 1₽" [ref=e94] [cursor=pointer]:
+                - /url: https://www.ozon.ru/highlight/ozon-bank-1332387/
+            - listitem [ref=e95]:
+              - link "Сертификаты" [ref=e96] [cursor=pointer]:
+                - /url: https://www.ozon.ru/landing/giftcertificates/?perehod=headerdesk
+          - generic [ref=e97]:
+            - generic [ref=e102] [cursor=pointer]:
+              - button "Астрахань" [ref=e104]
+              - generic [ref=e106]: •
+              - button "Укажите адрес" [ref=e109]
+            - button "RU" [ref=e112] [cursor=pointer]
+      - generic [ref=e118]:
+        - generic [ref=e123]:
+          - list [ref=e126]:
+            - listitem [ref=e127]:
+              - link "Продукты питания" [ref=e128] [cursor=pointer]:
+                - /url: /category/produkty-pitaniya-9200/
+            - listitem [ref=e131]:
+              - link "Выпечка и сладости" [ref=e132] [cursor=pointer]:
+                - /url: /category/konditerskie-izdeliya-9378/
+            - listitem [ref=e135]:
+              - link "Восточные сладости" [ref=e136] [cursor=pointer]:
+                - /url: /category/vostochnye-sladosti-nuga-9379/
+            - listitem [ref=e139]:
+              - link "Восточная Фантазия" [ref=e140] [cursor=pointer]:
+                - /url: /category/vostochnye-sladosti-nuga-9379/vostochnaya-fantaziya-85769855/
+          - generic [ref=e141]:
+            - 'button "Артикул: 650235959" [ref=e142] [cursor=pointer]'
+            - button "В сравнение" [ref=e146] [cursor=pointer]
+            - button "Поделиться" [ref=e151] [cursor=pointer]
+        - generic [ref=e155]:
+          - generic [ref=e157]:
+            - generic [ref=e209] [cursor=pointer]:
+              - 'img "Лукум Ореховый ассорти 500 грамм #1" [ref=e212]'
+              - generic [ref=e213]: Похожие
+            - generic [ref=e217]:
+              - heading "Лукум Ореховый ассорти 500 грамм" [level=1] [ref=e219]
+              - generic [ref=e220]:
+                - link "4.9 • 339 769 отзывов" [ref=e222] [cursor=pointer]:
+                  - /url: /product/lukum-orehovyy-assorti-500-gramm-650235959/reviews/
+                - link "767 вопросов" [ref=e227] [cursor=pointer]:
+                  - /url: https://www.ozon.ru/product/lukum-orehovyy-assorti-500-gramm-650235959/questions/
+              - generic [ref=e231]:
+                - generic [ref=e233]:
+                  - generic [ref=e234]:
+                    - generic [ref=e235]: "Вес товара, г:"
+                    - generic [ref=e237]:
+                      - link "400" [ref=e239] [cursor=pointer]:
+                        - /url: /product/lukum-granat-barbaris-400-gramm-1798159905/?at=VvtzJ0qn8cQ719x8sqGlkovC0g8Rllt79R8zvF5Yvqwg&from_sku=650235959&oos_search=false
+                      - generic [ref=e242]: "500"
+                  - generic [ref=e246]:
+                    - generic [ref=e247]: "Название вкуса:"
+                    - generic [ref=e249]:
+                      - link "ассорти" [ref=e251] [cursor=pointer]:
+                        - /url: /product/lukum-assorti-500-gramm-650228993/?at=VvtzJ0qn8cQ719x8sqGlkovC0g8Rllt79R8zvF5Yvqwg&from_sku=650235959&oos_search=false
+                      - link "вишня, яблоко, дыня, пломбир." [ref=e255] [cursor=pointer]:
+                        - /url: /product/rahat-lukum-vostochnyy-dastarhan-500-gr-sladkiy-podarok-801494166/?at=VvtzJ0qn8cQ719x8sqGlkovC0g8Rllt79R8zvF5Yvqwg&from_sku=650235959&oos_search=false
+                      - link "гранат с барбарисом" [ref=e259] [cursor=pointer]:
+                        - /url: /product/lukum-granat-barbaris-400-gramm-1798159905/?at=VvtzJ0qn8cQ719x8sqGlkovC0g8Rllt79R8zvF5Yvqwg&from_sku=650235959&oos_search=false
+                      - generic [ref=e262]: ореховый ассорти
+                      - link "сухофрукты ассорти" [ref=e267] [cursor=pointer]:
+                        - /url: /product/lukum-naturalnyy-s-suhofruktami-assorti-500-gramm-650236942/?at=VvtzJ0qn8cQ719x8sqGlkovC0g8Rllt79R8zvF5Yvqwg&from_sku=650235959&oos_search=false
+                - generic [ref=e270]:
+                  - generic [ref=e271]:
+                    - generic [ref=e272]: О товаре
+                    - generic "Перейти к описанию" [ref=e275] [cursor=pointer]
+                  - generic [ref=e279]:
+                    - generic [ref=e280]:
+                      - generic [ref=e281]: Тип
+                      - generic [ref=e283]: Рахат-лукум
+                    - generic [ref=e284]:
+                      - generic [ref=e285]: Вид орехов
+                      - generic [ref=e287]:
+                        - text: Миндаль,
+                        - link "Фундук," [ref=e288] [cursor=pointer]:
+                          - /url: /category/rahat-lukum-s-fundukom/
+                        - link "Арахис" [ref=e289] [cursor=pointer]:
+                          - /url: /category/rahat-lukum-s-arahisom/
+                    - generic [ref=e290]:
+                      - generic [ref=e291]: Вид рахат лукума
+                      - generic [ref=e293]:
+                        - link "Ореховый," [ref=e294] [cursor=pointer]:
+                          - /url: /category/orehovyy-rahat-lukum/
+                        - link "Фруктовый" [ref=e295] [cursor=pointer]:
+                          - /url: /category/fruktovyy-rahat-lukum/
+                    - generic [ref=e296]:
+                      - generic [ref=e297]: Добавки
+                      - generic [ref=e299]:
+                        - link "Фисташки," [ref=e300] [cursor=pointer]:
+                          - /url: /category/vostochnye-sladosti-s-fistashkami/
+                        - link "Миндаль," [ref=e301] [cursor=pointer]:
+                          - /url: /category/vostochnye-sladosti-s-mindalem/
+                        - link "Арахис" [ref=e302] [cursor=pointer]:
+                          - /url: /category/vostochnye-sladosti-s-arahisom/
+                    - generic [ref=e303]:
+                      - generic [ref=e304]: Единиц в одном товаре
+                      - generic [ref=e306]: "1"
+                - generic [ref=e309]:
+                  - generic [ref=e310]: "Пищевая ценность продукта на 100 г:"
+                  - generic [ref=e311]:
+                    - generic [ref=e312]:
+                      - generic [ref=e313]: "0.3"
+                      - generic [ref=e314]: белки
+                    - generic [ref=e315]:
+                      - generic [ref=e316]: "0.8"
+                      - generic [ref=e317]: жиры
+                    - generic [ref=e318]:
+                      - generic [ref=e319]: "77"
+                      - generic [ref=e320]: углеводы
+                    - generic [ref=e321]:
+                      - generic [ref=e322]: "302"
+                      - generic [ref=e323]: ккал
+              - generic [ref=e324]: Фото и видео покупателей
+              - generic [ref=e330]:
+                - button [ref=e331] [cursor=pointer]
+                - button [ref=e335] [cursor=pointer]
+                - button [ref=e339] [cursor=pointer]
+                - button [ref=e343] [cursor=pointer]
+                - button "+23971" [ref=e347] [cursor=pointer]
+          - generic [ref=e354]:
+            - generic [ref=e355]:
+              - generic [ref=e356]:
+                - link "Распродажа 1704 единицы осталось" [ref=e357] [cursor=pointer]:
+                  - /url: https://www.ozon.ru/highlight/vse-tovary-rasprodazhi-1262793/
+                  - generic [ref=e363]:
+                    - generic [ref=e364]: Распродажа
+                    - generic [ref=e369]:
+                      - generic [ref=e370]: "1704"
+                      - generic [ref=e371]: единицы осталось
+                - link "11 дней до конца" [ref=e372] [cursor=pointer]:
+                  - /url: https://www.ozon.ru/highlight/vse-tovary-rasprodazhi-1262793/
+              - generic [ref=e376]:
+                - generic [ref=e377]:
+                  - generic [ref=e380]:
+                    - generic [ref=e381]:
+                      - button "234 ₽ С банками" [ref=e383] [cursor=pointer]:
+                        - generic [ref=e388]:
+                          - generic [ref=e389]: 234 ₽
+                          - generic [ref=e390]: С банками
+                      - generic [ref=e405]:
+                        - generic [ref=e406]:
+                          - generic [ref=e407]: 259 ₽
+                          - generic [ref=e408]: 500 ₽
+                        - generic [ref=e409]: С другими банками
+                    - generic [ref=e410]: 234 ₽ за 1 шт
+                  - link "Оплатить позже без % до 6 октября" [ref=e416] [cursor=pointer]:
+                    - /url: /modal/pdpCreditCardPromo
+                    - generic [ref=e420]:
+                      - generic [ref=e421]: Оплатить позже
+                      - generic [ref=e423]: без % до 6 октября
+                  - button "Хочу скидку" [ref=e429] [cursor=pointer]
+                  - generic [ref=e438]:
+                    - button "В корзину Доставим послезавтра" [ref=e442] [cursor=pointer]:
+                      - generic [ref=e443]: В корзину
+                      - generic [ref=e445]: Доставим послезавтра
+                    - button "Добавить в избранное" [ref=e448] [cursor=pointer]
+                - button "У других продавцов от 643 ₽ 3" [ref=e456] [cursor=pointer]:
+                  - generic [ref=e458]:
+                    - generic [ref=e463]: У других продавцовот 643 ₽
+                    - generic [ref=e464]: "3"
+            - generic [ref=e468]:
+              - button "Купить сейчас" [ref=e470] [cursor=pointer]
+              - generic [ref=e475]:
+                - generic [ref=e476]:
+                  - heading "Доставка и возврат" [level=2] [ref=e477]
+                  - button [ref=e480] [cursor=pointer]:
+                    - generic [ref=e481]: Астрахань, Астраханская областьСо склада Ozon, Дагестан
+                  - generic [ref=e493]:
+                    - generic [ref=e494]: Курьером OzonПослезавтра, 21 июля
+                    - generic "+149 ₽" [ref=e498]
+                  - generic [ref=e499]:
+                    - generic [ref=e500]: Пункты выдачи и постаматыПослезавтра, 21 июля
+                    - generic "Без доплат" [ref=e504]
+                - link "Товар надлежащего качества обмену и возврату не подлежит" [ref=e507] [cursor=pointer]:
+                  - /url: https://docs.ozon.ru/common/otmena-i-vozvrat-zakaza/kak-vernut-tovar/
+              - generic [ref=e520]:
+                - generic [ref=e521]:
+                  - generic [ref=e522]: Магазин
+                  - generic "Подписаться" [ref=e528] [cursor=pointer]
+                - generic [ref=e530]:
+                  - generic [ref=e531]:
+                    - generic [ref=e538] [cursor=pointer]:
+                      - generic [ref=e539]: Сладости в радость!
+                      - generic [ref=e545]: Перейти
+                    - generic [ref=e547]:
+                      - generic [ref=e548] [cursor=pointer]: "4.9"
+                      - generic [ref=e554] [cursor=pointer]: Чат
+                  - generic [ref=e559]:
+                    - generic [ref=e566] [cursor=pointer]:
+                      - generic [ref=e567]: Заказы
+                      - generic [ref=e569]:
+                        - generic:
+                          - generic:
+                            - generic "2.1 M"
+                    - generic [ref=e570]: О магазине
+      - generic [ref=e583]:
+        - generic [ref=e585]:
+          - generic [ref=e587]:
+            - generic [ref=e588]: Рекомендуем также
+            - generic [ref=e591]:
+              - generic [ref=e593]:
+                - generic [ref=e595]:
+                  - button [ref=e598] [cursor=pointer]
+                  - link [ref=e603] [cursor=pointer]:
+                    - /url: /product/naturalnyy-shcherbet-narodnyy-200-gr-bez-sahara-naturalnaya-sladost-pp-perekus-zozh-vegan-1100807306/?at=WPtNEzrL8tXm7r2GIMyE5WRFO8QL59ck1NJPEfKKyWr5
+                    - img "Натуральный щербет \"Народный\" 200 гр, Без сахара, Натуральная сладость, ПП перекус, ЗОЖ, Веган Рекомендуем также" [ref=e608]
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic "Распродажа"
+                  - generic [ref=e609]:
+                    - generic [ref=e610]:
+                      - generic [ref=e612]:
+                        - generic [ref=e613]: 253 ₽
+                        - generic [ref=e614]: 690 ₽
+                        - generic [ref=e615]: −63%
+                      - generic [ref=e617]: 1 411 шт осталось
+                      - generic [ref=e618]: Фабрика здоровой еды Ямми-Ямми
+                      - link "Натуральный щербет \"Народный\" 200 гр, Без сахара, Натуральная сладость, ПП перекус, ЗОЖ, Веган" [ref=e621] [cursor=pointer]:
+                        - /url: /product/naturalnyy-shcherbet-narodnyy-200-gr-bez-sahara-naturalnaya-sladost-pp-perekus-zozh-vegan-1100807306/?at=WPtNEzrL8tXm7r2GIMyE5WRFO8QL59ck1NJPEfKKyWr5
+                      - generic [ref=e623]:
+                        - generic [ref=e624]: "4.8"
+                        - generic [ref=e627]: 37 843 отзыва
+                    - button "22 июля" [ref=e632] [cursor=pointer]
+                - generic [ref=e642]:
+                  - button [ref=e645] [cursor=pointer]
+                  - link [ref=e650] [cursor=pointer]:
+                    - /url: /product/pishmanie-halva-s-fistashkoy-200gr-3264176702/?at=MZtvrxByYt7o8BKjFvV5r7PI0ODGrMuPKpWGPUj0ykJL
+                    - img "Пишмание халва с фисташкой 200гр Рекомендуем также" [ref=e655]
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic "Распродажа"
+                  - generic [ref=e656]:
+                    - generic [ref=e657]:
+                      - generic [ref=e659]:
+                        - generic [ref=e660]: 237 ₽
+                        - generic [ref=e661]: 1 599 ₽
+                        - generic [ref=e662]: −85%
+                      - generic [ref=e664]: 3 090 шт осталось
+                      - link "Пишмание халва с фисташкой 200гр" [ref=e665] [cursor=pointer]:
+                        - /url: /product/pishmanie-halva-s-fistashkoy-200gr-3264176702/?at=MZtvrxByYt7o8BKjFvV5r7PI0ODGrMuPKpWGPUj0ykJL
+                      - generic [ref=e667]:
+                        - generic [ref=e668]: "4.8"
+                        - generic [ref=e671]: 171 653 отзыва
+                    - button "Послезавтра" [ref=e676] [cursor=pointer]
+                - generic [ref=e686]:
+                  - button [ref=e689] [cursor=pointer]
+                  - link [ref=e694] [cursor=pointer]:
+                    - /url: /product/finiki-bez-dobavleniya-sahara-1kg-iran-1169360133/?at=K8tZo87ykTyl0MrqTPqN7PmfPz4RGkCLGB1qDhE4lKjD
+                    - img "Финики без добавления сахара. 1кг, Иран Рекомендуем также" [ref=e699]
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic "Распродажа"
+                  - generic [ref=e700]:
+                    - generic [ref=e701]:
+                      - generic [ref=e703]:
+                        - generic [ref=e704]: 202 ₽
+                        - generic [ref=e705]: 1 499 ₽
+                        - generic [ref=e706]: −86%
+                      - generic [ref=e708]: 20 ₽ / 100 гр
+                      - link "Финики без добавления сахара. 1кг, Иран" [ref=e710] [cursor=pointer]:
+                        - /url: /product/finiki-bez-dobavleniya-sahara-1kg-iran-1169360133/?at=K8tZo87ykTyl0MrqTPqN7PmfPz4RGkCLGB1qDhE4lKjD
+                      - generic [ref=e712]:
+                        - generic [ref=e713]: "4.8"
+                        - generic [ref=e716]: 252 452 отзыва
+                    - button "Послезавтра" [ref=e721] [cursor=pointer]
+                - generic [ref=e731]:
+                  - button [ref=e734] [cursor=pointer]
+                  - link [ref=e739] [cursor=pointer]:
+                    - /url: /product/marmelad-zhevatelnyy-ispanskiy-zheleynyy-podarochnyy-nabor-500-gramm-956611831/?at=Eqtk7148jcpoD0yVH8KyE4FAxkLV6cMMlrAktJYx1p3
+                    - img "Мармелад жевательный испанский желейный подарочный набор 500 грамм Рекомендуем также" [ref=e744]
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic "Распродажа"
+                  - generic [ref=e745]:
+                    - generic [ref=e746]:
+                      - generic [ref=e748]:
+                        - generic [ref=e749]: 461 ₽
+                        - generic [ref=e750]: 1 999 ₽
+                        - generic [ref=e751]: −76%
+                      - link "Мармелад жевательный испанский желейный подарочный набор 500 грамм" [ref=e753] [cursor=pointer]:
+                        - /url: /product/marmelad-zhevatelnyy-ispanskiy-zheleynyy-podarochnyy-nabor-500-gramm-956611831/?at=Eqtk7148jcpoD0yVH8KyE4FAxkLV6cMMlrAktJYx1p3
+                      - generic [ref=e755]:
+                        - generic [ref=e756]: "4.4"
+                        - generic [ref=e759]: 45 164 отзыва
+                    - button "Послезавтра" [ref=e764] [cursor=pointer]
+                - generic [ref=e774]:
+                  - button [ref=e777] [cursor=pointer]
+                  - link [ref=e782] [cursor=pointer]:
+                    - /url: /product/pahlava-kolushkor-rulet-s-fistashkami-500g-1848917401/?at=PjtJwvz1nckzLM0QSB18jRgtn5P3kNf72XnRGSYoPOMX
+                    - img "Пахлава кольушкор рулет с фисташками 500г Рекомендуем также" [ref=e787]
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic "Распродажа"
+                  - generic [ref=e788]:
+                    - generic [ref=e789]:
+                      - generic [ref=e791]:
+                        - generic [ref=e792]: 514 ₽
+                        - generic [ref=e793]: 2 200 ₽
+                        - generic [ref=e794]: −76%
+                      - generic [ref=e796]: 235 шт осталось
+                      - link "Пахлава кольушкор рулет с фисташками 500г" [ref=e797] [cursor=pointer]:
+                        - /url: /product/pahlava-kolushkor-rulet-s-fistashkami-500g-1848917401/?at=PjtJwvz1nckzLM0QSB18jRgtn5P3kNf72XnRGSYoPOMX
+                      - generic [ref=e799]:
+                        - generic [ref=e800]: "4.7"
+                        - generic [ref=e803]: 31 545 отзывов
+                    - button "25 июля" [ref=e808] [cursor=pointer]
+                - generic [ref=e818]:
+                  - button [ref=e821] [cursor=pointer]
+                  - link [ref=e826] [cursor=pointer]:
+                    - /url: /product/shcherbet-s-orehami-premium-bez-sahara-naturalnyy-200-g-3560031521/?at=k2toEY2yvTrNRrgLhjEoE7lFjAr9WAcnKp8G1tQJ9LOR
+                    - img "Щербет с Орехами Premium без сахара натуральный 200 г Рекомендуем также" [ref=e831]
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic "Распродажа"
+                  - generic [ref=e832]:
+                    - generic [ref=e833]:
+                      - generic [ref=e835]:
+                        - generic [ref=e836]: 224 ₽
+                        - generic [ref=e837]: 299 ₽
+                        - generic [ref=e838]: −25%
+                      - generic [ref=e840]: 1 887 шт осталось
+                      - link "Щербет с Орехами Premium без сахара натуральный 200 г" [ref=e841] [cursor=pointer]:
+                        - /url: /product/shcherbet-s-orehami-premium-bez-sahara-naturalnyy-200-g-3560031521/?at=k2toEY2yvTrNRrgLhjEoE7lFjAr9WAcnKp8G1tQJ9LOR
+                      - generic [ref=e843]:
+                        - generic [ref=e844]: "4.7"
+                        - generic [ref=e847]: 2 893 отзыва
+                    - button "Послезавтра" [ref=e852] [cursor=pointer]
+                - generic [ref=e862]:
+                  - button [ref=e865] [cursor=pointer]
+                  - link [ref=e870] [cursor=pointer]:
+                    - /url: /product/kumkvat-sushenyy-500g-3527524001/?at=x6tPlmE5jTA1j6QDu5AwkQgHrA9LvwuxXn931CynmgNX
+                    - img "Кумкват сушеный 500г Рекомендуем также" [ref=e875]
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic "Распродажа"
+                  - generic [ref=e876]:
+                    - generic [ref=e877]:
+                      - generic [ref=e879]:
+                        - generic [ref=e880]: 344 ₽
+                        - generic [ref=e881]: 3 500 ₽
+                        - generic [ref=e882]: −90%
+                      - generic [ref=e884]: 1 147 шт осталось
+                      - link "Кумкват сушеный 500г" [ref=e885] [cursor=pointer]:
+                        - /url: /product/kumkvat-sushenyy-500g-3527524001/?at=x6tPlmE5jTA1j6QDu5AwkQgHrA9LvwuxXn931CynmgNX
+                      - generic [ref=e887]:
+                        - generic [ref=e888]: "4.9"
+                        - generic [ref=e891]: 4 019 отзывов
+                    - button "24 июля" [ref=e896] [cursor=pointer]
+                - generic [ref=e906]:
+                  - button [ref=e909] [cursor=pointer]
+                  - link [ref=e914] [cursor=pointer]:
+                    - /url: /product/finiki-suhofrukty-mazafati-bez-sahara-novyy-urozhay-nabor-500-gr-3055845158/?at=16tL4nJAXT4NL406SERZZXwH3O0jw9SpQYMQxikOvLrv
+                    - img "Финики сухофрукты Мазафати без сахара НОВЫЙ УРОЖАЙ набор 500 гр Рекомендуем также" [ref=e919]
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic "Распродажа"
+                  - generic [ref=e920]:
+                    - generic [ref=e921]:
+                      - generic [ref=e923]:
+                        - generic [ref=e924]: 219 ₽
+                        - generic [ref=e925]: 1 200 ₽
+                        - generic [ref=e926]: −81%
+                      - generic [ref=e928]: 688 шт осталось
+                      - link "Финики сухофрукты Мазафати без сахара НОВЫЙ УРОЖАЙ набор 500 гр" [ref=e929] [cursor=pointer]:
+                        - /url: /product/finiki-suhofrukty-mazafati-bez-sahara-novyy-urozhay-nabor-500-gr-3055845158/?at=16tL4nJAXT4NL406SERZZXwH3O0jw9SpQYMQxikOvLrv
+                      - generic [ref=e931]:
+                        - generic [ref=e932]: "4.8"
+                        - generic [ref=e935]: 8 876 отзывов
+                    - button "Послезавтра" [ref=e940] [cursor=pointer]
+                - generic [ref=e950]:
+                  - button [ref=e953] [cursor=pointer]
+                  - link [ref=e958] [cursor=pointer]:
+                    - /url: /product/rahat-lukum-1-kg-fitil-assorti-sladkiy-podarok-na-den-rozhdeniya-1302383138/?at=QktJQBv1Lc54zVk5H2XKzQ0CVBjEj6fEVwNGntlwQJDN
+                    - img "Рахат лукум 1 кг \"Фитиль\" ассорти - сладкий подарок на день рождения Рекомендуем также" [ref=e963]
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic "Распродажа"
+                  - generic [ref=e964]:
+                    - generic [ref=e965]:
+                      - generic [ref=e967]:
+                        - generic [ref=e968]: 377 ₽
+                        - generic [ref=e969]: 2 550 ₽
+                        - generic [ref=e970]: −85%
+                      - generic [ref=e972]: 80 шт осталось
+                      - link "Рахат лукум 1 кг \"Фитиль\" ассорти - сладкий подарок на день рождения" [ref=e973] [cursor=pointer]:
+                        - /url: /product/rahat-lukum-1-kg-fitil-assorti-sladkiy-podarok-na-den-rozhdeniya-1302383138/?at=QktJQBv1Lc54zVk5H2XKzQ0CVBjEj6fEVwNGntlwQJDN
+                      - generic [ref=e975]:
+                        - generic [ref=e976]: "4.8"
+                        - generic [ref=e979]: 25 472 отзыва
+                    - button "26 июля" [ref=e984] [cursor=pointer]
+                - generic [ref=e991]:
+                  - button [ref=e994] [cursor=pointer]
+                  - link [ref=e999] [cursor=pointer]:
+                    - /url: /product/marmelad-naturalnyy-alatau-kedrovyy-s-orehami-110-gr-poleznye-sladosti-242991285/?at=NOtwWVkqpc7mZ5LnIQ2LYVPurBXnRvClA1JwpF734zW
+                    - img "Мармелад натуральный Алатау, кедровый с орехами, 110 гр., полезные сладости Рекомендуем также" [ref=e1004]
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic "Распродажа"
+                  - generic [ref=e1005]:
+                    - generic [ref=e1006]:
+                      - generic [ref=e1008]:
+                        - generic [ref=e1009]: 276 ₽
+                        - generic [ref=e1010]: 696 ₽
+                        - generic [ref=e1011]: −60%
+                      - link "Мармелад натуральный Алатау, кедровый с орехами, 110 гр., полезные сладости" [ref=e1013] [cursor=pointer]:
+                        - /url: /product/marmelad-naturalnyy-alatau-kedrovyy-s-orehami-110-gr-poleznye-sladosti-242991285/?at=NOtwWVkqpc7mZ5LnIQ2LYVPurBXnRvClA1JwpF734zW
+                      - generic [ref=e1015]:
+                        - generic [ref=e1016]: "4.9"
+                        - generic [ref=e1019]: 56 339 отзывов
+                    - button "Послезавтра" [ref=e1024] [cursor=pointer]
+                - generic [ref=e1034]:
+                  - button [ref=e1037] [cursor=pointer]
+                  - link [ref=e1042] [cursor=pointer]:
+                    - /url: /product/pahlava-bakinskaya-pahlava-sultan-podarok-na-den-rozhdeniya-904025610/?at=nRtrEl9ZVuoo28o2c3kqEqWH6EKO69fK9yvMMCq9JyQV
+                    - img "Пахлава бакинская/ пахлава \"Султан\", подарок на день рождения. Рекомендуем также" [ref=e1047]
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic "Распродажа"
+                  - generic [ref=e1048]:
+                    - generic [ref=e1049]:
+                      - generic [ref=e1051]:
+                        - generic [ref=e1052]: 608 ₽
+                        - generic [ref=e1053]: 2 000 ₽
+                        - generic [ref=e1054]: −69%
+                      - generic [ref=e1056]: 138 шт осталось
+                      - link "Пахлава бакинская/ пахлава \"Султан\", подарок на день рождения." [ref=e1057] [cursor=pointer]:
+                        - /url: /product/pahlava-bakinskaya-pahlava-sultan-podarok-na-den-rozhdeniya-904025610/?at=nRtrEl9ZVuoo28o2c3kqEqWH6EKO69fK9yvMMCq9JyQV
+                      - generic [ref=e1059]:
+                        - generic [ref=e1060]: "4.8"
+                        - generic [ref=e1063]: 22 862 отзыва
+                    - button "25 июля" [ref=e1068] [cursor=pointer]
+                - generic [ref=e1075]:
+                  - button [ref=e1078] [cursor=pointer]
+                  - link [ref=e1083] [cursor=pointer]:
+                    - /url: /product/rahat-lukum-orehovoe-assorti-1-kg-podarochnaya-korobka-4306811153/?at=28t0YK52QTLp1P1AF0jmX2Hml05rQTB6Wymgf3ON0Xx
+                    - img "Рахат-лукум Ореховое Ассорти 1 кг подарочная коробка Рекомендуем также" [ref=e1088]
+                  - generic [ref=e1089]:
+                    - generic [ref=e1090]:
+                      - generic [ref=e1091]: 682 ₽
+                      - generic [ref=e1095]: Behruz
+                      - link "Рахат-лукум Ореховое Ассорти 1 кг подарочная коробка" [ref=e1098] [cursor=pointer]:
+                        - /url: /product/rahat-lukum-orehovoe-assorti-1-kg-podarochnaya-korobka-4306811153/?at=28t0YK52QTLp1P1AF0jmX2Hml05rQTB6Wymgf3ON0Xx
+                      - generic [ref=e1100]:
+                        - generic [ref=e1101]: "4.8"
+                        - generic [ref=e1104]: 22 977 отзывов
+                    - button "23 июля" [ref=e1109] [cursor=pointer]
+              - button "Next slide" [ref=e1116] [cursor=pointer]
+          - generic [ref=e1120]:
+            - generic [ref=e1121]: Покупают вместе
+            - generic [ref=e1124]:
+              - generic [ref=e1126]:
+                - generic [ref=e1128]:
+                  - button [ref=e1131] [cursor=pointer]
+                  - link [ref=e1136] [cursor=pointer]:
+                    - /url: /product/kofeynye-konfety-coffee-candy-bez-sahara-assorti-7-vkusov-250-gramm-3647963116/?at=Rlty6n4DXsPO8XO6hmDDKx1fEzK78oc6Rwnv3SjK27L5
+                    - img "Кофейные конфеты Coffee Candy без сахара. Ассорти 7 вкусов 250 грамм. Покупают вместе" [ref=e1141]
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic "Распродажа"
+                  - generic [ref=e1142]:
+                    - generic [ref=e1143]:
+                      - generic [ref=e1145]:
+                        - generic [ref=e1146]: 205 ₽
+                        - generic [ref=e1147]: 1 200 ₽
+                        - generic [ref=e1148]: −82%
+                      - generic [ref=e1150]: 145 шт осталось
+                      - link "Кофейные конфеты Coffee Candy без сахара. Ассорти 7 вкусов 250 грамм." [ref=e1151] [cursor=pointer]:
+                        - /url: /product/kofeynye-konfety-coffee-candy-bez-sahara-assorti-7-vkusov-250-gramm-3647963116/?at=Rlty6n4DXsPO8XO6hmDDKx1fEzK78oc6Rwnv3SjK27L5
+                      - generic [ref=e1153]:
+                        - generic [ref=e1154]: "4.9"
+                        - generic [ref=e1157]: 50 892 отзыва
+                    - button "25 июля" [ref=e1162] [cursor=pointer]
+                - generic [ref=e1169]:
+                  - button [ref=e1172] [cursor=pointer]
+                  - link [ref=e1177] [cursor=pointer]:
+                    - /url: /product/orehovoe-assorti-miks-orehov-semechek-i-izyuma-500-g-2984337333/?at=J8tgJp9WocYRZmOrCZRYVYyHm6pE1qhj4zKWQCB3vDvJ
+                    - 'img "Ореховое Ассорти: Микс Орехов, Семечек и Изюма, 500 г Покупают вместе" [ref=e1182]'
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic "Распродажа"
+                  - generic [ref=e1183]:
+                    - generic [ref=e1184]:
+                      - generic [ref=e1186]:
+                        - generic [ref=e1187]: 448 ₽
+                        - generic [ref=e1188]: 639 ₽
+                        - generic [ref=e1189]: −29%
+                      - generic [ref=e1191]: 1 478 шт осталось
+                      - 'link "Ореховое Ассорти: Микс Орехов, Семечек и Изюма, 500 г" [ref=e1192] [cursor=pointer]':
+                        - /url: /product/orehovoe-assorti-miks-orehov-semechek-i-izyuma-500-g-2984337333/?at=J8tgJp9WocYRZmOrCZRYVYyHm6pE1qhj4zKWQCB3vDvJ
+                      - generic [ref=e1194]:
+                        - generic [ref=e1195]: "4.7"
+                        - generic [ref=e1198]: 37 301 отзыв
+                    - button "Послезавтра" [ref=e1203] [cursor=pointer]
+                - generic [ref=e1213]:
+                  - button [ref=e1216] [cursor=pointer]
+                  - link [ref=e1221] [cursor=pointer]:
+                    - /url: /product/napitok-vinnyy-bezalkogolnyy-abrau-light-rose-polusladkiy-0-75-l-1502115998/?at=vQtr9OwnZuYRgrRJikVNxBAiZzmwDgcEnY4lphGM9KKK
+                    - img "Напиток винный безалкогольный Abrau Light Rose, полусладкий, 0,75 л Покупают вместе" [ref=e1226]
+                  - generic [ref=e1227]:
+                    - generic [ref=e1228]:
+                      - generic [ref=e1229]: 340 ₽
+                      - generic [ref=e1233]: Абрау-Дюрсо
+                      - link "Напиток винный безалкогольный Abrau Light Rose, полусладкий, 0,75 л" [ref=e1236] [cursor=pointer]:
+                        - /url: /product/napitok-vinnyy-bezalkogolnyy-abrau-light-rose-polusladkiy-0-75-l-1502115998/?at=vQtr9OwnZuYRgrRJikVNxBAiZzmwDgcEnY4lphGM9KKK
+                      - generic [ref=e1238]:
+                        - generic [ref=e1239]: "4.9"
+                        - generic [ref=e1242]: 25 248
+                        - generic [ref=e1245]: Ozon
+                    - button "22 июля" [ref=e1250] [cursor=pointer]
+                - generic [ref=e1257]:
+                  - button [ref=e1260] [cursor=pointer]
+                  - link [ref=e1265] [cursor=pointer]:
+                    - /url: /product/smes-kompot-2484348291/?at=BrtzGPWXNcA0qwk4ij64P3BC2BMG7YcVRvkXPSGvyO4y
+                    - img "Смесь компот Покупают вместе" [ref=e1270]
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic "Распродажа"
+                  - generic [ref=e1271]:
+                    - generic [ref=e1272]:
+                      - generic [ref=e1274]:
+                        - generic [ref=e1275]: 345 ₽
+                        - generic [ref=e1276]: 985 ₽
+                        - generic [ref=e1277]: −64%
+                      - generic [ref=e1279]: 14 шт осталось
+                      - link "Смесь компот" [ref=e1280] [cursor=pointer]:
+                        - /url: /product/smes-kompot-2484348291/?at=BrtzGPWXNcA0qwk4ij64P3BC2BMG7YcVRvkXPSGvyO4y
+                      - generic [ref=e1282]:
+                        - generic [ref=e1283]: "4.8"
+                        - generic [ref=e1286]: 875 отзывов
+                    - button "23 июля" [ref=e1291] [cursor=pointer]
+                - generic [ref=e1301]:
+                  - button [ref=e1304] [cursor=pointer]
+                  - link [ref=e1309] [cursor=pointer]:
+                    - /url: /product/kompotnaya-smes-iz-suhofruktov-i-yagod-v-s-1-kg-2568700214/?at=Eqtk7148jcLl76vEsX4jXw0h3D1yAAivlllZgsoXV96P
+                    - img "Компотная смесь из сухофруктов и ягод В/С 1 кг Покупают вместе" [ref=e1314]
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic "Распродажа"
+                  - generic [ref=e1315]:
+                    - generic [ref=e1316]:
+                      - generic [ref=e1318]:
+                        - generic [ref=e1319]: 240 ₽
+                        - generic [ref=e1320]: 500 ₽
+                        - generic [ref=e1321]: −52%
+                      - generic [ref=e1323]: 476 шт осталось
+                      - link "Компотная смесь из сухофруктов и ягод В/С 1 кг" [ref=e1324] [cursor=pointer]:
+                        - /url: /product/kompotnaya-smes-iz-suhofruktov-i-yagod-v-s-1-kg-2568700214/?at=Eqtk7148jcLl76vEsX4jXw0h3D1yAAivlllZgsoXV96P
+                      - generic [ref=e1326]:
+                        - generic [ref=e1327]: "4.8"
+                        - generic [ref=e1330]: 5 132 отзыва
+                    - button "28 июля" [ref=e1335] [cursor=pointer]
+                - generic [ref=e1342]:
+                  - button [ref=e1345] [cursor=pointer]
+                  - link [ref=e1350] [cursor=pointer]:
+                    - /url: /product/marmelad-zhevatelnyy-lesnoe-assorti-500g-2317094387/?at=ywtA16OP3I5zOnBXfjk8zQkS4NgjWwFVOP9k9Fx346p0
+                    - img "Мармелад жевательный Лесное Ассорти 500г Покупают вместе" [ref=e1355]
+                  - generic [ref=e1356]:
+                    - generic [ref=e1357]:
+                      - generic [ref=e1358]: 258 ₽
+                      - link "Мармелад жевательный Лесное Ассорти 500г" [ref=e1362] [cursor=pointer]:
+                        - /url: /product/marmelad-zhevatelnyy-lesnoe-assorti-500g-2317094387/?at=ywtA16OP3I5zOnBXfjk8zQkS4NgjWwFVOP9k9Fx346p0
+                      - generic [ref=e1364]:
+                        - generic [ref=e1365]: "4.8"
+                        - generic [ref=e1368]: 5 077 отзывов
+                    - button "Послезавтра" [ref=e1373] [cursor=pointer]
+                - generic [ref=e1380]:
+                  - button [ref=e1383] [cursor=pointer]
+                  - link [ref=e1388] [cursor=pointer]:
+                    - /url: /product/kompotnaya-smes-iz-suhofruktov-1kg-3347773593/?at=BrtzGPWXNcPlOpEjTY93okUvvMAXzHXO08kuGKXNmY
+                    - img "Компотная смесь из сухофруктов, 1кг Покупают вместе" [ref=e1393]
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic "Распродажа"
+                  - generic [ref=e1394]:
+                    - generic [ref=e1395]:
+                      - generic [ref=e1397]:
+                        - generic [ref=e1398]: 226 ₽
+                        - generic [ref=e1399]: 3 000 ₽
+                        - generic [ref=e1400]: −92%
+                      - generic [ref=e1402]: 1 371 шт осталось
+                      - link "Компотная смесь из сухофруктов, 1кг" [ref=e1403] [cursor=pointer]:
+                        - /url: /product/kompotnaya-smes-iz-suhofruktov-1kg-3347773593/?at=BrtzGPWXNcPlOpEjTY93okUvvMAXzHXO08kuGKXNmY
+                      - generic [ref=e1405]:
+                        - generic [ref=e1406]: "4.8"
+                        - generic [ref=e1409]: 4 922 отзыва
+                    - button "Послезавтра" [ref=e1414] [cursor=pointer]
+                - generic [ref=e1421]:
+                  - button [ref=e1424] [cursor=pointer]
+                  - link [ref=e1429] [cursor=pointer]:
+                    - /url: /product/suhofrukty-kompotnaya-smes-assorti-1000-gr-safa-3547349054/?at=mqtkx1yoqcwzPWKoT0oAQrkcNyNvpohKxJExLUKLrpRO
+                    - img "Сухофрукты компотная смесь ассорти 1000 гр Safa Покупают вместе" [ref=e1434]
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic "Распродажа"
+                  - generic [ref=e1435]:
+                    - generic [ref=e1436]:
+                      - generic [ref=e1438]:
+                        - generic [ref=e1439]: 230 ₽
+                        - generic [ref=e1440]: 799 ₽
+                        - generic [ref=e1441]: −71%
+                      - link "Сухофрукты компотная смесь ассорти 1000 гр Safa" [ref=e1443] [cursor=pointer]:
+                        - /url: /product/suhofrukty-kompotnaya-smes-assorti-1000-gr-safa-3547349054/?at=mqtkx1yoqcwzPWKoT0oAQrkcNyNvpohKxJExLUKLrpRO
+                      - generic [ref=e1445]:
+                        - generic [ref=e1446]: "4.6"
+                        - generic [ref=e1449]: 6 549 отзывов
+                    - button "Послезавтра" [ref=e1454] [cursor=pointer]
+                - generic [ref=e1461]:
+                  - button [ref=e1464] [cursor=pointer]
+                  - link [ref=e1469] [cursor=pointer]:
+                    - /url: /product/12-shtuk-chay-raspuskayushchiysya-tsvetok-chay-puer-nabor-kitayskiy-chay-assorti-podarochnye-3584806902/?at=PjtJwvz1nckBZymULKl69vI63KQBEcqM5zzysQMw0VJ
+                    - img "12 штук,чай распускающийся цветок,чай пуэр набор,китайский чай ассорти,подарочные наборы чая Покупают вместе" [ref=e1474]
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic "Распродажа"
+                  - generic [ref=e1475]:
+                    - generic [ref=e1476]:
+                      - generic [ref=e1478]:
+                        - generic [ref=e1479]: 256 ₽
+                        - generic [ref=e1480]: 1 290 ₽
+                        - generic [ref=e1481]: −80%
+                      - link "12 штук,чай распускающийся цветок,чай пуэр набор,китайский чай ассорти,подарочные наборы чая" [ref=e1483] [cursor=pointer]:
+                        - /url: /product/12-shtuk-chay-raspuskayushchiysya-tsvetok-chay-puer-nabor-kitayskiy-chay-assorti-podarochnye-3584806902/?at=PjtJwvz1nckBZymULKl69vI63KQBEcqM5zzysQMw0VJ
+                      - generic [ref=e1485]:
+                        - generic [ref=e1486]: "4.6"
+                        - generic [ref=e1489]: 7 647 отзывов
+                    - button "17 августа" [ref=e1494] [cursor=pointer]
+                - generic [ref=e1501]:
+                  - button [ref=e1504] [cursor=pointer]
+                  - link [ref=e1509] [cursor=pointer]:
+                    - /url: /product/pastila-bez-sahara-pastilushka-assorti-0-8-kg-493837842/?at=z6tO18WYzcnkoBVLtjODn61flkM286FwQokPNfGO4AQ6
+                    - img "Пастила без сахара Пастилушка ассорти 0,8 кг Покупают вместе" [ref=e1514]
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic "Распродажа"
+                  - generic [ref=e1515]:
+                    - generic [ref=e1516]:
+                      - generic [ref=e1518]:
+                        - generic [ref=e1519]: 318 ₽
+                        - generic [ref=e1520]: 1 100 ₽
+                        - generic [ref=e1521]: −71%
+                      - generic [ref=e1523]: Пастилушка
+                      - link "Пастила без сахара Пастилушка ассорти 0,8 кг" [ref=e1526] [cursor=pointer]:
+                        - /url: /product/pastila-bez-sahara-pastilushka-assorti-0-8-kg-493837842/?at=z6tO18WYzcnkoBVLtjODn61flkM286FwQokPNfGO4AQ6
+                      - generic [ref=e1528]:
+                        - generic [ref=e1529]: "4.9"
+                        - generic [ref=e1532]: 404 775 отзывов
+                    - button "Послезавтра" [ref=e1537] [cursor=pointer]
+                - generic [ref=e1547]:
+                  - button [ref=e1550] [cursor=pointer]
+                  - link [ref=e1555] [cursor=pointer]:
+                    - /url: /product/chay-dubayskiy-shokolad-akbar-vkus-shokolada-i-fistashki-chernyy-chay-25-paketikov-3269800248/?at=28t0YK52QT9WLlPDiL4zl48UPvjRjNirnYWGyIwozQQP
+                    - img "Чай Дубайский шоколад AKBAR, вкус шоколада и фисташки, черный чай 25 пакетиков Покупают вместе" [ref=e1560]
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic "Распродажа"
+                  - generic [ref=e1561]:
+                    - generic [ref=e1562]:
+                      - generic [ref=e1564]:
+                        - generic [ref=e1565]: 105 ₽
+                        - generic [ref=e1566]: 300 ₽
+                        - generic [ref=e1567]: −65%
+                      - generic [ref=e1569]: 3 123 шт осталось
+                      - link "Чай Дубайский шоколад AKBAR, вкус шоколада и фисташки, черный чай 25 пакетиков" [ref=e1570] [cursor=pointer]:
+                        - /url: /product/chay-dubayskiy-shokolad-akbar-vkus-shokolada-i-fistashki-chernyy-chay-25-paketikov-3269800248/?at=28t0YK52QT9WLlPDiL4zl48UPvjRjNirnYWGyIwozQQP
+                      - generic [ref=e1572]:
+                        - generic [ref=e1573]: "4.6"
+                        - generic [ref=e1576]: 20 361 отзыв
+                    - button "22 июля" [ref=e1581] [cursor=pointer]
+                - generic [ref=e1588]:
+                  - button [ref=e1591] [cursor=pointer]
+                  - link [ref=e1596] [cursor=pointer]:
+                    - /url: /product/kumkvat-sushenyy-500gr-4624335107/?at=MZtvrxByYt087ZDyfQgzlqPixJ61vkhP6mLJ9FAZ5nRW
+                    - img "Кумкват сушеный 500гр Покупают вместе" [ref=e1601]
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic "Распродажа"
+                  - generic [ref=e1602]:
+                    - generic [ref=e1603]:
+                      - generic [ref=e1605]:
+                        - generic [ref=e1606]: 257 ₽
+                        - generic [ref=e1607]: 999 ₽
+                        - generic [ref=e1608]: −74%
+                      - generic [ref=e1610]: 4 832 шт осталось
+                      - generic [ref=e1611]: Оригинал
+                      - link "Кумкват сушеный 500гр" [ref=e1616] [cursor=pointer]:
+                        - /url: /product/kumkvat-sushenyy-500gr-4624335107/?at=MZtvrxByYt087ZDyfQgzlqPixJ61vkhP6mLJ9FAZ5nRW
+                      - generic [ref=e1618]:
+                        - generic [ref=e1619]: "4.9"
+                        - generic [ref=e1622]: 41 756 отзывов
+                    - button "Послезавтра" [ref=e1627] [cursor=pointer]
+              - button "Next slide" [ref=e1634] [cursor=pointer]
+        - generic [ref=e1640]:
+          - generic [ref=e1643]:
+            - heading "Описание" [level=2] [ref=e1645]
+            - generic [ref=e1646]: "Элегантный набор восточных сладостей станет превосходным подарком к любому важному дню — будь то день рождения, Новый год или значимое событие в кругу друзей и близких. Отборный ассорти турецкого лукума гармонично сочетается с орехами, создавая настоящий праздник вкуса для ценителей сладкого. Изысканные продукты питания, отобранные с особой тщательностью, подчеркнут статус подарочного бокса: это не просто сладости, а знак внимания, выражающий заботу и безупречный вкус дарящего.Такой набор идеально подходит, если вы хотите удивить мужчину или женщину, порадовать подругу, порадовать учителя, парня, девушку или даже подобрать подходящий подарок для коллеги, а богатый выбор вкусов подойдет для детей и взрослых. Восточные сладости выгодно дополняют чаепитие, а рахат-лукум с кокосом и орехами подарит минуты истинного наслаждения и станет украшением любой распродажи подарков.Каждая деталь в упаковке продумана: оригинальный бокс не только эстетичен, но и подчеркивает премиальный статус ассортимента. Изысканный подарок мужчине или женщине всегда актуален — деликатесные вкусняшки придутся по вкусу даже гурманам, которые ценят полезные продукты и традиции подарков из России. Ассорти сладких нот, традиционный рахат-лукум, собранный в единый набор, создаст атмосферу восточного праздника и порадует сладкоежек.При выборе подарка на день рождения, Новый год или просто чтобы порадовать близких, обратите внимание на этот сладкий набор — превосходный выбор для любого дня. Турецкие сладости, стиль оформления и качественные продукты питания делают его неотъемлемой частью любой праздничной атмосферы. Не упустите возможность воспользоваться скидками и приобрести эксклюзивный подарок для мужчин, женщин, детей и всей семьи."
+          - generic [ref=e1655]:
+            - heading "Условия хранения" [level=3] [ref=e1656]
+            - paragraph [ref=e1657]: Хранить в сухих, чистых, хорошо проветриваемых помещениях при относительной влажности воздуха не более 75%. После вскрытия упаковки хранить в закрытом внутреннем пакете, исключая возможность попадания влаги и прямого солнечного света.
+            - heading "Состав" [level=3] [ref=e1658]
+            - paragraph [ref=e1659]: "сахар, крахмал кукурузный, арахис, фундук, миндаль, кокосовая стружка, сок концентрированный вишнёвый, сок концентрированный дынный, сок концентрированный яблочный, красители натуральные. Внимание: возможны следы арахиса, орехов, кунжута и продуктов их переработки."
+          - generic [ref=e1661]:
+            - generic "#лукум" [ref=e1664] [cursor=pointer]
+            - generic "#лукум_рахат" [ref=e1668] [cursor=pointer]
+            - generic "#лукум_ассорти" [ref=e1672] [cursor=pointer]
+            - generic "#лукум_с_орехами" [ref=e1676] [cursor=pointer]
+            - generic "#лукумдлячаепития" [ref=e1680] [cursor=pointer]
+          - generic [ref=e1683]:
+            - heading [level=2] [ref=e1685]:
+              - link "Характеристики" [ref=e1686] [cursor=pointer]:
+                - /url: https://www.ozon.ru/product/lukum-orehovyy-assorti-500-gramm-650235959/features/
+            - generic [ref=e1688]:
+              - generic [ref=e1689]:
+                - generic [ref=e1690]:
+                  - term [ref=e1691]: Артикул
+                  - definition [ref=e1692]:
+                    - generic [ref=e1693]: "650235959"
+                - generic [ref=e1698]:
+                  - term [ref=e1699]: Тип
+                  - definition [ref=e1700]: Рахат-лукум
+                - generic [ref=e1701]:
+                  - term [ref=e1702]: Вид орехов
+                  - definition [ref=e1703]:
+                    - text: Миндаль,
+                    - link "Фундук" [ref=e1704] [cursor=pointer]:
+                      - /url: /category/rahat-lukum-s-fundukom/
+                    - text: ","
+                    - link "Арахис" [ref=e1705] [cursor=pointer]:
+                      - /url: /category/rahat-lukum-s-arahisom/
+                - generic [ref=e1706]:
+                  - term [ref=e1707]: Вид рахат лукума
+                  - definition [ref=e1708]:
+                    - link "Ореховый" [ref=e1709] [cursor=pointer]:
+                      - /url: /category/orehovyy-rahat-lukum/
+                    - text: ","
+                    - link "Фруктовый" [ref=e1710] [cursor=pointer]:
+                      - /url: /category/fruktovyy-rahat-lukum/
+                - generic [ref=e1711]:
+                  - term [ref=e1712]: Добавки
+                  - definition [ref=e1713]:
+                    - link "Фисташки" [ref=e1714] [cursor=pointer]:
+                      - /url: /category/vostochnye-sladosti-s-fistashkami/
+                    - text: ","
+                    - link "Миндаль" [ref=e1715] [cursor=pointer]:
+                      - /url: /category/vostochnye-sladosti-s-mindalem/
+                    - text: ","
+                    - link "Арахис" [ref=e1716] [cursor=pointer]:
+                      - /url: /category/vostochnye-sladosti-s-arahisom/
+                - generic [ref=e1717]:
+                  - term [ref=e1718]: Единиц в одном товаре
+                  - definition [ref=e1719]: "1"
+                - generic [ref=e1720]:
+                  - term [ref=e1721]: Вес товара, г
+                  - definition [ref=e1722]: "500"
+              - generic [ref=e1723]:
+                - generic [ref=e1724]:
+                  - term [ref=e1725]: Минимальная температура
+                  - definition [ref=e1726]: "2"
+                - generic [ref=e1727]:
+                  - term [ref=e1728]: Максимальная температура
+                  - definition [ref=e1729]: "28"
+                - generic [ref=e1730]:
+                  - term [ref=e1731]: Не содержит
+                  - definition [ref=e1732]:
+                    - link "без ГМО" [ref=e1733] [cursor=pointer]:
+                      - /url: /category/vostochnye-sladosti-bez-gmo/
+                    - text: ", без искусственных добавок, без консервантов"
+                - generic [ref=e1734]:
+                  - term [ref=e1735]: Особенности напитков, продуктов питания
+                  - definition [ref=e1736]:
+                    - link "Натуральный продукт" [ref=e1737] [cursor=pointer]:
+                      - /url: /category/churchhela-naturalnaya/
+                - generic [ref=e1738]:
+                  - term [ref=e1739]: Срок годности в днях
+                  - definition [ref=e1740]: "240"
+                - generic [ref=e1741]:
+                  - term [ref=e1742]: Страна-изготовитель
+                  - definition [ref=e1743]:
+                    - link "Россия" [ref=e1744] [cursor=pointer]:
+                      - /url: /category/rahat-lukum-rossiya/
+                - generic [ref=e1745]:
+                  - term [ref=e1746]: Упаковка
+                  - definition [ref=e1747]:
+                    - link "Картонная коробка" [ref=e1748] [cursor=pointer]:
+                      - /url: /category/vostochnye-sladosti-v-kartonnoy-korobke/
+            - generic [ref=e1749]: Информация о технических характеристиках, комплекте поставки, стране изготовления, внешнем виде и цвете товара носит справочный характер и основывается на последних доступных к моменту публикации сведениях
+          - generic [ref=e1750]:
+            - heading "Подборки товаров в категории Восточные сладости" [level=2] [ref=e1751]
+            - generic [ref=e1752]:
+              - link "Чак-чак" [ref=e1753] [cursor=pointer]:
+                - /url: /category/chak-chak/
+              - link "Халва" [ref=e1754] [cursor=pointer]:
+                - /url: /category/halva/
+              - link "Пахлава" [ref=e1755] [cursor=pointer]:
+                - /url: /category/pahlava/
+              - link "Щербет" [ref=e1756] [cursor=pointer]:
+                - /url: /category/shcherbet/
+              - link "Воздушный рис" [ref=e1757] [cursor=pointer]:
+                - /url: /category/vozdushnyy-ris/
+              - link "Козинаки" [ref=e1758] [cursor=pointer]:
+                - /url: /category/kozinaki/
+              - link "Джезерье" [ref=e1759] [cursor=pointer]:
+                - /url: /category/dzhezere/
+              - link "Рахат-лукум турецкий" [ref=e1760] [cursor=pointer]:
+                - /url: /category/rahat-lukum-turetskiy/
+              - link "Нуга с орехами" [ref=e1761] [cursor=pointer]:
+                - /url: /category/nuga-s-orehami/
+              - link "Турецкие сладости" [ref=e1762] [cursor=pointer]:
+                - /url: /category/turetskie-sladosti/
+        - generic [ref=e1775] [cursor=pointer]:
+          - generic [ref=e1776]: Документы качества
+          - generic [ref=e1777]: Перейдите, чтобы посмотреть документы
+        - generic [ref=e1785]:
+          - generic [ref=e1787]:
+            - button "Отзывы о товаре 339769" [ref=e1790] [cursor=pointer]:
+              - generic [ref=e1792]:
+                - generic [ref=e1793]: Отзывы о товаре
+                - generic [ref=e1794]: "339769"
+            - button "Вопросы о товаре 767" [ref=e1797] [cursor=pointer]:
+              - generic [ref=e1799]:
+                - generic [ref=e1800]: Вопросы о товаре
+                - generic [ref=e1801]: "767"
+          - generic [ref=e1806]:
+            - generic [ref=e1807]:
+              - generic [ref=e1810]:
+                - generic [ref=e1811] [cursor=pointer]: Все отзывы
+                - generic [ref=e1814] [cursor=pointer]: Этот вариант товара (117670)
+              - generic [ref=e1820]:
+                - button [ref=e1821] [cursor=pointer]
+                - button [ref=e1825] [cursor=pointer]
+                - button [ref=e1829] [cursor=pointer]
+                - button [ref=e1833] [cursor=pointer]
+                - button [ref=e1837] [cursor=pointer]
+                - button [ref=e1841] [cursor=pointer]
+                - button [ref=e1845] [cursor=pointer]
+                - button [ref=e1849] [cursor=pointer]
+                - button "+23967" [ref=e1853] [cursor=pointer]
+            - generic [ref=e1861]:
+              - generic [ref=e1864]:
+                - generic [ref=e1865]: 4.9 / 5
+                - generic [ref=e1867]: Рейтинг формируется на основе актуальных отзывов
+                - generic [ref=e1868]:
+                  - generic [ref=e1869]:
+                    - generic [ref=e1870]: 5 звёзд
+                    - generic [ref=e1874]: "305409"
+                  - generic [ref=e1875]:
+                    - generic [ref=e1876]: 4 звезды
+                    - generic [ref=e1880]: "24969"
+                  - generic [ref=e1881]:
+                    - generic [ref=e1882]: 3 звезды
+                    - generic [ref=e1886]: "5292"
+                  - generic [ref=e1887]:
+                    - generic [ref=e1888]: 2 звезды
+                    - generic [ref=e1892]: "1821"
+                  - generic [ref=e1893]:
+                    - generic [ref=e1894]: 1 звезда
+                    - generic [ref=e1898]: "2278"
+              - generic [ref=e1900]: Отзывы могут оставлять только те, кто купил товар. Так мы формируем честный рейтинг
+        - generic [ref=e1909]:
+          - generic [ref=e1910]: Подобрали для вас
+          - generic [ref=e1913]:
+            - generic [ref=e1914]:
+              - button [ref=e1917] [cursor=pointer]
+              - link [ref=e1922] [cursor=pointer]:
+                - /url: /product/churchhela-turetskaya-naturalnaya-granata-s-gretskim-nabor-podarochnyy-3401763361/?at=MZtvrxByYt95r5nQtExWmgNtmjjvk7iY0oZRwhwwmnzO
+                - img "чурчхела турецкая натуральная граната с грецким набор подарочный Подобрали для вас" [ref=e1927]
+              - generic [ref=e1929]:
+                - generic [ref=e1930]: 599 ₽
+                - link "чурчхела турецкая натуральная граната с грецким набор подарочный" [ref=e1934] [cursor=pointer]:
+                  - /url: /product/churchhela-turetskaya-naturalnaya-granata-s-gretskim-nabor-podarochnyy-3401763361/?at=MZtvrxByYt95r5nQtExWmgNtmjjvk7iY0oZRwhwwmnzO
+                - generic [ref=e1936]:
+                  - generic [ref=e1937]: "4.8"
+                  - generic [ref=e1940]: 2 027 отзывов
+            - generic [ref=e1943]:
+              - button [ref=e1946] [cursor=pointer]
+              - link [ref=e1951] [cursor=pointer]:
+                - /url: /product/rahat-lukum-assorti-500gr-podarochnye-dostarhanon-3111739494/?at=16tL4nJAXTnDLZx1Tz1j5WySjkKDjXSR9ZZQ7h5n7Kzo
+                - img "Рахат лукум ассорти 500гр подарочные достарханон Подобрали для вас" [ref=e1956]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e1958]:
+                - generic [ref=e1960]:
+                  - generic [ref=e1961]: 243 ₽
+                  - generic [ref=e1962]: 1 000 ₽
+                  - generic [ref=e1963]: −75%
+                - generic [ref=e1965]: 3 018 шт осталось
+                - link "Рахат лукум ассорти 500гр подарочные достарханон" [ref=e1966] [cursor=pointer]:
+                  - /url: /product/rahat-lukum-assorti-500gr-podarochnye-dostarhanon-3111739494/?at=16tL4nJAXTnDLZx1Tz1j5WySjkKDjXSR9ZZQ7h5n7Kzo
+                - generic [ref=e1968]:
+                  - generic [ref=e1969]: "4.8"
+                  - generic [ref=e1972]: 14 180 отзывов
+            - generic [ref=e1975]:
+              - button [ref=e1978] [cursor=pointer]
+              - link [ref=e1983] [cursor=pointer]:
+                - /url: /product/kofeynyy-napitok-zhokey-klassicheskiy-3-v-1-10-sht-144680330/?at=w0tgj0lEncA3gVQ3Sw2Grm3t7prPyjh63ovXlH4PXnL1
+                - img "Кофейный напиток Жокей Классический 3 в 1, 10 шт Подобрали для вас" [ref=e1988]
+              - generic [ref=e1990]:
+                - generic [ref=e1992]:
+                  - generic [ref=e1993]: 122 ₽
+                  - generic [ref=e1994]: 159 ₽
+                  - generic [ref=e1995]: −23%
+                - generic [ref=e1997]: Жокей
+                - link "Кофейный напиток Жокей Классический 3 в 1, 10 шт" [ref=e2000] [cursor=pointer]:
+                  - /url: /product/kofeynyy-napitok-zhokey-klassicheskiy-3-v-1-10-sht-144680330/?at=w0tgj0lEncA3gVQ3Sw2Grm3t7prPyjh63ovXlH4PXnL1
+                - generic [ref=e2002]:
+                  - generic [ref=e2003]: "4.8"
+                  - generic [ref=e2006]: 155 894
+                  - generic [ref=e2009]: Ozon
+            - generic [ref=e2012]:
+              - button [ref=e2015] [cursor=pointer]
+              - link [ref=e2020] [cursor=pointer]:
+                - /url: /product/adzhika-suhaya-ostraya-priprava-universalnaya-tsarskaya-priprava-290-g-1922786759/?at=28t0YK52QTvD3DnJH1QYpl1FoD55qjcxNE6qzhzY2qDm
+                - img "Аджика сухая, острая приправа универсальная, Царская приправа, 290 г Подобрали для вас" [ref=e2025]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e2027]:
+                - generic [ref=e2029]:
+                  - generic [ref=e2030]: 224 ₽
+                  - generic [ref=e2031]: 1 542 ₽
+                  - generic [ref=e2032]: −85%
+                - generic [ref=e2034]: 3 441 шт осталось
+                - generic [ref=e2035]: Оригинал
+                - link "Аджика сухая, острая приправа универсальная, Царская приправа, 290 г" [ref=e2040] [cursor=pointer]:
+                  - /url: /product/adzhika-suhaya-ostraya-priprava-universalnaya-tsarskaya-priprava-290-g-1922786759/?at=28t0YK52QTvD3DnJH1QYpl1FoD55qjcxNE6qzhzY2qDm
+                - generic [ref=e2042]:
+                  - generic [ref=e2043]: "4.9"
+                  - generic [ref=e2046]: 56 170 отзывов
+            - generic [ref=e2049]:
+              - button [ref=e2052] [cursor=pointer]
+              - link [ref=e2057] [cursor=pointer]:
+                - /url: /product/rahat-lukum-turetskiy-1-kg-podarochnyy-nabor-fruktovoe-assorti-kubik-s-arahisom-fundukom-i-937671244/?at=WPtNEzrL8tPPO9pVu76JEy1s9Bg1D7UP31rDfJDrXPZ
+                - img "Рахат Лукум турецкий 1 кг подарочный набор \"Фруктовое ассорти Кубик\" с арахисом, фундуком и грецким орехом Подобрали для вас" [ref=e2062]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e2064]:
+                - generic [ref=e2066]:
+                  - generic [ref=e2067]: 666 ₽
+                  - generic [ref=e2068]: 8 000 ₽
+                  - generic [ref=e2069]: −91%
+                - generic [ref=e2071]: 544 шт осталось
+                - link "Рахат Лукум турецкий 1 кг подарочный набор \"Фруктовое ассорти Кубик\" с арахисом, фундуком и грецким орехом" [ref=e2072] [cursor=pointer]:
+                  - /url: /product/rahat-lukum-turetskiy-1-kg-podarochnyy-nabor-fruktovoe-assorti-kubik-s-arahisom-fundukom-i-937671244/?at=WPtNEzrL8tPPO9pVu76JEy1s9Bg1D7UP31rDfJDrXPZ
+                - generic [ref=e2074]:
+                  - generic [ref=e2075]: "4.8"
+                  - generic [ref=e2078]: 36 311 отзывов
+            - generic [ref=e2081]:
+              - button [ref=e2084] [cursor=pointer]
+              - link [ref=e2089] [cursor=pointer]:
+                - /url: /product/rahat-lukum-raduga-assorti-vkusov-1-2kg-2555245066/?at=WPtNEzrL8tOxYJEps3ApqOYCROVz83tAmjpOzt1G9Kjl
+                - img "Рахат-Лукум радуга ассорти вкусов 1,2кг Подобрали для вас" [ref=e2094]
+              - generic [ref=e2096]:
+                - generic [ref=e2097]: 808 ₽
+                - link "Рахат-Лукум радуга ассорти вкусов 1,2кг" [ref=e2101] [cursor=pointer]:
+                  - /url: /product/rahat-lukum-raduga-assorti-vkusov-1-2kg-2555245066/?at=WPtNEzrL8tOxYJEps3ApqOYCROVz83tAmjpOzt1G9Kjl
+                - generic [ref=e2103]:
+                  - generic [ref=e2104]: "4.8"
+                  - generic [ref=e2107]: 185 отзывов
+            - generic [ref=e2110]:
+              - button [ref=e2113] [cursor=pointer]
+              - link [ref=e2118] [cursor=pointer]:
+                - /url: /product/lukum-kubiki-miks-fruktovyy-500-gramm-3261252828/?at=oZt6nl2VmCr80DAwu0voOxycR5k7KQszlGr7OhlKggxB
+                - img "Лукум Кубики Микс фруктовый 500 грамм Подобрали для вас" [ref=e2123]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Вау-цены"
+              - generic [ref=e2125]:
+                - generic [ref=e2127]:
+                  - generic [ref=e2128]: 212 ₽
+                  - generic [ref=e2129]: 450 ₽
+                  - generic [ref=e2130]: −52%
+                - generic [ref=e2132]: 4 182 шт осталось
+                - link "Лукум Кубики Микс фруктовый 500 грамм" [ref=e2133] [cursor=pointer]:
+                  - /url: /product/lukum-kubiki-miks-fruktovyy-500-gramm-3261252828/?at=oZt6nl2VmCr80DAwu0voOxycR5k7KQszlGr7OhlKggxB
+                - generic [ref=e2135]:
+                  - generic [ref=e2136]: "4.9"
+                  - generic [ref=e2139]: 89 117 отзывов
+            - generic [ref=e2142]:
+              - button [ref=e2145] [cursor=pointer]
+              - link [ref=e2150] [cursor=pointer]:
+                - /url: /product/kofe-v-zernah-tasty-coffee-natti-250-g-714928271/?at=57twJgkP1cWYvp8JsDBDVKLi1vDk22t4j4A5ZIgOkoLR
+                - img "Кофе в зернах Tasty Coffee Натти, 250 г Подобрали для вас" [ref=e2155]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e2157]:
+                - generic [ref=e2159]:
+                  - generic [ref=e2160]: 592 ₽
+                  - generic [ref=e2161]: 1 265 ₽
+                  - generic [ref=e2162]: −53%
+                - generic [ref=e2164]:
+                  - generic [ref=e2165]: Tasty Coffee
+                  - generic [ref=e2167]: Оригинал
+                - link "Кофе в зернах Tasty Coffee Натти, 250 г" [ref=e2171] [cursor=pointer]:
+                  - /url: /product/kofe-v-zernah-tasty-coffee-natti-250-g-714928271/?at=57twJgkP1cWYvp8JsDBDVKLi1vDk22t4j4A5ZIgOkoLR
+                - generic [ref=e2173]:
+                  - generic [ref=e2174]: "4.9"
+                  - generic [ref=e2177]: 99 278 отзывов
+            - generic [ref=e2180]:
+              - button [ref=e2183] [cursor=pointer]
+              - link [ref=e2188] [cursor=pointer]:
+                - /url: /product/finiki-s-gretskimi-orehami-600gr-bez-sahara-naturalnyy-postnyy-produkt-2376297287/?at=k2toEY2yvT2x0yxzIqA65R8izrxZl6iLjE63RS0K3JnB
+                - img "Финики с грецкими орехами 600гр без сахара натуральный, постный продукт Подобрали для вас" [ref=e2193]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e2195]:
+                - generic [ref=e2197]:
+                  - generic [ref=e2198]: 525 ₽
+                  - generic [ref=e2199]: 3 000 ₽
+                  - generic [ref=e2200]: −82%
+                - generic [ref=e2202]: 173 шт осталось
+                - link "Финики с грецкими орехами 600гр без сахара натуральный, постный продукт" [ref=e2203] [cursor=pointer]:
+                  - /url: /product/finiki-s-gretskimi-orehami-600gr-bez-sahara-naturalnyy-postnyy-produkt-2376297287/?at=k2toEY2yvT2x0yxzIqA65R8izrxZl6iLjE63RS0K3JnB
+                - generic [ref=e2205]:
+                  - generic [ref=e2206]: "4.9"
+                  - generic [ref=e2209]: 9 509 отзывов
+            - generic [ref=e2212]:
+              - button [ref=e2215] [cursor=pointer]
+              - link [ref=e2220] [cursor=pointer]:
+                - /url: /product/shcherbet-myagkiy-s-arahisom-2085400585/?at=BrtzGPWXNcOkRO33HPOEMwPcyYOomjFwnwRKqCXQJKKo
+                - img "Щербет мягкий с арахисом Подобрали для вас" [ref=e2225]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e2227]:
+                - generic [ref=e2229]:
+                  - generic [ref=e2230]: 209 ₽
+                  - generic [ref=e2231]: 800 ₽
+                  - generic [ref=e2232]: −73%
+                - generic [ref=e2234]: 63 шт осталось
+                - link "Щербет мягкий с арахисом" [ref=e2235] [cursor=pointer]:
+                  - /url: /product/shcherbet-myagkiy-s-arahisom-2085400585/?at=BrtzGPWXNcOkRO33HPOEMwPcyYOomjFwnwRKqCXQJKKo
+                - generic [ref=e2237]:
+                  - generic [ref=e2238]: "4.8"
+                  - generic [ref=e2241]: 1 902 отзыва
+            - generic [ref=e2244]:
+              - button [ref=e2247] [cursor=pointer]
+              - link [ref=e2252] [cursor=pointer]:
+                - /url: /product/zefir-tsitrusovyy-fresh-1-kg-2080145476/?at=z6tO18WYzcogmA0XhkNGLxQhjz3AMWSJmP38RUP96kww
+                - img "Зефир Цитрусовый фреш 1 кг Подобрали для вас" [ref=e2257]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Цена что надо"
+              - generic [ref=e2259]:
+                - generic [ref=e2260]: 535 ₽
+                - link "Зефир Цитрусовый фреш 1 кг" [ref=e2264] [cursor=pointer]:
+                  - /url: /product/zefir-tsitrusovyy-fresh-1-kg-2080145476/?at=z6tO18WYzcogmA0XhkNGLxQhjz3AMWSJmP38RUP96kww
+                - generic [ref=e2266]:
+                  - generic [ref=e2267]: "4.8"
+                  - generic [ref=e2270]: 11 518 отзывов
+            - generic [ref=e2273]:
+              - button [ref=e2276] [cursor=pointer]
+              - link [ref=e2281] [cursor=pointer]:
+                - /url: /product/rahat-lukum-assorti-dastarhon-podarochnyy-500gr-1960058093/?at=k2toEY2yvTNAVy5xfOAjGL7uGP2gVAs8zG4J2F6NJoJL
+                - img "рахат лукум ассорти дастархон подарочный 500гр Подобрали для вас" [ref=e2286]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e2288]:
+                - generic [ref=e2290]:
+                  - generic [ref=e2291]: 290 ₽
+                  - generic [ref=e2292]: 1 000 ₽
+                  - generic [ref=e2293]: −71%
+                - generic [ref=e2295]: 1 шт осталось
+                - link "рахат лукум ассорти дастархон подарочный 500гр" [ref=e2296] [cursor=pointer]:
+                  - /url: /product/rahat-lukum-assorti-dastarhon-podarochnyy-500gr-1960058093/?at=k2toEY2yvTNAVy5xfOAjGL7uGP2gVAs8zG4J2F6NJoJL
+                - generic [ref=e2298]:
+                  - generic [ref=e2299]: "4.8"
+                  - generic [ref=e2302]: 8 897 отзывов
+            - generic [ref=e2305]:
+              - button [ref=e2308] [cursor=pointer]
+              - link [ref=e2313] [cursor=pointer]:
+                - /url: /product/servet-1987-rahat-lukum-dvoynoy-obzharki-s-chernoy-shelkovitsey-i-fistashkami-bez-dobavleniya-sahara-3012056486/?at=A6tGQrpK5cXvRK3YhZDxWW1Iw2nBMXSB7D31AhRGgmrO
+                - img "SERVET 1987 Рахат-лукум двойной обжарки с черной шелковицей и фисташками без добавления сахара 1500 г Подобрали для вас" [ref=e2318]
+              - generic [ref=e2320]:
+                - generic [ref=e2321]: 10 079 ₽
+                - link "SERVET 1987 Рахат-лукум двойной обжарки с черной шелковицей и фисташками без добавления сахара 1500 г" [ref=e2325] [cursor=pointer]:
+                  - /url: /product/servet-1987-rahat-lukum-dvoynoy-obzharki-s-chernoy-shelkovitsey-i-fistashkami-bez-dobavleniya-sahara-3012056486/?at=A6tGQrpK5cXvRK3YhZDxWW1Iw2nBMXSB7D31AhRGgmrO
+                - generic [ref=e2327]:
+                  - generic [ref=e2328]: "4.8"
+                  - generic [ref=e2331]: 6 отзывов
+            - generic [ref=e2334]:
+              - button [ref=e2337] [cursor=pointer]
+              - link [ref=e2342] [cursor=pointer]:
+                - /url: /product/finiki-mazafati-500g-4387574329/?at=w0tgj0lEncG7j0gXSJNLNL3Tngkw61HNOroLflEqwzj
+                - img "Финики Мазафати 500г Подобрали для вас" [ref=e2347]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e2349]:
+                - generic [ref=e2351]:
+                  - generic [ref=e2352]: 190 ₽
+                  - generic [ref=e2353]: 1 999 ₽
+                  - generic [ref=e2354]: −90%
+                - generic [ref=e2356]: 34 ₽ / 100 гр
+                - link "Финики Мазафати 500г" [ref=e2358] [cursor=pointer]:
+                  - /url: /product/finiki-mazafati-500g-4387574329/?at=w0tgj0lEncG7j0gXSJNLNL3Tngkw61HNOroLflEqwzj
+                - generic [ref=e2360]:
+                  - generic [ref=e2361]: "4.7"
+                  - generic [ref=e2364]: 62 971 отзыв
+            - generic [ref=e2367]:
+              - button [ref=e2370] [cursor=pointer]
+              - link [ref=e2375] [cursor=pointer]:
+                - /url: /product/rahat-lukum-s-fistashkami-i-belym-shokoladom-250-gr-3260417514/?at=WPtNEzrL8t0nR7BYUvlyxDTWwvDl8HMA7j55CE2pQx4
+                - img "Рахат лукум с фисташками и белым шоколадом 250 гр Подобрали для вас" [ref=e2380]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e2382]:
+                - generic [ref=e2384]:
+                  - generic [ref=e2385]: 583 ₽
+                  - generic [ref=e2386]: 1 500 ₽
+                  - generic [ref=e2387]: −61%
+                - generic [ref=e2389]: 26 шт осталось
+                - link "Рахат лукум с фисташками и белым шоколадом 250 гр" [ref=e2390] [cursor=pointer]:
+                  - /url: /product/rahat-lukum-s-fistashkami-i-belym-shokoladom-250-gr-3260417514/?at=WPtNEzrL8t0nR7BYUvlyxDTWwvDl8HMA7j55CE2pQx4
+                - generic [ref=e2392]:
+                  - generic [ref=e2393]: "4.7"
+                  - generic [ref=e2396]: 381 отзыв
+            - generic [ref=e2399]:
+              - button [ref=e2402] [cursor=pointer]
+              - link [ref=e2407] [cursor=pointer]:
+                - /url: /product/rahat-lukum-assorti-lavochka-sultana-turtsiya-500-gr-766821141/?at=oZt6nl2VmC1l6gj1FE7QQmqH7PYE8nfA4ZNK6I8XoXrE
+                - img "Рахат лукум ассорти Лавочка Султана Турция 500 гр Подобрали для вас" [ref=e2412]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e2414]:
+                - generic [ref=e2416]:
+                  - generic [ref=e2417]: 1 618 ₽
+                  - generic [ref=e2418]: 5 350 ₽
+                  - generic [ref=e2419]: −69%
+                - generic [ref=e2421]: 44 шт осталось
+                - link "Рахат лукум ассорти Лавочка Султана Турция 500 гр" [ref=e2422] [cursor=pointer]:
+                  - /url: /product/rahat-lukum-assorti-lavochka-sultana-turtsiya-500-gr-766821141/?at=oZt6nl2VmC1l6gj1FE7QQmqH7PYE8nfA4ZNK6I8XoXrE
+                - generic [ref=e2424]:
+                  - generic [ref=e2425]: "4.8"
+                  - generic [ref=e2428]: 635 отзывов
+            - generic [ref=e2431]:
+              - button [ref=e2434] [cursor=pointer]
+              - link [ref=e2439] [cursor=pointer]:
+                - /url: /product/zefir-nezhnyy-na-agare-yabloko-v-glazuri-1-kg-lyubimaya-kuban-1174186017/?at=46tRVY42xtMgo4DRfvp6wLqiWolZl3tjByPJ3FpOJ1Zp
+                - img "Зефир нежный на агаре Яблоко в глазури 1 кг Любимая Кубань Подобрали для вас" [ref=e2444]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e2446]:
+                - generic [ref=e2448]:
+                  - generic [ref=e2449]: 534 ₽
+                  - generic [ref=e2450]: 1 555 ₽
+                  - generic [ref=e2451]: −65%
+                - generic [ref=e2453]: 39 шт осталось
+                - link "Зефир нежный на агаре Яблоко в глазури 1 кг Любимая Кубань" [ref=e2454] [cursor=pointer]:
+                  - /url: /product/zefir-nezhnyy-na-agare-yabloko-v-glazuri-1-kg-lyubimaya-kuban-1174186017/?at=46tRVY42xtMgo4DRfvp6wLqiWolZl3tjByPJ3FpOJ1Zp
+                - generic [ref=e2456]:
+                  - generic [ref=e2457]: "4.8"
+                  - generic [ref=e2460]: 17 674 отзыва
+            - generic [ref=e2463]:
+              - button [ref=e2466] [cursor=pointer]
+              - link [ref=e2471] [cursor=pointer]:
+                - /url: /product/kofe-rastvorimyy-zhokey-imper-150-g-33069397/?at=GRt27W3N9sm113Dptv5X031h2LO4wlU1jKwzGhWqRDQP
+                - img "Кофе растворимый Жокей Импер, 150 г Подобрали для вас" [ref=e2476]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e2478]:
+                - generic [ref=e2480]:
+                  - generic [ref=e2481]: 376 ₽
+                  - generic [ref=e2482]: 489 ₽
+                  - generic [ref=e2483]: −23%
+                - generic [ref=e2485]: 179 шт осталось
+                - generic [ref=e2486]: Жокей
+                - link "Кофе растворимый Жокей Импер, 150 г" [ref=e2489] [cursor=pointer]:
+                  - /url: /product/kofe-rastvorimyy-zhokey-imper-150-g-33069397/?at=GRt27W3N9sm113Dptv5X031h2LO4wlU1jKwzGhWqRDQP
+                - generic [ref=e2491]:
+                  - generic [ref=e2492]: "4.9"
+                  - generic [ref=e2495]: 189 432
+                  - generic [ref=e2498]: Ozon
+            - generic [ref=e2501]:
+              - button [ref=e2504] [cursor=pointer]
+              - link [ref=e2509] [cursor=pointer]:
+                - /url: /product/sultanskaya-kollektsiya-rahat-lukum-iz-stambula-3908555763/?at=XQtkQBEPZc7Q4WlIZn1Rn1HRr4Q7xCxv78PvS9XMmwj
+                - img "Султанская коллекция Рахат лукум из Стамбула Подобрали для вас" [ref=e2514]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e2516]:
+                - generic [ref=e2518]:
+                  - generic [ref=e2519]: 594 ₽
+                  - generic [ref=e2520]: 1 600 ₽
+                  - generic [ref=e2521]: −62%
+                - generic [ref=e2523]: 1 шт осталось
+                - link "Султанская коллекция Рахат лукум из Стамбула" [ref=e2524] [cursor=pointer]:
+                  - /url: /product/sultanskaya-kollektsiya-rahat-lukum-iz-stambula-3908555763/?at=XQtkQBEPZc7Q4WlIZn1Rn1HRr4Q7xCxv78PvS9XMmwj
+                - generic [ref=e2526]:
+                  - generic [ref=e2527]: "4.6"
+                  - generic [ref=e2530]: 2 561 отзыв
+            - generic [ref=e2533]:
+              - button [ref=e2536] [cursor=pointer]
+              - link [ref=e2541] [cursor=pointer]:
+                - /url: /product/finiki-mazafati-iranskie-550-gr-bez-sahara-2859338063/?at=K8tZo87ykTkpo12Ri2zzBmmS1g6jr5f4zWy3BcEnj6nZ
+                - img "Финики Мазафати Иранские 550 гр без сахара Подобрали для вас" [ref=e2546]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e2548]:
+                - generic [ref=e2550]:
+                  - generic [ref=e2551]: 217 ₽
+                  - generic [ref=e2552]: 468 ₽
+                  - generic [ref=e2553]: −53%
+                - generic [ref=e2555]: 1 841 шт осталось
+                - link "Финики Мазафати Иранские 550 гр без сахара" [ref=e2556] [cursor=pointer]:
+                  - /url: /product/finiki-mazafati-iranskie-550-gr-bez-sahara-2859338063/?at=K8tZo87ykTkpo12Ri2zzBmmS1g6jr5f4zWy3BcEnj6nZ
+                - generic [ref=e2558]:
+                  - generic [ref=e2559]: "4.7"
+                  - generic [ref=e2562]: 54 605 отзывов
+            - generic [ref=e2565]:
+              - button [ref=e2568] [cursor=pointer]
+              - link [ref=e2573] [cursor=pointer]:
+                - /url: /product/rahat-lukum-yasrib-assorti-1-kg-732888002/?at=QktJQBv1Lc1JG24VfW5j0kXtPPNEOmhqWmBkDUGG226m
+                - img "Рахат лукум Ясриб Ассорти 1 кг Подобрали для вас" [ref=e2578]
+              - generic [ref=e2580]:
+                - generic [ref=e2581]: 623 ₽
+                - link "Рахат лукум Ясриб Ассорти 1 кг" [ref=e2585] [cursor=pointer]:
+                  - /url: /product/rahat-lukum-yasrib-assorti-1-kg-732888002/?at=QktJQBv1Lc1JG24VfW5j0kXtPPNEOmhqWmBkDUGG226m
+                - generic [ref=e2587]:
+                  - generic [ref=e2588]: "4.9"
+                  - generic [ref=e2591]: 1 357 отзывов
+            - generic [ref=e2594]:
+              - button [ref=e2597] [cursor=pointer]
+              - link [ref=e2602] [cursor=pointer]:
+                - /url: /product/konfety-drazhe-fruktovoe-zubchiki-marmeladnye-500gr-4482426019/?at=OgtE851LkTk5LRk8Tpyxzn4h6VpEvntmG5rDQfz1E9DL
+                - img "Конфеты, драже фруктовое, зубчики мармеладные, 500гр Подобрали для вас" [ref=e2607]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e2609]:
+                - generic [ref=e2611]:
+                  - generic [ref=e2612]: 248 ₽
+                  - generic [ref=e2613]: 3 000 ₽
+                  - generic [ref=e2614]: −91%
+                - generic [ref=e2616]: 314 шт осталось
+                - link "Конфеты, драже фруктовое, зубчики мармеладные, 500гр" [ref=e2617] [cursor=pointer]:
+                  - /url: /product/konfety-drazhe-fruktovoe-zubchiki-marmeladnye-500gr-4482426019/?at=OgtE851LkTk5LRk8Tpyxzn4h6VpEvntmG5rDQfz1E9DL
+                - generic [ref=e2619]:
+                  - generic [ref=e2620]: "4.8"
+                  - generic [ref=e2623]: 3 573 отзыва
+            - generic [ref=e2626]:
+              - button [ref=e2629] [cursor=pointer]
+              - link [ref=e2634] [cursor=pointer]:
+                - /url: /product/hafiz-mustafa-lukum-granatovyy-s-dvoynymi-fistashkami-1297291049/?at=w0tgj0lEncqxDJgYHw284q8Hn1JAXLTMyNn2mHzjZmZN
+                - img "Hafiz Mustafa Лукум гранатовый с двойными фисташками Подобрали для вас" [ref=e2639]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Цена что надо"
+              - generic [ref=e2641]:
+                - generic [ref=e2642]: 2 973 ₽
+                - link "Hafiz Mustafa Лукум гранатовый с двойными фисташками" [ref=e2646] [cursor=pointer]:
+                  - /url: /product/hafiz-mustafa-lukum-granatovyy-s-dvoynymi-fistashkami-1297291049/?at=w0tgj0lEncqxDJgYHw284q8Hn1JAXLTMyNn2mHzjZmZN
+                - generic [ref=e2648]:
+                  - generic [ref=e2649]: "4.1"
+                  - generic [ref=e2652]: 21 отзыв
+            - generic [ref=e2655]:
+              - button [ref=e2658] [cursor=pointer]
+              - link [ref=e2663] [cursor=pointer]:
+                - /url: /product/hafiz-mustafa-smeshannyy-drazhe-bolshaya-metallicheskaya-korobka-2453506328/?at=QktJQBv1LcAMX57Ju1lnj72fxAv0z3HGl5kqwslgB6m9
+                - img "Hafiz Mustafa Смешанный драже (большая металлическая коробка) Подобрали для вас" [ref=e2668]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e2670]:
+                - generic [ref=e2672]:
+                  - generic [ref=e2673]: 5 024 ₽
+                  - generic [ref=e2674]: 8 913 ₽
+                  - generic [ref=e2675]: −43%
+                - generic [ref=e2677]: 80 шт осталось
+                - link "Hafiz Mustafa Смешанный драже (большая металлическая коробка)" [ref=e2678] [cursor=pointer]:
+                  - /url: /product/hafiz-mustafa-smeshannyy-drazhe-bolshaya-metallicheskaya-korobka-2453506328/?at=QktJQBv1LcAMX57Ju1lnj72fxAv0z3HGl5kqwslgB6m9
+                - generic [ref=e2680]:
+                  - generic [ref=e2681]: "4.9"
+                  - generic [ref=e2684]: 55 отзывов
+            - generic [ref=e2687]:
+              - button [ref=e2690] [cursor=pointer]
+              - link [ref=e2695] [cursor=pointer]:
+                - /url: /product/nabor-spetsii-i-soli-abhazii-15v1-2288767827/?at=ywtA16OP3IBA1EGMu5Aoz4ntrODDGOHN2O7YDh3yyYr3
+                - img "Набор специи и соли Абхазии 15в1 Подобрали для вас" [ref=e2700]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e2702]:
+                - generic [ref=e2704]:
+                  - generic [ref=e2705]: 236 ₽
+                  - generic [ref=e2706]: 700 ₽
+                  - generic [ref=e2707]: −66%
+                - generic [ref=e2709]: 91 шт осталось
+                - link "Набор специи и соли Абхазии 15в1" [ref=e2710] [cursor=pointer]:
+                  - /url: /product/nabor-spetsii-i-soli-abhazii-15v1-2288767827/?at=ywtA16OP3IBA1EGMu5Aoz4ntrODDGOHN2O7YDh3yyYr3
+                - generic [ref=e2712]:
+                  - generic [ref=e2713]: "4.9"
+                  - generic [ref=e2716]: 2 986 отзывов
+            - generic [ref=e2719]:
+              - button [ref=e2722] [cursor=pointer]
+              - link [ref=e2727] [cursor=pointer]:
+                - /url: /product/zhevatelnye-konfety-marmelad-s-pyatnyshkami-300-gr-2118966043/?at=Y7tj7kVWXs0qmpjzULng7KYh7yz9qnsOMBE1ltk4n3J3
+                - img "Жевательные конфеты мармелад с пятнышками 300 гр Подобрали для вас" [ref=e2732]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e2734]:
+                - generic [ref=e2736]:
+                  - generic [ref=e2737]: 227 ₽
+                  - generic [ref=e2738]: 850 ₽
+                  - generic [ref=e2739]: −73%
+                - generic [ref=e2741]: 2 358 шт осталось
+                - link "Жевательные конфеты мармелад с пятнышками 300 гр" [ref=e2742] [cursor=pointer]:
+                  - /url: /product/zhevatelnye-konfety-marmelad-s-pyatnyshkami-300-gr-2118966043/?at=Y7tj7kVWXs0qmpjzULng7KYh7yz9qnsOMBE1ltk4n3J3
+                - generic [ref=e2744]:
+                  - generic [ref=e2745]: "4.7"
+                  - generic [ref=e2748]: 19 829 отзывов
+            - generic [ref=e2751]:
+              - button [ref=e2754] [cursor=pointer]
+              - link [ref=e2759] [cursor=pointer]:
+                - /url: /product/chay-fruktovyy-tisun-karkade-listovoy-naturalnyy-malina-s-myatoy-v-banochke-45-g-3821725048/?at=z6tO18WYzc4zwG17Ik8QJQ7i9BA37gS9rW1vDFP0yREy
+                - img "Чай фруктовый TiSun каркаде листовой натуральный \"Малина с мятой\" в баночке, 45 г Подобрали для вас" [ref=e2764]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e2766]:
+                - generic [ref=e2768]:
+                  - generic [ref=e2769]: 181 ₽
+                  - generic [ref=e2770]: 700 ₽
+                  - generic [ref=e2771]: −74%
+                - generic [ref=e2773]: Оригинал
+                - link "Чай фруктовый TiSun каркаде листовой натуральный \"Малина с мятой\" в баночке, 45 г" [ref=e2778] [cursor=pointer]:
+                  - /url: /product/chay-fruktovyy-tisun-karkade-listovoy-naturalnyy-malina-s-myatoy-v-banochke-45-g-3821725048/?at=z6tO18WYzc4zwG17Ik8QJQ7i9BA37gS9rW1vDFP0yREy
+                - generic [ref=e2780]:
+                  - generic [ref=e2781]: "4.8"
+                  - generic [ref=e2784]: 18 464 отзыва
+            - generic [ref=e2787]:
+              - button [ref=e2790] [cursor=pointer]
+              - link [ref=e2795] [cursor=pointer]:
+                - /url: /product/rahat-lukum-koska-assorti-vkusov-roza-limon-apelsin-myata-500-g-796160727/?at=46tRVY42xtoNP70Wip9qkZwuADZNgDfzzn5L8co00Zy
+                - img "Рахат-лукум Koska ассорти вкусов (роза, лимон, апельсин, мята), 500 г Подобрали для вас" [ref=e2800]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e2802]:
+                - generic [ref=e2804]:
+                  - generic [ref=e2805]: 578 ₽
+                  - generic [ref=e2806]: 1 359 ₽
+                  - generic [ref=e2807]: −57%
+                - generic [ref=e2809]: 210 шт осталось
+                - link "Рахат-лукум Koska ассорти вкусов (роза, лимон, апельсин, мята), 500 г" [ref=e2810] [cursor=pointer]:
+                  - /url: /product/rahat-lukum-koska-assorti-vkusov-roza-limon-apelsin-myata-500-g-796160727/?at=46tRVY42xtoNP70Wip9qkZwuADZNgDfzzn5L8co00Zy
+                - generic [ref=e2812]:
+                  - generic [ref=e2813]: "4.9"
+                  - generic [ref=e2816]: 2 760 отзывов
+            - generic [ref=e2819]:
+              - button [ref=e2822] [cursor=pointer]
+              - link [ref=e2827] [cursor=pointer]:
+                - /url: /product/lukum-klassicheskiy-so-vkusom-granata-500-g-1998053120/?at=GRt27W3N9spPY0MjHwn4W8kcrB44w9c0x7MKDCmgw6JO
+                - img "Лукум классический со вкусом граната 500 г Подобрали для вас" [ref=e2832]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e2834]:
+                - generic [ref=e2836]:
+                  - generic [ref=e2837]: 235 ₽
+                  - generic [ref=e2838]: 750 ₽
+                  - generic [ref=e2839]: −68%
+                - generic [ref=e2841]: 72 шт осталось
+                - link "Лукум классический со вкусом граната 500 г" [ref=e2842] [cursor=pointer]:
+                  - /url: /product/lukum-klassicheskiy-so-vkusom-granata-500-g-1998053120/?at=GRt27W3N9spPY0MjHwn4W8kcrB44w9c0x7MKDCmgw6JO
+                - generic [ref=e2844]:
+                  - generic [ref=e2845]: "4.8"
+                  - generic [ref=e2848]: 3 720 отзывов
+            - generic [ref=e2851]:
+              - button [ref=e2854] [cursor=pointer]
+              - link [ref=e2859] [cursor=pointer]:
+                - /url: /product/shafran-rahat-lukum-prints-orehovoe-assorti-300gr-3418595951/?at=36tWk7DgvID8Q4OpIoBXnx0F9YDlE2s0zzoGMI33knxA
+                - img "Shafran Рахат-лукум Принц ореховое ассорти 300гр Подобрали для вас" [ref=e2864]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Цена что надо"
+              - generic [ref=e2866]:
+                - generic [ref=e2867]: 194 ₽
+                - link "Shafran Рахат-лукум Принц ореховое ассорти 300гр" [ref=e2871] [cursor=pointer]:
+                  - /url: /product/shafran-rahat-lukum-prints-orehovoe-assorti-300gr-3418595951/?at=36tWk7DgvID8Q4OpIoBXnx0F9YDlE2s0zzoGMI33knxA
+                - generic [ref=e2873]:
+                  - generic [ref=e2874]: "4.8"
+                  - generic [ref=e2877]: 3 553 отзыва
+      - contentinfo [ref=e2887]:
+        - generic [ref=e2888]:
+          - generic [ref=e2889]: Наведите камеру и скачайте бесплатное приложение Ozon
+          - generic [ref=e2893]:
+            - link "Об Ozon / About Ozon" [ref=e2894] [cursor=pointer]:
+              - /url: https://corp.ozon.ru/
+            - link "Контакты" [ref=e2896] [cursor=pointer]:
+              - /url: https://docs.ozon.ru/common/kontakty/
+            - link "Политика обработки данных" [ref=e2898] [cursor=pointer]:
+              - /url: https://docs.ozon.ru/legal/personal-data/
+          - generic [ref=e2900]:
+            - link "Оплата" [ref=e2901] [cursor=pointer]:
+              - /url: https://docs.ozon.ru/common/oplata/sposoby-oplaty/
+            - link "Доставка" [ref=e2903] [cursor=pointer]:
+              - /url: https://docs.ozon.ru/common/dostavka/sposoby-dostavki/
+            - link "Возврат товаров" [ref=e2905] [cursor=pointer]:
+              - /url: https://docs.ozon.ru/common/otmena-i-vozvrat-zakaza/kak-vernut-tovar/
+          - generic [ref=e2907]:
+            - link "Ozon Беларусь" [ref=e2908] [cursor=pointer]:
+              - /url: https://ozon.by/
+            - link "Ozon Казахстан" [ref=e2910] [cursor=pointer]:
+              - /url: https://ozon.kz/
+            - link "Ozon Узбекистан" [ref=e2912] [cursor=pointer]:
+              - /url: https://uz.ozon.com/
+        - generic [ref=e2914]:
+          - generic [ref=e2915]:
+            - link "1998 – 2026 ООО \"Интернет Решения\" (Входит в группу компаний МКПАО \"Озон\" (Ozon)). Все права защищены." [ref=e2916] [cursor=pointer]:
+              - /url: //docs.ozon.ru/legal/terms-of-use/site/content-policy/?perehod=footer
+            - generic [ref=e2920]:
+              - text: Применяются
+              - link "рекомендательные технологии" [ref=e2921] [cursor=pointer]:
+                - /url: https://docs.ozon.ru/legal/terms-of-use/site/algorithms/
+          - generic [ref=e2922]:
+            - button [ref=e2923] [cursor=pointer]
+            - button [ref=e2927] [cursor=pointer]
+            - button [ref=e2931] [cursor=pointer]
+          - button "Для слабовидящих" [ref=e2935] [cursor=pointer]
+    - generic [ref=e2945]:
+      - generic [ref=e2946]: Используем куки и рекомендательные технологии
+      - generic [ref=e2947]:
+        - paragraph [ref=e2948]: Это чтобы сайт работал лучше.
+        - paragraph [ref=e2949]:
+          - text: Оставаясь с нами, вы соглашаетесь на использование
+          - link "файлов куки." [ref=e2950] [cursor=pointer]:
+            - /url: https://docs.ozon.ru/legal/personal-data/privacy-policy/
+        - paragraph [ref=e2951]:
+          - text: А ещё можно почитать, что такое
+          - link "рекомендательные технологии" [ref=e2952] [cursor=pointer]:
+            - /url: https://docs.ozon.ru/legal/terms-of-use/site/algorithms/
+      - button "ОК" [ref=e2953] [cursor=pointer]
+  - generic [ref=e2959]:
+    - generic [ref=e2960]: Добавить адрес в г. Астрахань?
+    - generic [ref=e2962]: Это поможет вам заранее увидеть условия доставки товаров
+    - generic [ref=e2964]:
+      - button "Добавить" [ref=e2965] [cursor=pointer]
+      - button "Не сейчас" [ref=e2969] [cursor=pointer]
+  - generic [ref=e2978] [cursor=pointer]:
+    - generic [ref=e2979]:
+      - heading "Магазин теперь здесь" [level=3] [ref=e2980]
+      - text: Смотрите информацию о нём и подписывайтесь, чтобы не пропустить новинки
+    - img "tooltip img" [ref=e2981]

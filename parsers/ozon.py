@@ -44,45 +44,75 @@ class OzonParser(BaseParser):
                 (() => {
                     let result = { standard: null, card: null, premium: null };
 
-                    function extractNumbers(text) {
+                    function extractNum(text) {
                         if (!text) return null;
-                        let m = text.match(/\\d[\\d\\u2009\\u00a0\\s]*\\d/);
+                        let m = text.match(/(\\d[\\d\\u2009\\u00a0\\s]*\\d)/);
                         return m ? m[0].replace(/[^\\d]/g, '') : null;
                     }
 
                     let priceWidget = document.querySelector('[data-widget="webPrice"]');
-                    if (priceWidget) {
-                        let text = priceWidget.innerText;
-                        // Standard price is usually the first large price
-                        let parts = text.split('\\n').filter(s => s.trim());
-                        for (let p of parts) {
-                            let nums = extractNumbers(p);
-                            if (nums) {
-                                if (!result.standard) result.standard = nums;
-                                break;
-                            }
+                    if (!priceWidget) {
+                        // Fallback: look for any price-like element
+                        let el = document.querySelector('[class*="price"] [style*="font-size"]')
+                            || document.querySelector('[class*="price"] > span');
+                        if (el) result.standard = extractNum(el.innerText);
+                        return result;
+                    }
+
+                    let widgetText = priceWidget.innerText;
+                    let lines = widgetText.split('\\n').map(s => s.trim()).filter(Boolean);
+
+                    // Ozon price widget structure (2026):
+                    //   Line 0: "234 ₽" or "234 ₽ С банками"  ← main = card/bank price
+                    //   Line 1: "С банками" (label, may be on same line as price)
+                    //   Line 2: "259 ₽"                      ← "С другими банками" = standard
+                    //   Line 3: "500 ₽"                      ← old/crossed-out price
+
+                    // Extract all numbers from the widget
+                    let allNums = [];
+                    for (let line of lines) {
+                        let n = extractNum(line);
+                        if (n) allNums.push(parseInt(n));
+                    }
+
+                    if (allNums.length === 0) return result;
+
+                    // Find the old price (largest number, likely > 2x the smallest)
+                    let sorted = [...allNums].sort((a, b) => a - b);
+                    let smallest = sorted[0];
+                    let oldPrice = null;
+                    for (let n of sorted) {
+                        if (n > smallest * 1.5) {
+                            oldPrice = n;
+                            break;
                         }
                     }
 
-                    // Try to find card price — often in a separate block with "Ozon Карта"
+                    // The card price is the smallest (best discount)
+                    result.card = String(smallest);
+
+                    // The standard price is the one between card and old price
+                    // (the "С другими банками" tier)
+                    for (let n of sorted) {
+                        if (n > smallest && (!oldPrice || n < oldPrice)) {
+                            result.standard = String(n);
+                            break;
+                        }
+                    }
+
+                    // If only 2 numbers found, standard = card (no separate tier)
+                    if (!result.standard && allNums.length >= 2) {
+                        result.standard = result.card;
+                    }
+
+                    // Premium: search for "Premium" or "подписка" text with a price
                     let allText = document.body.innerText;
-                    let cardMatch = allText.match(/Ozon\\s*Карта[\\s\\S]*?(\\d[\\d\\u2009\\u00a0\\s]*\\d)/i);
-                    if (cardMatch) {
-                        result.card = extractNumbers(cardMatch[1]);
-                    }
-
-                    // Try to find premium/subscription price
-                    let premiumEl = document.querySelector('[data-widget="webPrice"] [class*="premium"]')
-                        || document.querySelector('[class*="premium"] [class*="price"]');
-                    if (premiumEl) {
-                        let p = extractNumbers(premiumEl.innerText);
-                        if (p) result.premium = p;
-                    }
-
-                    // Fallback: look for any price-like patterns near "Premium" or "Подписка"
-                    if (!result.premium) {
-                        let pm = allText.match(/(?:Premium|подписк)[\\s\\S]{0,100}?(\\d[\\d\\u2009\\u00a0\\s]*\\d)/i);
-                        if (pm) result.premium = extractNumbers(pm[1]);
+                    let pm = allText.match(/(?:Premium\\s*Ozon|подписк)[\\s\\S]{0,150}?(\\d[\\d\\u2009\\u00a0\\s]*\\d)/i);
+                    if (pm) {
+                        let p = extractNum(pm[1]);
+                        if (p && parseInt(p) < (oldPrice || Infinity)) {
+                            result.premium = p;
+                        }
                     }
 
                     return result;

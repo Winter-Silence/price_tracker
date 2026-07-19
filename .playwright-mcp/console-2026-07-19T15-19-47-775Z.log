@@ -1,0 +1,6 @@
+[     687ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.citilink.ru/product/smartfon-samsung-galaxy-a16-128gb-cernyj-3691824/:0
+[     888ms] [WARNING] /!\ You are using legacy implementation. Please update your code: use createWrapper() and wrapper.useWrappedStore(). @ https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/pages/_app-d7a0408728c6c8f2.js:324
+[    1104ms] [ERROR] `guid` does not match .+ pattern @ https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/8501.d736c45fe8e3b4fd.js:161
+[    1448ms] [WARNING] using deprecated parameters for the initialization function; pass a single object instead @ https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/pages/_app-d7a0408728c6c8f2.js:876
+[    2094ms] [ERROR] `guid` does not match .+ pattern @ https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/8501.d736c45fe8e3b4fd.js:161
+[    2094ms] [ERROR] `guid` does not match .+ pattern @ https://rstatic.citilink.ru/react-ssr-app-catalog/1fa4fb4b/_next/static/chunks/8501.d736c45fe8e3b4fd.js:161
