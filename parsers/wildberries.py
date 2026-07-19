@@ -34,7 +34,7 @@ class WildberriesParser(BaseParser):
         try:
             await asyncio.sleep(8)
 
-            prices = await page.evaluate('''
+            prices = await self._eval(page, '''
                 (() => {
                     function extract(sel) {
                         let el = document.querySelector(sel);
@@ -105,13 +105,13 @@ class WildberriesParser(BaseParser):
         try:
             await asyncio.sleep(10)
 
-            captcha_title = await page.evaluate("document.title")
+            captcha_title = await self._eval(page, "document.title")
             if captcha_title and "captcha" in captcha_title.lower():
                 logger.warning("WB captcha detected at %s", search_url)
                 await self._take_screenshot(page, "captcha_search")
                 return None
 
-            cards = await page.evaluate('''
+            cards = await self._eval(page, '''
                 (() => {
                     function cleanNum(text) {
                         if (!text) return null;

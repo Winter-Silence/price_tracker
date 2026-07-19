@@ -25,7 +25,7 @@ class CitilinkParser(BaseParser):
         try:
             await asyncio.sleep(5)
 
-            prices = await page.evaluate('''
+            prices = await self._eval(page, '''
                 (() => {
                     function cleanNum(text) {
                         if (!text) return null;
@@ -87,7 +87,7 @@ class CitilinkParser(BaseParser):
         try:
             await asyncio.sleep(7)
 
-            cards = await page.evaluate('''
+            cards = await self._eval(page, '''
                 (() => {
                     function cleanNum(text) {
                         if (!text) return null;

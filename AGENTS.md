@@ -157,7 +157,14 @@ logger.error("Parser failed for %s: %s", url, exc)
 - Доступные типы цен: `standard`, `card`, `premium`, `wb_club`. Словарь `TIER_LABELS` в `parsers/base.py`.
 - Зарегистрировать в `parsers/__init__.py` → список `PARSERS`
 - Добавить типы привилегий маркетплейса в словрь `MARKETPLACE_TIERS` в `parsers/__init__.py`
-- Браузерная автоматизация через `nodriver` (настоящий Chrome)
+- Браузерная автоматизация через `nodriver` (настоящий Chrome, non-headless + Xvfb + fluxbox)
+- **Stealth-маскировка обязательна** — nodriver инжектит `STEALTH_JS` через CDP
+  `Page.addScriptToEvaluateOnNewDocument` в `_inject_stealth()` (вызывается в `start_session()`).
+  Скрипт маскирует: `navigator.webdriver`, `chrome.runtime`, `cdc_*` переменные,
+  индикаторы автоматизации (13 свойств), `navigator.plugins/languages/hardwareConcurrency/deviceMemory`.
+  Chrome-флаги: `--disable-blink-features=AutomationControlled`, nodriver-флаги перезаписываются
+  через `uc.Config._default_browser_args` (только `--no-first-run`).
+  При добавлении нового парсера stealth работает автоматически — наследуется от `BaseParser`.
 - Ozon: переход с главной страницы на товар (прямой URL блокируется антиботом)
 
 ### Telegram-бот

@@ -131,10 +131,14 @@ class DnsParser(BaseParser):
         await self._random_delay()
         page = await self._get_page(url)
         try:
-            price_element = page.locator("YOUR_SELECTOR")
-            if await price_element.count() == 0:
+            price_text = await self._eval(page, '''
+                (() => {
+                    let el = document.querySelector("YOUR_SELECTOR");
+                    return el ? el.innerText.trim() : null;
+                })()
+            ''')
+            if not price_text:
                 return None
-            price_text = await price_element.first.inner_text()
             # логика парсинга цены из price_text
             price = ...
             return float(price)
@@ -143,11 +147,15 @@ class DnsParser(BaseParser):
             await self._take_screenshot(page, "error")
             return None
         finally:
-            await self._close_page(page)
+            await self._close()
 ```
 
 3. Зарегистрируйте в `parsers/__init__.py` — добавьте класс в список `PARSERS` и импорт
 4. Протестируйте: `python scripts/test_parsers.py "<url>"`
+
+> **Stealth работает автоматически** — `_inject_stealth()` вызывается в `BaseParser.start_session()`
+> и инжектит антидетект-скрипт через CDP до загрузки страницы. Дополнительных действий
+> от нового парсера не требуется.
 
 Если маркетплейс отдаёт цену по API (как Wildberries), переопределите `start_session()` / `end_session()` для использования `aiohttp.ClientSession` вместо браузера — см. `parsers/wildberries.py` как пример.
 

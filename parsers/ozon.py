@@ -28,19 +28,19 @@ class OzonParser(BaseParser):
         try:
             await asyncio.sleep(8)
 
-            title = await page.evaluate("document.title")
-            if "captcha" in title.lower() or "antibot" in title.lower():
+            title = await self._eval(page, "document.title")
+            if title and ("captcha" in title.lower() or "antibot" in title.lower()):
                 logger.warning("Captcha detected at %s", url)
                 await self._take_screenshot(page, "captcha")
                 return None
 
-            content = await page.evaluate("document.body.innerText")
+            content = await self._eval(page, "document.body.innerText")
             if "нет соединения" in content.lower():
                 logger.warning("Ozon 'no connection' page at %s", url)
                 await self._take_screenshot(page, "no_connection")
                 return None
 
-            prices = await page.evaluate('''
+            prices = await self._eval(page, '''
                 (() => {
                     let result = { standard: null, card: null, premium: null };
 
@@ -129,20 +129,20 @@ class OzonParser(BaseParser):
         try:
             await asyncio.sleep(10)
 
-            title = await page.evaluate("document.title")
+            title = await self._eval(page, "document.title")
             if title and ("captcha" in title.lower() or "antibot" in title.lower()):
                 logger.warning("Ozon captcha detected at %s", search_url)
                 self._captcha_detected = True
                 await self._take_screenshot(page, "captcha_search")
                 return None
 
-            content = await page.evaluate("document.body.innerText")
+            content = await self._eval(page, "document.body.innerText")
             if content and "нет соединения" in content.lower():
                 logger.warning("Ozon 'no connection' page at %s", search_url)
                 await self._take_screenshot(page, "no_connection_search")
                 return None
 
-            cards = await page.evaluate('''
+            cards = await self._eval(page, '''
                 (() => {
                     function cleanNum(text) {
                         if (!text) return null;

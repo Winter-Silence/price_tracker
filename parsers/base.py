@@ -7,6 +7,8 @@ from datetime import datetime
 from pathlib import Path
 
 import nodriver as uc
+import nodriver.cdp.page as cdp_page
+import nodriver.cdp.runtime as cdp_runtime
 
 from utils.logger import logger
 
@@ -23,7 +25,111 @@ REAL_CHROME = shutil.which("google-chrome-stable") or shutil.which("google-chrom
 
 CHROME_ARGS = [
     "--window-size=1920,1080",
+    "--disable-blink-features=AutomationControlled",
 ]
+
+# JavaScript injected via CDP Page.addScriptToEvaluateOnNewDocument
+# before any page scripts execute. Removes automation indicators that
+# Ozon's WAF uses to detect headless/controlled browsers.
+STEALTH_JS = """
+(() => {
+    // --- navigator.webdriver ---
+    // Chrome controlled by DevTools protocol sets this to true.
+    delete Object.getPrototypeOf(navigator).webdriver;
+
+    // --- chrome.runtime ---
+    // Real Chrome has window.chrome with a runtime object.
+    if (!window.chrome) window.chrome = {};
+    if (!window.chrome.runtime) {
+        window.chrome.runtime = {
+            connect: function() {},
+            sendMessage: function() {},
+        };
+    }
+
+    // --- Automation indicators ---
+    // These are injected by ChromeDriver/Selenium/etc.
+    const automationProps = [
+        '__webdriver_evaluate', '__selenium_unwrapped',
+        '__driver_evaluate', '__webdriver_unwrapped',
+        '__fxdriver_evaluate', '__fxdriver_unwrapped',
+        '_phantom', '__phantomas', '__nightmare',
+        'callSelenium', '_selenium',
+        'domAutomation', 'domAutomationController',
+        'Awesomium',
+    ];
+    for (const prop of automationProps) {
+        if (window[prop] !== undefined) {
+            Object.defineProperty(window, prop, { get: () => undefined });
+        }
+    }
+
+    // --- cdc_* ChromeDriver variables ---
+    // ChromeDriver injects cdc_adoQpoasnfa76pfcZLmcfl_* vars on window.
+    for (const key of Object.keys(window)) {
+        if (key.startsWith('cdc_')) {
+            Object.defineProperty(window, key, { get: () => undefined });
+        }
+    }
+
+    // --- navigator.plugins ---
+    // Headless Chrome has 0 plugins; real Chrome has at least 3.
+    Object.defineProperty(navigator, 'plugins', {
+        get: () => {
+            const plugins = [
+                { name: 'Chrome PDF Plugin', filename: 'internal-pdf-viewer',
+                  description: 'Portable Document Format',
+                  length: 1,
+                  item: function(i) { return this[i]; },
+                  namedItem: function(n) { return null; },
+                  [Symbol.iterator]: function*() { yield this[0]; } },
+                { name: 'Chrome PDF Viewer', filename: 'mhjfbmdgcfjbbpaeojofohoefgiehjai',
+                  description: '',
+                  length: 1,
+                  item: function(i) { return this[i]; },
+                  namedItem: function(n) { return null; },
+                  [Symbol.iterator]: function*() { yield this[0]; } },
+                { name: 'Native Client', filename: 'internal-nacl-plugin',
+                  description: '',
+                  length: 2,
+                  item: function(i) { return this[i]; },
+                  namedItem: function(n) { return null; },
+                  [Symbol.iterator]: function*() { yield this[0]; yield this[1]; } },
+            ];
+            plugins.length = 3;
+            plugins.refresh = function() {};
+            return plugins;
+        },
+    });
+
+    // --- navigator.languages ---
+    Object.defineProperty(navigator, 'languages', {
+        get: () => ['ru-RU', 'ru', 'en-US', 'en'],
+    });
+
+    // --- navigator.hardwareConcurrency ---
+    Object.defineProperty(navigator, 'hardwareConcurrency', {
+        get: () => 8,
+    });
+
+    // --- navigator.deviceMemory ---
+    Object.defineProperty(navigator, 'deviceMemory', {
+        get: () => 8,
+    });
+
+    // --- Permissions API ---
+    // Some bots return 'denied' for notifications; real browsers return 'default'.
+    const originalQuery = window.Permissions && window.Permissions.prototype.query;
+    if (originalQuery) {
+        window.Permissions.prototype.query = function(params) {
+            if (params && params.name === 'notifications') {
+                return Promise.resolve({ state: Notification.permission || 'default' });
+            }
+            return originalQuery.call(this, params);
+        };
+    }
+})();
+"""
 
 
 TIER_LABELS: dict[str, str] = {
@@ -53,6 +159,31 @@ def matches_title_filter(card_title: str, title_filter: str) -> bool:
     title_lower = card_title.lower()
     tokens = [t for t in title_filter.lower().split() if t]
     return all(tok and tok in title_lower for tok in tokens)
+
+
+def _deserialize(value):
+    """Convert nodriver's deep serialization format to native Python objects.
+
+    Deep serialization represents:
+      - objects  as [[key, {type, value}], ...]
+      - arrays   as [{type, value}, ...]
+      - scalars  as plain values
+    """
+    if isinstance(value, dict):
+        if "type" in value and "value" in value:
+            return _deserialize(value["value"])
+        return {k: _deserialize(v) for k, v in value.items()}
+    if isinstance(value, list):
+        if (
+            value
+            and isinstance(value[0], list)
+            and len(value[0]) == 2
+            and isinstance(value[0][1], dict)
+            and "type" in value[0][1]
+        ):
+            return {item[0]: _deserialize(item[1]) for item in value}
+        return [_deserialize(item) for item in value]
+    return value
 
 
 class BaseParser(ABC):
@@ -91,6 +222,18 @@ class BaseParser(ABC):
     ) -> SearchResult | None:
         pass
 
+    async def _inject_stealth(self):
+        """Inject anti-detection JS via CDP before any page scripts execute."""
+        try:
+            await self._browser.send(cdp_page.enable())
+            await self._browser.send(
+                cdp_page.add_script_to_evaluate_on_new_document(
+                    source=STEALTH_JS,
+                )
+            )
+        except Exception as exc:
+            logger.warning("Stealth injection failed: %s", exc)
+
     async def start_session(self):
         self._browser = await uc.start(
             browser_executable_path=REAL_CHROME,
@@ -99,6 +242,8 @@ class BaseParser(ABC):
         )
         self._session_active = True
         self._current_page = None
+
+        await self._inject_stealth()
 
         if self._root_url:
             self._current_page = await self._browser.get(self._root_url)
@@ -138,6 +283,32 @@ class BaseParser(ABC):
         self._current_page = await self._browser.get(url)
         await asyncio.sleep(3)
         return self._current_page
+
+    async def _eval(self, page, expression: str):
+        """Evaluate JS expression, bypassing nodriver's broken deep serialization.
+
+        nodriver 0.50+ adds deep serialization by default which converts JS
+        objects to [[key, {type, value}], ...] lists.  We call CDP directly
+        with return_by_value=True and no serialization_options so that
+        remote_object.value contains the native Python object.
+        """
+        remote_object, errors = await page.send(
+            cdp_runtime.evaluate(
+                expression=expression,
+                user_gesture=True,
+                return_by_value=True,
+                allow_unsafe_eval_blocked_by_csp=True,
+            )
+        )
+        if errors:
+            raise RuntimeError(f"JS evaluation error: {errors}")
+        if remote_object:
+            if remote_object.value is not None:
+                return remote_object.value
+            if remote_object.deep_serialized_value:
+                return _deserialize(remote_object.deep_serialized_value.value)
+            return remote_object.description
+        return None
 
     async def _close_page(self, page):
         pass
