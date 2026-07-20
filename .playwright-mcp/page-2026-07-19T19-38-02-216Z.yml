@@ -1,0 +1,1461 @@
+- generic [ref=e4]:
+  - banner [ref=e5]:
+    - generic [ref=e7]:
+      - link [ref=e8] [cursor=pointer]:
+        - /url: /
+        - img "Ozon" [ref=e9]
+      - button "Каталог" [ref=e12] [cursor=pointer]
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - generic "Везде" [ref=e24]
+          - generic [ref=e28]:
+            - textbox "Искать на Ozon" [ref=e29]
+            - button [ref=e32] [cursor=pointer]
+        - button "Поиск" [ref=e37] [cursor=pointer]
+      - generic [ref=e43]:
+        - generic [ref=e44] [cursor=pointer]: Войти
+        - link "Заказы" [ref=e53] [cursor=pointer]:
+          - /url: /my/orderlist/
+        - link "Избранное" [ref=e58] [cursor=pointer]:
+          - /url: /my/favorites
+        - link "Корзина" [ref=e63] [cursor=pointer]:
+          - /url: /cart
+    - generic [ref=e68]:
+      - list [ref=e71]:
+        - listitem [ref=e72]:
+          - link "Ozon Банк" [ref=e73] [cursor=pointer]:
+            - /url: https://ozon.ru/fintech/signin
+        - listitem [ref=e76]:
+          - link "Билеты, отели" [ref=e77] [cursor=pointer]:
+            - /url: https://www.ozon.ru/travel/?mwc_campaign=oztravel_horizontal-menu_flight
+        - listitem [ref=e80]:
+          - button "Для бизнеса" [ref=e82] [cursor=pointer]
+        - listitem [ref=e87]:
+          - link "Одежда" [ref=e88] [cursor=pointer]:
+            - /url: /category/odezhda-obuv-i-aksessuary-7500/
+        - listitem [ref=e89]:
+          - link "Электроника" [ref=e90] [cursor=pointer]:
+            - /url: /category/elektronika-15500/
+        - listitem [ref=e91]:
+          - link "Дом и сад" [ref=e92] [cursor=pointer]:
+            - /url: /category/dom-i-sad-14500/
+        - listitem [ref=e93]:
+          - link "Товары за 1₽" [ref=e94] [cursor=pointer]:
+            - /url: https://www.ozon.ru/highlight/ozon-bank-1332387/
+        - listitem [ref=e95]:
+          - link "Сертификаты" [ref=e96] [cursor=pointer]:
+            - /url: https://www.ozon.ru/landing/giftcertificates/?perehod=headerdesk
+      - generic [ref=e97]:
+        - generic [ref=e102] [cursor=pointer]:
+          - button "Астрахань" [ref=e104]
+          - generic [ref=e106]: •
+          - button "Укажите адрес" [ref=e109]
+        - button "RU" [ref=e112] [cursor=pointer]
+  - generic [ref=e118]:
+    - generic [ref=e123]:
+      - list [ref=e126]:
+        - listitem [ref=e127]:
+          - link "Продукты питания" [ref=e128] [cursor=pointer]:
+            - /url: /category/produkty-pitaniya-9200/
+        - listitem [ref=e131]:
+          - link "Консервация" [ref=e132] [cursor=pointer]:
+            - /url: /category/konservatsiya-9413/
+        - listitem [ref=e135]:
+          - link "Мясные консервы" [ref=e136] [cursor=pointer]:
+            - /url: /category/myasnye-konservy-9414/
+      - generic [ref=e137]:
+        - 'button "Артикул: 3487088084" [ref=e138] [cursor=pointer]'
+        - button "В сравнение" [ref=e142] [cursor=pointer]
+        - button "Поделиться" [ref=e147] [cursor=pointer]
+    - generic [ref=e151]:
+      - generic [ref=e153]:
+        - generic [ref=e207] [cursor=pointer]:
+          - 'img "Говядина тушеная Наше все, 4 банки по 338 грамм #1" [ref=e210]'
+          - generic "Постоплата" [ref=e221]
+          - generic [ref=e225]: Похожие
+        - generic [ref=e229]:
+          - heading "Говядина тушеная Наше все, 4 банки по 338 грамм" [level=1] [ref=e231]
+          - generic [ref=e232]:
+            - link "4.8 • 1 599 отзывов" [ref=e234] [cursor=pointer]:
+              - /url: /product/govyadina-tushenaya-nashe-vse-4-banki-po-338-gramm-3487088084/reviews/
+            - link "22 вопроса" [ref=e239] [cursor=pointer]:
+              - /url: https://www.ozon.ru/product/govyadina-tushenaya-nashe-vse-4-banki-po-338-gramm-3487088084/questions/
+          - generic [ref=e243]:
+            - generic [ref=e246]:
+              - generic [ref=e247]: "Название вкуса:"
+              - generic [ref=e249]:
+                - link "Гречка с говядиной" [ref=e251] [cursor=pointer]:
+                  - /url: /product/kasha-grechnevaya-s-govyadinoy-velikaya-step-nashe-vse-4-banki-po-338-gramm-3487439026/?from_sku=3487088084&oos_search=false
+                - link "Перловка с говядиной" [ref=e255] [cursor=pointer]:
+                  - /url: /product/kasha-perlovaya-s-govyadinoy-velikaya-step-nashe-vse-4-banki-po-338-gramm-3487407211/?from_sku=3487088084&oos_search=false
+                - generic [ref=e258]: Тушенка говядина Наше все
+            - generic [ref=e262]:
+              - generic [ref=e263]:
+                - generic [ref=e264]: О товаре
+                - generic "Перейти к описанию" [ref=e267] [cursor=pointer]
+              - generic [ref=e271]:
+                - generic [ref=e272]:
+                  - generic [ref=e273]: Тип
+                  - generic [ref=e275]: Мясные консервы
+                - generic [ref=e276]:
+                  - generic [ref=e277]: Вид мяса
+                  - link [ref=e280] [cursor=pointer]:
+                    - /url: /category/myasnye-konservy-iz-govyadiny/
+                - generic [ref=e284]:
+                  - generic [ref=e285]: Сорт мясных консервов
+                  - link [ref=e288] [cursor=pointer]:
+                    - /url: /category/myasnye-konservy-vysshego-sorta/
+                - generic [ref=e292]:
+                  - generic [ref=e293]: Вид мясных консервов
+                  - link [ref=e296] [cursor=pointer]:
+                    - /url: /category/myasnye-konservy-tushenka/
+                - generic [ref=e300]:
+                  - generic [ref=e301]: Заливка
+                  - link [ref=e304] [cursor=pointer]:
+                    - /url: /category/myasnye-konservy-v-sobstvennom-soku/
+            - generic [ref=e310]:
+              - generic [ref=e311]: "Пищевая ценность продукта на 100 г:"
+              - generic [ref=e312]:
+                - generic [ref=e313]:
+                  - generic [ref=e314]: "15"
+                  - generic [ref=e315]: белки
+                - generic [ref=e316]:
+                  - generic [ref=e317]: "17"
+                  - generic [ref=e318]: жиры
+                - generic [ref=e319]:
+                  - generic [ref=e320]: "213"
+                  - generic [ref=e321]: ккал
+          - generic [ref=e322]: Фото и видео покупателей
+          - generic [ref=e328]:
+            - button [ref=e329] [cursor=pointer]
+            - button [ref=e331] [cursor=pointer]
+            - button [ref=e333] [cursor=pointer]
+            - button [ref=e335] [cursor=pointer]
+            - button "+161" [ref=e337] [cursor=pointer]
+      - generic [ref=e342]:
+        - generic [ref=e346]:
+          - generic [ref=e349]:
+            - generic [ref=e350]:
+              - button "1 830 ₽ С банками" [ref=e352] [cursor=pointer]:
+                - generic [ref=e357]:
+                  - generic [ref=e358]: 1 830 ₽
+                  - generic [ref=e359]: С банками
+              - generic [ref=e374]:
+                - generic [ref=e375]: 2 033 ₽
+                - generic [ref=e377]: С другими банками
+            - generic [ref=e378]: 458 ₽ за 1 шт
+          - link "Оплатить позже без % до 6 октября" [ref=e384] [cursor=pointer]:
+            - /url: /modal/pdpCreditCardPromo
+            - generic [ref=e388]:
+              - generic [ref=e389]: Оплатить позже
+              - generic [ref=e391]: без % до 6 октября
+          - button "Хочу скидку" [ref=e397] [cursor=pointer]
+          - generic [ref=e406]:
+            - button "В корзину Доставим 23 июля" [ref=e410] [cursor=pointer]:
+              - generic [ref=e411]: В корзину
+              - generic [ref=e413]: Доставим 23 июля
+            - button "Добавить в избранное" [ref=e416] [cursor=pointer]
+        - generic [ref=e420]:
+          - button "Купить сейчас" [ref=e422] [cursor=pointer]
+          - generic [ref=e427]:
+            - generic [ref=e428]:
+              - heading "Доставка и возврат" [level=2] [ref=e429]
+              - button [ref=e432] [cursor=pointer]:
+                - generic [ref=e433]: Астрахань, Астраханская областьСо склада Ozon, Московская Область
+              - generic [ref=e445]:
+                - generic [ref=e446]: Курьером Ozon23 июля
+                - generic "+149 ₽" [ref=e450]
+              - generic [ref=e451]:
+                - generic [ref=e452]: Пункты выдачи и постаматы23 июля
+                - generic "Без доплат" [ref=e456]
+            - link "Товар надлежащего качества обмену и возврату не подлежит" [ref=e459] [cursor=pointer]:
+              - /url: https://docs.ozon.ru/common/otmena-i-vozvrat-zakaza/kak-vernut-tovar/
+          - generic [ref=e472]:
+            - generic [ref=e473]:
+              - generic [ref=e474]: Магазин
+              - generic "Подписаться" [ref=e480] [cursor=pointer]
+            - generic [ref=e482]:
+              - generic [ref=e483]:
+                - generic [ref=e485] [cursor=pointer]:
+                  - generic [ref=e486]: МВ
+                  - generic [ref=e491]:
+                    - generic [ref=e492]: Магазин "Вкусные конс...
+                    - generic [ref=e494]: Перейти
+                - generic [ref=e496]:
+                  - generic [ref=e497] [cursor=pointer]: "4.9"
+                  - generic [ref=e503] [cursor=pointer]: Чат
+              - generic [ref=e508]:
+                - generic [ref=e515] [cursor=pointer]:
+                  - generic [ref=e516]: Заказы
+                  - generic [ref=e518]:
+                    - generic:
+                      - generic:
+                        - generic "63.1 K"
+                - generic [ref=e519]: О магазине
+  - generic [ref=e532]:
+    - generic [ref=e534]:
+      - generic [ref=e536]:
+        - generic [ref=e537]: Рекомендуем также
+        - generic [ref=e540]:
+          - generic [ref=e542]:
+            - generic [ref=e544]:
+              - button [ref=e547] [cursor=pointer]
+              - link [ref=e552] [cursor=pointer]:
+                - /url: /product/finiki-sivi-1kg-egipet-ne-mytye-polusushenye-bez-sahara-3428324564/?at=DqtD9j71gHjGNDxqFpWnLm9TkR8jgVcMp0lWDs2gwV6p
+                - img "Финики \"СИВИ\" 1кг Египет, не мытые, полусушёные, без сахара. Рекомендуем также" [ref=e557]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e558]:
+                - generic [ref=e559]:
+                  - generic [ref=e561]:
+                    - generic [ref=e562]: 262 ₽
+                    - generic [ref=e563]: 1 500 ₽
+                    - generic [ref=e564]: −82%
+                  - generic [ref=e566]: 1 541 шт осталось
+                  - link "Финики \"СИВИ\" 1кг Египет, не мытые, полусушёные, без сахара." [ref=e567] [cursor=pointer]:
+                    - /url: /product/finiki-sivi-1kg-egipet-ne-mytye-polusushenye-bez-sahara-3428324564/?at=DqtD9j71gHjGNDxqFpWnLm9TkR8jgVcMp0lWDs2gwV6p
+                  - generic [ref=e569]:
+                    - generic [ref=e570]: "4.6"
+                    - generic [ref=e573]: 5 390 отзывов
+                - button "Послезавтра" [ref=e578] [cursor=pointer]
+            - generic [ref=e585]:
+              - button [ref=e588] [cursor=pointer]
+              - link [ref=e593] [cursor=pointer]:
+                - /url: /product/tushenka-halyal-govyadina-4sht-velikaya-step-eto-nashevse-2836961181/?at=A6tGQrxg7c4o7lmBHoXw4M8FzMm3ljcMw28Ywi77RAj
+                - img "Тушенка халяль говядина 4шт Великая степь это НашеВсё Рекомендуем также" [ref=e598]
+              - generic [ref=e599]:
+                - generic [ref=e600]:
+                  - generic [ref=e601]: 1 793 ₽
+                  - generic [ref=e605]: 448 ₽ / шт
+                  - link "Тушенка халяль говядина 4шт Великая степь это НашеВсё" [ref=e607] [cursor=pointer]:
+                    - /url: /product/tushenka-halyal-govyadina-4sht-velikaya-step-eto-nashevse-2836961181/?at=A6tGQrxg7c4o7lmBHoXw4M8FzMm3ljcMw28Ywi77RAj
+                  - generic [ref=e609]:
+                    - generic [ref=e610]: "4.8"
+                    - generic [ref=e613]: 11 948 отзывов
+                - button "Послезавтра" [ref=e618] [cursor=pointer]
+            - generic [ref=e625]:
+              - button [ref=e628] [cursor=pointer]
+              - link [ref=e633] [cursor=pointer]:
+                - /url: /product/myaso-vyalenoe-500-grammov-govyadina-1010912529/?at=k2toEYD7mc24MNpnu1pD5E6IJVqmlXir4rr2zF66QpwM
+                - img "Мясо вяленое 500 граммов Говядина Рекомендуем также" [ref=e638]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e639]:
+                - generic [ref=e640]:
+                  - generic [ref=e642]:
+                    - generic [ref=e643]: 1 890 ₽
+                    - generic [ref=e644]: 6 600 ₽
+                    - generic [ref=e645]: −71%
+                  - generic [ref=e647]: 33 шт осталось
+                  - link "Мясо вяленое 500 граммов Говядина" [ref=e648] [cursor=pointer]:
+                    - /url: /product/myaso-vyalenoe-500-grammov-govyadina-1010912529/?at=k2toEYD7mc24MNpnu1pD5E6IJVqmlXir4rr2zF66QpwM
+                  - generic [ref=e650]:
+                    - generic [ref=e651]: "4.7"
+                    - generic [ref=e654]: 6 909 отзывов
+                - button "Послезавтра" [ref=e659] [cursor=pointer]
+            - generic [ref=e666]:
+              - button [ref=e669] [cursor=pointer]
+              - link [ref=e674] [cursor=pointer]:
+                - /url: /product/konina-tushenaya-vysshiy-sort-gost-orskiy-myasokombinat-4-sht-po-338gr-1758303154/?at=QktJQBn8zcMARN8c2zEPk8sLkVBjnhE6lrvqcrqN5mN
+                - img "Конина тушеная высший сорт ГОСТ, Орский мясокомбинат, 4 шт по 338гр. Рекомендуем также" [ref=e679]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e680]:
+                - generic [ref=e681]:
+                  - generic [ref=e683]:
+                    - generic [ref=e684]: 975 ₽
+                    - generic [ref=e685]: 2 508 ₽
+                    - generic [ref=e686]: −61%
+                  - generic [ref=e688]: 187 шт осталось
+                  - link "Конина тушеная высший сорт ГОСТ, Орский мясокомбинат, 4 шт по 338гр." [ref=e689] [cursor=pointer]:
+                    - /url: /product/konina-tushenaya-vysshiy-sort-gost-orskiy-myasokombinat-4-sht-po-338gr-1758303154/?at=QktJQBn8zcMARN8c2zEPk8sLkVBjnhE6lrvqcrqN5mN
+                  - generic [ref=e691]:
+                    - generic [ref=e692]: "4.8"
+                    - generic [ref=e695]: 705 отзывов
+                - button "28 июля" [ref=e700] [cursor=pointer]
+            - generic [ref=e710]:
+              - button [ref=e713] [cursor=pointer]
+              - link [ref=e718] [cursor=pointer]:
+                - /url: /product/tushenka-govyadina-6-sht-325-gr-1077121570/?at=jYtZrlz2pCYM5BE4FpyYvAXsnMlxNqULzDxpwC2yx2Z8
+                - img "Тушенка говядина 6 шт-325 гр. Рекомендуем также" [ref=e723]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Цена что надо"
+              - generic [ref=e724]:
+                - generic [ref=e725]:
+                  - generic [ref=e727]:
+                    - generic [ref=e728]: 1 737 ₽
+                    - generic [ref=e729]: 8 200 ₽
+                    - generic [ref=e730]: −78%
+                  - generic [ref=e732]: 290 ₽ / шт
+                  - link "Тушенка говядина 6 шт-325 гр." [ref=e734] [cursor=pointer]:
+                    - /url: /product/tushenka-govyadina-6-sht-325-gr-1077121570/?at=jYtZrlz2pCYM5BE4FpyYvAXsnMlxNqULzDxpwC2yx2Z8
+                  - generic [ref=e736]:
+                    - generic [ref=e737]: "4.7"
+                    - generic [ref=e740]: 2 931 отзыв
+                - button "22 июля" [ref=e745] [cursor=pointer]
+            - generic [ref=e752]:
+              - button [ref=e755] [cursor=pointer]
+              - link [ref=e760] [cursor=pointer]:
+                - /url: /product/finiki-bez-dobavleniya-sahara-1kg-iran-1169360133/?at=83tBGOmlntAxn07WTg39KRxsQXBnDRcxlRwlHK1jvrL
+                - img "Финики без добавления сахара. 1кг, Иран Рекомендуем также" [ref=e765]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e766]:
+                - generic [ref=e767]:
+                  - generic [ref=e769]:
+                    - generic [ref=e770]: 202 ₽
+                    - generic [ref=e771]: 1 499 ₽
+                    - generic [ref=e772]: −86%
+                  - generic [ref=e774]: 20 ₽ / 100 гр
+                  - link "Финики без добавления сахара. 1кг, Иран" [ref=e776] [cursor=pointer]:
+                    - /url: /product/finiki-bez-dobavleniya-sahara-1kg-iran-1169360133/?at=83tBGOmlntAxn07WTg39KRxsQXBnDRcxlRwlHK1jvrL
+                  - generic [ref=e778]:
+                    - generic [ref=e779]: "4.8"
+                    - generic [ref=e782]: 252 487 отзывов
+                - button "Послезавтра" [ref=e787] [cursor=pointer]
+            - generic [ref=e797]:
+              - button [ref=e800] [cursor=pointer]
+              - link [ref=e805] [cursor=pointer]:
+                - /url: /product/kofe-v-zernah-tasty-coffee-braziliya-serrado-1-kg-643726547/?at=oZt6nlAMxt72NE5yCOZzYZBUnW6mmzTMn9zBYcNr6qp
+                - img "Кофе в зернах Tasty Coffee Бразилия Серрадо, 1 кг Рекомендуем также" [ref=e810]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e811]:
+                - generic [ref=e812]:
+                  - generic [ref=e814]:
+                    - generic [ref=e815]: 1 745 ₽
+                    - generic [ref=e816]: 3 817 ₽
+                    - generic [ref=e817]: −54%
+                  - generic [ref=e819]:
+                    - generic [ref=e820]: Tasty Coffee
+                    - generic [ref=e822]: Оригинал
+                  - link "Кофе в зернах Tasty Coffee Бразилия Серрадо, 1 кг" [ref=e826] [cursor=pointer]:
+                    - /url: /product/kofe-v-zernah-tasty-coffee-braziliya-serrado-1-kg-643726547/?at=oZt6nlAMxt72NE5yCOZzYZBUnW6mmzTMn9zBYcNr6qp
+                  - generic [ref=e828]:
+                    - generic [ref=e829]: "4.9"
+                    - generic [ref=e832]: 161 070 отзывов
+                - button "23 июля" [ref=e837] [cursor=pointer]
+            - generic [ref=e847]:
+              - button [ref=e850] [cursor=pointer]
+              - link [ref=e855] [cursor=pointer]:
+                - /url: /product/svinina-tushenaya-vysshiy-sort-premium-gost-orskiy-myasokombinat-338-gr-6-sht-1695614561/?at=r2t4qwypLty3PVv9fLR6q2RTv89GY4S4gRYn8t7QLMxJ
+                - img "Свинина тушеная высший сорт \"Премиум\" ГОСТ, Орский мясокомбинат, 338 гр., 6 шт. Рекомендуем также" [ref=e860]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e861]:
+                - generic [ref=e862]:
+                  - generic [ref=e864]:
+                    - generic [ref=e865]: 1 622 ₽
+                    - generic [ref=e866]: 4 713 ₽
+                    - generic [ref=e867]: −65%
+                  - generic [ref=e869]: 521 шт осталось
+                  - link "Свинина тушеная высший сорт \"Премиум\" ГОСТ, Орский мясокомбинат, 338 гр., 6 шт." [ref=e870] [cursor=pointer]:
+                    - /url: /product/svinina-tushenaya-vysshiy-sort-premium-gost-orskiy-myasokombinat-338-gr-6-sht-1695614561/?at=r2t4qwypLty3PVv9fLR6q2RTv89GY4S4gRYn8t7QLMxJ
+                  - generic [ref=e872]:
+                    - generic [ref=e873]: "4.9"
+                    - generic [ref=e876]: 484 отзыва
+                - button "28 июля" [ref=e881] [cursor=pointer]
+            - generic [ref=e891]:
+              - button [ref=e894] [cursor=pointer]
+              - link [ref=e899] [cursor=pointer]:
+                - /url: /product/tushenka-altayskaya-govyadina-vysshiy-sort-8sht-2704g-3149847656/?at=WPtNEz12lFz8Wo9qUkGkV6vtw894K3i0pn0V6sklwWMw
+                - img "Тушенка Алтайская Говядина (Высший Сорт) 8шт.-2704г. Рекомендуем также" [ref=e904]
+              - generic [ref=e905]:
+                - generic [ref=e906]:
+                  - generic [ref=e907]: 2 285 ₽
+                  - generic [ref=e911]: 286 ₽ / шт
+                  - link "Тушенка Алтайская Говядина (Высший Сорт) 8шт.-2704г." [ref=e913] [cursor=pointer]:
+                    - /url: /product/tushenka-altayskaya-govyadina-vysshiy-sort-8sht-2704g-3149847656/?at=WPtNEz12lFz8Wo9qUkGkV6vtw894K3i0pn0V6sklwWMw
+                  - generic [ref=e915]:
+                    - generic [ref=e916]: "4.9"
+                    - generic [ref=e919]: 37 отзывов
+                - button "23 июля" [ref=e924] [cursor=pointer]
+            - generic [ref=e931]:
+              - button [ref=e934] [cursor=pointer]
+              - link [ref=e939] [cursor=pointer]:
+                - /url: /product/finiki-bez-sahara-ot-asianuts-1-kg-iran-890403623/?at=VvtzJ0V7OtxgBNDOcKGXJJhPK527ZF722Rp5TJvpP6P
+                - img "Финики без сахара от AsiaNuts, 1 кг Иран Рекомендуем также" [ref=e944]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e945]:
+                - generic [ref=e946]:
+                  - generic [ref=e948]:
+                    - generic [ref=e949]: 212 ₽
+                    - generic [ref=e950]: 1 500 ₽
+                    - generic [ref=e951]: −85%
+                  - generic [ref=e953]: Оригинал
+                  - link "Финики без сахара от AsiaNuts, 1 кг Иран" [ref=e958] [cursor=pointer]:
+                    - /url: /product/finiki-bez-sahara-ot-asianuts-1-kg-iran-890403623/?at=VvtzJ0V7OtxgBNDOcKGXJJhPK527ZF722Rp5TJvpP6P
+                  - generic [ref=e960]:
+                    - generic [ref=e961]: "4.8"
+                    - generic [ref=e964]: 258 199 отзывов
+                - button "Послезавтра" [ref=e969] [cursor=pointer]
+            - generic [ref=e979]:
+              - button [ref=e982] [cursor=pointer]
+              - link [ref=e987] [cursor=pointer]:
+                - /url: /product/sudzhuk-salyami-baget-parmidzhano-kolbasa-syrokopchenaya-nabor-3-sht-2641659096/?at=VvtzJ0V7OtrgvzgkurZVM2qCoGq3JZFwzDXVqcOMm9qw
+                - img "Суджук,Салями Багет,Пармиджано,колбаса сырокопченая,набор 3 шт Рекомендуем также" [ref=e992]
+              - generic [ref=e993]:
+                - generic [ref=e994]:
+                  - generic [ref=e995]: 1 499 ₽
+                  - generic [ref=e999]: 500 ₽ / шт
+                  - link "Суджук,Салями Багет,Пармиджано,колбаса сырокопченая,набор 3 шт" [ref=e1001] [cursor=pointer]:
+                    - /url: /product/sudzhuk-salyami-baget-parmidzhano-kolbasa-syrokopchenaya-nabor-3-sht-2641659096/?at=VvtzJ0V7OtrgvzgkurZVM2qCoGq3JZFwzDXVqcOMm9qw
+                  - generic [ref=e1003]:
+                    - generic [ref=e1004]: "4.9"
+                    - generic [ref=e1007]: 1 504 отзыва
+                - button "27 июля" [ref=e1012] [cursor=pointer]
+            - generic [ref=e1019]:
+              - button [ref=e1022] [cursor=pointer]
+              - link [ref=e1027] [cursor=pointer]:
+                - /url: /product/podarochnyy-nabor-iz-myasa-dichi-tomlenoy-sibirskaya-desyatka-taezhnyy-tseh-kamuflyazh-1659117228/?at=VvtzJ0V7OtMAMxgZfmoN650tBWwgZwIvYgG4GFLlJwE8
+                - img "Подарочный набор из мяса дичи томленой \"Сибирская десятка\" ТАЁЖНЫЙ ЦЕХ камуфляж Рекомендуем также" [ref=e1032]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e1033]:
+                - generic [ref=e1034]:
+                  - generic [ref=e1036]:
+                    - generic [ref=e1037]: 7 877 ₽
+                    - generic [ref=e1038]: 16 000 ₽
+                    - generic [ref=e1039]: −50%
+                  - generic [ref=e1041]: 4 шт осталось
+                  - link "Подарочный набор из мяса дичи томленой \"Сибирская десятка\" ТАЁЖНЫЙ ЦЕХ камуфляж" [ref=e1042] [cursor=pointer]:
+                    - /url: /product/podarochnyy-nabor-iz-myasa-dichi-tomlenoy-sibirskaya-desyatka-taezhnyy-tseh-kamuflyazh-1659117228/?at=VvtzJ0V7OtMAMxgZfmoN650tBWwgZwIvYgG4GFLlJwE8
+                  - generic [ref=e1044]:
+                    - generic [ref=e1045]: "4.8"
+                    - generic [ref=e1048]: 47 отзывов
+                - button "23 июля" [ref=e1053] [cursor=pointer]
+          - button "Next slide" [ref=e1063] [cursor=pointer]
+      - generic [ref=e1067]:
+        - generic [ref=e1068]: Покупают вместе
+        - generic [ref=e1071]:
+          - generic [ref=e1073]:
+            - generic [ref=e1075]:
+              - button [ref=e1078] [cursor=pointer]
+              - link [ref=e1083] [cursor=pointer]:
+                - /url: /product/kompotnaya-smes-iz-suhofruktov-1kg-3347773593/?at=NOtwWVYAvcExoXn4SpP0D4MuApMMM9S8xzoYMs24jLnz
+                - img "Компотная смесь из сухофруктов, 1кг Покупают вместе" [ref=e1088]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e1089]:
+                - generic [ref=e1090]:
+                  - generic [ref=e1092]:
+                    - generic [ref=e1093]: 226 ₽
+                    - generic [ref=e1094]: 3 000 ₽
+                    - generic [ref=e1095]: −92%
+                  - generic [ref=e1097]: 1 371 шт осталось
+                  - link "Компотная смесь из сухофруктов, 1кг" [ref=e1098] [cursor=pointer]:
+                    - /url: /product/kompotnaya-smes-iz-suhofruktov-1kg-3347773593/?at=NOtwWVYAvcExoXn4SpP0D4MuApMMM9S8xzoYMs24jLnz
+                  - generic [ref=e1100]:
+                    - generic [ref=e1101]: "4.8"
+                    - generic [ref=e1104]: 4 922 отзыва
+                - button "Послезавтра" [ref=e1109] [cursor=pointer]
+            - generic [ref=e1116]:
+              - button [ref=e1119] [cursor=pointer]
+              - link [ref=e1124] [cursor=pointer]:
+                - /url: /product/ershik-dlya-prochistki-trub-45sm-volosogon-ot-zasorov-3386027289/?at=OgtE85DJqcJB2kxGS5JEqRBH7m0LV4u9Rx9zGhzDjwEG
+                - img "Ершик для прочистки труб 45см, волосогон от засоров Покупают вместе" [ref=e1129]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e1130]:
+                - generic [ref=e1131]:
+                  - generic [ref=e1133]:
+                    - generic [ref=e1134]: 80 ₽
+                    - generic [ref=e1135]: 999 ₽
+                    - generic [ref=e1136]: −91%
+                  - link "Ершик для прочистки труб 45см, волосогон от засоров" [ref=e1138] [cursor=pointer]:
+                    - /url: /product/ershik-dlya-prochistki-trub-45sm-volosogon-ot-zasorov-3386027289/?at=OgtE85DJqcJB2kxGS5JEqRBH7m0LV4u9Rx9zGhzDjwEG
+                  - generic [ref=e1140]:
+                    - generic [ref=e1141]: "4.9"
+                    - generic [ref=e1144]: 11 459 отзывов
+                - button "Послезавтра" [ref=e1149] [cursor=pointer]
+            - generic [ref=e1156]:
+              - button [ref=e1159] [cursor=pointer]
+              - link [ref=e1164] [cursor=pointer]:
+                - /url: /product/finiki-bez-dobavleniya-sahara-1kg-iran-1169360133/?at=Eqtk71wmRFkkrxpNhAGNBxri6pVnBWIgYJ81rh3G19jw
+                - img "Финики без добавления сахара. 1кг, Иран Покупают вместе" [ref=e1169]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e1170]:
+                - generic [ref=e1171]:
+                  - generic [ref=e1173]:
+                    - generic [ref=e1174]: 202 ₽
+                    - generic [ref=e1175]: 1 499 ₽
+                    - generic [ref=e1176]: −86%
+                  - generic [ref=e1178]: 20 ₽ / 100 гр
+                  - link "Финики без добавления сахара. 1кг, Иран" [ref=e1180] [cursor=pointer]:
+                    - /url: /product/finiki-bez-dobavleniya-sahara-1kg-iran-1169360133/?at=Eqtk71wmRFkkrxpNhAGNBxri6pVnBWIgYJ81rh3G19jw
+                  - generic [ref=e1182]:
+                    - generic [ref=e1183]: "4.8"
+                    - generic [ref=e1186]: 252 487 отзывов
+                - button "Послезавтра" [ref=e1191] [cursor=pointer]
+            - generic [ref=e1201]:
+              - button [ref=e1204] [cursor=pointer]
+              - link [ref=e1209] [cursor=pointer]:
+                - /url: /product/chay-chernyy-krupnolistovoy-1000-g-1610048320/?at=x6tPlmpyrHNwGmgOCMwqmVDTJXgXMMf4ZJ41NCQZrQ7R
+                - img "Чай черный крупнолистовой 1000 г Покупают вместе" [ref=e1214]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Вау-цены"
+              - generic [ref=e1215]:
+                - generic [ref=e1216]:
+                  - generic [ref=e1218]:
+                    - generic [ref=e1219]: 823 ₽
+                    - generic [ref=e1220]: 2 780 ₽
+                    - generic [ref=e1221]: −70%
+                  - generic [ref=e1223]: 1 370 шт осталось
+                  - link "Чай черный крупнолистовой 1000 г" [ref=e1224] [cursor=pointer]:
+                    - /url: /product/chay-chernyy-krupnolistovoy-1000-g-1610048320/?at=x6tPlmpyrHNwGmgOCMwqmVDTJXgXMMf4ZJ41NCQZrQ7R
+                  - generic [ref=e1226]:
+                    - generic [ref=e1227]: "4.8"
+                    - generic [ref=e1230]: 31 638 отзывов
+                - button "Послезавтра" [ref=e1235] [cursor=pointer]
+            - generic [ref=e1242]:
+              - button [ref=e1245] [cursor=pointer]
+              - link [ref=e1250] [cursor=pointer]:
+                - /url: /product/arahis-krasnyy-ochishchennyy-1-kg-grinfuds-1851113639/?at=jYtZrlz2pCgBK8Mlc5PnqxnHooPrpKuQ44jLGcQg50jG
+                - img "Арахис красный очищенный, 1 кг ГРИНФУДС Покупают вместе" [ref=e1255]
+              - generic [ref=e1256]:
+                - generic [ref=e1257]:
+                  - generic [ref=e1258]: 382 ₽
+                  - generic [ref=e1262]: 38 ₽ / 100 гр
+                  - link "Арахис красный очищенный, 1 кг ГРИНФУДС" [ref=e1264] [cursor=pointer]:
+                    - /url: /product/arahis-krasnyy-ochishchennyy-1-kg-grinfuds-1851113639/?at=jYtZrlz2pCgBK8Mlc5PnqxnHooPrpKuQ44jLGcQg50jG
+                  - generic [ref=e1266]:
+                    - generic [ref=e1267]: "4.8"
+                    - generic [ref=e1270]: 7 933 отзыва
+                - button "Послезавтра" [ref=e1275] [cursor=pointer]
+            - generic [ref=e1285]:
+              - button [ref=e1288] [cursor=pointer]
+              - link [ref=e1293] [cursor=pointer]:
+                - /url: /product/blyudo-lyagan-uzbekskaya-posuda-uzbekskaya-tarelka-rishtanskaya-keramika-32-sm-siniy-4180051795/?at=k2toEYD7mc0kgk5otzGxKN4iwOZgB5I1P6vjDIDLxADg
+                - img "Блюдо Ляган, Узбекская посуда, Узбекская тарелка, Риштанская Керамика, 32 см, синий Покупают вместе" [ref=e1298]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e1299]:
+                - generic [ref=e1300]:
+                  - generic [ref=e1302]:
+                    - generic [ref=e1303]: 1 493 ₽
+                    - generic [ref=e1304]: 3 000 ₽
+                    - generic [ref=e1305]: −50%
+                  - generic [ref=e1307]: 22 шт осталось
+                  - link "Блюдо Ляган, Узбекская посуда, Узбекская тарелка, Риштанская Керамика, 32 см, синий" [ref=e1308] [cursor=pointer]:
+                    - /url: /product/blyudo-lyagan-uzbekskaya-posuda-uzbekskaya-tarelka-rishtanskaya-keramika-32-sm-siniy-4180051795/?at=k2toEYD7mc0kgk5otzGxKN4iwOZgB5I1P6vjDIDLxADg
+                  - generic [ref=e1310]:
+                    - generic [ref=e1311]: "5.0"
+                    - generic [ref=e1314]: 101 отзыв
+                - button "24 июля" [ref=e1319] [cursor=pointer]
+            - generic [ref=e1326]:
+              - button [ref=e1329] [cursor=pointer]
+              - link [ref=e1334] [cursor=pointer]:
+                - /url: /product/kuraga-vysshiy-sort-bez-sahara-ot-fruktovichok-300-g-3436459363/?at=mqtkx1VZEFL7KQq4CxNxN7LHw0qEpNH2wjGW4FkA7VKl
+                - img "Курага Высший сорт без сахара от ФРУКТОВИЧОК, 300 г. Покупают вместе" [ref=e1339]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e1340]:
+                - generic [ref=e1341]:
+                  - generic [ref=e1343]:
+                    - generic [ref=e1344]: 188 ₽
+                    - generic [ref=e1345]: 923 ₽
+                    - generic [ref=e1346]: −79%
+                  - generic [ref=e1348]: 1 139 шт осталось
+                  - link "Курага Высший сорт без сахара от ФРУКТОВИЧОК, 300 г." [ref=e1349] [cursor=pointer]:
+                    - /url: /product/kuraga-vysshiy-sort-bez-sahara-ot-fruktovichok-300-g-3436459363/?at=mqtkx1VZEFL7KQq4CxNxN7LHw0qEpNH2wjGW4FkA7VKl
+                  - generic [ref=e1351]:
+                    - generic [ref=e1352]: "4.7"
+                    - generic [ref=e1355]: 110 420 отзывов
+                - button "Послезавтра" [ref=e1360] [cursor=pointer]
+            - generic [ref=e1370]:
+              - button [ref=e1373] [cursor=pointer]
+              - link [ref=e1378] [cursor=pointer]:
+                - /url: /product/smes-kompot-2484348291/?at=z6tO18X3Jc2nDEowIkk2xgOHW63qYoC0BOr9gs9BJB7y
+                - img "Смесь компот Покупают вместе" [ref=e1383]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e1384]:
+                - generic [ref=e1385]:
+                  - generic [ref=e1387]:
+                    - generic [ref=e1388]: 345 ₽
+                    - generic [ref=e1389]: 985 ₽
+                    - generic [ref=e1390]: −64%
+                  - generic [ref=e1392]: 14 шт осталось
+                  - link "Смесь компот" [ref=e1393] [cursor=pointer]:
+                    - /url: /product/smes-kompot-2484348291/?at=z6tO18X3Jc2nDEowIkk2xgOHW63qYoC0BOr9gs9BJB7y
+                  - generic [ref=e1395]:
+                    - generic [ref=e1396]: "4.8"
+                    - generic [ref=e1399]: 875 отзывов
+                - button "24 июля" [ref=e1404] [cursor=pointer]
+            - generic [ref=e1414]:
+              - button [ref=e1417] [cursor=pointer]
+              - link [ref=e1422] [cursor=pointer]:
+                - /url: /product/konfety-krasnyy-oktyabr-kara-kum-fasovannye-1-kg-964710831/?at=PjtJwvBOycmwZZpBfV9YvOPcL7180osjwlvwVhLV7won
+                - img "Конфеты Красный Октябрь Кара-Кум, фасованные, 1 кг Покупают вместе" [ref=e1427]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Вау-цены"
+              - generic [ref=e1428]:
+                - generic [ref=e1429]:
+                  - generic [ref=e1431]:
+                    - generic [ref=e1432]: 759 ₽
+                    - generic [ref=e1433]: 1 009 ₽
+                    - generic [ref=e1434]: −24%
+                  - generic [ref=e1436]: 21 шт осталось
+                  - generic [ref=e1437]: Красный Октябрь
+                  - link "Конфеты Красный Октябрь Кара-Кум, фасованные, 1 кг" [ref=e1440] [cursor=pointer]:
+                    - /url: /product/konfety-krasnyy-oktyabr-kara-kum-fasovannye-1-kg-964710831/?at=PjtJwvBOycmwZZpBfV9YvOPcL7180osjwlvwVhLV7won
+                  - generic [ref=e1442]:
+                    - generic [ref=e1443]: "4.9"
+                    - generic [ref=e1446]: 60 275
+                    - generic [ref=e1449]: Ozon
+                - button "Послезавтра" [ref=e1454] [cursor=pointer]
+            - generic [ref=e1461]:
+              - button [ref=e1464] [cursor=pointer]
+              - link [ref=e1469] [cursor=pointer]:
+                - /url: /product/steyki-gorbushi-vyalenye-500-gr-3521802490/?at=XQtkQBl1pFLLpRlVh66YY94SJzxYQ0CMZ7jl3hQ195wP
+                - img "Стейки горбуши вяленые 500 гр Покупают вместе" [ref=e1474]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Цена что надо"
+              - generic [ref=e1475]:
+                - generic [ref=e1476]:
+                  - generic [ref=e1477]: 979 ₽
+                  - link "Стейки горбуши вяленые 500 гр" [ref=e1481] [cursor=pointer]:
+                    - /url: /product/steyki-gorbushi-vyalenye-500-gr-3521802490/?at=XQtkQBl1pFLLpRlVh66YY94SJzxYQ0CMZ7jl3hQ195wP
+                  - generic [ref=e1483]:
+                    - generic [ref=e1484]: "4.8"
+                    - generic [ref=e1487]: 1 512 отзывов
+                - button "Послезавтра" [ref=e1492] [cursor=pointer]
+            - generic [ref=e1502]:
+              - button [ref=e1505] [cursor=pointer]
+              - link [ref=e1510] [cursor=pointer]:
+                - /url: /product/chay-chernyy-listovoy-assam-pekoe-vysshiy-sort-nastoyashchiy-indiyskiy-chay-250-g-1993131623/?at=jYtZrlz2pC2AN0W0cnm58ngioWnQD5tMVjpXATRQ2KL
+                - img "Чай черный листовой Ассам Pekoe высший сорт, настоящий индийский чай 250 г Покупают вместе" [ref=e1515]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Распродажа"
+              - generic [ref=e1516]:
+                - generic [ref=e1517]:
+                  - generic [ref=e1519]:
+                    - generic [ref=e1520]: 581 ₽
+                    - generic [ref=e1521]: 1 900 ₽
+                    - generic [ref=e1522]: −69%
+                  - generic [ref=e1524]: 1 959 шт осталось
+                  - link "Чай черный листовой Ассам Pekoe высший сорт, настоящий индийский чай 250 г" [ref=e1525] [cursor=pointer]:
+                    - /url: /product/chay-chernyy-listovoy-assam-pekoe-vysshiy-sort-nastoyashchiy-indiyskiy-chay-250-g-1993131623/?at=jYtZrlz2pC2AN0W0cnm58ngioWnQD5tMVjpXATRQ2KL
+                  - generic [ref=e1527]:
+                    - generic [ref=e1528]: "4.9"
+                    - generic [ref=e1531]: 22 306 отзывов
+                - button "Послезавтра" [ref=e1536] [cursor=pointer]
+            - generic [ref=e1543]:
+              - button [ref=e1546] [cursor=pointer]
+              - link [ref=e1551] [cursor=pointer]:
+                - /url: /product/500-gr-kofe-rastvorimyy-indiya-sublimirovannyy-naturalnyy-1885774166/?at=z6tO18X3JcyvlpDSrEA6lnHVEDwxc8m9x2JI7wx8qy
+                - img "500 гр. Кофе растворимый Индия, сублимированный натуральный Покупают вместе" [ref=e1556]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic "Вау-цены"
+              - generic [ref=e1557]:
+                - generic [ref=e1558]:
+                  - generic [ref=e1560]:
+                    - generic [ref=e1561]: 1 085 ₽
+                    - generic [ref=e1562]: 2 890 ₽
+                    - generic [ref=e1563]: −62%
+                  - generic [ref=e1565]: 859 шт осталось
+                  - link "500 гр. Кофе растворимый Индия, сублимированный натуральный" [ref=e1566] [cursor=pointer]:
+                    - /url: /product/500-gr-kofe-rastvorimyy-indiya-sublimirovannyy-naturalnyy-1885774166/?at=z6tO18X3JcyvlpDSrEA6lnHVEDwxc8m9x2JI7wx8qy
+                  - generic [ref=e1568]:
+                    - generic [ref=e1569]: "4.7"
+                    - generic [ref=e1572]: 6 046 отзывов
+                - button "Послезавтра" [ref=e1577] [cursor=pointer]
+          - button "Next slide" [ref=e1587] [cursor=pointer]
+    - generic [ref=e1593]:
+      - generic [ref=e1596]:
+        - heading "Описание" [level=2] [ref=e1598]
+        - generic [ref=e1599]: "Мясные консервы говядина Наше все высший сорт славятся высоким качеством. Говядина тушеная «Великая степь» (Наше все)- это мясные консервы высшего сорта, изготовленные по гост. Состав говядина тушеная «Великая степь» (Наше все): говядина, жир говяжий, лук репчатый, пищевая соль, перец черный, лист лавровый. При изготовлении тушенки Наше все используется мясо только молодых коров вольного выгула фермеров Забайкальского края, В фермерских продуктах Наше все не применяются усилители вкуса, консерванты и иная химия. Тушенка говяжья высшего сорта является незаменимым продуктом для дома. Используя продукты из Забайкальского края можно быстро приготовить вкусное блюдо, например картошка с тушенкой или гречка с тушенкой. Купить тушенку с доставкой можно в нашем магазине. Мясные консервы из говядины высший сорт по гост имеют срок хранения 3 года. Тушонка незаменимый продукт для дачи. А если вы ездите на охоту или рыбалку, то мясная консерва тушенка говядина гост высший сорт премиум - незаменимый продукт, который нужно взять с собой. На сегодня по нашему мнению Тушенка Наше всё - это лучшая не белорусская тушенка, которая производится в РФ по соотношению цена/качество."
+      - generic [ref=e1608]:
+        - heading "Условия хранения" [level=3] [ref=e1609]
+        - paragraph [ref=e1610]: Хранить при температуре от 0 до плюс 20 градусов и относительной влажности не более 75%.
+        - heading "Состав" [level=3] [ref=e1611]
+        - paragraph [ref=e1612]: Говядина, жир говяжий, лук репчатый, пищевая соль, перец черный, лист лавровый.
+      - generic [ref=e1614]:
+        - generic "#тушеная_говядина" [ref=e1617] [cursor=pointer]
+        - generic "#тушенка_говяжья" [ref=e1621] [cursor=pointer]
+        - generic "#тушенка_беларусь" [ref=e1625] [cursor=pointer]
+        - generic "#тушенка_гост" [ref=e1629] [cursor=pointer]
+        - generic "#натуральный_состав" [ref=e1633] [cursor=pointer]
+        - generic "#фермерскиепродукты" [ref=e1637] [cursor=pointer]
+        - generic "#готовая_еда" [ref=e1641] [cursor=pointer]
+        - generic "#готовая_еда_в_поход" [ref=e1645] [cursor=pointer]
+        - generic "#тушенка_наше_все" [ref=e1649] [cursor=pointer]
+      - generic [ref=e1652]:
+        - heading [level=2] [ref=e1654]:
+          - link "Характеристики" [ref=e1655] [cursor=pointer]:
+            - /url: https://www.ozon.ru/product/govyadina-tushenaya-nashe-vse-4-banki-po-338-gramm-3487088084/features/
+        - generic [ref=e1657]:
+          - generic [ref=e1658]:
+            - generic [ref=e1659]:
+              - term [ref=e1660]: Артикул
+              - definition [ref=e1661]:
+                - generic [ref=e1662]: "3487088084"
+            - generic [ref=e1667]:
+              - term [ref=e1668]: Тип
+              - definition [ref=e1669]: Мясные консервы
+            - generic [ref=e1670]:
+              - term [ref=e1671]: Вид мяса
+              - definition [ref=e1672]:
+                - link "Говядина" [ref=e1673] [cursor=pointer]:
+                  - /url: /category/myasnye-konservy-iz-govyadiny/
+            - generic [ref=e1674]:
+              - term [ref=e1675]: Сорт мясных консервов
+              - definition [ref=e1676]:
+                - link "Высший" [ref=e1677] [cursor=pointer]:
+                  - /url: /category/myasnye-konservy-vysshego-sorta/
+            - generic [ref=e1678]:
+              - term [ref=e1679]: Вид мясных консервов
+              - definition [ref=e1680]:
+                - link "Тушенка" [ref=e1681] [cursor=pointer]:
+                  - /url: /category/myasnye-konservy-tushenka/
+            - generic [ref=e1682]:
+              - term [ref=e1683]: Заливка
+              - definition [ref=e1684]:
+                - link "В собственном соку" [ref=e1685] [cursor=pointer]:
+                  - /url: /category/myasnye-konservy-v-sobstvennom-soku/
+            - generic [ref=e1686]:
+              - term [ref=e1687]: Форма выпуска консервов
+              - definition [ref=e1688]:
+                - link "Кусочки" [ref=e1689] [cursor=pointer]:
+                  - /url: /category/myasnye-konservy-v-forme-kusochkov/
+          - generic [ref=e1690]:
+            - generic [ref=e1691]:
+              - term [ref=e1692]: Единиц в одном товаре
+              - definition [ref=e1693]: "4"
+            - generic [ref=e1694]:
+              - term [ref=e1695]: Вес товара, г
+              - definition [ref=e1696]: "338"
+            - generic [ref=e1697]:
+              - term [ref=e1698]: Минимальная температура
+              - definition [ref=e1699]: "0"
+            - generic [ref=e1700]:
+              - term [ref=e1701]: Максимальная температура
+              - definition [ref=e1702]: "20"
+            - generic [ref=e1703]:
+              - term [ref=e1704]: Срок годности в днях
+              - definition [ref=e1705]: "1095"
+            - generic [ref=e1706]:
+              - term [ref=e1707]: Страна-изготовитель
+              - definition [ref=e1708]:
+                - link "Россия" [ref=e1709] [cursor=pointer]:
+                  - /url: /category/myasnye-konservy-proizvodstva-rossii/
+            - generic [ref=e1710]:
+              - term [ref=e1711]: Упаковка
+              - definition [ref=e1712]:
+                - link "Жестяная банка с ключом" [ref=e1713] [cursor=pointer]:
+                  - /url: /category/myasnye-konservy-v-zhestyanoy-banke-s-klyuchom/
+                - text: ", Картонная коробка"
+          - generic [ref=e1714]:
+            - term [ref=e1715]: "Не содержит:"
+            - definition [ref=e1716]:
+              - link "без ГМО" [ref=e1717] [cursor=pointer]:
+                - /url: /category/myasnye-konservy-bez-gmo/
+              - text: ","
+              - link "без ароматизаторов" [ref=e1718] [cursor=pointer]:
+                - /url: /category/myasnye-konservy-bez-aromatizatorov/
+              - text: ", без вкусовых добавок,"
+              - link "без искусственных добавок" [ref=e1719] [cursor=pointer]:
+                - /url: /category/myasnye-konservy-bez-iskusstvennyh-dobavok/
+          - generic [ref=e1720]:
+            - term [ref=e1721]: "Особенности напитков, продуктов питания:"
+            - definition [ref=e1722]:
+              - link "Натуральный продукт" [ref=e1723] [cursor=pointer]:
+                - /url: /category/myasnye-konservy-naturalnye/
+              - text: ","
+              - link "Изготовлено по ГОСТу" [ref=e1724] [cursor=pointer]:
+                - /url: /category/myasnye-konservy-izgotovlenye-po-gostu/
+              - text: ","
+              - link "Высокое содержание белка" [ref=e1725] [cursor=pointer]:
+                - /url: /category/myasnye-konservy-c-vysokim-soderzhaniem-belka/
+        - generic [ref=e1726]: Информация о технических характеристиках, комплекте поставки, стране изготовления, внешнем виде и цвете товара носит справочный характер и основывается на последних доступных к моменту публикации сведениях
+      - generic [ref=e1727]:
+        - heading "Подборки товаров в категории Мясные консервы" [level=2] [ref=e1728]
+        - generic [ref=e1729]:
+          - link "Сало топленое" [ref=e1730] [cursor=pointer]:
+            - /url: /category/salo-toplenoe/
+          - link "Тушенка не для продажи" [ref=e1731] [cursor=pointer]:
+            - /url: /category/tushenka-ne-dlya-prodazhi/
+          - link "Мясные консервы тушенка" [ref=e1732] [cursor=pointer]:
+            - /url: /category/myasnye-konservy-tushenka/
+          - link "Белорусская тушенка" [ref=e1733] [cursor=pointer]:
+            - /url: /category/belorusskaya-tushenka/
+          - link "Мясные консервы из говядины" [ref=e1734] [cursor=pointer]:
+            - /url: /category/myasnye-konservy-iz-govyadiny/
+          - link "Тушенка говяжья" [ref=e1735] [cursor=pointer]:
+            - /url: /category/tushenka-govyazhya/
+          - link "Мясные консервы из свинины" [ref=e1736] [cursor=pointer]:
+            - /url: /category/myasnye-konservy-iz-svininy/
+          - link "Тушенка свиная" [ref=e1737] [cursor=pointer]:
+            - /url: /category/tushenka-svinaya/
+          - link "Тушенка говядина белорусская" [ref=e1738] [cursor=pointer]:
+            - /url: /category/tushenka-govyadina-belorusskaya/
+          - link "Мясные консервы из индейки" [ref=e1739] [cursor=pointer]:
+            - /url: /category/myasnye-konservy-iz-indeyki/
+    - generic [ref=e1752] [cursor=pointer]:
+      - generic [ref=e1753]: Документы качества
+      - generic [ref=e1754]: Перейдите, чтобы посмотреть документы
+    - generic [ref=e1762]:
+      - generic [ref=e1764]:
+        - button "Отзывы о товаре 1599" [ref=e1767] [cursor=pointer]:
+          - generic [ref=e1769]:
+            - generic [ref=e1770]: Отзывы о товаре
+            - generic [ref=e1771]: "1599"
+        - button "Вопросы о товаре 22" [ref=e1774] [cursor=pointer]:
+          - generic [ref=e1776]:
+            - generic [ref=e1777]: Вопросы о товаре
+            - generic [ref=e1778]: "22"
+      - generic [ref=e1783]:
+        - generic [ref=e1784]:
+          - generic [ref=e1787]:
+            - generic [ref=e1788] [cursor=pointer]: Все отзывы
+            - generic [ref=e1791] [cursor=pointer]: Этот вариант товара (103)
+          - generic [ref=e1797]:
+            - button [ref=e1798] [cursor=pointer]
+            - button [ref=e1800] [cursor=pointer]
+            - button [ref=e1802] [cursor=pointer]
+            - button [ref=e1804] [cursor=pointer]
+            - button [ref=e1806] [cursor=pointer]
+            - button [ref=e1808] [cursor=pointer]
+            - button [ref=e1810] [cursor=pointer]
+            - button [ref=e1812] [cursor=pointer]
+            - button "+157" [ref=e1814] [cursor=pointer]
+        - generic [ref=e1823]:
+          - generic [ref=e1824]: 4.8 / 5
+          - generic [ref=e1826]: Рейтинг формируется на основе актуальных отзывов
+          - generic [ref=e1827]:
+            - generic [ref=e1828]:
+              - generic [ref=e1829]: 5 звёзд
+              - generic [ref=e1833]: "1432"
+            - generic [ref=e1834]:
+              - generic [ref=e1835]: 4 звезды
+              - generic [ref=e1839]: "102"
+            - generic [ref=e1840]:
+              - generic [ref=e1841]: 3 звезды
+              - generic [ref=e1845]: "37"
+            - generic [ref=e1846]:
+              - generic [ref=e1847]: 2 звезды
+              - generic [ref=e1851]: "10"
+            - generic [ref=e1852]:
+              - generic [ref=e1853]: 1 звезда
+              - generic [ref=e1857]: "18"
+    - generic [ref=e1865]:
+      - generic [ref=e1866]: Подобрали для вас
+      - generic [ref=e1869]:
+        - generic [ref=e1870]:
+          - button [ref=e1873] [cursor=pointer]
+          - link [ref=e1878] [cursor=pointer]:
+            - /url: /product/tushenka-govyadina-halyal-belarus-4-sht-h-325-g-1927846939/?at=Rlty6nwJ7I7kv08DHjjGWMnT7JJv5gcDEPn4gfE8AYwj
+            - img "Тушенка говядина халяль Беларусь, 4 шт х 325 г Подобрали для вас" [ref=e1883]
+            - generic:
+              - generic:
+                - generic:
+                  - generic "Распродажа"
+          - generic [ref=e1885]:
+            - generic [ref=e1887]:
+              - generic [ref=e1888]: 1 618 ₽
+              - generic [ref=e1889]: 11 532 ₽
+              - generic [ref=e1890]: −85%
+            - generic [ref=e1892]: 351 шт осталось
+            - link "Тушенка говядина халяль Беларусь, 4 шт х 325 г" [ref=e1893] [cursor=pointer]:
+              - /url: /product/tushenka-govyadina-halyal-belarus-4-sht-h-325-g-1927846939/?at=Rlty6nwJ7I7kv08DHjjGWMnT7JJv5gcDEPn4gfE8AYwj
+            - generic [ref=e1895]:
+              - generic [ref=e1896]: "4.9"
+              - generic [ref=e1899]: 1 689 отзывов
+        - generic [ref=e1902]:
+          - button [ref=e1905] [cursor=pointer]
+          - link [ref=e1910] [cursor=pointer]:
+            - /url: /product/pechen-treski-naturalnaya-3266953648/?at=vQtr9OJGMUyE34KLTgylMD3f46lX8GT0155Brfzk75AL
+            - img "Печень трески натуральная Подобрали для вас" [ref=e1915]
+          - generic [ref=e1917]:
+            - generic [ref=e1918]: 617 ₽
+            - link "Печень трески натуральная" [ref=e1922] [cursor=pointer]:
+              - /url: /product/pechen-treski-naturalnaya-3266953648/?at=vQtr9OJGMUyE34KLTgylMD3f46lX8GT0155Brfzk75AL
+            - generic [ref=e1924]:
+              - generic [ref=e1925]: "4.5"
+              - generic [ref=e1928]: 680 отзывов
+        - generic [ref=e1931]:
+          - button [ref=e1934] [cursor=pointer]
+          - link [ref=e1939] [cursor=pointer]:
+            - /url: /product/sirop-brusnika-mors-kontsentrirovannyy-1300g-osnova-dlya-napitka-1162595120/?at=pZtp2QgGXtq7046muoDNyQ6hw67RmBuvOZzEotL7qrv3
+            - img "Сироп Брусника морс концентрированный 1300г основа для напитка Подобрали для вас" [ref=e1944]
+            - generic:
+              - generic:
+                - generic:
+                  - generic "Распродажа"
+          - generic [ref=e1946]:
+            - generic [ref=e1948]:
+              - generic [ref=e1949]: 588 ₽
+              - generic [ref=e1950]: 1 690 ₽
+              - generic [ref=e1951]: −65%
+            - generic [ref=e1953]: 51 шт осталось
+            - link "Сироп Брусника морс концентрированный 1300г основа для напитка" [ref=e1954] [cursor=pointer]:
+              - /url: /product/sirop-brusnika-mors-kontsentrirovannyy-1300g-osnova-dlya-napitka-1162595120/?at=pZtp2QgGXtq7046muoDNyQ6hw67RmBuvOZzEotL7qrv3
+            - generic [ref=e1956]:
+              - generic [ref=e1957]: "4.9"
+              - generic [ref=e1960]: 7 955 отзывов
+        - generic [ref=e1963]:
+          - button [ref=e1966] [cursor=pointer]
+          - link [ref=e1971] [cursor=pointer]:
+            - /url: /product/pechen-govyazhya-v-sobstvennom-soku-gost-v-nabore-6-sht-po-340-gr-orskiy-myasokombinat-1700148620/?at=nRtrEl4zMU5JNmV0hJ8q4y6fwkg30OunO2ZMxIZxGlpj
+            - img "Печень говяжья в собственном соку ГОСТ, в наборе 6 шт по 340 гр., Орский мясокомбинат Подобрали для вас" [ref=e1976]
+            - generic:
+              - generic:
+                - generic:
+                  - generic "Распродажа"
+          - generic [ref=e1978]:
+            - generic [ref=e1980]:
+              - generic [ref=e1981]: 1 159 ₽
+              - generic [ref=e1982]: 3 224 ₽
+              - generic [ref=e1983]: −64%
+            - generic [ref=e1985]: 553 шт осталось
+            - link "Печень говяжья в собственном соку ГОСТ, в наборе 6 шт по 340 гр., Орский мясокомбинат" [ref=e1986] [cursor=pointer]:
+              - /url: /product/pechen-govyazhya-v-sobstvennom-soku-gost-v-nabore-6-sht-po-340-gr-orskiy-myasokombinat-1700148620/?at=nRtrEl4zMU5JNmV0hJ8q4y6fwkg30OunO2ZMxIZxGlpj
+            - generic [ref=e1988]:
+              - generic [ref=e1989]: "4.8"
+              - generic [ref=e1992]: 1 991 отзыв
+        - generic [ref=e1995]:
+          - button [ref=e1998] [cursor=pointer]
+          - link [ref=e2003] [cursor=pointer]:
+            - /url: /product/govyadina-tushenaya-baryshskiy-tushenka-12-h-250-g-vysshiy-sort-gost-4390482232/?at=A6tGQrxg7cZD5p0jUMxVOprSQ2vOzNfx1Kn71FRX7BZY
+            - img "Говядина тушеная, Барышский, тушенка, 12 х 250 г, высший сорт ГОСТ Подобрали для вас" [ref=e2008]
+            - generic:
+              - generic:
+                - generic:
+                  - generic "Распродажа"
+          - generic [ref=e2010]:
+            - generic [ref=e2012]:
+              - generic [ref=e2013]: 2 611 ₽
+              - generic [ref=e2014]: 7 999 ₽
+              - generic [ref=e2015]: −67%
+            - generic [ref=e2017]: 218 ₽ / шт
+            - link "Говядина тушеная, Барышский, тушенка, 12 х 250 г, высший сорт ГОСТ" [ref=e2019] [cursor=pointer]:
+              - /url: /product/govyadina-tushenaya-baryshskiy-tushenka-12-h-250-g-vysshiy-sort-gost-4390482232/?at=A6tGQrxg7cZD5p0jUMxVOprSQ2vOzNfx1Kn71FRX7BZY
+            - generic [ref=e2021]:
+              - generic [ref=e2022]: "4.7"
+              - generic [ref=e2025]: 59 отзывов
+        - generic [ref=e2028]:
+          - button [ref=e2031] [cursor=pointer]
+          - link [ref=e2036] [cursor=pointer]:
+            - /url: /product/paprika-kopchenaya-molotaya-1209482376/?at=99tr0RJvoUop4GWAtMM1G1LFmqy5x5sgY5z6VujEq47Q
+            - img "Паприка копчёная молотая Подобрали для вас" [ref=e2041]
+            - generic:
+              - generic:
+                - generic:
+                  - generic "Распродажа"
+          - generic [ref=e2043]:
+            - generic [ref=e2045]:
+              - generic [ref=e2046]: 193 ₽
+              - generic [ref=e2047]: 620 ₽
+              - generic [ref=e2048]: −68%
+            - generic [ref=e2050]: 168 шт осталось
+            - link "Паприка копчёная молотая" [ref=e2051] [cursor=pointer]:
+              - /url: /product/paprika-kopchenaya-molotaya-1209482376/?at=99tr0RJvoUop4GWAtMM1G1LFmqy5x5sgY5z6VujEq47Q
+            - generic [ref=e2053]:
+              - generic [ref=e2054]: "4.9"
+              - generic [ref=e2057]: 2 586 отзывов
+        - generic [ref=e2060]:
+          - button [ref=e2063] [cursor=pointer]
+          - link [ref=e2068] [cursor=pointer]:
+            - /url: /product/seld-atl-naturalnaya-s-dobavleniem-masla-250-gr-nabor-12-sht-ooo-vrk-1555078622/?at=VvtzJ0V7Otx95RyksDg8OPkc7B3o9QhylVKZDcMKV2kW
+            - img "Сельдь атл натуральная с добавлением масла 250 гр. Набор 12 шт. ООО \"ВРК\" Подобрали для вас" [ref=e2073]
+            - generic:
+              - generic:
+                - generic:
+                  - generic "Распродажа"
+          - generic [ref=e2075]:
+            - generic [ref=e2077]:
+              - generic [ref=e2078]: 978 ₽
+              - generic [ref=e2079]: 2 640 ₽
+              - generic [ref=e2080]: −62%
+            - generic [ref=e2082]: 31 шт осталось
+            - link "Сельдь атл натуральная с добавлением масла 250 гр. Набор 12 шт. ООО \"ВРК\"" [ref=e2083] [cursor=pointer]:
+              - /url: /product/seld-atl-naturalnaya-s-dobavleniem-masla-250-gr-nabor-12-sht-ooo-vrk-1555078622/?at=VvtzJ0V7Otx95RyksDg8OPkc7B3o9QhylVKZDcMKV2kW
+            - generic [ref=e2085]:
+              - generic [ref=e2086]: "4.7"
+              - generic [ref=e2089]: 16 271 отзыв
+        - generic [ref=e2092]:
+          - button [ref=e2095] [cursor=pointer]
+          - link [ref=e2100] [cursor=pointer]:
+            - /url: /product/mr-green-podosinoviki-taezhnye-otbornye-sushenye-100-g-iz-sibiri-griby-sushenye-lesnye-1867752946/?at=vQtr9OJGMUqx8LqOf9r5pGRIkyQ9ExI1P38R2UZ2ZAVB
+            - img "Mr. Green. Подосиновики таёжные отборные сушеные 100 г из Сибири, грибы сушеные лесные Подобрали для вас" [ref=e2105]
+          - generic [ref=e2107]:
+            - generic [ref=e2109]:
+              - generic [ref=e2110]: 755 ₽
+              - generic [ref=e2111]: 4 670 ₽
+              - generic [ref=e2112]: −83%
+            - link "Mr. Green. Подосиновики таёжные отборные сушеные 100 г из Сибири, грибы сушеные лесные" [ref=e2114] [cursor=pointer]:
+              - /url: /product/mr-green-podosinoviki-taezhnye-otbornye-sushenye-100-g-iz-sibiri-griby-sushenye-lesnye-1867752946/?at=vQtr9OJGMUqx8LqOf9r5pGRIkyQ9ExI1P38R2UZ2ZAVB
+            - generic [ref=e2116]:
+              - generic [ref=e2117]: "4.9"
+              - generic [ref=e2120]: 3 105 отзывов
+        - generic [ref=e2123]:
+          - button [ref=e2126] [cursor=pointer]
+          - link [ref=e2131] [cursor=pointer]:
+            - /url: /product/adzhika-elitnaya-zelenaya-umerenno-ostraya-iz-zelenogo-pertsa-130g-1sht-1907447552/?at=nRtrEl4zMU9Z4QVNUDG7BNpHglmlg7sjrMAJfVnJK9A
+            - img "Аджика Элитная зеленая, умеренно-острая, из зеленого перца 130г 1шт Подобрали для вас" [ref=e2136]
+            - generic:
+              - generic:
+                - generic:
+                  - generic "Вау-цены"
+          - generic [ref=e2138]:
+            - generic [ref=e2140]:
+              - generic [ref=e2141]: 232 ₽
+              - generic [ref=e2142]: 2 490 ₽
+              - generic [ref=e2143]: −90%
+            - generic [ref=e2145]: 30 шт осталось
+            - link "Аджика Элитная зеленая, умеренно-острая, из зеленого перца 130г 1шт" [ref=e2146] [cursor=pointer]:
+              - /url: /product/adzhika-elitnaya-zelenaya-umerenno-ostraya-iz-zelenogo-pertsa-130g-1sht-1907447552/?at=nRtrEl4zMU9Z4QVNUDG7BNpHglmlg7sjrMAJfVnJK9A
+            - generic [ref=e2148]:
+              - generic [ref=e2149]: "4.9"
+              - generic [ref=e2152]: 2 008 отзывов
+        - generic [ref=e2155]:
+          - button [ref=e2158] [cursor=pointer]
+          - link [ref=e2163] [cursor=pointer]:
+            - /url: /product/shchuka-krupnaya-vyalenaya-1kg-ryba-tsar-2059754209/?at=x6tPlmpyrHRwK5D6UjLEmnwUvn58j7c184ooPiXvANog
+            - img "Щука крупная вяленая 1кг Рыба-царь Подобрали для вас" [ref=e2168]
+          - generic [ref=e2170]:
+            - generic [ref=e2172]:
+              - generic [ref=e2173]: 1 097 ₽
+              - generic [ref=e2174]: 4 500 ₽
+              - generic [ref=e2175]: −75%
+            - link "Щука крупная вяленая 1кг Рыба-царь" [ref=e2177] [cursor=pointer]:
+              - /url: /product/shchuka-krupnaya-vyalenaya-1kg-ryba-tsar-2059754209/?at=x6tPlmpyrHRwK5D6UjLEmnwUvn58j7c184ooPiXvANog
+            - generic [ref=e2179]:
+              - generic [ref=e2180]: "4.8"
+              - generic [ref=e2183]: 704 отзыва
+        - generic [ref=e2186]:
+          - button [ref=e2189] [cursor=pointer]
+          - link [ref=e2194] [cursor=pointer]:
+            - /url: /product/govyadina-tushenaya-premium-338-gr-1-sht-oao-afpk-zhlobinskiy-myasokombinat-3263464800/?at=jYtZrlz2pCVN81WOFWKXj4rHYo6j5qFAyL2rWhl36N67
+            - img "Говядина тушеная Премиум, 338 гр., 1 шт. ОАО АФПК Жлобинский мясокомбинат Подобрали для вас" [ref=e2199]
+          - generic [ref=e2201]:
+            - generic [ref=e2202]: 250 ₽
+            - generic [ref=e2206]: Оригинал
+            - link "Говядина тушеная Премиум, 338 гр., 1 шт. ОАО АФПК Жлобинский мясокомбинат" [ref=e2211] [cursor=pointer]:
+              - /url: /product/govyadina-tushenaya-premium-338-gr-1-sht-oao-afpk-zhlobinskiy-myasokombinat-3263464800/?at=jYtZrlz2pCVN81WOFWKXj4rHYo6j5qFAyL2rWhl36N67
+            - generic [ref=e2213]:
+              - generic [ref=e2214]: "4.8"
+              - generic [ref=e2217]: 7 763 отзыва
+        - generic [ref=e2220]:
+          - button [ref=e2223] [cursor=pointer]
+          - link [ref=e2228] [cursor=pointer]:
+            - /url: /product/sayra-konservy-rybnye-blanshirovannaya-v-masle-gost-klyuch-240g-sohranim-traditsii-h-3-sht-3027231806/?at=57twJgyoqcxD37RYcE3AOPnhzYVpMEhKvvJKjHvp4wr1
+            - img "САЙРА консервы рыбные бланшированная в масле ГОСТ ключ 240г, Сохраним традиции х 3 шт Подобрали для вас" [ref=e2233]
+            - generic:
+              - generic:
+                - generic:
+                  - generic "Распродажа"
+          - generic [ref=e2235]:
+            - generic [ref=e2237]:
+              - generic [ref=e2238]: 775 ₽
+              - generic [ref=e2239]: 2 910 ₽
+              - generic [ref=e2240]: −73%
+            - generic [ref=e2242]: 233 шт осталось
+            - link "САЙРА консервы рыбные бланшированная в масле ГОСТ ключ 240г, Сохраним традиции х 3 шт" [ref=e2243] [cursor=pointer]:
+              - /url: /product/sayra-konservy-rybnye-blanshirovannaya-v-masle-gost-klyuch-240g-sohranim-traditsii-h-3-sht-3027231806/?at=57twJgyoqcxD37RYcE3AOPnhzYVpMEhKvvJKjHvp4wr1
+            - generic [ref=e2245]:
+              - generic [ref=e2246]: "4.7"
+              - generic [ref=e2249]: 638 отзывов
+        - generic [ref=e2252]:
+          - button [ref=e2255] [cursor=pointer]
+          - link [ref=e2260] [cursor=pointer]:
+            - /url: /product/myasnoe-assorti-v-nabore-govyadina-svinina-konina-orskiy-myasokombinat-6-sht-1872219612/?at=oZt6nlAMxtVOj38QUE81y9pULor119hAM3wqLUMM6NZL
+            - img "Мясное ассорти, в наборе говядина, свинина, конина, Орский мясокомбинат, 6 шт Подобрали для вас" [ref=e2265]
+            - generic:
+              - generic:
+                - generic:
+                  - generic "Распродажа"
+          - generic [ref=e2267]:
+            - generic [ref=e2269]:
+              - generic [ref=e2270]: 1 412 ₽
+              - generic [ref=e2271]: 3 417 ₽
+              - generic [ref=e2272]: −58%
+            - generic [ref=e2274]: 588 шт осталось
+            - link "Мясное ассорти, в наборе говядина, свинина, конина, Орский мясокомбинат, 6 шт" [ref=e2275] [cursor=pointer]:
+              - /url: /product/myasnoe-assorti-v-nabore-govyadina-svinina-konina-orskiy-myasokombinat-6-sht-1872219612/?at=oZt6nlAMxtVOj38QUE81y9pULor119hAM3wqLUMM6NZL
+            - generic [ref=e2277]:
+              - generic [ref=e2278]: "4.8"
+              - generic [ref=e2281]: 207 отзывов
+        - generic [ref=e2284]:
+          - button [ref=e2287] [cursor=pointer]
+          - link [ref=e2292] [cursor=pointer]:
+            - /url: /product/tushenka-govyadina-vysshiy-sort-bereza-12-banok-po-338-gr-berezovskiy-mk-4127725604/?at=Z8tX6P1EOc9xVWONfjRRgZgIO81l06sAYk5APhAjg6V9
+            - img "Тушенка говядина Высший сорт Береза 12 банок по 338 гр, Березовский МК Подобрали для вас" [ref=e2297]
+          - generic [ref=e2299]:
+            - generic [ref=e2300]: 3 638 ₽
+            - generic [ref=e2304]: 303 ₽ / шт
+            - link "Тушенка говядина Высший сорт Береза 12 банок по 338 гр, Березовский МК" [ref=e2306] [cursor=pointer]:
+              - /url: /product/tushenka-govyadina-vysshiy-sort-bereza-12-banok-po-338-gr-berezovskiy-mk-4127725604/?at=Z8tX6P1EOc9xVWONfjRRgZgIO81l06sAYk5APhAjg6V9
+            - generic [ref=e2308]:
+              - generic [ref=e2309]: "4.9"
+              - generic [ref=e2312]: 5 940 отзывов
+        - generic [ref=e2315]:
+          - button [ref=e2318] [cursor=pointer]
+          - link [ref=e2323] [cursor=pointer]:
+            - /url: /product/tyulka-vkusnevich-v-tomatnom-souse-obzharennaya-kilka-v-tomate-konservy-rybnye-naturalnye-3958094739/?at=mqtkx1VZEFVw7j00sPj80ElI4WAWmQhWn5D0iXm2W3B
+            - img "Тюлька Вкусневич в томатном соусе обжаренная, килька в томате консервы рыбные натуральные продукты питания, консервация, закуска, 3 шт по 240г Подобрали для вас" [ref=e2328]
+            - generic:
+              - generic:
+                - generic:
+                  - generic "Распродажа"
+          - generic [ref=e2330]:
+            - generic [ref=e2332]:
+              - generic [ref=e2333]: 435 ₽
+              - generic [ref=e2334]: 1 450 ₽
+              - generic [ref=e2335]: −70%
+            - generic [ref=e2337]: 215 шт осталось
+            - link "Тюлька Вкусневич в томатном соусе обжаренная, килька в томате консервы рыбные натуральные продукты питания, консервация, закуска, 3 шт по 240г" [ref=e2338] [cursor=pointer]:
+              - /url: /product/tyulka-vkusnevich-v-tomatnom-souse-obzharennaya-kilka-v-tomate-konservy-rybnye-naturalnye-3958094739/?at=mqtkx1VZEFVw7j00sPj80ElI4WAWmQhWn5D0iXm2W3B
+            - generic [ref=e2340]:
+              - generic [ref=e2341]: "4.8"
+              - generic [ref=e2344]: 6 740 отзывов
+        - generic [ref=e2347]:
+          - button [ref=e2350] [cursor=pointer]
+          - link [ref=e2355] [cursor=pointer]:
+            - /url: /product/arahis-zharenyy-solenyy-1000g-3859428423/?at=MZtvrxpgEcOEAl7puQXLLRf7EKPQoCmqqjGXSNvWMVK
+            - img "Арахис жареный соленый 1000г Подобрали для вас" [ref=e2360]
+            - generic:
+              - generic:
+                - generic:
+                  - generic "Распродажа"
+          - generic [ref=e2362]:
+            - generic [ref=e2364]:
+              - generic [ref=e2365]: 252 ₽
+              - generic [ref=e2366]: 2 500 ₽
+              - generic [ref=e2367]: −89%
+            - generic [ref=e2369]: 4 390 шт осталось
+            - link "Арахис жареный соленый 1000г" [ref=e2370] [cursor=pointer]:
+              - /url: /product/arahis-zharenyy-solenyy-1000g-3859428423/?at=MZtvrxpgEcOEAl7puQXLLRf7EKPQoCmqqjGXSNvWMVK
+            - generic [ref=e2372]:
+              - generic [ref=e2373]: "4.2"
+              - generic [ref=e2376]: 1 704 отзыва
+        - generic [ref=e2379]:
+          - button [ref=e2382] [cursor=pointer]
+          - link [ref=e2387] [cursor=pointer]:
+            - /url: /product/tushenka-govyadina-belorusskaya-vysshiy-sort-berezovskiy-myasokombinat-4-banki-po-338-gramm-1919612642/?at=Eqtk71wmRFq38qvrsRNrOZJHGDVY7qFq7W0ojhgojX2z
+            - img "Тушенка говядина белорусская высший сорт, Березовский мясокомбинат, 4 банки по 338 грамм Подобрали для вас" [ref=e2392]
+          - generic [ref=e2394]:
+            - generic [ref=e2395]: 1 611 ₽
+            - generic [ref=e2399]: 403 ₽ / шт
+            - link "Тушенка говядина белорусская высший сорт, Березовский мясокомбинат, 4 банки по 338 грамм" [ref=e2401] [cursor=pointer]:
+              - /url: /product/tushenka-govyadina-belorusskaya-vysshiy-sort-berezovskiy-myasokombinat-4-banki-po-338-gramm-1919612642/?at=Eqtk71wmRFq38qvrsRNrOZJHGDVY7qFq7W0ojhgojX2z
+            - generic [ref=e2403]:
+              - generic [ref=e2404]: "4.9"
+              - generic [ref=e2407]: 7 278 отзывов
+        - generic [ref=e2410]:
+          - button [ref=e2413] [cursor=pointer]
+          - link [ref=e2418] [cursor=pointer]:
+            - /url: /product/podarochnyy-nabor-16-medved-maral-kaban-olen-taezhnyy-tseh-2802591723/?at=A6tGQrxg7cqky3gxsPrORGPFNA4O4ZFM1yNQMFyD1ykD
+            - img "Подарочный набор №16 (Медведь, Марал, Кабан, Олень) ТАЁЖНЫЙ ЦЕХ Подобрали для вас" [ref=e2423]
+            - generic:
+              - generic:
+                - generic:
+                  - generic "Распродажа"
+          - generic [ref=e2425]:
+            - generic [ref=e2427]:
+              - generic [ref=e2428]: 2 519 ₽
+              - generic [ref=e2429]: 5 146 ₽
+              - generic [ref=e2430]: −51%
+            - generic [ref=e2432]: 45 шт осталось
+            - link "Подарочный набор №16 (Медведь, Марал, Кабан, Олень) ТАЁЖНЫЙ ЦЕХ" [ref=e2433] [cursor=pointer]:
+              - /url: /product/podarochnyy-nabor-16-medved-maral-kaban-olen-taezhnyy-tseh-2802591723/?at=A6tGQrxg7cqky3gxsPrORGPFNA4O4ZFM1yNQMFyD1ykD
+            - generic [ref=e2435]:
+              - generic [ref=e2436]: "4.9"
+              - generic [ref=e2439]: 120 отзывов
+        - generic [ref=e2442]:
+          - button [ref=e2445] [cursor=pointer]
+          - link [ref=e2450] [cursor=pointer]:
+            - /url: /product/govyadina-tushenaya-rublenaya-bereza-338-g-h-5-sht-1073547215/?at=lRt6rOWygtlJZVzNcponQ9pUAYPkN5U9QLK5AtW19jjy
+            - img "Говядина тушеная Рубленая Береза, 338 г х 5 шт Подобрали для вас" [ref=e2455]
+            - generic:
+              - generic:
+                - generic:
+                  - generic "Распродажа"
+          - generic [ref=e2457]:
+            - generic [ref=e2459]:
+              - generic [ref=e2460]: 1 393 ₽
+              - generic [ref=e2461]: 2 703 ₽
+              - generic [ref=e2462]: −48%
+            - generic [ref=e2464]: 987 шт осталось
+            - generic [ref=e2465]: Березовский Мясоконсервный комбинат
+            - link "Говядина тушеная Рубленая Береза, 338 г х 5 шт" [ref=e2468] [cursor=pointer]:
+              - /url: /product/govyadina-tushenaya-rublenaya-bereza-338-g-h-5-sht-1073547215/?at=lRt6rOWygtlJZVzNcponQ9pUAYPkN5U9QLK5AtW19jjy
+            - generic [ref=e2470]:
+              - generic [ref=e2471]: "4.8"
+              - generic [ref=e2474]: 9 453 отзыва
+        - generic [ref=e2477]:
+          - button [ref=e2480] [cursor=pointer]
+          - link [ref=e2485] [cursor=pointer]:
+            - /url: /product/tushenka-govyadina-500g-vysshiy-sort-gost-govyadina-konservy-myasnye-1867790208/?at=57twJgyoqcWojxrnCKX8o8cqBgY9YHYG3DfwmWV6W
+            - img "Тушенка говядина 500г., Высший Сорт, ГОСТ, говядина Консервы мясные Подобрали для вас" [ref=e2490]
+            - generic:
+              - generic:
+                - generic:
+                  - generic "Распродажа"
+          - generic [ref=e2492]:
+            - generic [ref=e2494]:
+              - generic [ref=e2495]: 1 109 ₽
+              - generic [ref=e2496]: 2 100 ₽
+              - generic [ref=e2497]: −47%
+            - generic [ref=e2499]: 10 шт осталось
+            - link "Тушенка говядина 500г., Высший Сорт, ГОСТ, говядина Консервы мясные" [ref=e2500] [cursor=pointer]:
+              - /url: /product/tushenka-govyadina-500g-vysshiy-sort-gost-govyadina-konservy-myasnye-1867790208/?at=57twJgyoqcWojxrnCKX8o8cqBgY9YHYG3DfwmWV6W
+            - generic [ref=e2502]:
+              - generic [ref=e2503]: "4.9"
+              - generic [ref=e2506]: 7 отзывов
+        - generic [ref=e2509]:
+          - button [ref=e2512] [cursor=pointer]
+          - link [ref=e2517] [cursor=pointer]:
+            - /url: /product/konservy-rybnye-osetr-naturalnyy-3-sht-po-245-gr-3484998421/?at=08tYxJnK6c8W2N99uP9MVLQc2Q7QDGSLAOgPJT9w9717
+            - img "Консервы рыбные Осетр натуральный 3 шт по 245 гр Подобрали для вас" [ref=e2522]
+          - generic [ref=e2524]:
+            - generic [ref=e2525]: 1 546 ₽
+            - generic [ref=e2529]: 515 ₽ / шт
+            - link "Консервы рыбные Осетр натуральный 3 шт по 245 гр" [ref=e2531] [cursor=pointer]:
+              - /url: /product/konservy-rybnye-osetr-naturalnyy-3-sht-po-245-gr-3484998421/?at=08tYxJnK6c8W2N99uP9MVLQc2Q7QDGSLAOgPJT9w9717
+            - generic [ref=e2533]:
+              - generic [ref=e2534]: "4.7"
+              - generic [ref=e2537]: 2 898 отзывов
+        - generic [ref=e2540]:
+          - button [ref=e2543] [cursor=pointer]
+          - link [ref=e2548] [cursor=pointer]:
+            - /url: /product/govyadina-tushenaya-rublenaya-bereza-338-g-h-1-sht-2137599500/?at=08tYxJnK6cngpJq8Uyj7NvQFJxX8Dvfx1MXWOFqkroBE
+            - img "Говядина тушеная Рубленая Береза, 338 г х 1 шт Подобрали для вас" [ref=e2553]
+            - generic:
+              - generic:
+                - generic:
+                  - generic "Распродажа"
+          - generic [ref=e2555]:
+            - generic [ref=e2557]:
+              - generic [ref=e2558]: 322 ₽
+              - generic [ref=e2559]: 699 ₽
+              - generic [ref=e2560]: −53%
+            - generic [ref=e2562]: 2 656 шт осталось
+            - link "Говядина тушеная Рубленая Береза, 338 г х 1 шт" [ref=e2563] [cursor=pointer]:
+              - /url: /product/govyadina-tushenaya-rublenaya-bereza-338-g-h-1-sht-2137599500/?at=08tYxJnK6cngpJq8Uyj7NvQFJxX8Dvfx1MXWOFqkroBE
+            - generic [ref=e2565]:
+              - generic [ref=e2566]: "4.8"
+              - generic [ref=e2569]: 5 188 отзывов
+        - generic [ref=e2572]:
+          - button [ref=e2575] [cursor=pointer]
+          - link [ref=e2580] [cursor=pointer]:
+            - /url: /product/kurinyy-bulon-s-ovoshchami-270-gramm-1865179657/?at=k2toEYD7mcr4Gq35IMXYz9BuG6qNlGU1z6Ez8hmmm1GP
+            - img "Куриный бульон с овощами, 270 грамм Подобрали для вас" [ref=e2585]
+            - generic:
+              - generic:
+                - generic:
+                  - generic "Вау-цены"
+          - generic [ref=e2587]:
+            - generic [ref=e2589]:
+              - generic [ref=e2590]: 328 ₽
+              - generic [ref=e2591]: 3 000 ₽
+              - generic [ref=e2592]: −89%
+            - generic [ref=e2594]: 103 шт осталось
+            - link "Куриный бульон с овощами, 270 грамм" [ref=e2595] [cursor=pointer]:
+              - /url: /product/kurinyy-bulon-s-ovoshchami-270-gramm-1865179657/?at=k2toEYD7mcr4Gq35IMXYz9BuG6qNlGU1z6Ez8hmmm1GP
+            - generic [ref=e2597]:
+              - generic [ref=e2598]: "4.9"
+              - generic [ref=e2601]: 933 отзыва
+        - generic [ref=e2604]:
+          - button [ref=e2607] [cursor=pointer]
+          - link [ref=e2612] [cursor=pointer]:
+            - /url: /product/vobla-vyalenaya-s-ikroy-500g-1718864868/?at=oZt6nlAMxtO0zpvQtY55E8RuVA8YGxtv8WZEvUZKBB2V
+            - img "Вобла вяленая с икрой 500г Подобрали для вас" [ref=e2617]
+            - generic:
+              - generic:
+                - generic:
+                  - generic "Распродажа"
+          - generic [ref=e2619]:
+            - generic [ref=e2621]:
+              - generic [ref=e2622]: 871 ₽
+              - generic [ref=e2623]: 4 000 ₽
+              - generic [ref=e2624]: −78%
+            - link "Вобла вяленая с икрой 500г" [ref=e2626] [cursor=pointer]:
+              - /url: /product/vobla-vyalenaya-s-ikroy-500g-1718864868/?at=oZt6nlAMxtO0zpvQtY55E8RuVA8YGxtv8WZEvUZKBB2V
+            - generic [ref=e2628]:
+              - generic [ref=e2629]: "4.5"
+              - generic [ref=e2632]: 11 873 отзыва
+        - generic [ref=e2635]:
+          - button [ref=e2638] [cursor=pointer]
+          - link [ref=e2643] [cursor=pointer]:
+            - /url: /product/baranina-tushenaya-vysshiy-sort-gost-orskiy-myasokombinat-4-sht-po-325-gr-1832657010/?at=BrtzGPx1EtgJB6wgszDrJKgUrEJRv3CjA3rBMC2gwzrB
+            - img "Баранина тушеная высший сорт ГОСТ, Орский мясокомбинат, 4 шт по 325 гр. Подобрали для вас" [ref=e2648]
+            - generic:
+              - generic:
+                - generic:
+                  - generic "Распродажа"
+          - generic [ref=e2650]:
+            - generic [ref=e2652]:
+              - generic [ref=e2653]: 1 332 ₽
+              - generic [ref=e2654]: 3 473 ₽
+              - generic [ref=e2655]: −61%
+            - generic [ref=e2657]: 633 шт осталось
+            - link "Баранина тушеная высший сорт ГОСТ, Орский мясокомбинат, 4 шт по 325 гр." [ref=e2658] [cursor=pointer]:
+              - /url: /product/baranina-tushenaya-vysshiy-sort-gost-orskiy-myasokombinat-4-sht-po-325-gr-1832657010/?at=BrtzGPx1EtgJB6wgszDrJKgUrEJRv3CjA3rBMC2gwzrB
+            - generic [ref=e2660]:
+              - generic [ref=e2661]: "4.8"
+              - generic [ref=e2664]: 299 отзывов
+        - generic [ref=e2667]:
+          - button [ref=e2670] [cursor=pointer]
+          - link [ref=e2675] [cursor=pointer]:
+            - /url: /product/govyadina-tushenaya-lyuks-tu-starorusskie-retsepty-338-gr-1-sht-258947326/?at=PjtJwvBOyckYErgqIKGPXD3iv4rAyNCL68Np1SWBJR36
+            - img "Говядина Тушеная \"ЛЮКС\" ТУ Старорусские рецепты 338 гр. - 1 шт. Подобрали для вас" [ref=e2680]
+            - generic:
+              - generic:
+                - generic:
+                  - generic "Распродажа"
+          - generic [ref=e2682]:
+            - generic [ref=e2684]:
+              - generic [ref=e2685]: 148 ₽
+              - generic [ref=e2686]: 550 ₽
+              - generic [ref=e2687]: −73%
+            - generic [ref=e2689]: 313 шт осталось
+            - link "Говядина Тушеная \"ЛЮКС\" ТУ Старорусские рецепты 338 гр. - 1 шт." [ref=e2690] [cursor=pointer]:
+              - /url: /product/govyadina-tushenaya-lyuks-tu-starorusskie-retsepty-338-gr-1-sht-258947326/?at=PjtJwvBOyckYErgqIKGPXD3iv4rAyNCL68Np1SWBJR36
+            - generic [ref=e2692]:
+              - generic [ref=e2693]: "4.6"
+              - generic [ref=e2696]: 1 823 отзыва
+        - generic [ref=e2699]:
+          - button [ref=e2702] [cursor=pointer]
+          - link [ref=e2707] [cursor=pointer]:
+            - /url: /product/makadamiya-oreh-v-skorlupe-1000gr-3322975392/?at=79tngErv3TNGyPXMsQlqw7NsZKQQ36sMg0wNkcWYkmNl
+            - img "Макадамия орех в скорлупе 1000гр Подобрали для вас" [ref=e2712]
+            - generic:
+              - generic:
+                - generic:
+                  - generic "Распродажа"
+          - generic [ref=e2714]:
+            - generic [ref=e2716]:
+              - generic [ref=e2717]: 587 ₽
+              - generic [ref=e2718]: 4 500 ₽
+              - generic [ref=e2719]: −86%
+            - generic [ref=e2721]: 2 359 шт осталось
+            - link "Макадамия орех в скорлупе 1000гр" [ref=e2722] [cursor=pointer]:
+              - /url: /product/makadamiya-oreh-v-skorlupe-1000gr-3322975392/?at=79tngErv3TNGyPXMsQlqw7NsZKQQ36sMg0wNkcWYkmNl
+            - generic [ref=e2724]:
+              - generic [ref=e2725]: "4.6"
+              - generic [ref=e2728]: 4 614 отзывов
+        - generic [ref=e2731]:
+          - button [ref=e2734] [cursor=pointer]
+          - link [ref=e2739] [cursor=pointer]:
+            - /url: /product/adzhika-abhazskaya-ostraya-sous-1216429665/?at=6WtZNVREQClJWEZLhOzB15RsprLw2kUpLBKMwcJlDR5q
+            - img "Аджика Абхазская острая соус Подобрали для вас" [ref=e2744]
+          - generic [ref=e2746]:
+            - generic [ref=e2747]: 245 ₽
+            - link "Аджика Абхазская острая соус" [ref=e2751] [cursor=pointer]:
+              - /url: /product/adzhika-abhazskaya-ostraya-sous-1216429665/?at=6WtZNVREQClJWEZLhOzB15RsprLw2kUpLBKMwcJlDR5q
+            - generic [ref=e2753]:
+              - generic [ref=e2754]: "4.9"
+              - generic [ref=e2757]: 1 612 отзывов
+        - generic [ref=e2760]:
+          - button [ref=e2763] [cursor=pointer]
+          - link [ref=e2768] [cursor=pointer]:
+            - /url: /product/osnova-dlya-gorohovogo-supa-svarennyy-goroh-zh-b-360g-1sht-3496079242/?at=lRt6rOWygtkVjyqMCo63pw4c8M4mOltzl25oEiEX5yPm
+            - img "Основа для горохового супа сваренный горох ж/б 360г 1шт Подобрали для вас" [ref=e2773]
+            - generic:
+              - generic:
+                - generic:
+                  - generic "Распродажа"
+          - generic [ref=e2775]:
+            - generic [ref=e2777]:
+              - generic [ref=e2778]: 103 ₽
+              - generic [ref=e2779]: 450 ₽
+              - generic [ref=e2780]: −77%
+            - generic [ref=e2782]: Оригинал
+            - link "Основа для горохового супа сваренный горох ж/б 360г 1шт" [ref=e2787] [cursor=pointer]:
+              - /url: /product/osnova-dlya-gorohovogo-supa-svarennyy-goroh-zh-b-360g-1sht-3496079242/?at=lRt6rOWygtkVjyqMCo63pw4c8M4mOltzl25oEiEX5yPm
+            - generic [ref=e2789]:
+              - generic [ref=e2790]: "4.8"
+              - generic [ref=e2793]: 3 216 отзывов
+        - generic [ref=e2796]:
+          - button [ref=e2799] [cursor=pointer]
+          - link [ref=e2804] [cursor=pointer]:
+            - /url: /product/griby-gruzdi-belye-solenye-tselye-i-rezanye-1315237975/?at=DqtD9j71gH2NYoEOiBvYKrEfvq4ZY5CnVQz9Xuk1O5PR
+            - img "Грибы ГРУЗДИ БЕЛЫЕ солёные, целые и резаные Подобрали для вас" [ref=e2809]
+          - generic [ref=e2811]:
+            - generic [ref=e2812]: 790 ₽
+            - generic [ref=e2816]: 158 ₽ / 100 гр
+            - link "Грибы ГРУЗДИ БЕЛЫЕ солёные, целые и резаные" [ref=e2818] [cursor=pointer]:
+              - /url: /product/griby-gruzdi-belye-solenye-tselye-i-rezanye-1315237975/?at=DqtD9j71gH2NYoEOiBvYKrEfvq4ZY5CnVQz9Xuk1O5PR
+            - generic [ref=e2820]:
+              - generic [ref=e2821]: "4.9"
+              - generic [ref=e2824]: 2 454 отзыва
+  - contentinfo [ref=e2834]:
+    - generic [ref=e2835]:
+      - generic [ref=e2836]: Наведите камеру и скачайте бесплатное приложение Ozon
+      - generic [ref=e2840]:
+        - link "Об Ozon / About Ozon" [ref=e2841] [cursor=pointer]:
+          - /url: https://corp.ozon.ru/
+        - link "Контакты" [ref=e2843] [cursor=pointer]:
+          - /url: https://docs.ozon.ru/common/kontakty/
+        - link "Политика обработки данных" [ref=e2845] [cursor=pointer]:
+          - /url: https://docs.ozon.ru/legal/personal-data/
+      - generic [ref=e2847]:
+        - link "Оплата" [ref=e2848] [cursor=pointer]:
+          - /url: https://docs.ozon.ru/common/oplata/sposoby-oplaty/
+        - link "Доставка" [ref=e2850] [cursor=pointer]:
+          - /url: https://docs.ozon.ru/common/dostavka/sposoby-dostavki/
+        - link "Возврат товаров" [ref=e2852] [cursor=pointer]:
+          - /url: https://docs.ozon.ru/common/otmena-i-vozvrat-zakaza/kak-vernut-tovar/
+      - generic [ref=e2854]:
+        - link "Ozon Беларусь" [ref=e2855] [cursor=pointer]:
+          - /url: https://ozon.by/
+        - link "Ozon Казахстан" [ref=e2857] [cursor=pointer]:
+          - /url: https://ozon.kz/
+        - link "Ozon Узбекистан" [ref=e2859] [cursor=pointer]:
+          - /url: https://uz.ozon.com/
+    - generic [ref=e2861]:
+      - generic [ref=e2862]:
+        - link "1998 – 2026 ООО \"Интернет Решения\" (Входит в группу компаний МКПАО \"Озон\" (Ozon)). Все права защищены." [ref=e2863] [cursor=pointer]:
+          - /url: //docs.ozon.ru/legal/terms-of-use/site/content-policy/?perehod=footer
+        - generic [ref=e2867]:
+          - text: Применяются
+          - link "рекомендательные технологии" [ref=e2868] [cursor=pointer]:
+            - /url: https://docs.ozon.ru/legal/terms-of-use/site/algorithms/
+      - generic [ref=e2869]:
+        - button [ref=e2870] [cursor=pointer]
+        - button [ref=e2874] [cursor=pointer]
+        - button [ref=e2878] [cursor=pointer]
+      - button "Для слабовидящих" [ref=e2882] [cursor=pointer]

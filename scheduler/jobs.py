@@ -121,6 +121,14 @@ async def poll_prices():
 
                 latest_price_by_link[link_id] = effective_price
 
+                last_price = link.get("last_price") or 0
+                if last_price > 0 and effective_price < last_price * 0.5:
+                    logger.warning(
+                        "Suspicious price drop link_id=%d: %.2f -> %.2f (>50%%), skipping alert",
+                        link_id, last_price, effective_price,
+                    )
+                    continue
+
                 should_trigger = effective_price <= threshold_price
                 product_id = link["product_id"]
 

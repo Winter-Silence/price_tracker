@@ -68,9 +68,11 @@ class OzonParser(BaseParser):
                     //   Line 2: "259 ₽"                      ← "С другими банками" = standard
                     //   Line 3: "500 ₽"                      ← old/crossed-out price
 
-                    // Extract all numbers from the widget
+                    // Extract numbers from the widget, skipping per-unit and cashback lines
                     let allNums = [];
                     for (let line of lines) {
+                        if (/за\s*\d/.test(line) || /\/\s*(шт|гр|г|кг|мл|л|100)/i.test(line)) continue;
+                        if (/кэшбэк|cashback/i.test(line)) continue;
                         let n = extractNum(line);
                         if (n) allNums.push(parseInt(n));
                     }

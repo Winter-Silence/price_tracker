@@ -1,0 +1,3 @@
+[     221ms] [WARNING] Manifest: property 'scope' ignored. Start url should be within scope of scope URL. @ https://st.ozone.ru/s3/ozon-webmanifests/frontend-ozon-ru/desktop.webmanifest:0
+[     221ms] [WARNING] Manifest: one of 'url' or 'id' is required, related application ignored. @ https://st.ozone.ru/s3/ozon-webmanifests/frontend-ozon-ru/desktop.webmanifest:0
+[     408ms] [LOG] --DEBUG_INFO-- {composer: Object, xcid: 404096a93640c8fda74ed3c17d025615} @ https://st.ozone.ru/assets/24a471ee/main.js:0
