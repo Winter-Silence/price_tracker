@@ -49,6 +49,10 @@ echo ">>> Python version: $(python --version)"
 pip install --upgrade pip
 pip install -r requirements.txt
 
+# 5b. Chrome profile directory (persistent, outside /tmp)
+mkdir -p "${PROJECT_DIR}/chrome_profile"
+chown -R "${USER_NAME}:${USER_NAME}" "${PROJECT_DIR}/chrome_profile"
+
 # 6. .env
 if [ ! -f .env ]; then
   cp .env.example .env

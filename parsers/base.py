@@ -1,6 +1,7 @@
 import random
 import asyncio
 import shutil
+import os
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -18,6 +19,9 @@ from utils.logger import logger
 uc.Config._default_browser_args = [
     "--no-first-run",
 ]
+
+# Chrome profile directory — outside /tmp to avoid filling it up
+CHROME_PROFILE_DIR = Path(os.getenv("CHROME_PROFILE_DIR", "./chrome_profile"))
 
 SCREENSHOTS_DIR = Path("screenshots")
 
@@ -235,10 +239,12 @@ class BaseParser(ABC):
             logger.warning("Stealth injection failed: %s", exc)
 
     async def start_session(self):
+        CHROME_PROFILE_DIR.mkdir(parents=True, exist_ok=True)
         self._browser = await uc.start(
             browser_executable_path=REAL_CHROME,
             headless=False,
             browser_args=CHROME_ARGS,
+            user_data_dir=CHROME_PROFILE_DIR,
         )
         self._session_active = True
         self._current_page = None

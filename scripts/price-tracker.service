@@ -12,6 +12,7 @@ EnvironmentFile=-/home/yury/price_tracker/.env
 ExecStart=/home/yury/price_tracker/venv/bin/python main.py
 Restart=always
 RestartSec=10
+PrivateTmp=true
 
 [Install]
 WantedBy=multi-user.target
