@@ -166,14 +166,36 @@ async def add_target_price(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if mode == "search":
         title_filter = context.user_data.get("title_filter", "")
         await add_search_link(product_id, marketplace, url, title_filter)
+        interval_minutes = int(os.getenv("POLL_INTERVAL_MINUTES", "60"))
+        hours = interval_minutes // 60
+        if hours >= 1:
+            if hours == 1:
+                time_str = f"каждые {hours} час"
+            elif 2 <= hours % 10 <= 4 and not (12 <= hours % 100 <= 14):
+                time_str = f"каждые {hours} часа"
+            else:
+                time_str = f"каждые {hours} часов"
+        else:
+            time_str = f"каждые {interval_minutes} минут"
         await update.message.reply_text(
-            "✅ Поиск добавлен! Буду проверять цены каждый час и "
+            f"✅ Поиск добавлен! Буду проверять цены {time_str} и "
             "найду самый дешёвый товар по запросу."
         )
     else:
         await add_marketplace_link(product_id, marketplace, url)
+        interval_minutes = int(os.getenv("POLL_INTERVAL_MINUTES", "60"))
+        hours = interval_minutes // 60
+        if hours >= 1:
+            if hours == 1:
+                time_str = f"каждые {hours} час"
+            elif 2 <= hours % 10 <= 4 and not (12 <= hours % 100 <= 14):
+                time_str = f"каждые {hours} часа"
+            else:
+                time_str = f"каждые {hours} часов"
+        else:
+            time_str = f"каждые {interval_minutes} минут"
         await update.message.reply_text(
-            "✅ Товар добавлен! Буду проверять цену каждый час. "
+            f"✅ Товар добавлен! Буду проверять цену {time_str}. "
             "Сразу сообщу, как только она упадёт до твоей цели."
         )
     return ConversationHandler.END
@@ -602,10 +624,22 @@ async def link_url(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "чтобы получать уведомления."
         )
 
+    interval_minutes = int(os.getenv("POLL_INTERVAL_MINUTES", "60"))
+    hours = interval_minutes // 60
+    if hours >= 1:
+        if hours == 1:
+            time_str = f"каждые {hours} час"
+        elif 2 <= hours % 10 <= 4 and not (12 <= hours % 100 <= 14):
+            time_str = f"каждые {hours} часа"
+        else:
+            time_str = f"каждые {hours} часов"
+    else:
+        time_str = f"каждые {interval_minutes} минут"
+
     await update.message.reply_text(
         f"✅ Ссылка привязана к товару <b>{product_name}</b>!\n"
         f"🏪 Маркетплейс: {marketplace}\n"
-        "Буду проверять цену каждый час."
+        f"Буду проверять цену {time_str}."
         f"{threshold_line}",
         parse_mode="HTML"
     )

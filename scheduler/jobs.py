@@ -19,7 +19,7 @@ from utils.logger import logger
 
 
 def _get_poll_interval() -> int:
-    return int(os.getenv("POLL_INTERVAL_MINUTES", "60"))
+    return int(os.getenv("POLL_INTERVAL_MINUTES", "120"))
 
 
 INTER_DOMAIN_DELAY: dict[str, tuple[float, float]] = {
