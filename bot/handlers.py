@@ -216,6 +216,7 @@ async def list_products(update: Update, context: ContextTypes.DEFAULT_TYPE):
     for p in privileges:
         priv_by_mp.setdefault(p["marketplace"], []).append(p["privilege_type"])
 
+    # Build text without IDs
     text = "📦 <b>Твои товары:</b>\n\n"
     for p in products:
         marketplace = p["marketplace"]
@@ -235,8 +236,7 @@ async def list_products(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 tiers_text.append(TIER_LABELS.get(tier, tier))
             line += f"   💳 Привилегии: {', '.join(tiers_text)}\n"
 
-        line += f"   🔗 ID связи: {p['link_id']}\n\n"
-        text += line
+        text += line + "\n"
 
     if search_products:
         text += "\n🔍 <b>Поисковые запросы:</b>\n\n"
@@ -255,10 +255,32 @@ async def list_products(update: Update, context: ContextTypes.DEFAULT_TYPE):
             line += f"   🔍 Запрос: \"{sp['title_filter']}\"\n"
             if sp["last_resolved_title"]:
                 line += f"   📦 Найден: {sp['last_resolved_title']}\n"
-            line += f"   🔗 ID: {sp['search_link_id']}\n\n"
-            text += line
+            text += line + "\n"
 
-    await update.message.reply_text(text, parse_mode="HTML")
+    # Build inline keyboard for history links
+    keyboard = []
+    for p in products:
+        keyboard.append([
+            InlineKeyboardButton(
+                f"📊 {p['name']}",
+                callback_data=f"listhist_{p['link_id']}"
+            )
+        ])
+    for sp in search_products:
+        keyboard.append([
+            InlineKeyboardButton(
+                f"📊 {sp['name']} ({sp['title_filter']})",
+                callback_data=f"listhistsrch_{sp['search_link_id']}"
+            )
+        ])
+
+    reply_markup = InlineKeyboardMarkup(keyboard) if keyboard else None
+
+    await update.message.reply_text(
+        text,
+        parse_mode="HTML",
+        reply_markup=reply_markup
+    )
 
 
 async def delete_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -360,6 +382,8 @@ async def history_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     products = await get_user_products(user_id)
     search_products = await get_user_search_links(user_id)
 
+    logger.info("history_start: user_id=%d products=%d search_products=%d", user_id, len(products), len(search_products))
+
     if not products and not search_products:
         await update.message.reply_text("📭 У тебя пока нет товаров")
         return ConversationHandler.END
@@ -388,63 +412,85 @@ async def history_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def history_show(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
-    link_id = int(query.data.split("_")[1])
-    context.user_data["history_link_id"] = link_id
+    try:
+        link_id = int(query.data.split("_")[1])
+        context.user_data["history_link_id"] = link_id
+        logger.info("history_show: link_id=%s", link_id)
 
-    # Show tier selection
-    keyboard = [
-        [InlineKeyboardButton("💰 Все цены", callback_data="hist_tier_all")],
-        [InlineKeyboardButton(f"📄 {TIER_LABELS.get('standard', 'Стандартная')}", callback_data="hist_tier_standard")],
-        [InlineKeyboardButton(f"💳 {TIER_LABELS.get('card', 'По карте')}", callback_data="hist_tier_card")],
-    ]
+        # Show tier selection
+        keyboard = [
+            [InlineKeyboardButton("💰 Все цены", callback_data="hist_tier_all")],
+            [InlineKeyboardButton(f"📄 {TIER_LABELS.get('standard', 'Стандартная')}", callback_data="hist_tier_standard")],
+            [InlineKeyboardButton(f"💳 {TIER_LABELS.get('card', 'По карте')}", callback_data="hist_tier_card")],
+        ]
 
-    records = await get_price_history(link_id, limit=5)
-    text = "📊 <b>История цен:</b>\n\n"
-    if records:
-        for r in records:
-            tier_label = TIER_LABELS.get(r["privilege_type"], r["privilege_type"])
-            text += f"💰 {r['price']:.2f}₽ ({tier_label}) — {r['recorded_at']}\n"
-    else:
-        text += "Нет записей\n"
+        records = await get_price_history(link_id, limit=5)
+        logger.info("history_show: got %d records", len(records))
+        text = "📊 <b>История цен:</b>\n\n"
+        if records:
+            for r in records:
+                tier_label = TIER_LABELS.get(r["privilege_type"], r["privilege_type"])
+                text += f"💰 {r['price']:.2f}₽ ({tier_label}) — {r['recorded_at']}\n"
+        else:
+            text += "Нет записей\n"
 
-    text += "\nВыбери тип цены для просмотра:"
-    await query.edit_message_text(
-        text,
-        parse_mode="HTML",
-        reply_markup=InlineKeyboardMarkup(keyboard),
-    )
-    return HISTORY_TIER
+        text += "\nВыбери тип цены для просмотра:"
+        await query.edit_message_text(
+            text,
+            parse_mode="HTML",
+            reply_markup=InlineKeyboardMarkup(keyboard),
+        )
+        return HISTORY_TIER
+    except Exception as exc:
+        logger.exception("Error in history_show: %s", exc)
+        try:
+            await query.edit_message_text("❌ Произошла ошибка при загрузке истории. Попробуйте позже.")
+        except Exception:
+            pass
+        return ConversationHandler.END
 
 
 async def history_show_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
-    link_id = int(query.data.split("_")[1])
-    context.user_data["history_search_link_id"] = link_id
+    try:
+        link_id = int(query.data.split("_")[1])
+        context.user_data["history_search_link_id"] = link_id
+        logger.info("history_show_search: link_id=%s", link_id)
 
-    records = await get_search_price_history(link_id, limit=15)
+        records = await get_search_price_history(link_id, limit=15)
 
-    text = "📊 <b>История поиска (самый дешёвый найденный товар):</b>\n\n"
-    if not records:
-        text += "Нет записей"
-    else:
-        for r in records:
-            line = f"💰 {r['price']:.2f}₽ — {r['recorded_at']}\n"
-            if r["resolved_title"]:
-                line += f"    📦 {r['resolved_title']}\n"
-            if r["resolved_url"]:
-                title = r["resolved_title"][:40] if r["resolved_title"] else "товар"
-                line += f"    🔗 <a href='{r['resolved_url']}'>{title}</a>\n"
-            text += line + "\n"
+        text = "📊 <b>История поиска (самый дешёвый найденный товар):</b>\n\n"
+        if not records:
+            text += "Нет записей"
+        else:
+            for r in records:
+                line = f"💰 {r['price']:.2f}₽ — {r['recorded_at']}\n"
+                if r["resolved_title"]:
+                    line += f"    📦 {r['resolved_title']}\n"
+                if r["resolved_url"]:
+                    title = r["resolved_title"][:40] if r["resolved_title"] else "товар"
+                    line += f"    🔗 <a href='{r['resolved_url']}'>{title}</a>\n"
+                text += line + "\n"
 
-    keyboard = [[InlineKeyboardButton("🔙 Назад", callback_data="hist_search_back")]]
-    await query.edit_message_text(
-        text,
-        parse_mode="HTML",
-        reply_markup=InlineKeyboardMarkup(keyboard),
-        disable_web_page_preview=True,
-    )
-    return HISTORY_SEARCH_LINK
+        keyboard = [
+            [InlineKeyboardButton("🔙 Назад", callback_data="hist_search_back")],
+            [InlineKeyboardButton("📋 Список", callback_data="back_to_list_from_history")]
+        ]
+        await query.edit_message_text(
+            text,
+            parse_mode="HTML",
+            reply_markup=InlineKeyboardMarkup(keyboard),
+            disable_web_page_preview=True,
+        )
+        return HISTORY_SEARCH_LINK
+    except Exception as exc:
+        logger.exception("Error in history_show_search: %s", exc)
+        try:
+            await query.edit_message_text("❌ Произошла ошибка при загрузке истории поиска. Попробуйте позже.")
+        except Exception:
+            pass
+        return ConversationHandler.END
 
 
 async def history_search_back(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -479,73 +525,263 @@ async def history_search_back(update: Update, context: ContextTypes.DEFAULT_TYPE
 async def history_show_tier(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
-    link_id = context.user_data.get("history_link_id")
-    if not link_id:
-        await query.edit_message_text("❌ Ошибка: товар не выбран")
-        return ConversationHandler.END
+    try:
+        link_id = context.user_data.get("history_link_id")
+        if not link_id:
+            await query.edit_message_text("❌ Ошибка: товар не выбран")
+            return ConversationHandler.END
 
-    data = query.data
-    if data.startswith("hist_tier_"):
-        tier_type = data.split("_", 2)[2]
-        if tier_type == "all":
-            privilege_type = None
+        data = query.data
+        if data.startswith("hist_tier_"):
+            tier_type = data.split("_", 2)[2]
+            if tier_type == "all":
+                privilege_type = None
+            else:
+                privilege_type = tier_type
         else:
-            privilege_type = tier_type
-    else:
-        privilege_type = None
+            privilege_type = None
 
-    records = await get_price_history(link_id, privilege_type=privilege_type, limit=15)
+        logger.info("history_show_tier: link_id=%s privilege_type=%s", link_id, privilege_type)
+        records = await get_price_history(link_id, privilege_type=privilege_type, limit=15)
 
-    if privilege_type:
-        tier_label = TIER_LABELS.get(privilege_type, privilege_type)
-        text = f"📊 <b>История цен: {tier_label}</b>\n\n"
-    else:
-        text = "📊 <b>История цен (все)</b>\n\n"
+        if privilege_type:
+            tier_label = TIER_LABELS.get(privilege_type, privilege_type)
+            text = f"📊 <b>История цен: {tier_label}</b>\n\n"
+        else:
+            text = "📊 <b>История цен (все)</b>\n\n"
 
-    if not records:
-        text += "Нет записей"
-    else:
-        for r in records:
-            t_label = TIER_LABELS.get(r["privilege_type"], r["privilege_type"])
-            text += f"💰 {r['price']:.2f}₽ ({t_label}) — {r['recorded_at']}\n"
+        if not records:
+            text += "Нет записей"
+        else:
+            for r in records:
+                t_label = TIER_LABELS.get(r["privilege_type"], r["privilege_type"])
+                text += f"💰 {r['price']:.2f}₽ ({t_label}) — {r['recorded_at']}\n"
 
-    keyboard = [[InlineKeyboardButton("🔙 Назад к типам", callback_data="hist_back")]]
-    await query.edit_message_text(
-        text,
-        parse_mode="HTML",
-        reply_markup=InlineKeyboardMarkup(keyboard),
-    )
-    return HISTORY_TIER
+        keyboard = [
+            [InlineKeyboardButton("🔙 Назад к типам", callback_data="hist_back")],
+            [InlineKeyboardButton("📋 Список", callback_data="back_to_list_from_history")]
+        ]
+        await query.edit_message_text(
+            text,
+            parse_mode="HTML",
+            reply_markup=InlineKeyboardMarkup(keyboard),
+        )
+        return HISTORY_TIER
+    except Exception as exc:
+        logger.exception("Error in history_show_tier: %s", exc)
+        try:
+            await query.edit_message_text("❌ Произошла ошибка при загрузке истории. Попробуйте позже.")
+        except Exception:
+            pass
+        return ConversationHandler.END
 
 
 async def history_back(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Go back to tier selection in history."""
     query = update.callback_query
     await query.answer()
-    link_id = context.user_data.get("history_link_id")
+    try:
+        link_id = context.user_data.get("history_link_id")
+        logger.info("history_back: link_id=%s", link_id)
 
-    keyboard = [
-        [InlineKeyboardButton("💰 Все цены", callback_data="hist_tier_all")],
-        [InlineKeyboardButton(f"📄 {TIER_LABELS.get('standard', 'Стандартная')}", callback_data="hist_tier_standard")],
-        [InlineKeyboardButton(f"💳 {TIER_LABELS.get('card', 'По карте')}", callback_data="hist_tier_card")],
-    ]
+        keyboard = [
+            [InlineKeyboardButton("💰 Все цены", callback_data="hist_tier_all")],
+            [InlineKeyboardButton(f"📄 {TIER_LABELS.get('standard', 'Стандартная')}", callback_data="hist_tier_standard")],
+            [InlineKeyboardButton(f"💳 {TIER_LABELS.get('card', 'По карте')}", callback_data="hist_tier_card")],
+        ]
 
-    records = await get_price_history(link_id, limit=5)
-    text = "📊 <b>История цен:</b>\n\n"
-    if records:
-        for r in records:
-            tier_label = TIER_LABELS.get(r["privilege_type"], r["privilege_type"])
-            text += f"💰 {r['price']:.2f}₽ ({tier_label}) — {r['recorded_at']}\n"
-    else:
-        text += "Нет записей\n"
+        records = await get_price_history(link_id, limit=5)
+        text = "📊 <b>История цен:</b>\n\n"
+        if records:
+            for r in records:
+                tier_label = TIER_LABELS.get(r["privilege_type"], r["privilege_type"])
+                text += f"💰 {r['price']:.2f}₽ ({tier_label}) — {r['recorded_at']}\n"
+        else:
+            text += "Нет записей\n"
 
-    text += "\nВыбери тип цены для просмотра:"
+        text += "\nВыбери тип цены для просмотра:"
+        await query.edit_message_text(
+            text,
+            parse_mode="HTML",
+            reply_markup=InlineKeyboardMarkup(keyboard),
+        )
+        return HISTORY_TIER
+    except Exception as exc:
+        logger.exception("Error in history_back: %s", exc)
+        try:
+            await query.edit_message_text("❌ Произошла ошибка. Попробуйте позже.")
+        except Exception:
+            pass
+        return ConversationHandler.END
+
+
+async def show_product_history_from_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    await query.answer()
+    try:
+        link_id = int(query.data.split("_")[1])
+        context.user_data["history_link_id"] = link_id
+        logger.info("show_product_history_from_list: link_id=%s", link_id)
+
+        # Show tier selection
+        keyboard = [
+            [InlineKeyboardButton("💰 Все цены", callback_data="hist_tier_all")],
+            [InlineKeyboardButton(f"📄 {TIER_LABELS.get('standard', 'Стандартная')}", callback_data="hist_tier_standard")],
+            [InlineKeyboardButton(f"💳 {TIER_LABELS.get('card', 'По карте')}", callback_data="hist_tier_card")],
+        ]
+
+        records = await get_price_history(link_id, limit=5)
+        logger.info("show_product_history_from_list: got %d records", len(records))
+        text = "📊 <b>История цен:</b>\n\n"
+        if records:
+            for r in records:
+                tier_label = TIER_LABELS.get(r["privilege_type"], r["privilege_type"])
+                text += f"💰 {r['price']:.2f}₽ ({tier_label}) — {r['recorded_at']}\n"
+        else:
+            text += "Нет записей\n"
+
+        text += "\nВыбери тип цены для просмотра:"
+        await query.edit_message_text(
+            text,
+            parse_mode="HTML",
+            reply_markup=InlineKeyboardMarkup(keyboard),
+        )
+        return HISTORY_TIER
+    except Exception as exc:
+        logger.exception("Error in show_product_history_from_list: %s", exc)
+        try:
+            await query.edit_message_text("❌ Произошла ошибка при загрузке истории. Попробуйте позже.")
+        except Exception:
+            pass
+        return ConversationHandler.END
+
+
+async def show_search_history_from_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    await query.answer()
+    try:
+        link_id = int(query.data.split("_")[1])
+        context.user_data["history_search_link_id"] = link_id
+        logger.info("show_search_history_from_list: link_id=%s", link_id)
+
+        records = await get_search_price_history(link_id, limit=15)
+
+        text = "📊 <b>История поиска (самый дешёвый найденный товар):</b>\n\n"
+        if not records:
+            text += "Нет записей"
+        else:
+            for r in records:
+                line = f"💰 {r['price']:.2f}₽ — {r['recorded_at']}\n"
+                if r["resolved_title"]:
+                    line += f"    📦 {r['resolved_title']}\n"
+                if r["resolved_url"]:
+                    title = r["resolved_title"][:40] if r["resolved_title"] else "товар"
+                    line += f"    🔗 <a href='{r['resolved_url']}'>{title}</a>\n"
+                text += line + "\n"
+
+        keyboard = [
+            [InlineKeyboardButton("🔙 Назад", callback_data="hist_search_back")],
+            [InlineKeyboardButton("📋 Список", callback_data="back_to_list_from_history")]
+        ]
+        await query.edit_message_text(
+            text,
+            parse_mode="HTML",
+            reply_markup=InlineKeyboardMarkup(keyboard),
+            disable_web_page_preview=True,
+        )
+        return HISTORY_SEARCH_LINK
+    except Exception as exc:
+        logger.exception("Error in show_search_history_from_list: %s", exc)
+        try:
+            await query.edit_message_text("❌ Произошла ошибка при загрузке истории поиска. Попробуйте позже.")
+        except Exception:
+            pass
+        return ConversationHandler.END
+
+
+async def back_to_list_from_history(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    await query.answer()
+    telegram_id = update.effective_user.id
+    user_id = await get_or_create_user(telegram_id)
+    products = await get_user_products(user_id)
+    search_products = await get_user_search_links(user_id)
+    privileges = await get_user_privileges(user_id)
+
+    if not products and not search_products:
+        await query.edit_message_text("📭 У тебя пока нет товаров. Добавь через /add")
+        return ConversationHandler.END
+
+    priv_by_mp: dict[str, list[str]] = {}
+    for p in privileges:
+        priv_by_mp.setdefault(p["marketplace"], []).append(p["privilege_type"])
+
+    # Build text without IDs
+    text = "📦 <b>Твои товары:</b>\n\n"
+    for p in products:
+        marketplace = p["marketplace"]
+        price = f"{p['last_price']:.0f}₽" if p["last_price"] else "—"
+        threshold = p.get("threshold_price") or 0
+        alert_active = bool(p.get("alert_active"))
+
+        line = f"🔹 {p['name']}\n   🏪 {marketplace} | Цена: {price}"
+        if alert_active and threshold > 0:
+            line += f" | 🎯 {threshold:.0f}₽"
+        line += "\n"
+
+        user_tiers = priv_by_mp.get(marketplace, [])
+        if user_tiers and p["last_price"]:
+            tiers_text = []
+            for tier in user_tiers:
+                tiers_text.append(TIER_LABELS.get(tier, tier))
+            line += f"   💳 Привилегии: {', '.join(tiers_text)}\n"
+
+        text += line + "\n"
+
+    if search_products:
+        text += "\n🔍 <b>Поисковые запросы:</b>\n\n"
+        for sp in search_products:
+            marketplace = sp["marketplace"]
+            price = f"{sp['last_price']:.0f}₽" if sp["last_price"] else "—"
+            threshold = sp.get("threshold_price") or 0
+            alert_active = bool(sp.get("alert_active"))
+            line = (
+                f"🔹 {sp['name']}\n"
+                f"   🏪 {marketplace} | Цена: {price}"
+            )
+            if alert_active and threshold > 0:
+                line += f" | 🎯 {threshold:.0f}₽"
+            line += "\n"
+            line += f"   🔍 Запрос: \"{sp['title_filter']}\"\n"
+            if sp["last_resolved_title"]:
+                line += f"   📦 Найден: {sp['last_resolved_title']}\n"
+            text += line + "\n"
+
+    # Build inline keyboard for history links
+    keyboard = []
+    for p in products:
+        keyboard.append([
+            InlineKeyboardButton(
+                f"📊 {p['name']}",
+                callback_data=f"listhist_{p['link_id']}"
+            )
+        ])
+    for sp in search_products:
+        keyboard.append([
+            InlineKeyboardButton(
+                f"📊 {sp['name']} ({sp['title_filter']})",
+                callback_data=f"listhistsrch_{sp['search_link_id']}"
+            )
+        ])
+
+    reply_markup = InlineKeyboardMarkup(keyboard) if keyboard else None
+
     await query.edit_message_text(
         text,
         parse_mode="HTML",
-        reply_markup=InlineKeyboardMarkup(keyboard),
+        reply_markup=reply_markup
     )
-    return HISTORY_TIER
+    return ConversationHandler.END
 
 
 # ===== /link command =====
@@ -988,3 +1224,6 @@ def setup_handlers(application: Application):
     application.add_handler(CallbackQueryHandler(delete_execute, pattern=r"^confirm_del_\d+$"))
     application.add_handler(CallbackQueryHandler(delete_search_execute, pattern=r"^confirm_delsrch_\d+$"))
     application.add_handler(CallbackQueryHandler(cancel_delete, pattern=r"^cancel_del$"))
+    application.add_handler(CallbackQueryHandler(show_product_history_from_list, pattern=r"^listhist_\d+$"))
+    application.add_handler(CallbackQueryHandler(show_search_history_from_list, pattern=r"^listhistsrch_\d+$"))
+    application.add_handler(CallbackQueryHandler(back_to_list_from_history, pattern=r"^back_to_list_from_history$"))
