@@ -30,6 +30,9 @@ REAL_CHROME = shutil.which("google-chrome-stable") or shutil.which("google-chrom
 CHROME_ARGS = [
     "--window-size=1920,1080",
     "--disable-blink-features=AutomationControlled",
+    "--disable-dev-shm-usage",
+    "--disable-gpu",
+    "--no-zygote",
 ]
 
 # JavaScript injected via CDP Page.addScriptToEvaluateOnNewDocument
@@ -38,7 +41,7 @@ CHROME_ARGS = [
 STEALTH_JS = """
 (() => {
     // --- navigator.webdriver ---
-    // Chrome controlled by DevTools protocol sets this to true.
+    // Chrome controlled by DevTool protocol sets this to true.
     delete Object.getPrototypeOf(navigator).webdriver;
 
     // --- chrome.runtime ---
@@ -116,13 +119,13 @@ STEALTH_JS = """
         get: () => 8,
     });
 
-    // --- navigator.deviceMemory ---
+    # --- navigator.deviceMemory ---
     Object.defineProperty(navigator, 'deviceMemory', {
         get: () => 8,
     });
 
-    // --- Permissions API ---
-    // Some bots return 'denied' for notifications; real browsers return 'default'.
+    # --- Permissions API ---
+    # Some bots return 'denied' for notifications; real browsers return 'default'.
     const originalQuery = window.Permissions && window.Permissions.prototype.query;
     if (originalQuery) {
         window.Permissions.prototype.query = function(params) {
@@ -203,7 +206,7 @@ class BaseParser(ABC):
     FAILURE_THRESHOLD: int = 5
 
     def __init__(self):
-        self._consecutive_failures: int = 0
+        self._consecutive_failures = 0
 
     @classmethod
     @abstractmethod
@@ -226,6 +229,59 @@ class BaseParser(ABC):
     ) -> SearchResult | None:
         pass
 
+    def _check_and_reset_chrome_profile(self):
+        """Check if Chrome profile seems corrupted and reset if needed.
+        
+        Returns True if profile was reset, False otherwise.
+        """
+        try:
+            # Check if profile directory exists
+            if not CHROME_PROFILE_DIR.exists():
+                return False
+                
+            # Check for lock files that might indicate a crashed Chrome process
+            lock_files = list(CHROME_PROFILE_DIR.glob("*/.com.google.chrome.*")) + \
+                        list(CHROME_PROFILE_DIR.glob("*.lock")) + \
+                        list(CHROME_PROFILE_DIR.glob("lockfile")) + \
+                        list(CHROME_PROFILE_DIR.glob(".org.chromium.Chromium.*")) + \
+                        list(CHROME_PROFILE_DIR.glob("Singleton*"))
+            
+            # If we find lock files, the profile might be corrupted
+            if lock_files:
+                logger.warning(f"Found potential Chrome profile lock files: {[f.name for f in lock_files[:5]]}")
+                # Back up the corrupted profile
+                backup_dir = CHROME_PROFILE_DIR.parent / f"{CHROME_PROFILE_DIR.name}.corrupted.{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+                shutil.move(str(CHROME_PROFILE_DIR), str(backup_dir))
+                logger.info(f"Backed up potentially corrupted Chrome profile to {backup_dir}")
+                
+                # Create fresh profile directory
+                CHROME_PROFILE_DIR.mkdir(parents=True, exist_ok=True)
+                logger.info("Created fresh Chrome profile directory")
+                return True
+                
+        except Exception as e:
+            logger.warning(f"Error checking Chrome profile: {e}")
+        return False
+
+    async def _verify_browser_works(self):
+        """Verify that the browser is working correctly by navigating to a simple page.
+        
+        Raises an exception if the browser is not working properly.
+        """
+        try:
+            # Navigate to a simple, reliable page
+            test_page = await self._browser.get("https://www.example.com")
+            # Wait a bit for page to load
+            await asyncio.sleep(2)
+            # Check that we can get the page title
+            title = await test_page.get_title()
+            if not title or "Example Domain" not in title:
+                raise Exception(f"Unexpected page title: {title}")
+            logger.debug("Browser verification successful - page title: %s", title)
+        except Exception as e:
+            logger.error(f"Browser verification failed: {e}")
+            raise
+
     async def _inject_stealth(self):
         """Inject anti-detection JS via CDP before any page scripts execute."""
         try:
@@ -239,13 +295,52 @@ class BaseParser(ABC):
             logger.warning("Stealth injection failed: %s", exc)
 
     async def start_session(self):
-        CHROME_PROFILE_DIR.mkdir(parents=True, exist_ok=True)
-        self._browser = await uc.start(
-            browser_executable_path=REAL_CHROME,
-            headless=False,
-            browser_args=CHROME_ARGS,
-            user_data_dir=CHROME_PROFILE_DIR,
-        )
+        print(f"[DEBUG] start_session called for {self.marketplace}")
+        print(f"[DEBUG] HOME: {os.environ.get('HOME', 'NOT SET')}")
+        print(f"[DEBUG] XDG_CONFIG_HOME: {os.environ.get('XDG_CONFIG_HOME', 'NOT SET')}")
+        print(f"[DEBUG] DISPLAY: {os.environ.get('DISPLAY', 'NOT SET')}")
+        print(f"[DEBUG] REAL_CHROME: {REAL_CHROME}")
+        print(f"[DEBUG] CHROME_PROFILE_DIR: {CHROME_PROFILE_DIR}")
+        print(f"[DEBUG] CHROME_ARGS: {CHROME_ARGS}")
+        
+        # Set HOME and XDG_CONFIG_HOME to workspace directories to avoid sandbox violations
+        workspace_home = Path("./chrome_home")
+        workspace_home.mkdir(parents=True, exist_ok=True)
+        os.environ["HOME"] = str(workspace_home)
+        os.environ["XDG_CONFIG_HOME"] = str(workspace_home / ".config")
+        print(f"[DEBUG] Setting HOME to: {os.environ.get('HOME')}")
+        print(f"[DEBUG] Setting XDG_CONFIG_HOME to: {os.environ.get('XDG_CONFIG_HOME')}")
+        
+        # Check and reset Chrome profile if needed
+        self._check_and_reset_chrome_profile()
+        
+        # Retry logic for browser startup
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                CHROME_PROFILE_DIR.mkdir(parents=True, exist_ok=True)
+                print(f"[DEBUG] About to call uc.start (attempt {attempt + 1}/{max_retries})")
+                self._browser = await uc.start(
+                    browser_executable_path=REAL_CHROME,
+                    headless=False,
+                    browser_args=CHROME_ARGS,
+                    no_sandbox=True,
+                    user_data_dir=CHROME_PROFILE_DIR,
+                )
+                print(f"[DEBUG] uc.start succeeded on attempt {attempt + 1}")
+                
+                # Verify the browser is working correctly
+                await self._verify_browser_works()
+                
+                break  # Success, exit retry loop
+            except Exception as e:
+                print(f"[DEBUG] uc.start failed on attempt {attempt + 1}: {e}")
+                if attempt == max_retries - 1:  # Last attempt
+                    print(f"[DEBUG] All {max_retries} attempts failed")
+                    raise  # Re-raise the last exception
+                # Wait before retrying
+                await asyncio.sleep(2 ** attempt)  # Exponential backoff
+                
         self._session_active = True
         self._current_page = None
 
@@ -291,7 +386,7 @@ class BaseParser(ABC):
         return self._current_page
 
     async def _eval(self, page, expression: str):
-        """Evaluate JS expression, bypassing nodriver's broken deep serialization.
+        """Evaluate JS expression, bypassing nodriver's deep serialization.
 
         nodriver 0.50+ adds deep serialization by default which converts JS
         objects to [[key, {type, value}], ...] lists.  We call CDP directly
