@@ -5,3 +5,7 @@
 /screenshots/*
 /data/*
 /venv/
+
+# Chrome profile directories used by nodriver
+chrome_home/
+chrome_profile/
