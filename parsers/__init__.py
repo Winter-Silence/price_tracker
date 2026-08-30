@@ -2,11 +2,13 @@ from parsers.base import BaseParser
 from parsers.wildberries import WildberriesParser
 from parsers.ozon import OzonParser
 from parsers.citilink import CitilinkParser
+from parsers.avito import AvitoParser
 
 PARSERS: list[type[BaseParser]] = [
     WildberriesParser,
     OzonParser,
     CitilinkParser,
+    AvitoParser,
 ]
 
 MARKETPLACE_TIERS: dict[str, list[str]] = {

@@ -33,6 +33,7 @@ CHROME_ARGS = [
     "--disable-dev-shm-usage",
     "--disable-gpu",
     "--no-zygote",
+    "--no-sandbox",
 ]
 
 # JavaScript injected via CDP Page.addScriptToEvaluateOnNewDocument
@@ -231,34 +232,59 @@ class BaseParser(ABC):
 
     def _check_and_reset_chrome_profile(self):
         """Check if Chrome profile seems corrupted and reset if needed.
-        
+
+        A freshly-closed Chrome legitimately leaves behind SingletonCookie /
+        SingletonSocket files, so we must NOT wipe the profile merely because
+        such ephemeral files exist — doing so would destroy accumulated cookies
+        (e.g. a trusted Avito session). We only reset when the profile is
+        genuinely stuck: i.e. a live Chrome process on this machine is still
+        holding the SingletonLock.
+
         Returns True if profile was reset, False otherwise.
         """
         try:
-            # Check if profile directory exists
             if not CHROME_PROFILE_DIR.exists():
                 return False
-                
-            # Check for lock files that might indicate a crashed Chrome process
-            lock_files = list(CHROME_PROFILE_DIR.glob("*/.com.google.chrome.*")) + \
-                        list(CHROME_PROFILE_DIR.glob("*.lock")) + \
-                        list(CHROME_PROFILE_DIR.glob("lockfile")) + \
-                        list(CHROME_PROFILE_DIR.glob(".org.chromium.Chromium.*")) + \
-                        list(CHROME_PROFILE_DIR.glob("Singleton*"))
-            
-            # If we find lock files, the profile might be corrupted
-            if lock_files:
-                logger.warning(f"Found potential Chrome profile lock files: {[f.name for f in lock_files[:5]]}")
-                # Back up the corrupted profile
-                backup_dir = CHROME_PROFILE_DIR.parent / f"{CHROME_PROFILE_DIR.name}.corrupted.{datetime.now().strftime('%Y%m%d_%H%M%S')}"
-                shutil.move(str(CHROME_PROFILE_DIR), str(backup_dir))
-                logger.info(f"Backed up potentially corrupted Chrome profile to {backup_dir}")
-                
-                # Create fresh profile directory
-                CHROME_PROFILE_DIR.mkdir(parents=True, exist_ok=True)
-                logger.info("Created fresh Chrome profile directory")
+
+            def _process_live(pid: int) -> bool:
+                try:
+                    os.kill(pid, 0)
+                except (ProcessLookupError, PermissionError):
+                    return pid > 0 and os.path.exists(f"/proc/{pid}")
+                except Exception:
+                    return False
                 return True
-                
+
+            # SingletonLock is a symlink "hostname-pid" pointing to the live
+            # Chrome instance that started this profile. If it resolves to a
+            # process that is gone, the profile is safe to reuse.
+            lock_path = CHROME_PROFILE_DIR / "SingletonLock"
+            actively_locked = False
+            try:
+                if lock_path.exists():
+                    target = lock_path.resolve().name if lock_path.is_symlink() else lock_path.name
+                    # target looks like "hostname-pid"
+                    pid_str = str(target).rsplit("-", 1)[-1]
+                    if pid_str.isdigit():
+                        actively_locked = _process_live(int(pid_str))
+            except Exception as exc:
+                logger.debug("Could not inspect SingletonLock: %s", exc)
+
+            if not actively_locked:
+                logger.debug(
+                    "Chrome profile not actively locked — keeping cookies/session"
+                )
+                return False
+
+            logger.warning("Chrome profile is held by a live process — resetting")
+            backup_dir = CHROME_PROFILE_DIR.parent / f"{CHROME_PROFILE_DIR.name}.corrupted.{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+            shutil.move(str(CHROME_PROFILE_DIR), str(backup_dir))
+            logger.info(f"Backed up potentially corrupted Chrome profile to {backup_dir}")
+
+            CHROME_PROFILE_DIR.mkdir(parents=True, exist_ok=True)
+            logger.info("Created fresh Chrome profile directory")
+            return True
+
         except Exception as e:
             logger.warning(f"Error checking Chrome profile: {e}")
         return False
@@ -274,7 +300,7 @@ class BaseParser(ABC):
             # Wait a bit for page to load
             await asyncio.sleep(2)
             # Check that we can get the page title
-            title = await test_page.get_title()
+            title = await self._eval(test_page, "document.title")
             if not title or "Example Domain" not in title:
                 raise Exception(f"Unexpected page title: {title}")
             logger.debug("Browser verification successful - page title: %s", title)

@@ -4,6 +4,71 @@ from utils.logger import logger
 from bot.bot_instance import get_bot
 
 
+async def send_avito_new_item_notification(
+    user_id: int,
+    search_link_id: int,
+    product_name: str,
+    search_url: str,
+    items: list,
+):
+    """Notify the user about newly appearing ads on an Avito search listing.
+
+    Each item carries .url, .title and .price so the notification shows the
+    price and a direct link to the fresh ad.
+    """
+    async with db_connection() as conn:
+        cursor = await conn.execute(
+            "SELECT u.telegram_id FROM users u WHERE u.id = ?",
+            (user_id,),
+        )
+        row = await cursor.fetchone()
+
+    if not row:
+        logger.warning("User %d not found for avito notification", user_id)
+        return
+
+    lines = ["🆕 <b>Новый товар на Avito!</b>", "", f"📦 {product_name}"]
+    if len(items) == 1:
+        it = items[0]
+        lines.append("")
+        price = f"{it.price:.0f} ₽" if it.price else "—"
+        lines.append(f"🏷 {it.title}")
+        lines.append(f"💰 Цена: {price}")
+        lines.append("")
+        lines.append(f"🔗 <a href='{it.url}'>Открыть объявление</a>")
+    else:
+        lines.append("")
+        for idx, it in enumerate(items, start=1):
+            price = f"{it.price:.0f} ₽" if it.price else "—"
+            lines.append(
+                f"{idx}. <a href='{it.url}'>{it.title}</a> — {price}"
+            )
+    lines.append(f"🔍 <a href='{search_url}'>Открыть поиск</a>")
+
+    text = "\n".join(lines)
+
+    try:
+        bot = get_bot()
+        if bot is None:
+            logger.error(
+                "Bot not initialized, cannot send avito notification for search_link_id=%d",
+                search_link_id,
+            )
+            return
+        await bot.send_message(
+            chat_id=row["telegram_id"],
+            text=text,
+            parse_mode="HTML",
+            disable_web_page_preview=True,
+        )
+        logger.info("Avito new-item notification sent for search_link_id=%d", search_link_id)
+    except Exception as exc:
+        logger.error(
+            "Failed to send avito notification for search_link_id=%d: %s",
+            search_link_id, exc,
+        )
+
+
 async def send_alert_notification(
     user_id: int, link_id: int, current_price: float,
     threshold_price: float, privilege_type: str = "standard",

@@ -1,3 +1,5 @@
+import os
+
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
     Application,
@@ -43,6 +45,7 @@ MARKETPLACE_NAMES = {
     "wildberries": "Wildberries",
     "ozon": "Ozon",
     "citilink": "Citilink",
+    "avito": "Avito",
 }
 
 
@@ -69,16 +72,17 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(
             "📖 <b>Помощь</b>\n\n"
             "/add — добавить товар. Можно отслеживать конкретную\n"
-            "    ссылку на товар или <b>страницу поиска</b> с сортировкой по\n"
-            "    цене — бот найдёт самый дешёвый товар, подходящий под\n"
-            "    поисковую строку.\n"
+            "    ссылку на товар, <b>страницу поиска</b> с сортировкой по\n"
+            "    цене (бот найдёт самый дешёвый товар, подходящий под\n"
+            "    поисковую строку) или <b>поисковый запрос Avito</b> —\n"
+            "    бот сообщит, когда на странице появится новый товар.\n"
             "/link — привязать ещё одну ссылку к существующему товару (например, на другом маркетплейсе). Пороговая цена общая для всех ссылок товара\n"
             "/threshold — задать/изменить пороговую цену товара (или 0 — отключить). Уведомление придёт, как только цена на любой площадке опустится до порога\n"
             "/privileges — указать какие привилегии у тебя есть на маркетплейсах (скидка по карте, подписка), чтобы бот учитывал их при расчёте цены\n"
             "/list — показать все твои товары с текущими ценами\n"
             "/delete — удалить товар (с подтверждением)\n"
             "/history — история цен товара\n\n"
-            "Поддерживаемые магазины: Wildberries, Ozon, Citilink",
+            "Поддерживаемые магазины: Wildberries, Ozon, Citilink, Avito",
             parse_mode="HTML"
         )
     except Exception as exc:
@@ -98,11 +102,23 @@ async def add_url(update: Update, context: ContextTypes.DEFAULT_TYPE):
     url = update.message.text.strip()
     parser = get_parser(url)
     if not parser:
-        await update.message.reply_text("❌ Неподдерживаемый магазин. Поддерживаются: Wildberries, Ozon, Citilink")
+        await update.message.reply_text("❌ Неподдерживаемый магазин. Поддерживаются: Wildberries, Ozon, Citilink, Avito")
         return ConversationHandler.END
 
     context.user_data["url"] = url
     context.user_data["marketplace"] = parser.marketplace
+
+    # Avito works as a search/new-item tracker (the URL already encodes the
+    # query and optional filters). No mode / title-filter / threshold needed:
+    # the bot remembers the ads on the page and notifies about new ones.
+    if parser.marketplace == "avito":
+        context.user_data["add_mode"] = "search"
+        await update.message.reply_text(
+            "🆕 Это поисковый запрос Avito. Буду следить за страницей и сразу "
+            "сообщать, когда на ней появится новый товар (с ценой и ссылкой).\n\n"
+            "📦 Введи название для удобства (например, \"AMD Ryzen 7 5700X\")"
+        )
+        return ADD_NAME
 
     keyboard = [
         [InlineKeyboardButton("📦 Конкретный товар", callback_data="addmode_product")],
@@ -145,6 +161,15 @@ async def add_title_filter(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def add_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data["name"] = update.message.text.strip()
+
+    # Avito: no threshold — track the page and notify about new ads as they appear.
+    if context.user_data.get("marketplace") == "avito":
+        telegram_id = update.effective_user.id
+        user_id = await get_or_create_user(telegram_id)
+        text = await _create_tracking(user_id, context, target_price=0.0)
+        await update.message.reply_text(text)
+        return ConversationHandler.END
+
     await update.message.reply_text("💰 Введи пороговую цену (или 0, чтобы просто отслеживать)")
     return ADD_TARGET_PRICE
 
@@ -156,51 +181,56 @@ async def add_target_price(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("❌ Введи число")
         return ADD_TARGET_PRICE
 
+    telegram_id = update.effective_user.id
+    user_id = await get_or_create_user(telegram_id)
+    text = await _create_tracking(user_id, context, target_price=target_price)
+    await update.message.reply_text(text)
+    return ConversationHandler.END
+
+
+async def _create_tracking(user_id: int, context: ContextTypes.DEFAULT_TYPE, target_price: float) -> str:
+    """Create the product + appropriate link and return the confirmation text."""
     url = context.user_data["url"]
     marketplace = context.user_data["marketplace"]
     name = context.user_data["name"]
     mode = context.user_data.get("add_mode", "product")
-    telegram_id = update.effective_user.id
 
-    user_id = await get_or_create_user(telegram_id)
     product_id = await add_product(name, user_id, threshold_price=target_price)
+
+    if marketplace == "avito":
+        await add_search_link(product_id, "avito", url, "")
+        return (
+            "✅ Avito-поиск добавлен! Буду проверять страницу каждые 5 минут и "
+            "сразу сообщу, когда появится новый товар (с ценой и ссылкой). 🔔"
+        )
 
     if mode == "search":
         title_filter = context.user_data.get("title_filter", "")
         await add_search_link(product_id, marketplace, url, title_filter)
         interval_minutes = int(os.getenv("POLL_INTERVAL_MINUTES", "60"))
-        hours = interval_minutes // 60
-        if hours >= 1:
-            if hours == 1:
-                time_str = f"каждые {hours} час"
-            elif 2 <= hours % 10 <= 4 and not (12 <= hours % 100 <= 14):
-                time_str = f"каждые {hours} часа"
-            else:
-                time_str = f"каждые {hours} часов"
-        else:
-            time_str = f"каждые {interval_minutes} минут"
-        await update.message.reply_text(
-            f"✅ Поиск добавлен! Буду проверять цены {time_str} и "
+        return (
+            f"✅ Поиск добавлен! Буду проверять цены {_minutes_str(interval_minutes)} и "
             "найду самый дешёвый товар по запросу."
         )
     else:
         await add_marketplace_link(product_id, marketplace, url)
         interval_minutes = int(os.getenv("POLL_INTERVAL_MINUTES", "60"))
-        hours = interval_minutes // 60
-        if hours >= 1:
-            if hours == 1:
-                time_str = f"каждые {hours} час"
-            elif 2 <= hours % 10 <= 4 and not (12 <= hours % 100 <= 14):
-                time_str = f"каждые {hours} часа"
-            else:
-                time_str = f"каждые {hours} часов"
-        else:
-            time_str = f"каждые {interval_minutes} минут"
-        await update.message.reply_text(
-            f"✅ Товар добавлен! Буду проверять цену {time_str}. "
+        return (
+            f"✅ Товар добавлен! Буду проверять цену {_minutes_str(interval_minutes)}. "
             "Сразу сообщу, как только она упадёт до твоей цели."
         )
-    return ConversationHandler.END
+
+
+def _minutes_str(interval_minutes: int) -> str:
+    hours = interval_minutes // 60
+    if hours >= 1:
+        if hours == 1:
+            return f"каждые {hours} час"
+        elif 2 <= hours % 10 <= 4 and not (12 <= hours % 100 <= 14):
+            return f"каждые {hours} часа"
+        else:
+            return f"каждые {hours} часов"
+    return f"каждые {interval_minutes} минут"
 
 
 async def list_products(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -868,7 +898,16 @@ async def link_url(update: Update, context: ContextTypes.DEFAULT_TYPE):
     url = update.message.text.strip()
     parser = get_parser(url)
     if not parser:
-        await update.message.reply_text("❌ Неподдерживаемый магазин. Поддерживаются: Wildberries, Ozon, Citilink")
+        await update.message.reply_text("❌ Неподдерживаемый магазин. Поддерживаются: Wildberries, Ozon, Citilink, Avito")
+        return ConversationHandler.END
+
+    # /link attaches a concrete price-tracked link to an existing product.
+    # Avito is a new-item tracker added through /add, so redirect the user.
+    if parser.marketplace == "avito":
+        await update.message.reply_text(
+            "ℹ️ Avito-поиск добавляется отдельно через /add (для отслеживания "
+            "новых товаров на странице), а не через /link."
+        )
         return ConversationHandler.END
 
     product_id = context.user_data["link_product_id"]

@@ -12,14 +12,21 @@ from db.database import (
     reset_product_triggered,
     get_active_search_links_with_product,
     save_search_price,
+    get_active_avito_search_links,
+    get_seen_avito_items,
+    add_avito_item,
 )
 from parsers import PARSERS
-from bot.notifications import send_alert_notification, send_search_alert_notification
+from bot.notifications import send_alert_notification, send_search_alert_notification, send_avito_new_item_notification
 from utils.logger import logger
 
 
 def _get_poll_interval() -> int:
     return int(os.getenv("POLL_INTERVAL_MINUTES", "120"))
+
+
+def _get_avito_poll_interval() -> int:
+    return int(os.getenv("AVITO_POLL_INTERVAL_MINUTES", "5"))
 
 
 INTER_DOMAIN_DELAY: dict[str, tuple[float, float]] = {
@@ -314,6 +321,102 @@ async def poll_search_prices():
             await reset_product_triggered(product_id)
 
 
+async def poll_avito_search():
+    """Poll Avito search listings and notify the user whenever a new ad appears.
+
+    Avito search URLs are city/category listings where the same search query
+    may gain new ads over time. We keep a set of previously seen item URLs in
+    avito_search_items and compare against the freshly parsed listing.
+    """
+    logger.info("poll_avito_search started")
+    search_links = await get_active_avito_search_links()
+    logger.info("poll_avito_search: got %d active avito links", len(search_links))
+    if not search_links:
+        return
+
+    domain_links: dict[str, list[dict]] = defaultdict(list)
+    for link in search_links:
+        domain = _get_domain(link["search_url"])
+        domain_links[domain].append(link)
+
+    for domain, domain_link_list in domain_links.items():
+        sample_url = domain_link_list[0]["search_url"]
+        parser_cls = None
+        for p in PARSERS:
+            if p.can_handle(sample_url):
+                parser_cls = p
+                break
+
+        if parser_cls is None:
+            logger.warning("No parser for avito domain: %s", domain)
+            continue
+
+        parser = parser_cls()
+
+        captcha_hit = False
+
+        for link in domain_link_list:
+            if captcha_hit and hasattr(parser, "_captcha_detected") and parser._captcha_detected:
+                logger.warning(
+                    "Skipping avito %s — captcha detected earlier for %s",
+                    link["search_url"], domain,
+                )
+                continue
+
+            search_link_id = link["id"]
+            search_url = link["search_url"]
+            user_id = link["user_id"]
+            product_name = link["product_name"]
+
+            try:
+                items = await parser.get_all_items_from_search(search_url)
+                if items is None:
+                    logger.warning("Avito parse returned nothing for %s", search_url)
+                    if hasattr(parser, "_captcha_detected") and parser._captcha_detected:
+                        captcha_hit = True
+                    continue
+
+                seen = await get_seen_avito_items(search_link_id)
+                new_items = [it for it in items if it.url not in seen]
+
+                for it in items:
+                    await add_avito_item(search_link_id, it.url, it.title, it.price)
+
+                if new_items:
+                    logger.info(
+                        "Avito %s: %d new item(s) for search_link_id=%d",
+                        search_url, len(new_items), search_link_id,
+                    )
+                    await send_avito_new_item_notification(
+                        user_id=user_id,
+                        search_link_id=search_link_id,
+                        product_name=product_name,
+                        search_url=search_url,
+                        items=new_items,
+                    )
+                else:
+                    logger.debug("Avito %s: no new items for search_link_id=%d", search_url, search_link_id)
+
+            except Exception as exc:
+                logger.error("Avito parser failed for %s: %s", search_url, exc)
+
+            delay_range = INTER_DOMAIN_DELAY.get(domain, DEFAULT_INTER_DOMAIN_DELAY)
+            delay = random.uniform(*delay_range)
+            logger.debug("Inter-request delay %.1fs for avito %s", delay, domain)
+            await asyncio.sleep(delay)
+
+
+async def _run_avito_periodic():
+    interval = _get_avito_poll_interval()
+    logger.info("Avito polling started, interval %d minutes", interval)
+    while True:
+        try:
+            await poll_avito_search()
+        except Exception as exc:
+            logger.error("avito polling failed: %s", exc)
+        await asyncio.sleep(interval * 60)
+
+
 async def _run_periodic():
     interval = _get_poll_interval()
     logger.info("Price polling started, interval %d minutes", interval)
@@ -326,8 +429,9 @@ async def _run_periodic():
         await asyncio.sleep(interval * 60)
 
 
-def start_scheduler():
+def start_scheduler() -> list:
     interval = _get_poll_interval()
     task = asyncio.create_task(_run_periodic())
+    avito_task = asyncio.create_task(_run_avito_periodic())
     logger.info("Scheduler started with interval %d minutes", interval)
-    return task
+    return [task, avito_task]

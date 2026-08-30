@@ -113,6 +113,7 @@ fab rollback       # экстренный откат на HEAD~1
 | `TELEGRAM_BOT_TOKEN` | Токен бота от @BotFather |
 | `DB_PATH` | Путь к SQLite-файлу, например `./data/prices.db` |
 | `POLL_INTERVAL_MINUTES` | Интервал опроса цен (default: 60) |
+| `AVITO_POLL_INTERVAL_MINUTES` | Интервал опроса поисковых страниц Avito (default: 5) |
 
 Загружать через `python-dotenv` только в `main.py`, дальше передавать явно.
 
@@ -166,6 +167,17 @@ logger.error("Parser failed for %s: %s", url, exc)
   через `uc.Config._default_browser_args` (только `--no-first-run`).
   При добавлении нового парсера stealth работает автоматически — наследуется от `BaseParser`.
 - Ozon: переход с главной страницы на товар (прямой URL блокируется антиботом)
+- Avito (`parsers/avito.py`): отслеживает не цену товара, а **появление новых объявлений**
+  на поисковой странице. `get_all_items_from_search()` возвращает список всех текущих
+  объявлений (url/title/price). Новые объявления определяются по `avito_search_items`
+  и присылаются пользователю с ценой и ссылкой. Первый запуск просто запоминает
+  текущий список без уведомлений; уведомления идут только про появившиеся заново.
+  Avito требует доверенную сессию: caches решаются вручную один раз в Chrome-профиле
+  бота (`chrome_profile`), дальше профиль должен сохраняться (см. `_check_and_reset_chrome_profile`).
+- Chrome-релиабильность: обязательно включать `--no-sandbox` в `CHROME_ARGS` (сам
+  `no_sandbox=True` у nodriver на части систем не добавляет флаг). Профиль НЕ стирать
+  при наличии `Singleton*`/`*.lock` файлов — они остаются после корректного закрытия;
+  стирать только если `SingletonLock` указывает на живую PID (см. `_check_and_reset_chrome_profile`).
 
 ### Telegram-бот
 - Использовать `ConversationHandler` для многошаговых диалогов (`/add`)

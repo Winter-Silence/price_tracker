@@ -28,7 +28,7 @@ def main():
 
     async def _run():
         await init_db()
-        scheduler = start_scheduler()
+        scheduler_tasks = start_scheduler()
 
         builder = Application.builder().token(token)
         proxy_url = os.getenv("PROXY_URL")
@@ -61,7 +61,8 @@ def main():
         await stop_event.wait()
 
         logger.info("Shutting down...")
-        scheduler.cancel()
+        for t in scheduler_tasks:
+            t.cancel()
         await application.updater.stop()
         await application.stop()
         await application.shutdown()

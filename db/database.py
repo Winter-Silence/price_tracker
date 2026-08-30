@@ -80,6 +80,16 @@ CREATE TABLE IF NOT EXISTS search_price_history (
     resolved_title TEXT,
     recorded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS avito_search_items (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    search_link_id INTEGER REFERENCES search_links(id),
+    item_url TEXT NOT NULL,
+    item_title TEXT,
+    price REAL,
+    first_seen_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_active BOOLEAN DEFAULT 1
+);
 """
 
 
@@ -582,3 +592,57 @@ async def get_active_search_links_with_product() -> list[dict]:
         )
         rows = await cursor.fetchall()
     return [dict(r) for r in rows]
+
+
+# ===== Avito search (new-item detection) =====
+
+
+async def get_active_avito_search_links() -> list[dict]:
+    """Return active Avito search links joined with the owning product/user."""
+    async with db_connection() as conn:
+        cursor = await conn.execute(
+            "SELECT sl.id, sl.product_id, sl.marketplace, sl.search_url, sl.title_filter, "
+            "sl.last_checked_at, "
+            "p.name AS product_name, p.created_by AS user_id "
+            "FROM search_links sl "
+            "JOIN products p ON p.id = sl.product_id "
+            "WHERE sl.is_active = 1 AND sl.marketplace = 'avito'"
+        )
+        rows = await cursor.fetchall()
+    return [dict(r) for r in rows]
+
+
+async def get_seen_avito_items(search_link_id: int) -> set[str]:
+    """Return the set of item URLs already tracked for this Avito search link."""
+    async with db_connection() as conn:
+        cursor = await conn.execute(
+            "SELECT item_url FROM avito_search_items WHERE search_link_id = ?",
+            (search_link_id,),
+        )
+        rows = await cursor.fetchall()
+    return {r["item_url"] for r in rows}
+
+
+async def add_avito_item(
+    search_link_id: int, item_url: str, item_title: str, price: float | None,
+):
+    """Insert a newly-seen Avito item. Returns the row id (existing or new)."""
+    async with db_connection() as conn:
+        cursor = await conn.execute(
+            "SELECT id FROM avito_search_items WHERE search_link_id = ? AND item_url = ?",
+            (search_link_id, item_url),
+        )
+        row = await cursor.fetchone()
+        if row:
+            return row["id"]
+        cursor = await conn.execute(
+            "INSERT INTO avito_search_items "
+            "(search_link_id, item_url, item_title, price) VALUES (?, ?, ?, ?)",
+            (search_link_id, item_url, item_title, price),
+        )
+        await conn.commit()
+        logger.info(
+            "New Avito item tracked: %s (price=%s) for search_link_id=%d",
+            item_title, price, search_link_id,
+        )
+        return cursor.lastrowid
