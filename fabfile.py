@@ -17,6 +17,8 @@ Configuration is read from ./.deploy.env (see .deploy.env.example).
 """
 from __future__ import annotations
 
+import tarfile
+import tempfile
 import time
 from pathlib import Path
 
@@ -298,9 +300,23 @@ def sync_profile(c):
         pty=True,
     )
 
-    # Upload the local profile (recursively via SFTP)
+    # Pack the local profile into a tar archive (recursive via SFTP's put)
+    archive = Path(tempfile.gettempdir()) / "chrome_profile.tar.gz"
+    print("🗜️  Packing chrome_profile/...")
+    with tarfile.open(archive, "w:gz") as tar:
+        tar.add(local_profile, arcname="chrome_profile")
+
     print("⬆️  Uploading chrome_profile/...")
-    conn.rput(local="chrome_profile", remote=f"{remote_path}/chrome_profile")
+    try:
+        conn.put(local=str(archive), remote=f"{remote_path}/chrome_profile.tar.gz")
+        print("📦 Extracting on server...")
+        conn.run(
+            f"cd {remote_path} && tar -xzf chrome_profile.tar.gz "
+            f"&& rm -f chrome_profile.tar.gz",
+            pty=True,
+        )
+    finally:
+        archive.unlink(missing_ok=True)
 
     # Fix ownership (upload runs as the SSH user)
     conn.run(f"chown -R {user}:{user} {remote_path}/chrome_profile", pty=True)
