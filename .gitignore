@@ -6,6 +6,10 @@
 /data/*
 /venv/
 
+# Python bytecode cache
+__pycache__/
+*.py[cod]
+
 # Chrome profile directories used by nodriver
 chrome_home/
 chrome_profile/
