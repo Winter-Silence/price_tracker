@@ -17,6 +17,7 @@ from db.database import (
     get_user_products,
     get_product_by_id,
     get_price_history,
+    get_marketplace_link_by_id,
     delete_link,
     update_product_threshold,
     get_user_privileges,
@@ -26,6 +27,7 @@ from db.database import (
     get_user_search_links,
     delete_search_link,
     get_search_price_history,
+    get_search_link_by_id,
 )
 from parsers import get_parser, MARKETPLACE_TIERS
 from parsers.base import TIER_LABELS
@@ -236,6 +238,7 @@ async def list_products(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 tiers_text.append(TIER_LABELS.get(tier, tier))
             line += f"   💳 Привилегии: {', '.join(tiers_text)}\n"
 
+        line += f"   🔗 <a href='{p['url']}'>Открыть товар</a>\n"
         text += line + "\n"
 
     if search_products:
@@ -255,6 +258,7 @@ async def list_products(update: Update, context: ContextTypes.DEFAULT_TYPE):
             line += f"   🔍 Запрос: \"{sp['title_filter']}\"\n"
             if sp["last_resolved_title"]:
                 line += f"   📦 Найден: {sp['last_resolved_title']}\n"
+            line += f"   🔗 <a href='{sp['search_url']}'>Открыть поиск</a>\n"
             text += line + "\n"
 
     # Build inline keyboard for history links
@@ -279,7 +283,8 @@ async def list_products(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         text,
         parse_mode="HTML",
-        reply_markup=reply_markup
+        reply_markup=reply_markup,
+        disable_web_page_preview=True,
     )
 
 
@@ -417,6 +422,8 @@ async def history_show(update: Update, context: ContextTypes.DEFAULT_TYPE):
         context.user_data["history_link_id"] = link_id
         logger.info("history_show: link_id=%s", link_id)
 
+        link = await get_marketplace_link_by_id(link_id)
+
         # Show tier selection
         keyboard = [
             [InlineKeyboardButton("💰 Все цены", callback_data="hist_tier_all")],
@@ -427,6 +434,8 @@ async def history_show(update: Update, context: ContextTypes.DEFAULT_TYPE):
         records = await get_price_history(link_id, limit=5)
         logger.info("history_show: got %d records", len(records))
         text = "📊 <b>История цен:</b>\n\n"
+        if link:
+            text += f"🔗 <a href='{link['url']}'>Открыть товар</a>\n\n"
         if records:
             for r in records:
                 tier_label = TIER_LABELS.get(r["privilege_type"], r["privilege_type"])
@@ -439,6 +448,7 @@ async def history_show(update: Update, context: ContextTypes.DEFAULT_TYPE):
             text,
             parse_mode="HTML",
             reply_markup=InlineKeyboardMarkup(keyboard),
+            disable_web_page_preview=True,
         )
         return HISTORY_TIER
     except Exception as exc:
@@ -458,9 +468,12 @@ async def history_show_search(update: Update, context: ContextTypes.DEFAULT_TYPE
         context.user_data["history_search_link_id"] = link_id
         logger.info("history_show_search: link_id=%s", link_id)
 
+        slink = await get_search_link_by_id(link_id)
         records = await get_search_price_history(link_id, limit=15)
 
         text = "📊 <b>История поиска (самый дешёвый найденный товар):</b>\n\n"
+        if slink:
+            text += f"🔗 <a href='{slink['search_url']}'>Открыть поиск</a>\n\n"
         if not records:
             text += "Нет записей"
         else:
@@ -543,12 +556,16 @@ async def history_show_tier(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         logger.info("history_show_tier: link_id=%s privilege_type=%s", link_id, privilege_type)
         records = await get_price_history(link_id, privilege_type=privilege_type, limit=15)
+        link = await get_marketplace_link_by_id(link_id)
 
         if privilege_type:
             tier_label = TIER_LABELS.get(privilege_type, privilege_type)
             text = f"📊 <b>История цен: {tier_label}</b>\n\n"
         else:
             text = "📊 <b>История цен (все)</b>\n\n"
+
+        if link:
+            text += f"🔗 <a href='{link['url']}'>Открыть товар</a>\n\n"
 
         if not records:
             text += "Нет записей"
@@ -565,6 +582,7 @@ async def history_show_tier(update: Update, context: ContextTypes.DEFAULT_TYPE):
             text,
             parse_mode="HTML",
             reply_markup=InlineKeyboardMarkup(keyboard),
+            disable_web_page_preview=True,
         )
         return HISTORY_TIER
     except Exception as exc:
@@ -584,6 +602,8 @@ async def history_back(update: Update, context: ContextTypes.DEFAULT_TYPE):
         link_id = context.user_data.get("history_link_id")
         logger.info("history_back: link_id=%s", link_id)
 
+        link = await get_marketplace_link_by_id(link_id)
+
         keyboard = [
             [InlineKeyboardButton("💰 Все цены", callback_data="hist_tier_all")],
             [InlineKeyboardButton(f"📄 {TIER_LABELS.get('standard', 'Стандартная')}", callback_data="hist_tier_standard")],
@@ -592,6 +612,8 @@ async def history_back(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         records = await get_price_history(link_id, limit=5)
         text = "📊 <b>История цен:</b>\n\n"
+        if link:
+            text += f"🔗 <a href='{link['url']}'>Открыть товар</a>\n\n"
         if records:
             for r in records:
                 tier_label = TIER_LABELS.get(r["privilege_type"], r["privilege_type"])
@@ -604,6 +626,7 @@ async def history_back(update: Update, context: ContextTypes.DEFAULT_TYPE):
             text,
             parse_mode="HTML",
             reply_markup=InlineKeyboardMarkup(keyboard),
+            disable_web_page_preview=True,
         )
         return HISTORY_TIER
     except Exception as exc:
@@ -623,6 +646,8 @@ async def show_product_history_from_list(update: Update, context: ContextTypes.D
         context.user_data["history_link_id"] = link_id
         logger.info("show_product_history_from_list: link_id=%s", link_id)
 
+        link = await get_marketplace_link_by_id(link_id)
+
         # Show tier selection
         keyboard = [
             [InlineKeyboardButton("💰 Все цены", callback_data="hist_tier_all")],
@@ -633,6 +658,8 @@ async def show_product_history_from_list(update: Update, context: ContextTypes.D
         records = await get_price_history(link_id, limit=5)
         logger.info("show_product_history_from_list: got %d records", len(records))
         text = "📊 <b>История цен:</b>\n\n"
+        if link:
+            text += f"🔗 <a href='{link['url']}'>Открыть товар</a>\n\n"
         if records:
             for r in records:
                 tier_label = TIER_LABELS.get(r["privilege_type"], r["privilege_type"])
@@ -645,6 +672,7 @@ async def show_product_history_from_list(update: Update, context: ContextTypes.D
             text,
             parse_mode="HTML",
             reply_markup=InlineKeyboardMarkup(keyboard),
+            disable_web_page_preview=True,
         )
         return HISTORY_TIER
     except Exception as exc:
@@ -664,9 +692,12 @@ async def show_search_history_from_list(update: Update, context: ContextTypes.DE
         context.user_data["history_search_link_id"] = link_id
         logger.info("show_search_history_from_list: link_id=%s", link_id)
 
+        slink = await get_search_link_by_id(link_id)
         records = await get_search_price_history(link_id, limit=15)
 
         text = "📊 <b>История поиска (самый дешёвый найденный товар):</b>\n\n"
+        if slink:
+            text += f"🔗 <a href='{slink['search_url']}'>Открыть поиск</a>\n\n"
         if not records:
             text += "Нет записей"
         else:
@@ -736,6 +767,7 @@ async def back_to_list_from_history(update: Update, context: ContextTypes.DEFAUL
                 tiers_text.append(TIER_LABELS.get(tier, tier))
             line += f"   💳 Привилегии: {', '.join(tiers_text)}\n"
 
+        line += f"   🔗 <a href='{p['url']}'>Открыть товар</a>\n"
         text += line + "\n"
 
     if search_products:
@@ -755,6 +787,7 @@ async def back_to_list_from_history(update: Update, context: ContextTypes.DEFAUL
             line += f"   🔍 Запрос: \"{sp['title_filter']}\"\n"
             if sp["last_resolved_title"]:
                 line += f"   📦 Найден: {sp['last_resolved_title']}\n"
+            line += f"   🔗 <a href='{sp['search_url']}'>Открыть поиск</a>\n"
             text += line + "\n"
 
     # Build inline keyboard for history links
@@ -779,7 +812,8 @@ async def back_to_list_from_history(update: Update, context: ContextTypes.DEFAUL
     await query.edit_message_text(
         text,
         parse_mode="HTML",
-        reply_markup=reply_markup
+        reply_markup=reply_markup,
+        disable_web_page_preview=True,
     )
     return ConversationHandler.END
 

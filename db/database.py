@@ -263,6 +263,21 @@ async def add_marketplace_link(product_id: int, marketplace: str, url: str) -> i
         return cursor.lastrowid
 
 
+async def get_marketplace_link_by_id(link_id: int) -> dict | None:
+    async with db_connection() as conn:
+        cursor = await conn.execute(
+            "SELECT ml.id, ml.product_id, ml.marketplace, ml.url, "
+            "ml.last_price, ml.last_checked_at, ml.is_active, "
+            "p.name AS product_name "
+            "FROM marketplace_links ml "
+            "JOIN products p ON p.id = ml.product_id "
+            "WHERE ml.id = ?",
+            (link_id,),
+        )
+        row = await cursor.fetchone()
+    return dict(row) if row else None
+
+
 async def get_active_links() -> list[dict]:
     async with db_connection() as conn:
         cursor = await conn.execute(
