@@ -119,13 +119,13 @@ STEALTH_JS = """
         get: () => 8,
     });
 
-    # --- navigator.deviceMemory ---
+    // --- navigator.deviceMemory ---
     Object.defineProperty(navigator, 'deviceMemory', {
         get: () => 8,
     });
 
-    # --- Permissions API ---
-    # Some bots return 'denied' for notifications; real browsers return 'default'.
+    // --- Permissions API ---
+    // Some bots return 'denied' for notifications; real browsers return 'default'.
     const originalQuery = window.Permissions && window.Permissions.prototype.query;
     if (originalQuery) {
         window.Permissions.prototype.query = function(params) {
