@@ -300,7 +300,7 @@ def sync_profile(c):
 
     # Upload the local profile (recursively via SFTP)
     print("⬆️  Uploading chrome_profile/...")
-    conn.put(local="chrome_profile", remote=f"{remote_path}/chrome_profile")
+    conn.rput(local="chrome_profile", remote=f"{remote_path}/chrome_profile")
 
     # Fix ownership (upload runs as the SSH user)
     conn.run(f"chown -R {user}:{user} {remote_path}/chrome_profile", pty=True)
