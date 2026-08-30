@@ -8,6 +8,7 @@ Usage:
     fab logs              # tail bot logs (default: 50 lines)
     fab logs --lines 200
     fab restart|stop|start
+    fab sync-profile      # upload local chrome_profile/ (Avito first-time setup)
     fab rollback          # git reset --hard HEAD~1 then restart (use with care)
     fab rollback --steps 3
     fab setup             # initial install (runs scripts/deploy.sh on server)
@@ -154,8 +155,8 @@ def deploy(c, branch=None, no_push=False):
 
 def _is_pushable_status(status_output: str) -> bool:
     """Return True if the porcelain status is OK to push with (all staged)."""
-    lines = [l for l in status_output.splitlines() if l.strip()]
-    return all(l.startswith(("A ", "M  ", "D ", "R ", "C ", "??")) for l in lines)
+    lines = [line for line in status_output.splitlines() if line.strip()]
+    return all(line.startswith(("A ", "M  ", "D ", "R ", "C ", "??")) for line in lines)
 
 
 # ----- rollback ------------------------------------------------------------
@@ -262,6 +263,60 @@ def setup(c):
     with conn.cd(remote_path):
         conn.run("bash scripts/deploy.sh", pty=True)
     print("✅ Setup done. Try `fab status`.")
+
+
+# ----- Avito profile sync ---------------------------------------------------
+
+@task
+def sync_profile(c):
+    """Upload local chrome_profile/ to the server (Avito trusted session).
+
+    Stops the bot, backs up the existing profile, uploads the local one, then
+    restarts the bot. Run once after solving Avito CAPTCHA on the dev machine.
+
+    Examples:
+        fab sync-profile
+    """
+    local_profile = Path("chrome_profile")
+    if not local_profile.exists() or not any(local_profile.iterdir()):
+        raise Exit("❌ Local chrome_profile/ is empty or doesn't exist. "
+                   "Solve the Avito CAPTCHA in the browser first.")
+
+    conn = _conn()
+    remote_path = _remote_path()
+    user = _load_env().get("DEPLOY_USER", DEFAULT_USER)
+
+    # Stop bot so it's not holding the profile / Chrome lock
+    print("🛑 Stopping bot...")
+    conn.run("sudo systemctl stop price-tracker.service", pty=True)
+
+    # Back up any existing profile on the server
+    print("📦 Backing up existing profile...")
+    conn.run(
+        f"test -d {remote_path}/chrome_profile && "
+        f"mv {remote_path}/chrome_profile {remote_path}/chrome_profile.bak.$(date +%s) || true",
+        pty=True,
+    )
+
+    # Upload the local profile (recursively via SFTP)
+    print("⬆️  Uploading chrome_profile/...")
+    conn.put(local="chrome_profile", remote=f"{remote_path}/chrome_profile")
+
+    # Fix ownership (upload runs as the SSH user)
+    conn.run(f"chown -R {user}:{user} {remote_path}/chrome_profile", pty=True)
+
+    # Restart the bot
+    print("▶️  Starting bot...")
+    conn.run("sudo systemctl start price-tracker.service", pty=True)
+    time.sleep(3)
+    active = conn.run(
+        "systemctl is-active price-tracker.service", hide=True
+    ).stdout.strip()
+    print(f"✅ Service status: {active}")
+
+    if active != "active":
+        print("⚠️  Service not active! Showing recent logs:")
+        conn.run("journalctl -u price-tracker.service -n 20 --no-pager", pty=True)
 
 
 # ----- sanity check --------------------------------------------------------

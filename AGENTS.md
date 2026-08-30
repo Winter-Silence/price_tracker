@@ -76,8 +76,31 @@ fab deploy --no-push   # если push уже сделан
 fab status         # статус systemd-сервисов
 fab logs           # последние 50 строк лога бота
 fab restart        # перезапуск бота без деплоя
+fab sync-profile   # загрузить локальный chrome_profile/ на сервер (Avito, разово)
 fab rollback       # экстренный откат на HEAD~1
 ```
+
+### First-time Avito setup
+
+Avito требует доверенную сессию (обход капчи). На headless-сервере негде открыть
+браузер и решить капчу, поэтому доверенная сессия готовится один раз на
+dev-машине и загружается на сервер:
+
+```bash
+# 1. На dev-машине (с GUI) открыть https://www.avito.ru в Chrome-профиле бота
+#    (`chrome_profile/`) и один раз вручную решить капчу / подтвердить доступ.
+#    Быстрее всего: `python scripts/test_avito_search.py <url>` и решить капчу,
+#    когда бот откроет окно Chrome.
+
+# 2. Загрузить доверенный профиль на сервер (остановит бота, бэкапит старый,
+#    загрузит новый профиль, перезапустит бота):
+fab sync-profile
+```
+
+Профиль `chrome_profile/` (gitignored) сохраняется между деплоями — `fab deploy`
+его не трогает, а `_check_and_reset_chrome_profile` стирает его только если
+`SingletonLock` указывает на живую PID. Повторный `fab sync-profile` не нужен,
+пока сессия жива; при повторной капче — просто повторить оба шага.
 
 > **Shell-совместимость:** инструкции активации venv даны для bash
 > (`source venv/bin/activate`). Для fish используйте `activate.fish` —
