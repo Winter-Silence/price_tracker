@@ -373,22 +373,15 @@ class BaseParser(ABC):
     async def _inject_stealth(self):
         """Inject anti-detection JS via CDP before any page scripts execute.
 
+        Currently **disabled** because the fake ``navigator.plugins`` override
+        triggers Wildberries WAF ("Проверяем браузер" challenge) while not
+        improving Ozon or Avito success rates.  Re-enable once the patches
+        are refined to avoid marketplace-specific fingerprint checks.
+
         CDP Page domain commands must be sent to a **page** target, not the
-        browser-level target.  ``browser.send()`` talks to the root target
-        which does not expose the Page domain (``-32601``).  We use
-        ``main_tab.send()`` instead.
+        browser-level target (``-32601``).  Use ``main_tab.send()``.
         """
-        try:
-            page = self._browser.main_tab
-            await page.send(cdp_page.enable())
-            await page.send(
-                cdp_page.add_script_to_evaluate_on_new_document(
-                    source=STEALTH_JS,
-                )
-            )
-            logger.debug("Stealth JS injected via main_tab")
-        except Exception as exc:
-            logger.warning("Stealth injection failed: %s", exc)
+        pass  # stealth disabled — see comment above
 
     async def start_session(self):
         workspace_home = Path("./chrome_home")
