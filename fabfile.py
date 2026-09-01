@@ -106,6 +106,9 @@ def deploy(c, branch=None, no_push=False):
         print("⬇️  Syncing repo...")
         conn.run("git fetch origin --prune", pty=True)
         conn.run(f"git reset --hard origin/{target_branch}", pty=True)
+        # Ensure fresh Python bytecode: git reset can restore .pyc with an
+        # older mtime than the source, so CPython would reuse stale code.
+        conn.run("find . -name __pycache__ -type d -exec rm -rf {} + 2>/dev/null", warn=True)
         conn.run("git clean -fd", warn=True)  # remove untracked (e.g., pycache)
         conn.run(f"git checkout {target_branch}", pty=True)
         current = conn.run("git rev-parse --short HEAD", hide=True).stdout.strip()
