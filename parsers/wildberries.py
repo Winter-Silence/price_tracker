@@ -140,23 +140,21 @@ class WildberriesParser(BaseParser):
                         return m ? m[0].replace(/[^\\d]/g, '') : null;
                     }
 
-                    const nodes = Array.from(
-                        document.querySelectorAll('.product-card, [class*="product-card"], [data-card-id]')
-                    );
+                    const articles = Array.from(document.querySelectorAll('article'));
                     const results = [];
-                    for (const n of nodes) {
-                        if (!n || !n.getBoundingClientRect || n.getBoundingClientRect().height === 0) continue;
+                    for (const art of articles) {
+                        if (!art.getBoundingClientRect || art.getBoundingClientRect().height === 0) continue;
 
-                        let titleEl = n.querySelector('.product-card__name, [class*="goods-name"], .catalog-item__title');
-                        let priceEl = n.querySelector('.price-block__final-price, .product-card__price, .price-block__wallet-price, .price-block__card-price');
-                        let linkEl = n.querySelector('a.product-card__link, a[href*="/catalog/"], a[href*="/basket/"]');
+                        let h2 = art.querySelector('h2');
+                        let ins = art.querySelector('ins');
+                        let link = art.querySelector('a[href*="/catalog/"]');
 
-                        let title = titleEl ? titleEl.innerText.trim() : null;
-                        let price = priceEl ? priceEl.innerText.trim() : null;
-                        let href = linkEl ? linkEl.getAttribute('href') : null;
+                        let title = h2 ? h2.innerText.trim().replace(/\\n/g, ' ') : null;
+                        let price = ins ? ins.innerText.trim() : null;
+                        let href = link ? link.getAttribute('href') : null;
 
                         if (!price) {
-                            let m = n.innerText.match(/(\\d[\\d\\u2009\\u00a0\\s]*\\d)\\s*₽/);
+                            let m = art.innerText.match(/(\\d[\\d\\u2009\\u00a0\\s]*\\d)\\s*₽/);
                             if (m) price = m[0];
                         }
 
