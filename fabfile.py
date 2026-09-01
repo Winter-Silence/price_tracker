@@ -271,17 +271,18 @@ def setup(c):
 
 @task
 def sync_profile(c):
-    """Upload local chrome_profile/ to the server (Avito trusted session).
+    """Upload local chrome_profile_avito/ to the server (Avito trusted session).
 
-    Stops the bot, backs up the existing profile, uploads the local one, then
-    restarts the bot. Run once after solving Avito CAPTCHA on the dev machine.
+    Stops the bot, backs up the existing Avito profile, uploads the local
+    one, then restarts the bot. Run once after solving Avito CAPTCHA on
+    the dev machine.
 
     Examples:
         fab sync-profile
     """
-    local_profile = Path("chrome_profile")
+    local_profile = Path("chrome_profile_avito")
     if not local_profile.exists() or not any(local_profile.iterdir()):
-        raise Exit("❌ Local chrome_profile/ is empty or doesn't exist. "
+        raise Exit("❌ Local chrome_profile_avito/ is empty or doesn't exist. "
                    "Solve the Avito CAPTCHA in the browser first.")
 
     conn = _conn()
@@ -295,31 +296,31 @@ def sync_profile(c):
     # Back up any existing profile on the server
     print("📦 Backing up existing profile...")
     conn.run(
-        f"test -d {remote_path}/chrome_profile && "
-        f"mv {remote_path}/chrome_profile {remote_path}/chrome_profile.bak.$(date +%s) || true",
+        f"test -d {remote_path}/chrome_profile_avito && "
+        f"mv {remote_path}/chrome_profile_avito {remote_path}/chrome_profile_avito.bak.$(date +%s) || true",
         pty=True,
     )
 
     # Pack the local profile into a tar archive (recursive via SFTP's put)
-    archive = Path(tempfile.gettempdir()) / "chrome_profile.tar.gz"
-    print("🗜️  Packing chrome_profile/...")
+    archive = Path(tempfile.gettempdir()) / "chrome_profile_avito.tar.gz"
+    print("🗜️  Packing chrome_profile_avito/...")
     with tarfile.open(archive, "w:gz") as tar:
-        tar.add(local_profile, arcname="chrome_profile")
+        tar.add(local_profile, arcname="chrome_profile_avito")
 
-    print("⬆️  Uploading chrome_profile/...")
+    print("⬆️  Uploading chrome_profile_avito/...")
     try:
-        conn.put(local=str(archive), remote=f"{remote_path}/chrome_profile.tar.gz")
+        conn.put(local=str(archive), remote=f"{remote_path}/chrome_profile_avito.tar.gz")
         print("📦 Extracting on server...")
         conn.run(
-            f"cd {remote_path} && tar -xzf chrome_profile.tar.gz "
-            f"&& rm -f chrome_profile.tar.gz",
+            f"cd {remote_path} && tar -xzf chrome_profile_avito.tar.gz "
+            f"&& rm -f chrome_profile_avito.tar.gz",
             pty=True,
         )
     finally:
         archive.unlink(missing_ok=True)
 
     # Fix ownership (upload runs as the SSH user)
-    conn.run(f"chown -R {user}:{user} {remote_path}/chrome_profile", pty=True)
+    conn.run(f"chown -R {user}:{user} {remote_path}/chrome_profile_avito", pty=True)
 
     # Restart the bot
     print("▶️  Starting bot...")

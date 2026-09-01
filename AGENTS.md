@@ -76,8 +76,8 @@ fab deploy --no-push   # если push уже сделан
 fab status         # статус systemd-сервисов
 fab logs           # последние 50 строк лога бота
 fab restart        # перезапуск бота без деплоя
-fab sync-profile   # загрузить локальный chrome_profile/ на сервер (Avito, разово)
-fab rollback       # экстренный откат на HEAD~1
+ fab sync-profile   # загрузить локальный chrome_profile_avito/ на сервер (Avito, разово)
+ fab rollback       # экстренный откат на HEAD~1
 ```
 
 ### First-time Avito setup
@@ -88,7 +88,7 @@ dev-машине и загружается на сервер:
 
 ```bash
 # 1. На dev-машине (с GUI) открыть https://www.avito.ru в Chrome-профиле бота
-#    (`chrome_profile/`) и один раз вручную решить капчу / подтвердить доступ.
+#    (`chrome_profile_avito/`) и один раз вручную решить капчу / подтвердить доступ.
 #    Быстрее всего: `python scripts/test_avito_search.py <url>` и решить капчу,
 #    когда бот откроет окно Chrome.
 
@@ -97,10 +97,16 @@ dev-машине и загружается на сервер:
 fab sync-profile
 ```
 
-Профиль `chrome_profile/` (gitignored) сохраняется между деплоями — `fab deploy`
-его не трогает, а `_check_and_reset_chrome_profile` стирает его только если
-`SingletonLock` указывает на живую PID. Повторный `fab sync-profile` не нужен,
-пока сессия жива; при повторной капче — просто повторить оба шага.
+Профиль `chrome_profile_avito/` (gitignored) хранит доверенную Avito-сессию
+между деплоями — `fab deploy` его не трогает. Парсеры цен (WB/Ozon/Citilink)
+используют отдельный `chrome_profile/`, а Avito — `chrome_profile_avito/`,
+чтобы их 5-минутный и часовой циклы не конфликтовали по `SingletonLock`.
+Файл замков (`SingletonLock`/`SingletonCookie`/`SingletonSocket`) может стать
+stale, если профиль синхронизирован с dev-машины с другим hostname — в таком
+случае `_check_and_reset_chrome_profile` удаляет только замки (куки/сессию
+сохраняет). Повторный `fab sync-profile` не нужен, пока сессия жива;
+при повторной капче — просто повторить оба шага.
+
 
 > **Shell-совместимость:** инструкции активации venv даны для bash
 > (`source venv/bin/activate`). Для fish используйте `activate.fish` —
@@ -195,13 +201,22 @@ logger.error("Parser failed for %s: %s", url, exc)
   объявлений (url/title/price). Новые объявления определяются по `avito_search_items`
   и присылаются пользователю с ценой и ссылкой. Первый запуск просто запоминает
   текущий список без уведомлений; уведомления идут только про появившиеся заново.
-  Avito требует доверенную сессию: caches решаются вручную один раз в Chrome-профиле
-  бота (`chrome_profile`), дальше профиль должен сохраняться (см. `_check_and_reset_chrome_profile`).
-- Chrome-релиабильность: обязательно включать `--no-sandbox` в `CHROME_ARGS` (сам
-  `no_sandbox=True` у nodriver на части систем не добавляет флаг). Профиль НЕ стирать
-  при наличии `Singleton*`/`*.lock` файлов — они остаются после корректного закрытия;
-  стирать только если `SingletonLock` указывает на живую PID (см. `_check_and_reset_chrome_profile`).
-
+   Avito требует доверенную сессию: caches решаются вручную один раз в
+   Chrome-профиле бота (`chrome_profile_avito/`), дальше профиль должен
+   сохраняться (см. `_check_and_reset_chrome_profile`). Парсеры цен
+   (WB/Ozon/Citilink) используют отдельный `chrome_profile/` — между
+   ними нет конфликта замков.
+ - Chrome-релиабильность: обязательно включать `--no-sandbox` в
+   `CHROME_ARGS` (`no_sandbox=True` у nodriver на части систем не
+   добавляет флаг). `_check_and_reset_chrome_profile` удаляет только
+   стале-к SingletonLock/Cookie/Socket (куки/сессию сохраняет), а
+   именно весь профиль — только если живой Chrome сам не умирает
+   после SIGTERM. Особый случай: если профиль синхронизирован с
+   dev-машины (`chrome_profile_avito/` с другого хоста), `SingletonLock`
+   будет ссылаться на чужой hostname — Chrome блокирует запуск;
+   `_check_and_reset_chrome_profile` распознаёт это и починяет без
+   потери данных. Повторный `fab sync-profile` не нужен, пока сессия
+   жива; при повторной капче — просто повторить оба шага.
 ### Telegram-бот
 - Использовать `ConversationHandler` для многошаговых диалогов (`/add`)
 - Пользователю — дружелюбные сообщения без технических деталей

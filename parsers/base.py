@@ -2,6 +2,8 @@ import random
 import asyncio
 import shutil
 import os
+import socket
+import time
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -22,6 +24,10 @@ uc.Config._default_browser_args = [
 
 # Chrome profile directory — outside /tmp to avoid filling it up
 CHROME_PROFILE_DIR = Path(os.getenv("CHROME_PROFILE_DIR", "./chrome_profile"))
+
+# Separate profile for Avito, so its 5-minute polling never contends with the
+# hourly price-poller on the same `chrome_profile` user-data-dir.
+AVITO_PROFILE_DIR = Path(os.getenv("AVITO_PROFILE_DIR", "./chrome_profile_avito"))
 
 SCREENSHOTS_DIR = Path("screenshots")
 
@@ -208,6 +214,7 @@ class BaseParser(ABC):
 
     def __init__(self):
         self._consecutive_failures = 0
+        self._profile_dir = AVITO_PROFILE_DIR if self.marketplace == "avito" else CHROME_PROFILE_DIR
 
     @classmethod
     @abstractmethod
@@ -230,60 +237,115 @@ class BaseParser(ABC):
     ) -> SearchResult | None:
         pass
 
-    def _check_and_reset_chrome_profile(self):
-        """Check if Chrome profile seems corrupted and reset if needed.
-
-        A freshly-closed Chrome legitimately leaves behind SingletonCookie /
-        SingletonSocket files, so we must NOT wipe the profile merely because
-        such ephemeral files exist — doing so would destroy accumulated cookies
-        (e.g. a trusted Avito session). We only reset when the profile is
-        genuinely stuck: i.e. a live Chrome process on this machine is still
-        holding the SingletonLock.
-
-        Returns True if profile was reset, False otherwise.
-        """
+    def _process_live(self, pid: int) -> bool:
         try:
-            if not CHROME_PROFILE_DIR.exists():
+            os.kill(pid, 0)
+        except (ProcessLookupError, PermissionError):
+            return pid > 0 and os.path.exists(f"/proc/{pid}")
+        except Exception:
+            return False
+        return True
+
+    def _process_is_our_chrome(self, pid: int) -> bool:
+        try:
+            with open(f"/proc/{pid}/cmdline", "rb") as f:
+                cmdline = f.read().replace(b"\0", b" ").decode(errors="replace")
+            return "chrome" in cmdline and str(self._profile_dir) in cmdline
+        except Exception:
+            return False
+
+    def _remove_stale_lock_files(self, profile_dir: Path) -> None:
+        for name in ("SingletonLock", "SingletonCookie", "SingletonSocket"):
+            (profile_dir / name).unlink(missing_ok=True)
+        # Clean up an orphaned /tmp socket directory that Chrome left behind.
+        try:
+            parent = profile_dir.parent
+            for d in sorted(parent.glob(".com.google.Chrome.*")):
+                if d.is_dir() and not any(d.iterdir()):
+                    shutil.rmtree(d, ignore_errors=True)
+        except Exception:
+            pass
+
+    def _check_and_reset_chrome_profile(self, profile_dir: Path | None = None) -> bool:
+        """Detect and clear stale Chrome singleton locks so the profile can be reused.
+
+        Chrome refuses to start when `chrome_profile/SingletonLock` points to
+        a process on a **different host** (e.g. a profile synced from dev via
+        `fab sync-profile`) or to a dead PID — even though the PID is gone.
+        In those cases we remove **only the lock files**, preserving cookies
+        (e.g. the trusted Avito session).
+
+        If the lock names a live Chrome on the same machine that actually
+        owns this profile, we try to terminate it; only as a last resort do
+        we back up and reset the whole profile.
+        """
+        if profile_dir is None:
+            profile_dir = self._profile_dir
+        try:
+            if not profile_dir.exists():
                 return False
 
-            def _process_live(pid: int) -> bool:
-                try:
-                    os.kill(pid, 0)
-                except (ProcessLookupError, PermissionError):
-                    return pid > 0 and os.path.exists(f"/proc/{pid}")
-                except Exception:
-                    return False
-                return True
+            lock_path = profile_dir / "SingletonLock"
+            if not lock_path.exists():
+                return False
 
-            # SingletonLock is a symlink "hostname-pid" pointing to the live
-            # Chrome instance that started this profile. If it resolves to a
-            # process that is gone, the profile is safe to reuse.
-            lock_path = CHROME_PROFILE_DIR / "SingletonLock"
-            actively_locked = False
-            try:
-                if lock_path.exists():
-                    target = lock_path.resolve().name if lock_path.is_symlink() else lock_path.name
-                    # target looks like "hostname-pid"
-                    pid_str = str(target).rsplit("-", 1)[-1]
-                    if pid_str.isdigit():
-                        actively_locked = _process_live(int(pid_str))
-            except Exception as exc:
-                logger.debug("Could not inspect SingletonLock: %s", exc)
+            target = lock_path.resolve().name if lock_path.is_symlink() else lock_path.name
+            hostname, _, pid_str = str(target).rpartition("-")
+            pid = int(pid_str) if pid_str.isdigit() else None
+            local_hostname = socket.gethostname()
 
-            if not actively_locked:
-                logger.debug(
-                    "Chrome profile not actively locked — keeping cookies/session"
+            stale = False
+            should_kill = False
+
+            if not hostname or hostname != local_hostname:
+                # Lock created on another machine — Chrome blocks the profile.
+                logger.warning(
+                    "Foreign SingletonLock %s (%s) — removing stale lock files",
+                    target, hostname or "(none)",
                 )
+                stale = True
+            elif pid is None:
+                stale = True
+            elif not self._process_live(pid):
+                logger.warning(
+                    "SingletonLock %s points to dead pid %d — removing stale lock files",
+                    target, pid,
+                )
+                stale = True
+            elif self._process_is_our_chrome(pid):
+                should_kill = True
+            else:
+                # PID is alive but it is NOT our Chrome (PID reuse / foreign).
+                # We must not kill it; treat the lock as stale and remove it.
+                logger.warning(
+                    "SingletonLock %s references alien pid %d — removing stale lock files",
+                    target, pid,
+                )
+                stale = True
+
+            if should_kill:
+                try:
+                    logger.warning("Terminating orphan Chrome (pid=%d) holding profile %s", pid, profile_dir)
+                    os.kill(pid, 15)
+                    time.sleep(1)
+                except Exception:
+                    pass
+                if self._process_live(pid):
+                    logger.warning("Orphan Chrome pid=%d still alive — resetting whole profile", pid)
+                    backup_dir = profile_dir.parent / f"{profile_dir.name}.corrupted.{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+                    shutil.move(str(profile_dir), str(backup_dir))
+                    logger.info("Backed up potentially corrupted Chrome profile to %s", backup_dir)
+                    profile_dir.mkdir(parents=True, exist_ok=True)
+                    logger.info("Created fresh Chrome profile directory")
+                    return True
+                stale = True
+
+            if stale:
+                self._remove_stale_lock_files(profile_dir)
+                logger.info("Cleared stale singleton locks for %s", profile_dir)
                 return False
 
-            logger.warning("Chrome profile is held by a live process — resetting")
-            backup_dir = CHROME_PROFILE_DIR.parent / f"{CHROME_PROFILE_DIR.name}.corrupted.{datetime.now().strftime('%Y%m%d_%H%M%S')}"
-            shutil.move(str(CHROME_PROFILE_DIR), str(backup_dir))
-            logger.info(f"Backed up potentially corrupted Chrome profile to {backup_dir}")
-
-            CHROME_PROFILE_DIR.mkdir(parents=True, exist_ok=True)
-            logger.info("Created fresh Chrome profile directory")
-            return True
+            return False
 
         except Exception as e:
             logger.warning(f"Error checking Chrome profile: {e}")
@@ -321,52 +383,41 @@ class BaseParser(ABC):
             logger.warning("Stealth injection failed: %s", exc)
 
     async def start_session(self):
-        print(f"[DEBUG] start_session called for {self.marketplace}")
-        print(f"[DEBUG] HOME: {os.environ.get('HOME', 'NOT SET')}")
-        print(f"[DEBUG] XDG_CONFIG_HOME: {os.environ.get('XDG_CONFIG_HOME', 'NOT SET')}")
-        print(f"[DEBUG] DISPLAY: {os.environ.get('DISPLAY', 'NOT SET')}")
-        print(f"[DEBUG] REAL_CHROME: {REAL_CHROME}")
-        print(f"[DEBUG] CHROME_PROFILE_DIR: {CHROME_PROFILE_DIR}")
-        print(f"[DEBUG] CHROME_ARGS: {CHROME_ARGS}")
-        
-        # Set HOME and XDG_CONFIG_HOME to workspace directories to avoid sandbox violations
         workspace_home = Path("./chrome_home")
         workspace_home.mkdir(parents=True, exist_ok=True)
         os.environ["HOME"] = str(workspace_home)
         os.environ["XDG_CONFIG_HOME"] = str(workspace_home / ".config")
-        print(f"[DEBUG] Setting HOME to: {os.environ.get('HOME')}")
-        print(f"[DEBUG] Setting XDG_CONFIG_HOME to: {os.environ.get('XDG_CONFIG_HOME')}")
-        
-        # Check and reset Chrome profile if needed
+        logger.debug("start_session %s | HOME=%s | CHROME_ARGS=%s", self.marketplace, os.environ["HOME"], CHROME_ARGS)
+
+        # Check and reset stale Chrome singleton locks (keeps cookies).
         self._check_and_reset_chrome_profile()
-        
-        # Retry logic for browser startup
+
+        # Retry logic for browser startup.
         max_retries = 3
         for attempt in range(max_retries):
             try:
-                CHROME_PROFILE_DIR.mkdir(parents=True, exist_ok=True)
-                print(f"[DEBUG] About to call uc.start (attempt {attempt + 1}/{max_retries})")
-                self._browser = await uc.start(
-                    browser_executable_path=REAL_CHROME,
-                    headless=False,
-                    browser_args=CHROME_ARGS,
-                    no_sandbox=True,
-                    user_data_dir=CHROME_PROFILE_DIR,
+                self._profile_dir.mkdir(parents=True, exist_ok=True)
+                logger.debug("uc.start attempt %d/%d for %s", attempt + 1, max_retries, self.marketplace)
+                self._browser = await asyncio.wait_for(
+                    uc.start(
+                        browser_executable_path=REAL_CHROME,
+                        headless=False,
+                        browser_args=CHROME_ARGS,
+                        no_sandbox=True,
+                        user_data_dir=self._profile_dir,
+                    ),
+                    timeout=60,
                 )
-                print(f"[DEBUG] uc.start succeeded on attempt {attempt + 1}")
-                
-                # Verify the browser is working correctly
-                await self._verify_browser_works()
-                
-                break  # Success, exit retry loop
+                logger.debug("uc.start succeeded on attempt %d", attempt + 1)
+
+                await asyncio.wait_for(self._verify_browser_works(), timeout=45)
+                break
             except Exception as e:
-                print(f"[DEBUG] uc.start failed on attempt {attempt + 1}: {e}")
-                if attempt == max_retries - 1:  # Last attempt
-                    print(f"[DEBUG] All {max_retries} attempts failed")
-                    raise  # Re-raise the last exception
-                # Wait before retrying
-                await asyncio.sleep(2 ** attempt)  # Exponential backoff
-                
+                logger.warning("uc.start failed on attempt %d/%d for %s: %s", attempt + 1, max_retries, self.marketplace, e)
+                if attempt == max_retries - 1:
+                    raise
+                await asyncio.sleep(2 ** attempt)
+
         self._session_active = True
         self._current_page = None
 
