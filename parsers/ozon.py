@@ -193,13 +193,22 @@ class OzonParser(BaseParser):
                         const href = linkEl.getAttribute('href');
                         if (!href || seen.has(href)) return;
 
-                        let title = linkEl.innerText ? linkEl.innerText.trim() : null;
+                        let title = null;
+                        let titleEl = node.querySelector('[class*="tsBody500Medium"]');
+                        if (titleEl) title = titleEl.innerText.trim();
                         if (!title) {
-                            let tEl = node.querySelector('[class*="title"], h2, h3');
+                            let links = node.querySelectorAll('a[href*="/product/"]');
+                            let lastLink = links.length > 1 ? links[links.length - 1] : links[0];
+                            if (lastLink && lastLink.innerText) title = lastLink.innerText.trim();
+                        }
+                        if (!title) {
+                            let tEl = node.querySelector('h2, h3');
                             if (tEl) title = tEl.innerText.trim();
                         }
 
-                        let priceEl = node.querySelector('[class*="price"] [style*="font-size"], [class*="price"] > span');
+                        let priceEl = node.querySelector('[class*="Headline500Medium"]')
+                            || node.querySelector('[class*="price"] [style*="font-size"]')
+                            || node.querySelector('[class*="price"] > span');
                         let price = priceEl ? priceEl.innerText.trim() : null;
                         if (!price) {
                             let m = node.innerText.match(/(\\d[\\d\\u2009\\u00a0\\s]*\\d)/);
@@ -218,7 +227,8 @@ class OzonParser(BaseParser):
                         if (n.tagName === 'A' && n.getAttribute('href') && n.getAttribute('href').includes('/product/')) {
                             pushCard(n.closest('[data-testid="tile"], [class*="tile"], div') || n, n);
                         } else {
-                            const link = n.querySelector('a[href*="/product/"]') || n;
+                            const links = n.querySelectorAll('a[href*="/product/"]');
+                            const link = links.length > 1 ? links[links.length - 1] : (links[0] || n);
                             pushCard(n, link);
                         }
                     }
