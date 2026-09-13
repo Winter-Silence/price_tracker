@@ -22,7 +22,7 @@ price-tracker/
 ├── .env                    # секреты (не в git)
 ├── .env.example            # шаблон
 ├── requirements.txt
-├── fabfile.py               # Fabric tasks: fab deploy / rollback / status / logs / restart / stop / start / setup / check
+├── fabfile.py               # Fabric tasks: fab deploy / rollback / status / logs / restart / stop / start / setup / sync-profile / check
 ├── .deploy.env              # конфиг деплоя (не в git; см. .deploy.env.example)
 ├── .deploy.env.example
 ├── main.py                 # точка входа: бот + планировщик в одном event loop
@@ -32,22 +32,33 @@ price-tracker/
 ├── parsers/
 │   ├── base.py             # абстрактный BaseParser
 │   ├── __init__.py         # PARSERS = [...]; get_parser(url) -> BaseParser | None
-│   └── wildberries.py      # один файл = один маркетплейс
+│   ├── wildberries.py      # Wildberries
+│   ├── ozon.py             # Ozon
+│   ├── citilink.py         # Citilink
+│   └── avito.py            # Avito (новые объявления)
 ├── scheduler/
-│   └── jobs.py             # poll_prices() + start_scheduler()
+│   └── jobs.py             # poll_prices() + poll_search_prices() + poll_avito_search() + start_scheduler()
 ├── bot/
-│   ├── handlers.py         # ConversationHandler и команды /start /add /link /threshold /list /delete /history
-│   └── notifications.py    # send_alert_notification()
+│   ├── handlers.py         # ConversationHandler и команды /start /add /link /threshold /list /delete /history /cancel
+│   ├── notifications.py    # send_alert_notification() + send_search_alert_notification() + send_avito_new_item_notification()
+│   ├── bot_instance.py     # глобальный синглтон: set_bot() / get_bot()
+│   └── admin_notify.py     # send_admin_notification() для служебных уведомлений
 ├── utils/
-│   └── logger.py           # единый логгер проекта
-└── scripts/
-    ├── deploy.sh               # первичная установка на сервер (ставит Chrome, asdf, venv, systemd-юниты)
-    ├── install-systemd.sh      # устаревший альтернативный путь установки systemd-юнитов
-    ├── price-tracker-xvfb.service    # systemd-юнит Xvfb
-    ├── price-tracker-fluxbox.service # systemd-юнит fluxbox (WM поверх Xvfb)
-    ├── price-tracker.service         # systemd-юнит бота
-    ├── test_parsers.py         # ручной запуск парсера по URL из CLI
-    └── test_fingerprint.py     # ручной тест отпечатков браузера
+│   ├── logger.py           # единый логгер проекта
+│   └── display.py          # ensure_xvfb() / stop_xvfb() — управление виртуальным дисплеем
+├── scripts/
+│   ├── deploy.sh               # первичная установка на сервер (ставит Chrome, asdf, venv, systemd-юниты)
+│   ├── install-systemd.sh      # устаревший альтернативный путь установки systemd-юнитов
+│   ├── price-tracker-xvfb.service    # systemd-юнит Xvfb
+│   ├── price-tracker-fluxbox.service # systemd-юнит fluxbox (WM поверх Xvfb)
+│   ├── price-tracker.service         # systemd-юнит бота
+│   ├── test_parsers.py         # ручной запуск парсера по URL из CLI
+│   ├── test_fingerprint.py     # ручной тест отпечатков браузера
+│   └── test_avito_search.py    # ручной тест парсера Avito
+└── docs/
+    ├── PROJECT.md          # архитектура, парсеры, stealth, схема БД
+    ├── INSTALL.md          # инструкция по установке
+    └── USAGE.md            # команды бота, уведомления, добавление маркетплейсов
 ```
 
 ## Команды
@@ -73,11 +84,16 @@ python scripts/test_parsers.py "https://www.wildberries.ru/catalog/12345678/deta
 fab check          # проверка соединения с сервером
 fab deploy         # push + SSH + pull + пересоздание venv + restart + логи
 fab deploy --no-push   # если push уже сделан
+fab deploy --branch <name>  # деплой конкретной ветки
 fab status         # статус systemd-сервисов
 fab logs           # последние 50 строк лога бота
+fab logs --lines 200   # последние N строк
 fab restart        # перезапуск бота без деплоя
- fab sync-profile   # загрузить локальный chrome_profile_avito/ на сервер (Avito, разово)
- fab rollback       # экстренный откат на HEAD~1
+fab stop           # остановка бота
+fab start          # запуск бота
+fab sync-profile   # загрузить локальный chrome_profile_avito/ на сервер (Avito, разово)
+fab rollback       # экстренный откат на HEAD~1
+fab rollback --steps 3  # откат на N коммитов назад
 ```
 
 ### First-time Avito setup
@@ -141,17 +157,24 @@ stale, если профиль синхронизирован с dev-машин�
 |---|---|
 | `TELEGRAM_BOT_TOKEN` | Токен бота от @BotFather |
 | `DB_PATH` | Путь к SQLite-файлу, например `./data/prices.db` |
-| `POLL_INTERVAL_MINUTES` | Интервал опроса цен (default: 60) |
+| `POLL_INTERVAL_MINUTES` | Интервал опроса цен (default: 120) |
 | `AVITO_POLL_INTERVAL_MINUTES` | Интервал опроса поисковых страниц Avito (default: 5) |
+| `AVITO_PROFILE_DIR` | Путь к Chrome-профилю для Avito (default: `./chrome_profile_avito`) |
+| `PROXY_URL` | SOCKS5-прокси для Telegram-бота (опционально, формат: `socks5://login:pass@host:port`) |
+| `ADMIN_TELEGRAM_ID` | Telegram ID администратора для служебных уведомлений (опционально) |
 
 Загружать через `python-dotenv` только в `main.py`, дальше передавать явно.
 
 ## Правила кодирования
 
+### Язык общения
+- Общаться с пользователем **только на русском языке** (все ответы, комментарии к коду, сообщения в Telegram-боте)
+- Размышлять (internal reasoning) можно на любом языке
+
 ### Async везде
 - Все функции БД — `async def` через `aiosqlite`
 - Все обработчики бота — `async def`
-- Задача планировщика `poll_prices()` — `async def`
+- Задачи планировщика — `async def`: `poll_prices()`, `poll_search_prices()`, `poll_avito_search()`
 - Никакого `asyncio.run()` внутри модулей — только в `main.py`
 
 ### Обработка ошибок
@@ -184,6 +207,7 @@ logger.error("Parser failed for %s: %s", url, exc)
   - `can_handle(url: str) -> bool` (classmethod, проверка по домену)
   - `get_price(url: str) -> float | None` (async)
   - `get_price_tiers(url: str) -> dict[str, float] | None` (async) — возвращает все варианты цен (standard, card, premium, wb_club). По умолчанию обёртка над `get_price()`.
+  - `get_cheapest_from_search(search_url: str, title_filter: str) -> SearchResult | None` (async) — ищет самый дешёвый товар на поисковой странице, фильтрует по `title_filter`. Возвращает `SearchResult(price, product_url, product_title, tiers)`.
 - Доступные типы цен: `standard`, `card`, `premium`, `wb_club`. Словарь `TIER_LABELS` в `parsers/base.py`.
 - Зарегистрировать в `parsers/__init__.py` → список `PARSERS`
 - Добавить типы привилегий маркетплейса в словрь `MARKETPLACE_TIERS` в `parsers/__init__.py`
@@ -222,3 +246,5 @@ logger.error("Parser failed for %s: %s", url, exc)
 - Пользователю — дружелюбные сообщения без технических деталей
 - Все сообщения с эмодзи для наглядности (🔔 📦 💰 🏪 🔗)
 - Inline-кнопки для деструктивных действий (удаление с подтверждением)
+- Синглтон `bot_instance.py`: `set_bot()` / `get_bot()` — доступ к Bot из планировщика/уведомлений
+- `admin_notify.py`: `send_admin_notification()` — служебные уведомления администратору (если задан `ADMIN_TELEGRAM_ID`)

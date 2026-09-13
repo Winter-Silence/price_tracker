@@ -17,6 +17,7 @@ from db.database import (
     add_avito_item,
 )
 from parsers import PARSERS
+from parsers.base import matches_title_filter
 from bot.notifications import send_alert_notification, send_search_alert_notification, send_avito_new_item_notification
 from utils.logger import logger
 
@@ -377,7 +378,12 @@ async def poll_avito_search():
                     continue
 
                 seen = await get_seen_avito_items(search_link_id)
-                new_items = [it for it in items if it.url not in seen]
+                title_filter = link.get("title_filter", "")
+                new_items = [
+                    it for it in items
+                    if it.url not in seen
+                    and matches_title_filter(it.title, title_filter)
+                ]
 
                 for it in items:
                     await add_avito_item(search_link_id, it.url, it.title, it.price)
