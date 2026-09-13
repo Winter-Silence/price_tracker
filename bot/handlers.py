@@ -115,10 +115,10 @@ async def add_url(update: Update, context: ContextTypes.DEFAULT_TYPE):
         context.user_data["add_mode"] = "search"
         await update.message.reply_text(
             "🆕 Это поисковый запрос Avito. Буду следить за страницей и сразу "
-            "сообщать, когда на ней появится новый товар (с ценой и ссылкой).\n\n"
-            "📦 Введи название для удобства (например, \"AMD Ryzen 7 5700X\")"
+            "сообщать, когда на ней появится новый товар, подходящий под ваш фильтр.\n\n"
+            "🔍 Введи ключевые слова для фильтрации заголовков (например, \"AMD Ryzen 7 5700X\")"
         )
-        return ADD_NAME
+        return ADD_TITLE_FILTER
 
     keyboard = [
         [InlineKeyboardButton("📦 Конкретный товар", callback_data="addmode_product")],
@@ -198,10 +198,11 @@ async def _create_tracking(user_id: int, context: ContextTypes.DEFAULT_TYPE, tar
     product_id = await add_product(name, user_id, threshold_price=target_price)
 
     if marketplace == "avito":
-        await add_search_link(product_id, "avito", url, "")
+        title_filter = context.user_data.get("title_filter", "")
+        await add_search_link(product_id, "avito", url, title_filter)
         return (
             "✅ Avito-поиск добавлен! Буду проверять страницу каждые 5 минут и "
-            "сразу сообщу, когда появится новый товар (с ценой и ссылкой). 🔔"
+            "сразу сообщу, когда появится новый товар, подходящий под ваш фильтр. 🔔"
         )
 
     if mode == "search":
