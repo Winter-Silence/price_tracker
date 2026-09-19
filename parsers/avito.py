@@ -152,5 +152,3 @@ class AvitoParser(BaseParser):
             await self._take_screenshot(page, "error")
             self.register_parse_failure()
             return None
-        finally:
-            await self._close()

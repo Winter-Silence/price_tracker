@@ -354,6 +354,15 @@ async def poll_avito_search():
 
         parser = parser_cls()
 
+        needs_browser_session = hasattr(parser, "start_session") and callable(getattr(parser, "start_session"))
+
+        if needs_browser_session:
+            try:
+                await parser.start_session()
+            except Exception as exc:
+                logger.error("Failed to start browser session for avito %s: %s", domain, exc)
+                continue
+
         captcha_hit = False
 
         for link in domain_link_list:
@@ -411,16 +420,29 @@ async def poll_avito_search():
             logger.debug("Inter-request delay %.1fs for avito %s", delay, domain)
             await asyncio.sleep(delay)
 
+        if needs_browser_session:
+            try:
+                await parser.end_session()
+            except Exception as exc:
+                logger.error("Failed to end browser session for avito %s: %s", domain, exc)
+
 
 async def _run_avito_periodic():
     interval = _get_avito_poll_interval()
     logger.info("Avito polling started, interval %d minutes", interval)
     while True:
+        start = asyncio.get_event_loop().time()
         try:
             await poll_avito_search()
         except Exception as exc:
             logger.error("avito polling failed: %s", exc)
-        await asyncio.sleep(interval * 60)
+        elapsed = asyncio.get_event_loop().time() - start
+        sleep_time = max(1, interval * 60 - elapsed)
+        logger.info(
+            "Avito poll cycle took %.1fs, next in %.1fs",
+            elapsed, sleep_time,
+        )
+        await asyncio.sleep(sleep_time)
 
 
 async def _run_periodic():
