@@ -447,6 +447,19 @@ class BaseParser(ABC):
                 pass
         self._session_active = False
         self._current_page = None
+
+        # Belt-and-braces: nodriver's aclose only terminates the MAIN bot
+        # Chrome PID; the real Chrome binary leaves a whole tree of descendants
+        # (renderer / GPU / network / utility), each still carrying
+        # --user-data-dir=<profile>.  Sweeping by profile marker kills the
+        # entire tree so orphans never accumulate across poll cycles
+        # (previously observed as ~7 GB of stuck chrome on the server).
+        try:
+            from utils.chrome_cleanup import async_sweep_chrome_tree
+            await async_sweep_chrome_tree(self._profile_dir)
+        except Exception as exc:
+            logger.warning("Chrome tree sweep failed for %s: %s", self.marketplace, exc)
+
         logger.debug("Browser session ended for %s", self.marketplace)
 
     async def _setup_browser(self):
