@@ -4,6 +4,7 @@
 /.deploy.env
 /screenshots/*
 /data/*
+!/data/books_catalog.json
 /venv/
 
 # Python bytecode cache
@@ -13,3 +14,6 @@ __pycache__/
 # Chrome profile directories used by nodriver
 chrome_home/
 chrome_profile/
+chrome_profile_avito/
+chrome_profile_avito.blocked.*
+chrome_profile_avito.reset_at

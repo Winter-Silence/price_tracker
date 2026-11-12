@@ -42,6 +42,13 @@ CHROME_ARGS = [
     "--no-sandbox",
 ]
 
+# Заглушка «Доступ ограничен» может означать и блокировку по IP, а не профиля.
+# Чтобы не пересоздавать профиль (а с ним и ~200 МБ бэкапа) каждый цикл,
+# авто-сброс профиля ограничен по времени.
+PROFILE_RESET_MIN_INTERVAL = 30 * 60  # секунд
+PROFILE_BACKUP_PREFIX = ".blocked."
+PROFILE_RESET_MARKER_SUFFIX = ".reset_at"
+
 # JavaScript injected via CDP Page.addScriptToEvaluateOnNewDocument
 # before any page scripts execute. Removes automation indicators that
 # Ozon's WAF uses to detect headless/controlled browsers.
@@ -266,6 +273,68 @@ class BaseParser(ABC):
         except Exception:
             pass
 
+    def _reset_profile_dir(self, reason: str) -> bool:
+        """Пересоздать профиль Chrome с нуля (старый каталог — в бэкап).
+
+        Нужно, когда маркетплейс блокирует сам профиль (куки/сессию), а не IP:
+        Qrator в этом случае отдаёт заглушку «Доступ ограничен» на любой запрос
+        с этими cookies, и без сброса бот из блокировки уже не выйдет — это
+        проверялось на Avito (профиль с отработанными cookies блокировался
+        даже спустя 12 часов паузы, чистый профиль работал сразу).
+        """
+        profile_dir = self._profile_dir
+        backup_dir: Path | None = None
+        try:
+            now = time.time()
+            marker = profile_dir.parent / f"{profile_dir.name}{PROFILE_RESET_MARKER_SUFFIX}"
+            if marker.exists():
+                try:
+                    last_reset = float(marker.read_text().strip() or 0)
+                except ValueError:
+                    last_reset = 0.0
+                if now - last_reset < PROFILE_RESET_MIN_INTERVAL:
+                    logger.info(
+                        "%s: сброс профиля %s пропущен — прошло %.0f с из %d с",
+                        reason, profile_dir, now - last_reset,
+                        PROFILE_RESET_MIN_INTERVAL,
+                    )
+                    return False
+
+            marker.write_text(str(now))
+
+            if profile_dir.exists():
+                backup_dir = (
+                    profile_dir.parent
+                    / f"{profile_dir.name}{PROFILE_BACKUP_PREFIX}"
+                    f"{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+                )
+                shutil.move(str(profile_dir), str(backup_dir))
+
+            profile_dir.mkdir(parents=True, exist_ok=True)
+
+            if backup_dir is not None:
+                logger.warning(
+                    "%s: профиль %s заменён на чистый, старый сохранён в %s",
+                    reason, profile_dir, backup_dir,
+                )
+            else:
+                logger.warning(
+                    "%s: создан чистый профиль %s", reason, profile_dir,
+                )
+
+            # Бэкапы весят по ~200 МБ — оставляем только последний.
+            for old in sorted(profile_dir.parent.glob(
+                f"{profile_dir.name}{PROFILE_BACKUP_PREFIX}*",
+            )):
+                if old != backup_dir:
+                    shutil.rmtree(old, ignore_errors=True)
+
+            return True
+
+        except Exception as e:
+            logger.error("Не удалось сбросить профиль %s: %s", profile_dir, e)
+            return False
+
     def _check_and_reset_chrome_profile(self, profile_dir: Path | None = None) -> bool:
         """Detect and clear stale Chrome singleton locks so the profile can be reused.
 
@@ -459,6 +528,14 @@ class BaseParser(ABC):
             await async_sweep_chrome_tree(self._profile_dir)
         except Exception as exc:
             logger.warning("Chrome tree sweep failed for %s: %s", self.marketplace, exc)
+
+        # Маркетплейс заблокировал сам профиль (не IP) — пересоздаём его,
+        # иначе каждый следующий цикл будет получать ту же заглушку.
+        if getattr(self, "_profile_blocked", False):
+            self._profile_blocked = False
+            self._reset_profile_dir(
+                f"{self.marketplace}: маркетплейс вернул страницу блокировки",
+            )
 
         logger.debug("Browser session ended for %s", self.marketplace)
 

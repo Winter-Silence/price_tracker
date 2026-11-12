@@ -1,0 +1,1546 @@
+[
+  {
+    "index": 1,
+    "author": "Цезарь",
+    "title": "Записки о Галльской войне",
+    "year": 1948,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 4500,
+    "price_max": 6500,
+    "price_top": 12000,
+    "title_keys": [
+      [
+        "записка",
+        "галльский",
+        "война"
+      ],
+      [
+        "записка",
+        "галльский"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "цезарь"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "5 000 экз., первый год серии; часто продают как «античная история» без указания серии",
+    "query": "Цезарь Записки о Галльской войне 1948"
+  },
+  {
+    "index": 2,
+    "author": "Афанасий Никитин",
+    "title": "Хожение за три моря",
+    "year": 1948,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 4500,
+    "price_max": 6000,
+    "price_top": 9000,
+    "title_keys": [
+      [
+        "хожение",
+        "три",
+        "море"
+      ],
+      [
+        "хождение",
+        "три",
+        "море"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "афанасий",
+        "никитин"
+      ],
+      [
+        "никитин"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "8 000 экз., но 1948 г. и суперобложка редкость; недооценивают как «путевые записки»",
+    "query": "Хожение за три моря 1948"
+  },
+  {
+    "index": 3,
+    "author": "Низам ал-Мульк",
+    "title": "Сиасет-намэ",
+    "year": 1949,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 5000,
+    "price_max": 7500,
+    "price_top": 11000,
+    "title_keys": [
+      [
+        "сиасет",
+        "намэ"
+      ],
+      [
+        "сиасет",
+        "нама"
+      ],
+      [
+        "сиасет",
+        "намэ"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "низ",
+        "ала",
+        "мульк"
+      ],
+      [
+        "низ",
+        "аль",
+        "мульк"
+      ],
+      [
+        "низ"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "5 000 экз., восточная классика; продавцы пишут «персидская книга», не зная серии",
+    "query": "Сиасет-намэ 1949"
+  },
+  {
+    "index": 4,
+    "author": "Цицерон",
+    "title": "Письма к Аттику, т. I",
+    "year": 1949,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 4500,
+    "price_max": 6500,
+    "price_top": 10000,
+    "title_keys": [
+      [
+        "письмо",
+        "аттик"
+      ],
+      [
+        "письмо",
+        "аттик"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "цицерон"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "5 000 экз.; ценность растёт комплектом из 3 томов (до 25 000)",
+    "query": "Цицерон Письма к Аттику 1949"
+  },
+  {
+    "index": 5,
+    "author": "Катон",
+    "title": "Земледелие",
+    "year": 1950,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 5500,
+    "price_max": 8000,
+    "price_top": 13000,
+    "title_keys": [
+      [
+        "земледелие"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "катон"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": true,
+    "group": "",
+    "note": "4 000 экз., узкоспециальный античный агротекст — мало кто ищет, но коллекционеры ЛП берут",
+    "query": "Катон Земледелие 1950"
+  },
+  {
+    "index": 6,
+    "author": "Махабхарата",
+    "title": "Кн. 1. Адипарва",
+    "year": 1950,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 6500,
+    "price_max": 9500,
+    "price_top": 15000,
+    "title_keys": [
+      [
+        "адипаров"
+      ]
+    ],
+    "loose_keys": [
+      [
+        "махабхарат"
+      ]
+    ],
+    "author_keys": [],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "3 000 экз.; первый том эпоса, спрос выше тиража",
+    "query": "Махабхарата Адипарва 1950"
+  },
+  {
+    "index": 7,
+    "author": "Плиний Младший",
+    "title": "Письма",
+    "year": 1950,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 4500,
+    "price_max": 6500,
+    "price_top": 10000,
+    "title_keys": [
+      [
+        "письмо"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "плиния"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": true,
+    "group": "",
+    "note": "5 000 экз.; часто идёт «в нагрузку» к Цицерону в лоте",
+    "query": "Плиний Младший Письма 1950"
+  },
+  {
+    "index": 8,
+    "author": "Летописец (ред.)",
+    "title": "Повесть временных лет, ч. 1",
+    "year": 1950,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 4500,
+    "price_max": 7000,
+    "price_top": 12000,
+    "title_keys": [
+      [
+        "повесть",
+        "временной"
+      ],
+      [
+        "пвл"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "10 000 экз., но ч. 1 без ч. 2 почти не продаётся; комплект 2 ч. — 12 000–22 000",
+    "query": "Повесть временных лет 1950 часть 1"
+  },
+  {
+    "index": 9,
+    "author": "—",
+    "title": "Слово о полку Игореве",
+    "year": 1950,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 4500,
+    "price_max": 6500,
+    "price_top": 10000,
+    "title_keys": [
+      [
+        "слово",
+        "полка",
+        "игорев"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "слово_о_полку",
+    "note": "10 000 экз.; переизданий много, ценится именно 1950 г. и суперобложка",
+    "query": "Слово о полку Игореве 1950"
+  },
+  {
+    "index": 10,
+    "author": "Иван Грозный",
+    "title": "Послания",
+    "year": 1951,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 5500,
+    "price_max": 8500,
+    "price_top": 14000,
+    "title_keys": [
+      [
+        "послание",
+        "иван",
+        "грозный"
+      ],
+      [
+        "послание"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "иван",
+        "грозный"
+      ],
+      [
+        "грозный"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": true,
+    "group": "",
+    "note": "4 000 экз.; продаётся как «письма царя», серия не указана",
+    "query": "Послания Ивана Грозного 1951"
+  },
+  {
+    "index": 11,
+    "author": "Ксенофонт",
+    "title": "Анабасис",
+    "year": 1951,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 4500,
+    "price_max": 6500,
+    "price_top": 10000,
+    "title_keys": [
+      [
+        "анабасис"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "ксенофонт"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "5 000 экз.; массово недооценённый античный том",
+    "query": "Ксенофонт Анабасис 1951"
+  },
+  {
+    "index": 12,
+    "author": "Лукан",
+    "title": "Фарсалия",
+    "year": 1951,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 5000,
+    "price_max": 7500,
+    "price_top": 12000,
+    "title_keys": [
+      [
+        "фарсалий"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "лукан"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "5 000 экз.; редкий латинский эпос, спрос точечный",
+    "query": "Лукан Фарсалия 1951"
+  },
+  {
+    "index": 13,
+    "author": "Посошков",
+    "title": "Книга о скудости и богатстве",
+    "year": 1951,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 5000,
+    "price_max": 7500,
+    "price_top": 12000,
+    "title_keys": [
+      [
+        "скудость",
+        "богатство"
+      ],
+      [
+        "скудость",
+        "богатство"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "посошок"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "5 000 экз.; экономическая классика, ищут не букинисты, а историки — меньше конкурентов",
+    "query": "Посошков Книга о скудости и богатстве"
+  },
+  {
+    "index": 14,
+    "author": "Иван Тимофеев",
+    "title": "Временник",
+    "year": 1951,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 6500,
+    "price_max": 9500,
+    "price_top": 15000,
+    "title_keys": [
+      [
+        "временник"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "иван",
+        "тимофеев"
+      ],
+      [
+        "тимофеев"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": true,
+    "group": "",
+    "note": "3 000 экз.; редкий памятник Смуты, почти всегда «просто старая книга»",
+    "query": "Временник Ивана Тимофеева 1951"
+  },
+  {
+    "index": 15,
+    "author": "Ла Боэси",
+    "title": "Рассуждение о добровольном рабстве",
+    "year": 1952,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 6000,
+    "price_max": 9000,
+    "price_top": 14000,
+    "title_keys": [
+      [
+        "рассуждение",
+        "добровольный",
+        "рабство"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "ла",
+        "боэся"
+      ],
+      [
+        "боэся"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "3 000 экз.; тонкий том, теряется в лотах, но ценится",
+    "query": "Ла Боэси 1952"
+  },
+  {
+    "index": 16,
+    "author": "Кабус-намэ",
+    "title": "Кабус-намэ",
+    "year": 1953,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 5000,
+    "price_max": 7500,
+    "price_top": 11000,
+    "title_keys": [
+      [
+        "кабусы",
+        "намэ"
+      ],
+      [
+        "кабусы",
+        "нама"
+      ],
+      [
+        "кабусы",
+        "намэ"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "5 000 экз.; восточный этикет, редко опознают серию",
+    "query": "Кабус-намэ 1953"
+  },
+  {
+    "index": 17,
+    "author": "Симеон Полоцкий",
+    "title": "Избранные сочинения",
+    "year": 1953,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 5000,
+    "price_max": 7500,
+    "price_top": 12000,
+    "title_keys": [
+      [
+        "избранный",
+        "сочинение"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "симеон",
+        "полоцкий"
+      ],
+      [
+        "полоцкий"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": true,
+    "group": "",
+    "note": "5 000 экз.; русское барокко, устойчивый спрос",
+    "query": "Симеон Полоцкий 1953"
+  },
+  {
+    "index": 18,
+    "author": "Монтень",
+    "title": "Опыты, кн. 1",
+    "year": 1954,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 5500,
+    "price_max": 8000,
+    "price_top": 13000,
+    "title_keys": [
+      [
+        "опыт"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "монтень"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": true,
+    "group": "",
+    "note": "4 000 экз.; кн. 1 отдельно, комплект 3 кн. — 18 000–30 000",
+    "query": "Монтень Опыты 1954 книга 1"
+  },
+  {
+    "index": 19,
+    "author": "—",
+    "title": "Шицзин",
+    "year": 1957,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 6500,
+    "price_max": 9500,
+    "price_top": 15000,
+    "title_keys": [
+      [
+        "шицзина"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "3 500 экз.; китайская классика, малотиражный том",
+    "query": "Шицзин 1957"
+  },
+  {
+    "index": 20,
+    "author": "—",
+    "title": "Артхашастра",
+    "year": 1959,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 5500,
+    "price_max": 8000,
+    "price_top": 13000,
+    "title_keys": [
+      [
+        "артхашастр"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "4 000 экз.; древнеиндийский трактат, спрос у востоковедов",
+    "query": "Артхашастра 1959"
+  },
+  {
+    "index": 21,
+    "author": "—",
+    "title": "Дигенис Акрит",
+    "year": 1960,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 6000,
+    "price_max": 9000,
+    "price_top": 14000,
+    "title_keys": [
+      [
+        "дигенис",
+        "акрит"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "3 500 экз.; византийский эпос, редкость в продаже",
+    "query": "Дигенис Акрит 1960"
+  },
+  {
+    "index": 22,
+    "author": "—",
+    "title": "Книга моего деда Коркута",
+    "year": 1962,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 6500,
+    "price_max": 9500,
+    "price_top": 15000,
+    "title_keys": [
+      [
+        "мой",
+        "дед",
+        "коркут"
+      ],
+      [
+        "дед",
+        "коркут"
+      ],
+      [
+        "коркут"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "3 100 экз.; тюркский эпос, почти не встречается",
+    "query": "Книга моего деда Коркута 1962"
+  },
+  {
+    "index": 23,
+    "author": "—",
+    "title": "Махабхарата. Кн. 2. Сабхапарва",
+    "year": 1962,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 6000,
+    "price_max": 9000,
+    "price_top": 14000,
+    "title_keys": [
+      [
+        "сабхапарва"
+      ]
+    ],
+    "loose_keys": [
+      [
+        "махабхарат"
+      ]
+    ],
+    "author_keys": [],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "2 800 экз.; второй том, продаётся только с первым — ищите лоты «Махабхарата 2 книги»",
+    "query": "Махабхарата Сабхапарва 1962"
+  },
+  {
+    "index": 24,
+    "author": "—",
+    "title": "Старшая Эдда",
+    "year": 1963,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 7000,
+    "price_max": 10000,
+    "price_top": 16000,
+    "title_keys": [
+      [
+        "старший",
+        "эдда"
+      ]
+    ],
+    "loose_keys": [
+      [
+        "эдда"
+      ]
+    ],
+    "author_keys": [],
+    "discriminators": [],
+    "bad_terms": [
+      [
+        "младший"
+      ]
+    ],
+    "needs_author": false,
+    "group": "",
+    "note": "3 000 экз.; культовый том, но в лотах «скандинавская мифология» уходит дешевле",
+    "query": "Старшая Эдда 1963"
+  },
+  {
+    "index": 25,
+    "author": "—",
+    "title": "Эпос сербского народа",
+    "year": 1963,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 7500,
+    "price_max": 11000,
+    "price_top": 18000,
+    "title_keys": [
+      [
+        "эпос",
+        "сербский",
+        "народ"
+      ],
+      [
+        "сербский",
+        "эпос"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "2 600 экз.; один из самых малых тиражей серии",
+    "query": "Эпос сербского народа 1963"
+  },
+  {
+    "index": 26,
+    "author": "Юрий Крижанич",
+    "title": "Политика",
+    "year": 1965,
+    "publisher": "Наука (ЛП)",
+    "series": "lp",
+    "price_min": 8000,
+    "price_max": 12000,
+    "price_top": 20000,
+    "title_keys": [
+      [
+        "политика"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "крижанич"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": true,
+    "group": "",
+    "note": "2 500 экз.; минимальный тираж среди отобранных ЛП, редкость",
+    "query": "Крижанич Политика 1965"
+  },
+  {
+    "index": 27,
+    "author": "Платон",
+    "title": "Полное собрание творений, т. 1",
+    "year": 1923,
+    "publisher": "Academia",
+    "series": "academia",
+    "price_min": 12000,
+    "price_max": 18000,
+    "price_top": 35000,
+    "title_keys": [
+      [
+        "полный",
+        "собрание",
+        "творение"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "платон"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": true,
+    "group": "",
+    "note": "2 000 экз.; первый том 15-томника, «евтифон/апология», комплект томов — от 60 000",
+    "query": "Платон Полное собрание творений 1923"
+  },
+  {
+    "index": 28,
+    "author": "Ю. Тынянов",
+    "title": "Проблема стихотворного языка",
+    "year": 1924,
+    "publisher": "Academia",
+    "series": "academia",
+    "price_min": 7000,
+    "price_max": 10000,
+    "price_top": 18000,
+    "title_keys": [
+      [
+        "проблема",
+        "стихотворный",
+        "язык"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "тынян"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "3 000 экз.; формальная школа, спрос у филологов; часто «старая книга по литературе»",
+    "query": "Тынянов Проблема стихотворного языка 1924"
+  },
+  {
+    "index": 29,
+    "author": "З. Фрейд",
+    "title": "Я и Оно",
+    "year": 1924,
+    "publisher": "Academia",
+    "series": "academia",
+    "price_min": 9000,
+    "price_max": 14000,
+    "price_top": 25000,
+    "title_keys": [
+      [
+        "оно"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "фрейд"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": true,
+    "group": "",
+    "note": "3 000 экз.; первое русское издание, продавцы не всегда понимают ценность",
+    "query": "Фрейд Я и Оно 1924"
+  },
+  {
+    "index": 30,
+    "author": "Анри де Ренье",
+    "title": "Собрание сочинений, т. 1",
+    "year": 1925,
+    "publisher": "Academia",
+    "series": "academia",
+    "price_min": 5500,
+    "price_max": 8000,
+    "price_top": 14000,
+    "title_keys": [
+      [
+        "собрание",
+        "сочинение"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "анри",
+        "де",
+        "ренье"
+      ],
+      [
+        "ренье"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": true,
+    "group": "",
+    "note": "4 100 экз.; том из 19-томника, комплекты почти не собираются",
+    "query": "Анри де Ренье 1925 Academia"
+  },
+  {
+    "index": 31,
+    "author": "Аристотель",
+    "title": "Поэтика",
+    "year": 1927,
+    "publisher": "Academia",
+    "series": "academia",
+    "price_min": 6500,
+    "price_max": 9500,
+    "price_top": 15000,
+    "title_keys": [
+      [
+        "поэтика"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "аристотель"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": true,
+    "group": "",
+    "note": "2 100 экз.; малый тираж, философский канон",
+    "query": "Аристотель Поэтика 1927"
+  },
+  {
+    "index": 32,
+    "author": "Дж. Боккаччо",
+    "title": "Декамерон, т. 1",
+    "year": 1927,
+    "publisher": "Academia",
+    "series": "academia",
+    "price_min": 6000,
+    "price_max": 9000,
+    "price_top": 14000,
+    "title_keys": [
+      [
+        "декамерон"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "боккаччо"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "5 000 экз.; «Сокровища мировой литературы», том с гравюрами",
+    "query": "Декамерон 1927 Academia"
+  },
+  {
+    "index": 33,
+    "author": "В. Пропп",
+    "title": "Морфология сказки",
+    "year": 1928,
+    "publisher": "Academia",
+    "series": "academia",
+    "price_min": 15000,
+    "price_max": 22000,
+    "price_top": 40000,
+    "title_keys": [
+      [
+        "морфология",
+        "сказка"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "проппа"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "1 600 экз.; первое издание культовой книги, главный лот направления",
+    "query": "Пропп Морфология сказки 1928"
+  },
+  {
+    "index": 34,
+    "author": "Дж. Свифт",
+    "title": "Путешествия Гулливера",
+    "year": 1928,
+    "publisher": "Academia",
+    "series": "academia",
+    "price_min": 5000,
+    "price_max": 8000,
+    "price_top": 14000,
+    "title_keys": [
+      [
+        "путешествие",
+        "гулливер"
+      ],
+      [
+        "гулливер"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "свифт"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "10 000 экз., но с иллюстрациями Гранвиля; часто без суперобложки",
+    "query": "Гулливер 1928 Academia"
+  },
+  {
+    "index": 35,
+    "author": "Апулей",
+    "title": "Золотой осел (Метаморфозы)",
+    "year": 1929,
+    "publisher": "Academia",
+    "series": "academia",
+    "price_min": 6000,
+    "price_max": 9000,
+    "price_top": 14000,
+    "title_keys": [
+      [
+        "золотой",
+        "осесть"
+      ],
+      [
+        "метаморфоза"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "апуля"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "5 000 экз.; античный роман, устойчивый спрос",
+    "query": "Апулей Золотой осел 1929"
+  },
+  {
+    "index": 36,
+    "author": "Катулл",
+    "title": "Книга лирики",
+    "year": 1929,
+    "publisher": "Academia",
+    "series": "academia",
+    "price_min": 7000,
+    "price_max": 10000,
+    "price_top": 16000,
+    "title_keys": [
+      [
+        "лирика"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "катулл"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": true,
+    "group": "",
+    "note": "2 100 экз.; малый тираж, античная лирика",
+    "query": "Катулл Книга лирики 1929"
+  },
+  {
+    "index": 37,
+    "author": "М. Сервантес",
+    "title": "Дон Кихот, т. 1",
+    "year": 1929,
+    "publisher": "Academia",
+    "series": "academia",
+    "price_min": 5000,
+    "price_max": 8000,
+    "price_top": 14000,
+    "title_keys": [
+      [
+        "дон",
+        "кихот"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "сервантес"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "10 000 экз., иллюстрированное издание; комплект 2 т. дороже",
+    "query": "Дон Кихот 1929 Academia"
+  },
+  {
+    "index": 38,
+    "author": "Д. Дефо",
+    "title": "Робинзон Крузо",
+    "year": 1929,
+    "publisher": "Academia",
+    "series": "academia",
+    "price_min": 6000,
+    "price_max": 9000,
+    "price_top": 15000,
+    "title_keys": [
+      [
+        "робинзона",
+        "крузый"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "дефо"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "6 100 экз.; гравюры, «детская» книга с взрослой ценой",
+    "query": "Робинзон Крузо 1929 Academia"
+  },
+  {
+    "index": 39,
+    "author": "—",
+    "title": "Книга тысячи и одной ночи, т. 1",
+    "year": 1929,
+    "publisher": "Academia",
+    "series": "academia",
+    "price_min": 5000,
+    "price_max": 8000,
+    "price_top": 15000,
+    "title_keys": [
+      [
+        "тысяча",
+        "один",
+        "ночь"
+      ],
+      [
+        "тысяча",
+        "один",
+        "ночь"
+      ],
+      [
+        "1001",
+        "ночь"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "10 080 экз.; том из 8-томника, полный комплект — 50 000–90 000",
+    "query": "Тысяча и одна ночь 1929 Academia"
+  },
+  {
+    "index": 40,
+    "author": "Аристофан",
+    "title": "Книга комедий",
+    "year": 1930,
+    "publisher": "Academia",
+    "series": "academia",
+    "price_min": 6500,
+    "price_max": 9500,
+    "price_top": 15000,
+    "title_keys": [
+      [
+        "комедия"
+      ],
+      [
+        "комедия",
+        "аристофан"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "аристофан"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": true,
+    "group": "",
+    "note": "4 070 экз.; Лисистрата/Лягушки, античная комедия",
+    "query": "Аристофан Книга комедий 1930"
+  },
+  {
+    "index": 41,
+    "author": "Эразм Роттердамский",
+    "title": "Похвальное слово глупости",
+    "year": 1931,
+    "publisher": "Academia",
+    "series": "academia",
+    "price_min": 6000,
+    "price_max": 9000,
+    "price_top": 14000,
+    "title_keys": [
+      [
+        "похвальный",
+        "слово",
+        "глупость"
+      ],
+      [
+        "похвала",
+        "глупость"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "эразм"
+      ],
+      [
+        "роттердамский"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "5 000 экз.; ренессансная классика, часто «философия, старая книга»",
+    "query": "Похвальное слово глупости 1931"
+  },
+  {
+    "index": 42,
+    "author": "Бенвенуто Челлини",
+    "title": "Жизнь Бенвенуто Челлини",
+    "year": 1931,
+    "publisher": "Academia",
+    "series": "academia",
+    "price_min": 6500,
+    "price_max": 9500,
+    "price_top": 15000,
+    "title_keys": [
+      [
+        "жизнь",
+        "бенвенать",
+        "челлинь"
+      ],
+      [
+        "челлинь"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "челлинь"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "5 000 экз.; мемуары художника, спрос у искусствоведов",
+    "query": "Челлини 1931 Academia"
+  },
+  {
+    "index": 43,
+    "author": "Гелиодор",
+    "title": "Эфиопика",
+    "year": 1932,
+    "publisher": "Academia",
+    "series": "academia",
+    "price_min": 5000,
+    "price_max": 7500,
+    "price_top": 12000,
+    "title_keys": [
+      [
+        "эфиопик"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "гелиодор"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "5 250 экз.; античный роман, реже встречается, чем Апулей",
+    "query": "Гелиодор Эфиопика 1932"
+  },
+  {
+    "index": 44,
+    "author": "А. Прево",
+    "title": "Манон Леско",
+    "year": 1932,
+    "publisher": "Academia",
+    "series": "academia",
+    "price_min": 6000,
+    "price_max": 9000,
+    "price_top": 14000,
+    "title_keys": [
+      [
+        "манон",
+        "леский"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "прево"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "5 250 экз.; иллюстрированное издание, французская классика",
+    "query": "Манон Леско 1932 Academia"
+  },
+  {
+    "index": 45,
+    "author": "—",
+    "title": "Русская крестьянская игрушка",
+    "year": 1933,
+    "publisher": "Academia",
+    "series": "academia",
+    "price_min": 10000,
+    "price_max": 15000,
+    "price_top": 25000,
+    "title_keys": [
+      [
+        "русский",
+        "крестьянский",
+        "игрушка"
+      ],
+      [
+        "крестьянский",
+        "игрушка"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "4 300 экз.; альбом по народному искусству, малотиражный",
+    "query": "Русская крестьянская игрушка 1933"
+  },
+  {
+    "index": 46,
+    "author": "—",
+    "title": "Слово о полку Игореве (Палех, худ. И. Голиков)",
+    "year": 1934,
+    "publisher": "Academia",
+    "series": "academia",
+    "price_min": 25000,
+    "price_max": 35000,
+    "price_top": 70000,
+    "title_keys": [
+      [
+        "слово",
+        "полка",
+        "игорев"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [],
+    "discriminators": [
+      [
+        "палех"
+      ],
+      [
+        "голик"
+      ]
+    ],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "слово_о_полку",
+    "note": "3 300 экз., рукописный палехский оригинал, в футляре; топ-лот направления",
+    "query": "Слово о полку Игореве 1934 Палех"
+  },
+  {
+    "index": 47,
+    "author": "Поджо Браччолини",
+    "title": "Фацетии",
+    "year": 1934,
+    "publisher": "Academia",
+    "series": "academia",
+    "price_min": 35000,
+    "price_max": 50000,
+    "price_top": 90000,
+    "title_keys": [
+      [
+        "фацетий"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "поджо",
+        "браччолини"
+      ],
+      [
+        "браччолини"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "300 экз. (!), почти весь тираж уничтожен; находка уровня «не знают, что это»",
+    "query": "Фацетии 1934 тираж 300"
+  },
+  {
+    "index": 48,
+    "author": "—",
+    "title": "Сасанидский металл",
+    "year": 1935,
+    "publisher": "Academia",
+    "series": "academia",
+    "price_min": 18000,
+    "price_max": 25000,
+    "price_top": 40000,
+    "title_keys": [
+      [
+        "сасанидский",
+        "металл"
+      ],
+      [
+        "сасанидский",
+        "серебро"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "1 500 экз.; альбом по искусству Сасанидов, музейный уровень",
+    "query": "Сасанидский металл 1935"
+  },
+  {
+    "index": 49,
+    "author": "—",
+    "title": "Фаюмский портрет",
+    "year": 1936,
+    "publisher": "Academia",
+    "series": "academia",
+    "price_min": 15000,
+    "price_max": 22000,
+    "price_top": 35000,
+    "title_keys": [
+      [
+        "фаюмский",
+        "портрет"
+      ],
+      [
+        "фаюмский",
+        "портрет"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "3 300 экз.; большое формата, исследования и таблицы",
+    "query": "Фаюмский портрет 1936"
+  },
+  {
+    "index": 50,
+    "author": "Дж. Вико",
+    "title": "Основания новой науки об общей природе наций",
+    "year": 1937,
+    "publisher": "Academia",
+    "series": "academia",
+    "price_min": 12000,
+    "price_max": 18000,
+    "price_top": 35000,
+    "title_keys": [
+      [
+        "основание",
+        "новый",
+        "наука",
+        "общий",
+        "природа",
+        "нация"
+      ],
+      [
+        "основание",
+        "новый",
+        "наука"
+      ]
+    ],
+    "loose_keys": [],
+    "author_keys": [
+      [
+        "вико"
+      ]
+    ],
+    "discriminators": [],
+    "bad_terms": [],
+    "needs_author": false,
+    "group": "",
+    "note": "5 300 экз., но большая часть тиража уничтожена; философский канон",
+    "query": "Вико Основания новой науки 1937"
+  }
+]

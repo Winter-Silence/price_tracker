@@ -1,4 +1,5 @@
 import os
+from urllib.parse import parse_qs, urlparse
 
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
@@ -35,12 +36,13 @@ from parsers import get_parser, MARKETPLACE_TIERS
 from parsers.base import TIER_LABELS
 from utils.logger import logger
 
-ADD_URL, ADD_MODE, ADD_NAME, ADD_TARGET_PRICE, ADD_TITLE_FILTER = range(5)
+ADD_URL, ADD_MODE, ADD_NAME, ADD_TARGET_PRICE, ADD_TITLE_FILTER, ADD_AVITO_FILTER_CHOICE = range(6)
 HISTORY_LINK, HISTORY_TIER = range(10, 12)
 HISTORY_SEARCH_LINK = 13
 LINK_SELECT, LINK_URL = range(20, 22)
 THRESHOLD_SELECT, THRESHOLD_INPUT = range(30, 32)
 PRIVILEGES_MENU, PRIVILEGES_MARKETPLACE = range(40, 42)
+BOOKS_URL = 50
 MARKETPLACE_NAMES = {
     "wildberries": "Wildberries",
     "ozon": "Ozon",
@@ -61,6 +63,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "/list — список твоих товаров\n"
             "/delete — удалить товар\n"
             "/history — история цен товара\n"
+            "/books — поиск книг из эталонного списка на Avito\n"
             "/help — помощь"
         )
     except Exception as exc:
@@ -81,7 +84,10 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "/privileges — указать какие привилегии у тебя есть на маркетплейсах (скидка по карте, подписка), чтобы бот учитывал их при расчёте цены\n"
             "/list — показать все твои товары с текущими ценами\n"
             "/delete — удалить товар (с подтверждением)\n"
-            "/history — история цен товара\n\n"
+            "/history — история цен товара\n"
+            "/books — добавить поиск Avito по книгам: бот проверит новые\n"
+            "    объявления и пришлёт только совпадения с эталонным списком\n"
+            "    (50 книг, ЛП «Наука» и Academia)\n\n"
             "Поддерживаемые магазины: Wildberries, Ozon, Citilink, Avito",
             parse_mode="HTML"
         )
@@ -113,12 +119,16 @@ async def add_url(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # the bot remembers the ads on the page and notifies about new ones.
     if parser.marketplace == "avito":
         context.user_data["add_mode"] = "search"
+        keyboard = [
+            [InlineKeyboardButton("🆕 Все новые товары (без фильтра)", callback_data="avito_filter_all")],
+            [InlineKeyboardButton("🔍 С фильтром по заголовку", callback_data="avito_filter_custom")],
+        ]
         await update.message.reply_text(
-            "🆕 Это поисковый запрос Avito. Буду следить за страницей и сразу "
-            "сообщать, когда на ней появится новый товар, подходящий под ваш фильтр.\n\n"
-            "🔍 Введи ключевые слова для фильтрации заголовков (например, \"AMD Ryzen 7 5700X\")"
+            "🆕 Это поисковый запрос Avito. Буду следить за страницей и сообщать о новых товарах.\n\n"
+            "Нужен ли фильтр по заголовку? Если нет — в уведомление попадут все новые лоты со страницы.",
+            reply_markup=InlineKeyboardMarkup(keyboard),
         )
-        return ADD_TITLE_FILTER
+        return ADD_AVITO_FILTER_CHOICE
 
     keyboard = [
         [InlineKeyboardButton("📦 Конкретный товар", callback_data="addmode_product")],
@@ -147,6 +157,19 @@ async def add_mode(update: Update, context: ContextTypes.DEFAULT_TYPE):
     else:
         await query.edit_message_text("📦 Введи название товара (для удобства)")
         return ADD_NAME
+
+
+async def add_avito_filter_choice(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    await query.answer()
+    if query.data == "avito_filter_all":
+        context.user_data["title_filter"] = ""
+        await query.edit_message_text("📦 Введи название товара (для удобства)")
+        return ADD_NAME
+    await query.edit_message_text(
+        "🔍 Введи ключевые слова для фильтрации заголовков (например, \"AMD Ryzen 7 5700X\")"
+    )
+    return ADD_TITLE_FILTER
 
 
 async def add_title_filter(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -200,9 +223,13 @@ async def _create_tracking(user_id: int, context: ContextTypes.DEFAULT_TYPE, tar
     if marketplace == "avito":
         title_filter = context.user_data.get("title_filter", "")
         await add_search_link(product_id, "avito", url, title_filter)
+        filter_line = (
+            f' подходящий под фильтр "{title_filter}".' if title_filter
+            else " все новые лоты со страницы."
+        )
         return (
             "✅ Avito-поиск добавлен! Буду проверять страницу каждые 5 минут и "
-            "сразу сообщу, когда появится новый товар, подходящий под ваш фильтр. 🔔"
+            f"сразу сообщу, когда появится новый товар{filter_line} 🔔"
         )
 
     if mode == "search":
@@ -232,6 +259,47 @@ def _minutes_str(interval_minutes: int) -> str:
         else:
             return f"каждые {hours} часов"
     return f"каждые {interval_minutes} минут"
+
+
+async def books_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data.clear()
+    await update.message.reply_text(
+        "📚 Пришли ссылку на поиск Avito по книгам.\n\n"
+        "Бот будет открывать новые объявления и присылать только те, где "
+        "название и описание совпали с эталонным списком (50 книг: "
+        "«Литературные памятники» 1948–1965 и Academia 1922–1937).\n\n"
+        "Ссылка должна быть на всю Россию и с сортировкой по дате "
+        "(например, https://www.avito.ru/rossiya/knigi_i_zhurnaly?q=...&s=104).\n\n"
+        "Первый опрос просто запомнит текущую выдачу — старые объявления "
+        "проверяться не будут."
+    )
+    return BOOKS_URL
+
+
+async def books_url(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    url = update.message.text.strip()
+    if "avito.ru" not in url:
+        await update.message.reply_text(
+            "❌ Нужна ссылка на Avito (avito.ru). Попробуй ещё раз.")
+        return BOOKS_URL
+
+    query = parse_qs(urlparse(url).query).get("q", [""])[0].strip()
+    name = f"Книги: {query}" if query else "Книги (Avito)"
+
+    telegram_id = update.effective_user.id
+    user_id = await get_or_create_user(telegram_id)
+    product_id = await add_product(name, user_id, threshold_price=0)
+    await add_search_link(
+        product_id, "avito", url, "", track_mode="books")
+
+    await update.message.reply_text(
+        "✅ Поиск книг добавлен!\n\n"
+        "Первый опрос запомнит текущую выдачу без уведомлений. Дальше бот "
+        "будет проверять новые лоты: дату публикации, отзывы продавца и "
+        "совпадение с эталонным списком. Старые объявления и оптовики "
+        "(50+ отзывов) пропускаются."
+    )
+    return ConversationHandler.END
 
 
 async def list_products(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -286,9 +354,13 @@ async def list_products(update: Update, context: ContextTypes.DEFAULT_TYPE):
             if alert_active and threshold > 0:
                 line += f" | 🎯 {threshold:.0f}₽"
             line += "\n"
-            line += f"   🔍 Запрос: \"{sp['title_filter']}\"\n"
-            if sp["last_resolved_title"]:
-                line += f"   📦 Найден: {sp['last_resolved_title']}\n"
+            if sp.get("track_mode") == "books":
+                line += "   📚 Режим: книги из эталонного списка\n"
+            else:
+                filter_label = sp["title_filter"] or "все товары"
+                line += f"   🔍 Запрос: \"{filter_label}\"\n"
+                if sp["last_resolved_title"]:
+                    line += f"   📦 Найден: {sp['last_resolved_title']}\n"
             line += f"   🔗 <a href='{sp['search_url']}'>Открыть поиск</a>\n"
             text += line + "\n"
 
@@ -302,10 +374,14 @@ async def list_products(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
         ])
     for sp in search_products:
+        if sp.get("track_mode") == "books":
+            label = f"📚 {sp['name']}"
+        else:
+            label = f"📊 {sp['name']} ({sp['title_filter']})"
         keyboard.append([
             InlineKeyboardButton(
-                f"📊 {sp['name']} ({sp['title_filter']})",
-                callback_data=f"listhistsrch_{sp['search_link_id']}"
+                label,
+                callback_data=f"listhistsrch_{sp['search_link_id']}",
             )
         ])
 
@@ -815,9 +891,13 @@ async def back_to_list_from_history(update: Update, context: ContextTypes.DEFAUL
             if alert_active and threshold > 0:
                 line += f" | 🎯 {threshold:.0f}₽"
             line += "\n"
-            line += f"   🔍 Запрос: \"{sp['title_filter']}\"\n"
-            if sp["last_resolved_title"]:
-                line += f"   📦 Найден: {sp['last_resolved_title']}\n"
+            if sp.get("track_mode") == "books":
+                line += "   📚 Режим: книги из эталонного списка\n"
+            else:
+                filter_label = sp["title_filter"] or "все товары"
+                line += f"   🔍 Запрос: \"{filter_label}\"\n"
+                if sp["last_resolved_title"]:
+                    line += f"   📦 Найден: {sp['last_resolved_title']}\n"
             line += f"   🔗 <a href='{sp['search_url']}'>Открыть поиск</a>\n"
             text += line + "\n"
 
@@ -831,10 +911,14 @@ async def back_to_list_from_history(update: Update, context: ContextTypes.DEFAUL
             )
         ])
     for sp in search_products:
+        if sp.get("track_mode") == "books":
+            label = f"📚 {sp['name']}"
+        else:
+            label = f"📊 {sp['name']} ({sp['title_filter']})"
         keyboard.append([
             InlineKeyboardButton(
-                f"📊 {sp['name']} ({sp['title_filter']})",
-                callback_data=f"listhistsrch_{sp['search_link_id']}"
+                label,
+                callback_data=f"listhistsrch_{sp['search_link_id']}",
             )
         ])
 
@@ -1211,6 +1295,7 @@ def setup_handlers(application: Application):
     conversation_fallbacks = [
         CommandHandler("cancel", cancel),
         CommandHandler("add", add_start),
+        CommandHandler("books", books_start),
         CommandHandler("link", link_start),
         CommandHandler("threshold", threshold_start),
         CommandHandler("privileges", privileges_start),
@@ -1226,9 +1311,18 @@ def setup_handlers(application: Application):
         states={
             ADD_URL: [MessageHandler(filters.TEXT & ~filters.COMMAND, add_url)],
             ADD_MODE: [CallbackQueryHandler(add_mode, pattern=r"^addmode_(product|search)$")],
+            ADD_AVITO_FILTER_CHOICE: [CallbackQueryHandler(add_avito_filter_choice, pattern=r"^avito_filter_(all|custom)$")],
             ADD_TITLE_FILTER: [MessageHandler(filters.TEXT & ~filters.COMMAND, add_title_filter)],
             ADD_NAME: [MessageHandler(filters.TEXT & ~filters.COMMAND, add_name)],
             ADD_TARGET_PRICE: [MessageHandler(filters.TEXT & ~filters.COMMAND, add_target_price)],
+        },
+        fallbacks=conversation_fallbacks,
+    )
+
+    books_conv = ConversationHandler(
+        entry_points=[CommandHandler("books", books_start)],
+        states={
+            BOOKS_URL: [MessageHandler(filters.TEXT & ~filters.COMMAND, books_url)],
         },
         fallbacks=conversation_fallbacks,
     )
@@ -1287,6 +1381,7 @@ def setup_handlers(application: Application):
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("help", help_command))
     application.add_handler(add_conv)
+    application.add_handler(books_conv)
     application.add_handler(link_conv)
     application.add_handler(threshold_conv)
     application.add_handler(privileges_conv)

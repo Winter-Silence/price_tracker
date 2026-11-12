@@ -65,6 +65,7 @@ CREATE TABLE IF NOT EXISTS search_links (
     marketplace TEXT NOT NULL,
     search_url TEXT NOT NULL,
     title_filter TEXT NOT NULL,
+    track_mode TEXT NOT NULL DEFAULT 'price',
     last_price REAL,
     last_resolved_url TEXT,
     last_resolved_title TEXT,
@@ -88,8 +89,28 @@ CREATE TABLE IF NOT EXISTS avito_search_items (
     item_title TEXT,
     price REAL,
     first_seen_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_seen_at TIMESTAMP,
+    notified_at TIMESTAMP,
+    miss_streak INTEGER NOT NULL DEFAULT 0,
     is_active BOOLEAN DEFAULT 1
 );
+
+CREATE TABLE IF NOT EXISTS avito_lot_checks (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    search_link_id INTEGER REFERENCES search_links(id),
+    item_url TEXT NOT NULL UNIQUE,
+    status TEXT NOT NULL,
+    skip_reason TEXT,
+    confidence TEXT,
+    result_json TEXT,
+    attempts INTEGER NOT NULL DEFAULT 0,
+    last_error TEXT,
+    checked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_avito_lot_checks_url
+    ON avito_lot_checks(item_url);
 """
 
 
@@ -114,6 +135,7 @@ MIGRATIONS = [
     "ALTER TABLE products ADD COLUMN threshold_price REAL NOT NULL DEFAULT 0",
     "ALTER TABLE products ADD COLUMN alert_active BOOLEAN DEFAULT 1",
     "ALTER TABLE products ADD COLUMN triggered_at TIMESTAMP",
+    "ALTER TABLE search_links ADD COLUMN track_mode TEXT NOT NULL DEFAULT 'price'",
 ]
 
 
@@ -126,6 +148,29 @@ async def init_db():
                 logger.info("Migration applied: %s", migration[:60])
             except Exception:
                 pass
+
+        # Одноразовая миграция: учёт уведомлений по объявлениям Avito.
+        cursor = await conn.execute(
+            "SELECT COUNT(*) AS n FROM pragma_table_info('avito_search_items') "
+            "WHERE name = 'notified_at'"
+        )
+        if (await cursor.fetchone())["n"] == 0:
+            await conn.execute(
+                "ALTER TABLE avito_search_items ADD COLUMN last_seen_at TIMESTAMP")
+            await conn.execute(
+                "ALTER TABLE avito_search_items ADD COLUMN notified_at TIMESTAMP")
+            await conn.execute(
+                "ALTER TABLE avito_search_items ADD COLUMN miss_streak "
+                "INTEGER NOT NULL DEFAULT 0")
+            # Ранее отслеженные объявления считаем уже уведомлёнными, иначе
+            # после деплоя придёт пачка уведомлений обо всей текущей выдаче.
+            await conn.execute(
+                "UPDATE avito_search_items "
+                "SET notified_at = COALESCE(first_seen_at, CURRENT_TIMESTAMP)")
+            await conn.execute(
+                "UPDATE avito_search_items "
+                "SET last_seen_at = COALESCE(first_seen_at, CURRENT_TIMESTAMP)")
+            logger.info("Migration applied: avito_search_items tracking columns")
 
         # One-time data migration: copy threshold from per-link alerts
         # to a single column on products.
@@ -383,27 +428,32 @@ async def get_product_by_id(product_id: int) -> dict | None:
 
 async def add_search_link(
     product_id: int, marketplace: str, search_url: str, title_filter: str,
+    track_mode: str = "price",
 ) -> int:
     async with db_connection() as conn:
         cursor = await conn.execute(
-            "INSERT INTO search_links (product_id, marketplace, search_url, title_filter) "
-            "VALUES (?, ?, ?, ?)",
-            (product_id, marketplace, search_url, title_filter),
+            "INSERT INTO search_links "
+            "(product_id, marketplace, search_url, title_filter, track_mode) "
+            "VALUES (?, ?, ?, ?, ?)",
+            (product_id, marketplace, search_url, title_filter, track_mode),
         )
         await conn.commit()
         logger.info(
-            "Added search link %s (filter=%s) for product_id=%d",
-            search_url, title_filter, product_id,
+            "Added search link %s (filter=%s, mode=%s) for product_id=%d",
+            search_url, title_filter, track_mode, product_id,
         )
         return cursor.lastrowid
 
 
 async def get_active_search_links() -> list[dict]:
+    """Активные ссылки для отслеживания цены (без книжного режима Avito)."""
     async with db_connection() as conn:
         cursor = await conn.execute(
             "SELECT id, product_id, marketplace, search_url, title_filter, "
-            "last_price, last_resolved_url, last_resolved_title, last_checked_at "
-            "FROM search_links WHERE is_active = 1"
+            "track_mode, last_price, last_resolved_url, last_resolved_title, "
+            "last_checked_at "
+            "FROM search_links WHERE is_active = 1 "
+            "AND COALESCE(track_mode, 'price') != 'books'"
         )
         rows = await cursor.fetchall()
     return [dict(r) for r in rows]
@@ -448,7 +498,7 @@ async def get_user_search_links(user_id: int) -> list[dict]:
             "SELECT p.id AS product_id, p.name, p.created_at, "
             "p.threshold_price, p.alert_active, "
             "sl.id AS search_link_id, sl.marketplace, sl.search_url, "
-            "sl.title_filter, sl.last_price, sl.last_resolved_url, "
+            "sl.title_filter, sl.track_mode, sl.last_price, sl.last_resolved_url, "
             "sl.last_resolved_title, sl.last_checked_at "
             "FROM products p "
             "JOIN search_links sl ON sl.product_id = p.id "
@@ -583,12 +633,14 @@ async def get_active_search_links_with_product() -> list[dict]:
     async with db_connection() as conn:
         cursor = await conn.execute(
             "SELECT sl.id, sl.product_id, sl.marketplace, sl.search_url, sl.title_filter, "
-            "sl.last_price, sl.last_resolved_url, sl.last_resolved_title, sl.last_checked_at, "
+            "sl.track_mode, sl.last_price, sl.last_resolved_url, sl.last_resolved_title, "
+            "sl.last_checked_at, "
             "p.name AS product_name, p.threshold_price, p.alert_active, p.triggered_at, "
             "p.created_by AS user_id "
             "FROM search_links sl "
             "JOIN products p ON p.id = sl.product_id "
-            "WHERE sl.is_active = 1"
+            "WHERE sl.is_active = 1 "
+            "AND COALESCE(sl.track_mode, 'price') != 'books'"
         )
         rows = await cursor.fetchall()
     return [dict(r) for r in rows]
@@ -602,7 +654,7 @@ async def get_active_avito_search_links() -> list[dict]:
     async with db_connection() as conn:
         cursor = await conn.execute(
             "SELECT sl.id, sl.product_id, sl.marketplace, sl.search_url, sl.title_filter, "
-            "sl.last_checked_at, "
+            "sl.track_mode, sl.last_checked_at, "
             "p.name AS product_name, p.created_by AS user_id "
             "FROM search_links sl "
             "JOIN products p ON p.id = sl.product_id "
@@ -612,37 +664,198 @@ async def get_active_avito_search_links() -> list[dict]:
     return [dict(r) for r in rows]
 
 
-async def get_seen_avito_items(search_link_id: int) -> set[str]:
-    """Return the set of item URLs already tracked for this Avito search link."""
+async def get_avito_item_state(search_link_id: int) -> dict[str, dict]:
+    """Состояние отслеживаемых объявлений: url -> {id, is_active,
+    notified_at, miss_streak}."""
     async with db_connection() as conn:
         cursor = await conn.execute(
-            "SELECT item_url FROM avito_search_items WHERE search_link_id = ?",
+            "SELECT id, item_url, is_active, notified_at, miss_streak, price "
+            "FROM avito_search_items WHERE search_link_id = ?",
             (search_link_id,),
         )
         rows = await cursor.fetchall()
-    return {r["item_url"] for r in rows}
+    return {
+        r["item_url"]: {
+            "id": r["id"],
+            "is_active": r["is_active"],
+            "notified_at": r["notified_at"],
+            "miss_streak": r["miss_streak"],
+            "price": r["price"],
+        }
+        for r in rows
+    }
 
 
-async def add_avito_item(
-    search_link_id: int, item_url: str, item_title: str, price: float | None,
-):
-    """Insert a newly-seen Avito item. Returns the row id (existing or new)."""
+async def sync_avito_items(search_link_id: int, items: list) -> dict[str, dict]:
+    """Апсерт текущей выдачи поиска Avito.
+
+    Новые объявления вставляются с notified_at = NULL. Существующие
+    обновляются: item_title, price, last_seen_at = CURRENT_TIMESTAMP,
+    is_active = 1, miss_streak = 0. Если строка была неактивна (объявление
+    вернулось в выдачу), notified_at сбрасывается в NULL, чтобы оно снова
+    попало в уведомления — но поллер должен проверить, что цена упала.
+    Возвращает url -> {id, notified_at} уже после апсерта.
+    """
+    async with db_connection() as conn:
+        for it in items:
+            cursor = await conn.execute(
+                "UPDATE avito_search_items "
+                "SET item_title = ?, price = ?, "
+                "last_seen_at = CURRENT_TIMESTAMP, is_active = 1, "
+                "miss_streak = 0, "
+                # В SQLite правая часть CASE вычисляется по старым значениям
+                # строки, поэтому сброс срабатывает ровно для неактивных строк.
+                "notified_at = CASE WHEN is_active = 0 THEN NULL ELSE notified_at END "
+                "WHERE search_link_id = ? AND item_url = ?",
+                (it.title, it.price, search_link_id, it.url),
+            )
+            if cursor.rowcount == 0:
+                await conn.execute(
+                    "INSERT INTO avito_search_items "
+                    "(search_link_id, item_url, item_title, price, "
+                    "last_seen_at, miss_streak, is_active) "
+                    "VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, 0, 1)",
+                    (search_link_id, it.url, it.title, it.price),
+                )
+                logger.info(
+                    "New Avito item tracked: %s (price=%s) for search_link_id=%d",
+                    it.title, it.price, search_link_id,
+                )
+
+        result: dict[str, dict] = {}
+        for it in items:
+            cursor = await conn.execute(
+                "SELECT id, item_url, notified_at FROM avito_search_items "
+                "WHERE search_link_id = ? AND item_url = ?",
+                (search_link_id, it.url),
+            )
+            row = await cursor.fetchone()
+            if row:
+                result[row["item_url"]] = {
+                    "id": row["id"],
+                    "notified_at": row["notified_at"],
+                }
+        await conn.commit()
+    return result
+
+
+async def mark_missing_avito_items(
+    search_link_id: int, current_urls: set[str], threshold: int = 2,
+) -> int:
+    """Отметить пропажу объявлений из выдачи.
+
+    Для активных строк, которых нет в current_urls, miss_streak += 1;
+    при miss_streak >= threshold строка деактивируется (is_active = 0).
+    Возвращает количество деактивированных строк.
+    """
     async with db_connection() as conn:
         cursor = await conn.execute(
-            "SELECT id FROM avito_search_items WHERE search_link_id = ? AND item_url = ?",
-            (search_link_id, item_url),
+            "SELECT item_url FROM avito_search_items "
+            "WHERE search_link_id = ? AND is_active = 1",
+            (search_link_id,),
         )
-        row = await cursor.fetchone()
-        if row:
-            return row["id"]
+        rows = await cursor.fetchall()
+        missing = [r["item_url"] for r in rows if r["item_url"] not in current_urls]
+        if not missing:
+            return 0
+        placeholders = ", ".join("?" for _ in missing)
+        await conn.execute(
+            f"UPDATE avito_search_items SET miss_streak = miss_streak + 1 "
+            f"WHERE search_link_id = ? AND item_url IN ({placeholders})",
+            (search_link_id, *missing),
+        )
         cursor = await conn.execute(
-            "INSERT INTO avito_search_items "
-            "(search_link_id, item_url, item_title, price) VALUES (?, ?, ?, ?)",
-            (search_link_id, item_url, item_title, price),
+            "UPDATE avito_search_items SET is_active = 0 "
+            "WHERE search_link_id = ? AND is_active = 1 AND miss_streak >= ?",
+            (search_link_id, threshold),
+        )
+        deactivated = cursor.rowcount
+        await conn.commit()
+    return deactivated
+
+
+async def mark_avito_items_notified(item_ids: list[int]) -> None:
+    """Пометить объявления уведомлёнными (notified_at = CURRENT_TIMESTAMP)."""
+    if not item_ids:
+        return
+    placeholders = ", ".join("?" for _ in item_ids)
+    async with db_connection() as conn:
+        await conn.execute(
+            f"UPDATE avito_search_items SET notified_at = CURRENT_TIMESTAMP "
+            f"WHERE id IN ({placeholders})",
+            tuple(item_ids),
         )
         await conn.commit()
-        logger.info(
-            "New Avito item tracked: %s (price=%s) for search_link_id=%d",
-            item_title, price, search_link_id,
+
+
+# ===== Avito books (lot-level checks) =====
+
+
+async def get_avito_lot_check(item_url: str) -> dict | None:
+    """Результат проверки лота (глобально по URL, без привязки к поиску)."""
+    async with db_connection() as conn:
+        cursor = await conn.execute(
+            "SELECT item_url, search_link_id, status, skip_reason, confidence, "
+            "result_json, attempts, last_error, checked_at "
+            "FROM avito_lot_checks WHERE item_url = ?",
+            (item_url,),
         )
-        return cursor.lastrowid
+        row = await cursor.fetchone()
+    return dict(row) if row else None
+
+
+async def save_avito_lot_check(
+    search_link_id: int,
+    item_url: str,
+    status: str,
+    skip_reason: str | None = None,
+    confidence: str | None = None,
+    result_json: str | None = None,
+) -> None:
+    """Сохранить итог проверки лота: matched / skipped."""
+    async with db_connection() as conn:
+        await conn.execute(
+            "INSERT INTO avito_lot_checks "
+            "(search_link_id, item_url, status, skip_reason, confidence, "
+            "result_json, attempts, last_error) "
+            "VALUES (?, ?, ?, ?, ?, ?, 0, NULL) "
+            "ON CONFLICT(item_url) DO UPDATE SET "
+            "search_link_id = excluded.search_link_id, "
+            "status = excluded.status, "
+            "skip_reason = excluded.skip_reason, "
+            "confidence = excluded.confidence, "
+            "result_json = excluded.result_json, "
+            "last_error = NULL, "
+            "checked_at = CURRENT_TIMESTAMP, "
+            "updated_at = CURRENT_TIMESTAMP",
+            (search_link_id, item_url, status, skip_reason, confidence, result_json),
+        )
+        await conn.commit()
+    logger.info(
+        "Avito lot check saved: %s status=%s reason=%s (search_link_id=%d)",
+        item_url, status, skip_reason, search_link_id,
+    )
+
+
+async def record_avito_lot_error(
+    search_link_id: int, item_url: str, error: str,
+) -> int:
+    """Учесть ошибку разбора лота; возвращает число попыток."""
+    async with db_connection() as conn:
+        await conn.execute(
+            "INSERT INTO avito_lot_checks "
+            "(search_link_id, item_url, status, attempts, last_error) "
+            "VALUES (?, ?, 'error', 1, ?) "
+            "ON CONFLICT(item_url) DO UPDATE SET "
+            "attempts = avito_lot_checks.attempts + 1, "
+            "last_error = excluded.last_error, "
+            "updated_at = CURRENT_TIMESTAMP",
+            (search_link_id, item_url, error[:500]),
+        )
+        cursor = await conn.execute(
+            "SELECT attempts FROM avito_lot_checks WHERE item_url = ?",
+            (item_url,),
+        )
+        row = await cursor.fetchone()
+        await conn.commit()
+    return row["attempts"] if row else 1

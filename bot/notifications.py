@@ -1,3 +1,5 @@
+import html
+
 from db.database import db_connection
 from parsers.base import TIER_LABELS
 from utils.logger import logger
@@ -10,11 +12,14 @@ async def send_avito_new_item_notification(
     product_name: str,
     search_url: str,
     items: list,
-):
+) -> bool:
     """Notify the user about newly appearing ads on an Avito search listing.
 
     Each item carries .url, .title and .price so the notification shows the
     price and a direct link to the fresh ad.
+
+    Возвращает True, если сообщение реально доставлено, иначе False
+    (пользователь не найден, бот не инициализирован или произошла ошибка).
     """
     async with db_connection() as conn:
         cursor = await conn.execute(
@@ -25,7 +30,7 @@ async def send_avito_new_item_notification(
 
     if not row:
         logger.warning("User %d not found for avito notification", user_id)
-        return
+        return False
 
     lines = ["🆕 <b>Новый товар на Avito!</b>", "", f"📦 {product_name}"]
     if len(items) == 1:
@@ -54,7 +59,7 @@ async def send_avito_new_item_notification(
                 "Bot not initialized, cannot send avito notification for search_link_id=%d",
                 search_link_id,
             )
-            return
+            return False
         await bot.send_message(
             chat_id=row["telegram_id"],
             text=text,
@@ -62,11 +67,107 @@ async def send_avito_new_item_notification(
             disable_web_page_preview=True,
         )
         logger.info("Avito new-item notification sent for search_link_id=%d", search_link_id)
+        return True
     except Exception as exc:
         logger.error(
             "Failed to send avito notification for search_link_id=%d: %s",
             search_link_id, exc,
         )
+        return False
+
+
+async def send_book_lot_notification(
+    user_id: int,
+    search_link_id: int,
+    item,
+    details,
+    report,
+) -> bool:
+    """Уведомить о лоте, в котором найдены книги из эталонного списка.
+
+    item — AvitoItem (url/title/price), details — AvitoItemDetails,
+    report — books.matcher.MatchReport. Показываем оценку стоимости, но
+    подчёркиваем, что это ориентир, а не гарантия цены.
+    """
+    async with db_connection() as conn:
+        cursor = await conn.execute(
+            "SELECT u.telegram_id FROM users u WHERE u.id = ?",
+            (user_id,),
+        )
+        row = await cursor.fetchone()
+
+    if not row:
+        logger.warning("User %d not found for book notification", user_id)
+        return False
+
+    title = html.escape(item.title or details.title or "Объявление Avito")
+    price = item.price or details.price
+    price_text = f"{price:.0f} ₽" if price else "не указана"
+    date_text = details.posted_at_text or "не определена"
+    reviews_text = details.reviews_text or "не указаны"
+
+    lines = [
+        "📚 <b>Книга из списка на Avito</b>",
+        "",
+        f"🏷 {title}",
+        f"💰 Цена лота: {price_text}",
+        f"🕒 Опубликовано: {html.escape(date_text)}",
+        f"👤 Продавец: {html.escape(reviews_text)}",
+        "",
+    ]
+
+    for match in report.matches:
+        book = match.book
+        lines.append(f"• {html.escape(book.label)}")
+        estimate = f"{book.price_min:,}–{book.price_max:,} ₽".replace(",", " ")
+        lines.append(f"   💵 Оценка: {estimate}")
+        lines.append(f"   🔎 {match.label}")
+        if match.needs_year:
+            lines.append("   ❓ Год не определён — уточните у продавца")
+
+    if len(report.matches) > 1 or report.needs_year:
+        low, high = report.estimate()
+        total = f"{low:,}–{high:,} ₽".replace(",", " ")
+        lines.append("")
+        lines.append(f"💵 Суммарная оценка по лоту: {total}")
+
+    if report.needs_year:
+        variants = sorted({m.book.year for m in report.matches if m.book.group})
+        if variants:
+            years = " / ".join(str(year) for year in variants)
+            lines.append(f"📅 Подходят варианты: {years}")
+
+    lines += [
+        "",
+        f"🔗 <a href='{item.url}'>Открыть объявление</a>",
+        "<i>Оценка — ориентир по эталонному списку, не гарантия цены.</i>",
+    ]
+
+    try:
+        bot = get_bot()
+        if bot is None:
+            logger.error(
+                "Bot not initialized, cannot send book notification for search_link_id=%d",
+                search_link_id,
+            )
+            return False
+        await bot.send_message(
+            chat_id=row["telegram_id"],
+            text="\n".join(lines),
+            parse_mode="HTML",
+            disable_web_page_preview=True,
+        )
+        logger.info(
+            "Book notification sent for search_link_id=%d (%d matches)",
+            search_link_id, len(report.matches),
+        )
+        return True
+    except Exception as exc:
+        logger.error(
+            "Failed to send book notification for search_link_id=%d: %s",
+            search_link_id, exc,
+        )
+        return False
 
 
 async def send_alert_notification(
