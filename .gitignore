@@ -11,6 +11,10 @@
 __pycache__/
 *.py[cod]
 
+# Codespaces belief map (generated artifact)
+.belief_map.sexp
+.belief_map_cache.json
+
 # Chrome profile directories used by nodriver
 chrome_home/
 chrome_profile/

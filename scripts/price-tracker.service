@@ -6,10 +6,10 @@ Requires=price-tracker-xvfb.service price-tracker-fluxbox.service
 [Service]
 Type=simple
 User=yury
-WorkingDirectory=/home/yury/price_tracker
+WorkingDirectory=/home/yury/projects/price_tracker
 Environment=DISPLAY=:99
-EnvironmentFile=-/home/yury/price_tracker/.env
-ExecStart=/home/yury/price_tracker/venv/bin/python main.py
+EnvironmentFile=-/home/yury/projects/price_tracker/.env
+ExecStart=/home/yury/.local/share/mise/installs/python/3.14.10/bin/python main.py
 Restart=always
 RestartSec=10
 PrivateTmp=true
