@@ -82,15 +82,21 @@ def _branch(c) -> str:
     return _load_env().get("DEPLOY_BRANCH", DEFAULT_BRANCH)
 
 
-def _asdf_prefix(conn: Connection) -> str | None:
-    """Shell prefix that enables asdf, or None when it is not installed.
+def _python_toolchain(conn: Connection) -> tuple[str, str | None]:
+    """Pick how to run Python on the server.
 
-    The server does not have to use asdf: without it `deploy` falls back to
-    the system python3.
+    Priority: asdf → mise (asdf-compatible version manager) → system
+    python3. Returns (python command, optional toolchain install command).
     """
     if conn.run('test -f "$HOME/.asdf/asdf.sh"', hide=True, warn=True).ok:
-        return '. "$HOME/.asdf/asdf.sh"'
-    return None
+        prefix = '. "$HOME/.asdf/asdf.sh"'
+        return f'{prefix} && asdf exec python', f'{prefix} && asdf install'
+    if conn.run('test -x "$HOME/.local/bin/mise"', hide=True, warn=True).ok:
+        print("ℹ️  asdf is not installed — using mise")
+        mise = '"$HOME/.local/bin/mise"'
+        return f'{mise} exec -- python', f'{mise} install'
+    print("ℹ️  neither asdf nor mise found — using system python3")
+    return "python3", None
 
 
 # ----- deploy --------------------------------------------------------------
@@ -138,16 +144,11 @@ def deploy(c, branch=None, no_push=False):
         current = conn.run("git rev-parse --short HEAD", hide=True).stdout.strip()
         print(f"📍 Now at: {current}")
 
-        # 4. Python toolchain: asdf when installed (in case .tool-versions
-        #    changed), otherwise the system python3.
+        # 4. Python toolchain: asdf, mise or system python3.
         print("🐍 Preparing Python toolchain...")
-        asdf_prefix = _asdf_prefix(conn)
-        if asdf_prefix:
-            conn.run(f'{asdf_prefix} && asdf install', pty=True, warn=True)
-            python_cmd = f'{asdf_prefix} && asdf exec python'
-        else:
-            print("ℹ️  asdf is not installed on the server — using system python3")
-            python_cmd = "python3"
+        python_cmd, install_cmd = _python_toolchain(conn)
+        if install_cmd:
+            conn.run(install_cmd, pty=True, warn=True)
 
         # 5. Recreate venv
         print("🔧 Recreating venv...")
