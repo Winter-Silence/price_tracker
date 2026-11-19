@@ -82,6 +82,17 @@ def _branch(c) -> str:
     return _load_env().get("DEPLOY_BRANCH", DEFAULT_BRANCH)
 
 
+def _asdf_prefix(conn: Connection) -> str | None:
+    """Shell prefix that enables asdf, or None when it is not installed.
+
+    The server does not have to use asdf: without it `deploy` falls back to
+    the system python3.
+    """
+    if conn.run('test -f "$HOME/.asdf/asdf.sh"', hide=True, warn=True).ok:
+        return '. "$HOME/.asdf/asdf.sh"'
+    return None
+
+
 # ----- deploy --------------------------------------------------------------
 
 @task
@@ -127,16 +138,21 @@ def deploy(c, branch=None, no_push=False):
         current = conn.run("git rev-parse --short HEAD", hide=True).stdout.strip()
         print(f"📍 Now at: {current}")
 
-        # 4. Update Python via asdf (in case .tool-versions changed)
-        print("🐍 Updating Python toolchain...")
-        conn.run('. "$HOME/.asdf/asdf.sh" && asdf install', pty=True,
-                 warn=True)
+        # 4. Python toolchain: asdf when installed (in case .tool-versions
+        #    changed), otherwise the system python3.
+        print("🐍 Preparing Python toolchain...")
+        asdf_prefix = _asdf_prefix(conn)
+        if asdf_prefix:
+            conn.run(f'{asdf_prefix} && asdf install', pty=True, warn=True)
+            python_cmd = f'{asdf_prefix} && asdf exec python'
+        else:
+            print("ℹ️  asdf is not installed on the server — using system python3")
+            python_cmd = "python3"
 
         # 5. Recreate venv
         print("🔧 Recreating venv...")
         conn.run('rm -rf venv', pty=True)
-        conn.run('. "$HOME/.asdf/asdf.sh" && asdf exec python -m venv venv',
-                 pty=True)
+        conn.run(f'{python_cmd} -m venv venv', pty=True)
         conn.run("./venv/bin/pip install --upgrade pip", pty=True)
         conn.run("./venv/bin/pip install -r requirements.txt", pty=True)
 

@@ -81,6 +81,10 @@ fab deploy --no-push
 fab deploy --branch dev
 ```
 
+> `fab deploy` использует asdf, только если он установлен на сервере. Если
+> asdf нет, venv создаётся системным `python3` (нужны Python 3.11+ и пакет
+> `python3-venv`).
+
 ### Управление сервисом
 
 | Команда | Описание |
