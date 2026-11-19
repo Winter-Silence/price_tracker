@@ -119,22 +119,32 @@ async def send_book_lot_notification(
     for match in report.matches:
         book = match.book
         lines.append(f"• {html.escape(book.label)}")
-        estimate = f"{book.price_min:,}–{book.price_max:,} ₽".replace(",", " ")
-        lines.append(f"   💵 Оценка: {estimate}")
+        # У изданий без цен оценки нет — строку не показываем.
+        if book.price_min is not None and book.price_max is not None:
+            estimate = f"{book.price_min:,}–{book.price_max:,} ₽".replace(",", " ")
+            lines.append(f"   💵 Оценка: {estimate}")
         lines.append(f"   🔎 {match.label}")
         if match.needs_year:
             lines.append("   ❓ Год не определён — уточните у продавца")
 
     if len(report.matches) > 1 or report.needs_year:
         low, high = report.estimate()
-        total = f"{low:,}–{high:,} ₽".replace(",", " ")
-        lines.append("")
-        lines.append(f"💵 Суммарная оценка по лоту: {total}")
+        if low > 0 and high > 0:
+            total = f"{low:,}–{high:,} ₽".replace(",", " ")
+            lines.append("")
+            lines.append(f"💵 Суммарная оценка по лоту: {total}")
 
     if report.needs_year:
-        variants = sorted({m.book.year for m in report.matches if m.book.group})
+        variants = sorted({
+            (m.book.year_from, m.book.year_to)
+            for m in report.matches
+            if m.book.group
+        })
         if variants:
-            years = " / ".join(str(year) for year in variants)
+            years = " / ".join(
+                str(low) if low == high else f"{low}–{high}"
+                for low, high in variants
+            )
             lines.append(f"📅 Подходят варианты: {years}")
 
     lines += [
@@ -166,6 +176,45 @@ async def send_book_lot_notification(
         logger.error(
             "Failed to send book notification for search_link_id=%d: %s",
             search_link_id, exc,
+        )
+        return False
+
+
+async def send_book_llm_status_notification(user_id: int, text: str) -> bool:
+    """Сообщить пользователю о состоянии LLM-проверки спорных лотов.
+
+    Используется, когда бесплатные модели исчерпали квоту: платить нельзя,
+    но пользователь должен знать, что проверка приостановлена.
+    """
+    async with db_connection() as conn:
+        cursor = await conn.execute(
+            "SELECT u.telegram_id FROM users u WHERE u.id = ?",
+            (user_id,),
+        )
+        row = await cursor.fetchone()
+
+    if not row:
+        logger.warning("User %d not found for llm status notification", user_id)
+        return False
+
+    bot = get_bot()
+    if bot is None:
+        logger.error("Bot not initialized, cannot send llm status notification")
+        return False
+
+    try:
+        await bot.send_message(
+            chat_id=row["telegram_id"],
+            text=text,
+            parse_mode="HTML",
+            disable_web_page_preview=True,
+        )
+        logger.info("LLM status notification sent to user %d", user_id)
+        return True
+    except Exception as exc:
+        logger.error(
+            "Failed to send llm status notification to user %d: %s",
+            user_id, exc,
         )
         return False
 

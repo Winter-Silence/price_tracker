@@ -27,10 +27,10 @@ def only(text: str):
 
 
 class CatalogTest(unittest.TestCase):
-    def test_catalog_has_50_positions(self):
+    def test_catalog_has_68_positions(self):
         catalog = get_catalog()
-        self.assertEqual(len(catalog), 50)
-        self.assertEqual([book.index for book in catalog], list(range(1, 51)))
+        self.assertEqual(len(catalog), 68)
+        self.assertEqual([book.index for book in catalog], list(range(1, 69)))
 
     def test_prices_and_series(self):
         catalog = {book.index: book for book in get_catalog()}
@@ -113,14 +113,22 @@ class PositiveMatchTest(unittest.TestCase):
         self.assertEqual(only("Пропп. Морфология сказки. 1928. Academia").confidence, STRONG)
 
     def test_confidence_medium_with_series_only(self):
+        # Общее слово «Наука» без маркера издателя доказательством не является.
         match = only("Цезарь. Записки о Галльской войне. Наука")
+        self.assertEqual(match.confidence, WEAK)
+        self.assertEqual(match.evidence, ())
+
+    def test_confidence_medium_with_publisher_marker(self):
+        match = only("Цезарь. Записки о Галльской войне. Издательство Наука")
         self.assertEqual(match.confidence, MEDIUM)
+        self.assertIn("издательство/серия", match.evidence)
 
     def test_confidence_weak_without_evidence(self):
         match = only("Продаю Записки о Галльской войне, состояние хорошее")
         self.assertEqual(match.confidence, WEAK)
 
-    def test_publisher_in_header_applies_to_all_positions(self):
+    def test_publisher_in_header_does_not_apply_to_other_positions(self):
+        # Издательство из «шапки» лота не относится к книгам в составе.
         text = (
             "Продаю книги издательства Academia, 1930-е годы.\n"
             "В составе: Декамерон, Морфология сказки, Гулливер"
@@ -129,7 +137,9 @@ class PositiveMatchTest(unittest.TestCase):
         by_index = {m.book.index: m for m in report.matches}
         self.assertEqual(sorted(by_index), [32, 33, 34])
         for match in by_index.values():
-            self.assertEqual(match.confidence, MEDIUM)
+            self.assertEqual(match.confidence, WEAK)
+            self.assertEqual(match.evidence, ())
+        self.assertTrue(report.confirmed().is_empty)
 
     def test_multi_book_lot(self):
         text = (
@@ -173,14 +183,25 @@ class ConfirmedMatchesTest(unittest.TestCase):
         self.assertFalse(report.is_empty)
 
     def test_other_edition_evidence_is_kept(self):
-        report = match_text("Записки о Галльской войне. Наука").confirmed()
+        report = match_text(
+            "Записки о Галльской войне. Издательство Наука",
+        ).confirmed()
         self.assertFalse(report.is_empty)
         self.assertEqual(report.matches[0].book.index, 1)
 
-    def test_ambiguous_group_without_year_is_kept(self):
-        report = match_text("Слово о полку Игореве").confirmed()
-        self.assertFalse(report.is_empty)
+    def test_generic_publisher_word_alone_is_not_evidence(self):
+        # «Наука» без маркера издателя — слишком общее слово.
+        report = match_text("Записки о Галльской войне. Наука").confirmed()
+        self.assertTrue(report.is_empty)
+
+    def test_ambiguous_group_without_year_goes_to_llm(self):
+        # Неразрешённый дубль без года подтверждается только LLM-проверкой.
+        report = match_text("Слово о полку Игореве")
         self.assertTrue(report.needs_year)
+        self.assertTrue(report.confirmed().is_empty)
+        self.assertEqual(
+            sorted(m.book.index for m in report.ambiguous), [9, 46],
+        )
 
     def test_multi_book_lot_keeps_only_confirmed(self):
         text = (
@@ -205,6 +226,46 @@ class ConfirmedMatchesTest(unittest.TestCase):
         self.assertEqual(by_index[33].confidence, STRONG)
         self.assertEqual(by_index[38].confidence, WEAK)
         self.assertEqual(by_index[38].evidence, ())
+
+
+class FalsePositiveRegressionTest(unittest.TestCase):
+    """Реальные лоты, которые раньше приходили как ложные совпадения."""
+
+    def _assert_not_confirmed(self, text: str, index: int | None = None):
+        report = match_text(text)
+        self.assertTrue(
+            report.confirmed().is_empty,
+            f"ожидалось отсутствие подтверждения: {text}",
+        )
+        if index is not None:
+            self.assertIn(index, [m.book.index for m in report.matches])
+
+    def test_khalif_na_chas_is_not_thousand_and_one_nights(self):
+        self._assert_not_confirmed(
+            "Халиф на час. Из тысячи и одной ночи. Изд. Academia", 39,
+        )
+
+    def test_aristotle_collected_works_is_not_poetika(self):
+        self._assert_not_confirmed(
+            "Полный комплект Сочинений Аристотеля в 4 томах. "
+            "Издательство Академия, Ленинград. Поэтика",
+            31,
+        )
+
+    def test_don_quixote_without_edition_evidence_is_not_confirmed(self):
+        self._assert_not_confirmed("Сервантес дон кихот. Академия", 37)
+
+    def test_modern_robinson_crusoe_is_not_confirmed(self):
+        self._assert_not_confirmed("Даниэль Дефо - Робинзон Крузо", 38)
+
+    def test_slovo_without_year_is_not_confirmed(self):
+        self._assert_not_confirmed("Слово о полку Игореве")
+
+    def test_ambiguous_candidates_are_marked_for_llm(self):
+        report = match_text("Слово о полку Игореве")
+        self.assertEqual(
+            sorted(m.book.index for m in report.ambiguous), [9, 46],
+        )
 
 
 class SegmentGlueTest(unittest.TestCase):

@@ -13,6 +13,11 @@ import nodriver as uc
 import nodriver.cdp.page as cdp_page
 import nodriver.cdp.runtime as cdp_runtime
 
+from utils.chrome_cleanup import (
+    async_sweep_chrome_tree,
+    profile_marker_set,
+    profile_matches_args,
+)
 from utils.logger import logger
 
 # nodriver adds many suspicious Chrome flags by default that trigger
@@ -25,8 +30,8 @@ uc.Config._default_browser_args = [
 # Chrome profile directory — outside /tmp to avoid filling it up
 CHROME_PROFILE_DIR = Path(os.getenv("CHROME_PROFILE_DIR", "./chrome_profile"))
 
-# Separate profile for Avito, so its 5-minute polling never contends with the
-# hourly price-poller on the same `chrome_profile` user-data-dir.
+# Default Avito profile for direct parser use. The scheduler resolves the
+# price/books profiles explicitly after loading the environment.
 AVITO_PROFILE_DIR = Path(os.getenv("AVITO_PROFILE_DIR", "./chrome_profile_avito"))
 
 SCREENSHOTS_DIR = Path("screenshots")
@@ -49,9 +54,9 @@ PROFILE_RESET_MIN_INTERVAL = 30 * 60  # секунд
 PROFILE_BACKUP_PREFIX = ".blocked."
 PROFILE_RESET_MARKER_SUFFIX = ".reset_at"
 
-# JavaScript injected via CDP Page.addScriptToEvaluateOnNewDocument
-# before any page scripts execute. Removes automation indicators that
-# Ozon's WAF uses to detect headless/controlled browsers.
+# Антидетект-скрипт (CDP Page.addScriptToEvaluateOnNewDocument), который
+# маскирует сигнатуры автоматизации. Сейчас НЕ инжектится: _inject_stealth()
+# — пустая заглушка (см. её докстринг). Константа оставлена для справки.
 STEALTH_JS = """
 (() => {
     // --- navigator.webdriver ---
@@ -219,9 +224,20 @@ class BaseParser(ABC):
     #admins are notified once the counter reaches this value.
     FAILURE_THRESHOLD: int = 5
 
-    def __init__(self):
+    def __init__(
+        self,
+        profile_dir: Path | str | None = None,
+        profile_markers: tuple[str, ...] | None = None,
+    ):
         self._consecutive_failures = 0
-        self._profile_dir = AVITO_PROFILE_DIR if self.marketplace == "avito" else CHROME_PROFILE_DIR
+        default_profile = (
+            AVITO_PROFILE_DIR if self.marketplace == "avito" else CHROME_PROFILE_DIR
+        )
+        raw_profile = str(profile_dir or default_profile)
+        self._profile_dir = Path(raw_profile).expanduser().resolve()
+        self._profile_markers = profile_marker_set(
+            raw_profile, profile_markers or ())
+        self._session_quarantined = False
 
     @classmethod
     @abstractmethod
@@ -256,8 +272,14 @@ class BaseParser(ABC):
     def _process_is_our_chrome(self, pid: int) -> bool:
         try:
             with open(f"/proc/{pid}/cmdline", "rb") as f:
-                cmdline = f.read().replace(b"\0", b" ").decode(errors="replace")
-            return "chrome" in cmdline and str(self._profile_dir) in cmdline
+                raw = f.read()
+            args = [
+                item.decode("utf-8", errors="replace")
+                for item in raw.split(b"\0")
+                if item
+            ]
+            return profile_matches_args(
+                args, self._profile_dir, self._profile_markers)
         except Exception:
             return False
 
@@ -335,7 +357,9 @@ class BaseParser(ABC):
             logger.error("Не удалось сбросить профиль %s: %s", profile_dir, e)
             return False
 
-    def _check_and_reset_chrome_profile(self, profile_dir: Path | None = None) -> bool:
+    async def _check_and_reset_chrome_profile(
+        self, profile_dir: Path | None = None,
+    ) -> bool:
         """Detect and clear stale Chrome singleton locks so the profile can be reused.
 
         Chrome refuses to start when `chrome_profile/SingletonLock` points to
@@ -345,8 +369,8 @@ class BaseParser(ABC):
         (e.g. the trusted Avito session).
 
         If the lock names a live Chrome on the same machine that actually
-        owns this profile, we try to terminate it; only as a last resort do
-        we back up and reset the whole profile.
+        owns this profile, terminate only that profile's Chrome processes and
+        clear its locks. Cookies and the trusted session are never deleted here.
         """
         if profile_dir is None:
             profile_dir = self._profile_dir
@@ -355,7 +379,9 @@ class BaseParser(ABC):
                 return False
 
             lock_path = profile_dir / "SingletonLock"
-            if not lock_path.exists():
+            # SingletonLock — висячая символическая ссылка (имя "host-pid"),
+            # поэтому exists() для неё всегда False.
+            if not (lock_path.exists() or lock_path.is_symlink()):
                 return False
 
             target = lock_path.resolve().name if lock_path.is_symlink() else lock_path.name
@@ -369,7 +395,7 @@ class BaseParser(ABC):
             if not hostname or hostname != local_hostname:
                 # Lock created on another machine — Chrome blocks the profile.
                 logger.warning(
-                    "Foreign SingletonLock %s (%s) — removing stale lock files",
+                    "Foreign SingletonLock %s (%s) — clearing stale lock files",
                     target, hostname or "(none)",
                 )
                 stale = True
@@ -393,23 +419,30 @@ class BaseParser(ABC):
                 stale = True
 
             if should_kill:
-                try:
-                    logger.warning("Terminating orphan Chrome (pid=%d) holding profile %s", pid, profile_dir)
-                    os.kill(pid, 15)
-                    time.sleep(1)
-                except Exception:
-                    pass
-                if self._process_live(pid):
-                    logger.warning("Orphan Chrome pid=%d still alive — resetting whole profile", pid)
-                    backup_dir = profile_dir.parent / f"{profile_dir.name}.corrupted.{datetime.now().strftime('%Y%m%d_%H%M%S')}"
-                    shutil.move(str(profile_dir), str(backup_dir))
-                    logger.info("Backed up potentially corrupted Chrome profile to %s", backup_dir)
-                    profile_dir.mkdir(parents=True, exist_ok=True)
-                    logger.info("Created fresh Chrome profile directory")
-                    return True
-                stale = True
+                logger.warning(
+                    "Terminating orphan Chrome (pid=%d) holding profile %s",
+                    pid, profile_dir,
+                )
+                # Kill only processes launched with this exact profile. The
+                # trusted cookies/session stay on disk.
+                await async_sweep_chrome_tree(
+                    profile_dir, self._profile_markers)
+                self._remove_stale_lock_files(profile_dir)
+                logger.info("Cleared Chrome locks for %s after process sweep", profile_dir)
+                return False
 
             if stale:
+                # Перед удалением lock-файлов проверяем, не использует ли
+                # профиль живой Chrome (например, запущенный старой версией
+                # с относительным путём). Убиваем только Chrome этого
+                # профиля, cookies не трогаем.
+                killed = await async_sweep_chrome_tree(
+                    profile_dir, self._profile_markers)
+                if killed:
+                    logger.warning(
+                        "Killed %d Chrome process(es) still using profile %s",
+                        killed, profile_dir,
+                    )
                 self._remove_stale_lock_files(profile_dir)
                 logger.info("Cleared stale singleton locks for %s", profile_dir)
                 return False
@@ -452,6 +485,11 @@ class BaseParser(ABC):
         """
         pass  # stealth disabled — see comment above
 
+    def _raise_if_quarantined(self) -> None:
+        if self._session_quarantined:
+            raise RuntimeError(
+                f"Chrome session for profile {self._profile_dir} is quarantined")
+
     async def start_session(self):
         workspace_home = Path("./chrome_home")
         workspace_home.mkdir(parents=True, exist_ok=True)
@@ -460,12 +498,13 @@ class BaseParser(ABC):
         logger.debug("start_session %s | HOME=%s | CHROME_ARGS=%s", self.marketplace, os.environ["HOME"], CHROME_ARGS)
 
         # Check and reset stale Chrome singleton locks (keeps cookies).
-        self._check_and_reset_chrome_profile()
+        await self._check_and_reset_chrome_profile()
 
         # Retry logic for browser startup.
         max_retries = 3
         for attempt in range(max_retries):
             try:
+                self._raise_if_quarantined()
                 self._profile_dir.mkdir(parents=True, exist_ok=True)
                 logger.debug("uc.start attempt %d/%d for %s", attempt + 1, max_retries, self.marketplace)
                 self._browser = await asyncio.wait_for(
@@ -478,12 +517,19 @@ class BaseParser(ABC):
                     ),
                     timeout=60,
                 )
+                self._raise_if_quarantined()
                 logger.debug("uc.start succeeded on attempt %d", attempt + 1)
 
                 await asyncio.wait_for(self._verify_browser_works(), timeout=45)
+                self._raise_if_quarantined()
                 break
             except Exception as e:
                 logger.warning("uc.start failed on attempt %d/%d for %s: %s", attempt + 1, max_retries, self.marketplace, e)
+                # uc.start may already have spawned Chrome before raising.
+                # Sweep this profile before retrying so no orphan keeps its lock.
+                await self._cleanup_failed_start()
+                if self._session_quarantined:
+                    raise
                 if attempt == max_retries - 1:
                     raise
                 await asyncio.sleep(2 ** attempt)
@@ -492,13 +538,64 @@ class BaseParser(ABC):
         self._current_page = None
 
         await self._inject_stealth()
+        self._raise_if_quarantined()
 
         if self._root_url:
             self._current_page = await self._browser.get(self._root_url)
+            self._raise_if_quarantined()
             homepage_delay = random.uniform(self.homepage_delay_min, self.homepage_delay_max)
             await asyncio.sleep(homepage_delay)
 
         logger.debug("Browser session started for %s", self.marketplace)
+
+    async def sweep_profile_chrome(self) -> int:
+        """Kill only Chrome processes using this profile and clear its locks."""
+        killed = await async_sweep_chrome_tree(
+            self._profile_dir, self._profile_markers)
+        self._remove_stale_lock_files(self._profile_dir)
+        return killed
+
+    async def _cleanup_failed_start(self) -> None:
+        """Remove a partially started Chrome without deleting profile data."""
+        try:
+            await asyncio.wait_for(self.close_browser(), timeout=5.0)
+        except asyncio.TimeoutError:
+            logger.warning(
+                "Partial browser cleanup timed out for %s", self.marketplace)
+        except Exception as exc:
+            logger.warning(
+                "Partial browser cleanup failed for %s: %s",
+                self.marketplace, exc,
+            )
+        await self.sweep_profile_chrome()
+
+    async def close_browser(self):
+        """Закрыть браузер даже если сессия ещё не была помечена активной.
+
+        Нужен после сбоя запуска: Chrome мог уже появиться, но проверка браузера
+        не прошла и ``_session_active`` ещё не выставлен.
+        """
+        browser = getattr(self, "_browser", None)
+        if not browser:
+            self._session_active = False
+            self._current_page = None
+            return
+        try:
+            await browser.aclose()
+        except RuntimeError:
+            pass
+        except Exception as exc:
+            logger.warning("Browser cleanup failed for %s: %s", self.marketplace, exc)
+        process = getattr(browser, "_process", None)
+        if process:
+            try:
+                await asyncio.wait_for(process.wait(), timeout=5.0)
+            except asyncio.TimeoutError:
+                process.kill()
+                await process.wait()
+        self._browser = None
+        self._session_active = False
+        self._current_page = None
 
     async def end_session(self):
         if not getattr(self, "_session_active", False):
@@ -516,6 +613,7 @@ class BaseParser(ABC):
                 pass
         self._session_active = False
         self._current_page = None
+        self._browser = None
 
         # Belt-and-braces: nodriver's aclose only terminates the MAIN bot
         # Chrome PID; the real Chrome binary leaves a whole tree of descendants
@@ -524,8 +622,8 @@ class BaseParser(ABC):
         # entire tree so orphans never accumulate across poll cycles
         # (previously observed as ~7 GB of stuck chrome on the server).
         try:
-            from utils.chrome_cleanup import async_sweep_chrome_tree
-            await async_sweep_chrome_tree(self._profile_dir)
+            await async_sweep_chrome_tree(
+                self._profile_dir, self._profile_markers)
         except Exception as exc:
             logger.warning("Chrome tree sweep failed for %s: %s", self.marketplace, exc)
 

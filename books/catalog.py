@@ -15,12 +15,12 @@ class Book:
     index: int
     author: str
     title: str
-    year: int
+    year: int | None  # единственный год издания; у диапазона — None
     publisher: str
     series: str  # "lp" — Литературные памятники, "academia" — Academia
-    price_min: int
-    price_max: int
-    price_top: int
+    price_min: int | None
+    price_max: int | None
+    price_top: int | None
     title_keys: tuple[tuple[str, ...], ...]
     loose_keys: tuple[tuple[str, ...], ...]
     author_keys: tuple[tuple[str, ...], ...]
@@ -30,11 +30,28 @@ class Book:
     group: str
     note: str
     query: str
+    # Поля изданий без цен (позиции 51–68); у старых записей пустые.
+    year_from: int | None = None
+    year_to: int | None = None
+    year_text: str = ""
+    place: str = ""
+    artist: str = ""
+    volume: str = ""
+    queries: tuple[str, ...] = ()
+
+    @property
+    def year_range(self) -> tuple[int, int]:
+        """Диапазон годов издания: (lo, hi)."""
+        if self.year_from is not None and self.year_to is not None:
+            return self.year_from, self.year_to
+        year = self.year if self.year is not None else 0
+        return year, year
 
     @property
     def label(self) -> str:
+        year = self.year_text or (self.year if self.year is not None else "год не указан")
         parts = [f"{self.author}. {self.title}" if self.author not in ("—", "") else self.title,
-                 f"{self.year}, {self.publisher}"]
+                 f"{year}, {self.publisher}"]
         return " — ".join(parts)
 
 
@@ -43,7 +60,7 @@ def _book_from_dict(data: dict) -> Book:
         index=data["index"],
         author=data["author"],
         title=data["title"],
-        year=data["year"],
+        year=data.get("year"),
         publisher=data["publisher"],
         series=data["series"],
         price_min=data["price_min"],
@@ -58,6 +75,13 @@ def _book_from_dict(data: dict) -> Book:
         group=data.get("group", ""),
         note=data.get("note", ""),
         query=data.get("query", ""),
+        year_from=data.get("year_from"),
+        year_to=data.get("year_to"),
+        year_text=data.get("year_text", ""),
+        place=data.get("place", ""),
+        artist=data.get("artist", ""),
+        volume=data.get("volume", ""),
+        queries=tuple(data.get("queries", ())),
     )
 
 

@@ -84,7 +84,8 @@ def _year_matches(book: Book, years: list[int]) -> bool:
     """Год в заголовке не противоречит книге (или года нет вовсе)."""
     if not years:
         return True
-    return any(abs(year - book.year) <= 1 for year in years)
+    low, high = book.year_range
+    return any(low - 1 <= year <= high + 1 for year in years)
 
 
 def lot_title_interesting(

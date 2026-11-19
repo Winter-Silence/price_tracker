@@ -1,11 +1,27 @@
 import asyncio
 import re
 from dataclasses import dataclass
+from urllib.parse import urlsplit, urlunsplit
 
 from parsers.base import BaseParser, SearchResult
 from utils.logger import logger
 
 AVITO_ROOT = "https://www.avito.ru"
+
+
+def build_page_url(url: str, page: int) -> str:
+    """URL той же выдачи Avito с номером страницы `p` (page == 1 убирает `p`).
+
+    Остальные параметры (`s`, `f`, `context`, `cd`, `localPriority`, `q`) и их
+    порядок сохраняются байт в байт: у пользователя готовые ссылки с
+    сортировкой по дате, и они не должны пересобираться.
+    """
+    parts = urlsplit(url)
+    segments = [s for s in parts.query.split("&") if s]
+    kept = [s for s in segments if s.split("=", 1)[0] != "p"]
+    if page > 1:
+        kept.append(f"p={page}")
+    return urlunsplit(parts._replace(query="&".join(kept)))
 
 
 @dataclass
@@ -220,42 +236,46 @@ class AvitoParser(BaseParser):
         # Not applicable for Avito new-item tracking; use get_all_items_from_search.
         return None
 
-    async def get_all_items_from_search(self, search_url: str) -> list[AvitoItem] | None:
+    async def get_all_items_from_search(
+        self, search_url: str, page: int = 1,
+    ) -> list[AvitoItem] | None:
         """Return every ad currently present on the Avito search listing page.
 
+        `page` — номер страницы выдачи (`p` в URL); page == 1 — первая.
         Returns None when the page could not be parsed (captcha / bot-block).
 
         На заглушке «Доступ ограничен» поднимается `_profile_blocked` — такой
         ответ означает, что маркетплейс заблокировал сам профиль (cookies), и
         `end_session()` пересоздаст его с нуля.
         """
+        page_url = build_page_url(search_url, page)
         await self._random_delay()
-        page = await self._get_page(search_url)
+        tab = await self._get_page(page_url)
         self._captcha_detected = False
         self._profile_blocked = False
         try:
             await asyncio.sleep(6)
 
-            title = await self._eval(page, "document.title")
+            title = await self._eval(tab, "document.title")
             if title and ("captcha" in title.lower() or "доступ ограничен" in title.lower()):
                 self._captcha_detected = True
                 self._profile_blocked = "доступ ограничен" in title.lower()
-                logger.warning("Avito bot-block at %s", search_url)
-                await self._take_screenshot(page, "blocked_search")
+                logger.warning("Avito bot-block at %s", page_url)
+                await self._take_screenshot(tab, "blocked_search")
                 return None
 
-            content = await self._eval(page, "document.body.innerText")
+            content = await self._eval(tab, "document.body.innerText")
             if content and "доступ ограничен" in content.lower():
                 self._captcha_detected = True
                 self._profile_blocked = True
-                logger.warning("Avito bot-block text at %s", search_url)
-                await self._take_screenshot(page, "blocked_search")
+                logger.warning("Avito bot-block text at %s", page_url)
+                await self._take_screenshot(tab, "blocked_search")
                 return None
 
-            raw = await self._eval(page, _AVITO_ITEMS_JS)
+            raw = await self._eval(tab, _AVITO_ITEMS_JS)
             if not raw:
-                logger.warning("Avito search: no items found at %s", search_url)
-                await self._take_screenshot(page, "no_search_items")
+                logger.warning("Avito search: no items found at %s", page_url)
+                await self._take_screenshot(tab, "no_search_items")
                 self.register_parse_failure()
                 return []
 
@@ -270,12 +290,12 @@ class AvitoParser(BaseParser):
                 ))
 
             self.register_parse_success()
-            logger.info("Avito search: parsed %d items from %s", len(items), search_url)
+            logger.info("Avito search: parsed %d items from %s", len(items), page_url)
             return items
 
         except Exception as exc:
-            logger.error("Avito parser failed for %s: %s", search_url, exc)
-            await self._take_screenshot(page, "error")
+            logger.error("Avito parser failed for %s: %s", page_url, exc)
+            await self._take_screenshot(tab, "error")
             self.register_parse_failure()
             return None
 

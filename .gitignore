@@ -21,3 +21,10 @@ chrome_profile/
 chrome_profile_avito/
 chrome_profile_avito.blocked.*
 chrome_profile_avito.reset_at
+# Бэкапы профилей от fab sync-profile / fab sync-books-profile — содержат
+# доверенные cookies, удалять их нельзя (git clean -fd не должен трогать).
+chrome_profile_avito*.bak.*
+chrome_profile_avito_books/
+chrome_profile_avito_books.blocked.*
+chrome_profile_avito_books.reset_at
+chrome_profile_avito_books*.bak.*

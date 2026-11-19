@@ -20,13 +20,18 @@ import asyncio
 import os
 import signal
 import time
-from typing import Iterator
+from typing import Iterable, Iterator
 
 from utils.logger import logger
 
 
-def _iter_proc_cmdlines() -> Iterator[tuple[int, str]]:
-    """Yield (pid:int, cmdline:str) for every readable /proc entry."""
+def _iter_proc_cmdlines() -> Iterator[tuple[int, list[str]]]:
+    """Yield (pid, argv) for every readable /proc entry.
+
+    Linux exposes each argv item as a separate NUL-terminated value. Keeping
+    those boundaries intact is essential: profile paths may contain spaces and
+    ``/price`` must not match ``/price-other``.
+    """
     for entry in os.listdir("/proc"):
         if not entry.isdigit():
             continue
@@ -35,29 +40,69 @@ def _iter_proc_cmdlines() -> Iterator[tuple[int, str]]:
                 raw = f.read()
         except OSError:
             continue
-        cmdline = raw.replace(b"\x00", b" ").decode("utf-8", errors="replace")
-        yield int(entry), cmdline
+        args = [
+            item.decode("utf-8", errors="replace")
+            for item in raw.split(b"\0")
+            if item
+        ]
+        yield int(entry), args
 
 
-def _profile_markers(profile_dir) -> tuple[str, ...]:
-    """Return candidate markers that identify this profile in a cmdline.
+def profile_marker_set(
+    profile_dir, legacy_markers: Iterable[str] = (),
+) -> tuple[str, ...]:
+    """Return every exact path token that may identify this profile.
 
-    The bot passes the profile path as ``--user-data-dir=<profile_dir>``,
-    and existing lock-matching code (base.py ``_process_is_our_chrome``)
-    compares against the RAW string (often relative, e.g. ``./chrome_profile``).
-    We cover absolute, raw, and basename forms so the sweep never misses.
+    The absolute path is authoritative. The raw/normalized relative value and
+    the path relative to the current project directory keep cleanup compatible
+    with Chrome processes launched by older bot versions. ``legacy_markers``
+    adds explicitly configured relative tokens such as ``chrome_profile_avito``.
     """
-    raw = str(profile_dir)
-    markers = {
-        os.path.abspath(raw),
+    raw = os.path.expanduser(str(profile_dir))
+    absolute = os.path.realpath(raw)
+    candidates = {
         raw,
-        os.path.basename(os.path.abspath(raw)),
+        os.path.normpath(raw),
+        absolute,
+        os.path.abspath(raw),
     }
-    return tuple(m for m in markers if m and m != "/")
+    try:
+        relative = os.path.relpath(absolute, os.getcwd())
+        if relative != os.pardir and not relative.startswith(os.pardir + os.sep):
+            candidates.update((relative, os.path.normpath(relative)))
+    except ValueError:
+        pass
+    candidates.update(str(marker) for marker in legacy_markers if marker)
+    return tuple(sorted(
+        marker for marker in candidates
+        if marker and marker not in (os.sep, ".")
+    ))
 
 
-def _matches_marker(cmdline: str, markers: tuple[str, ...]) -> bool:
-    return any(m in cmdline for m in markers)
+def _looks_like_chrome(args: Iterable[str]) -> bool:
+    executable = os.path.basename(next(iter(args), "")).lower()
+    return "chrome" in executable or "chromium" in executable
+
+
+def _matches_marker(args: Iterable[str], markers: tuple[str, ...]) -> bool:
+    expected = set(markers)
+    for index, arg in enumerate(args):
+        if arg.startswith("--user-data-dir="):
+            if arg.split("=", 1)[1] in expected:
+                return True
+        elif arg == "--user-data-dir" and index + 1 < len(args):
+            if args[index + 1] in expected:
+                return True
+    return False
+
+
+def profile_matches_args(
+    args: Iterable[str], profile_dir, legacy_markers: Iterable[str] = (),
+) -> bool:
+    """Whether Chrome argv uses exactly this ``--user-data-dir`` argument."""
+    args = list(args)
+    return _looks_like_chrome(args) and _matches_marker(
+        args, profile_marker_set(profile_dir, legacy_markers))
 
 
 def _safe_kill(pid: int, sig: int) -> None:
@@ -69,17 +114,18 @@ def _safe_kill(pid: int, sig: int) -> None:
         logger.debug("No permission to signal chrome pid %d", pid)
 
 
-def sweep_chrome_tree(profile_dir) -> int:
+def sweep_chrome_tree(
+    profile_dir, legacy_markers: Iterable[str] = (),
+) -> int:
     """Terminate the ENTIRE Chrome tree owning this profile dir.
 
     Graceful SIGTERM first (lets Chrome flush cookies / session state to the
     persistent profile), then SIGKILL for survivors.  Returns the number of
     matching processes found in /proc (0 if none).
     """
-    markers = _profile_markers(profile_dir)
     pids: list[int] = []
-    for pid, cmdline in _iter_proc_cmdlines():
-        if "chrome" in cmdline and _matches_marker(cmdline, markers):
+    for pid, args in _iter_proc_cmdlines():
+        if profile_matches_args(args, profile_dir, legacy_markers):
             pids.append(pid)
 
     if not pids:
@@ -104,6 +150,9 @@ def sweep_chrome_tree(profile_dir) -> int:
     return len(pids)
 
 
-async def async_sweep_chrome_tree(profile_dir) -> int:
+async def async_sweep_chrome_tree(
+    profile_dir, legacy_markers: Iterable[str] = (),
+) -> int:
     """Async wrapper: run the blocking /proc sweep off the event loop."""
-    return await asyncio.to_thread(sweep_chrome_tree, profile_dir)
+    return await asyncio.to_thread(
+        sweep_chrome_tree, profile_dir, tuple(legacy_markers))

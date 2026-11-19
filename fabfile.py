@@ -8,7 +8,9 @@ Usage:
     fab logs              # tail bot logs (default: 50 lines)
     fab logs --lines 200
     fab restart|stop|start
-    fab sync-profile      # upload local chrome_profile/ (Avito first-time setup)
+    fab sync-profile      # upload local chrome_profile_avito/ (price mode)
+    fab sync-books-profile  # upload local chrome_profile_avito_books/ (books mode)
+    fab cleanup-avito-chrome  # one-time: kill Chrome left by the old version
     fab rollback          # git reset --hard HEAD~1 then restart (use with care)
     fab rollback --steps 3
     fab setup             # initial install (runs scripts/deploy.sh on server)
@@ -17,6 +19,7 @@ Configuration is read from ./.deploy.env (see .deploy.env.example).
 """
 from __future__ import annotations
 
+import shlex
 import tarfile
 import tempfile
 import time
@@ -30,6 +33,16 @@ DEFAULT_USER = "yury"
 DEFAULT_PATH = f"/home/{DEFAULT_USER}/price_tracker"
 DEFAULT_BRANCH = "main"
 DEFAULT_LINES = 50
+
+# Каталоги профилей Avito по умолчанию (как в .env бота).
+PROFILE_NAMES = {
+    "price": "chrome_profile_avito",
+    "books": "chrome_profile_avito_books",
+}
+PROFILE_ENV_KEYS = {
+    "price": "AVITO_PROFILE_DIR",
+    "books": "AVITO_BOOKS_PROFILE_DIR",
+}
 
 
 def _load_env() -> dict[str, str]:
@@ -272,6 +285,112 @@ def setup(c):
 
 # ----- Avito profile sync ---------------------------------------------------
 
+def _service_workdir(conn: Connection) -> str:
+    """Рабочий каталог сервиса (systemd WorkingDirectory)."""
+    out = conn.run(
+        "systemctl show price-tracker.service --property=WorkingDirectory --value",
+        hide=True, warn=True,
+    ).stdout.strip()
+    return out or _remote_path()
+
+
+def _remote_env_value(conn: Connection, key: str) -> str:
+    """Значение переменной из .env на сервере (пусто, если нет)."""
+    env_file = shlex.quote(f"{_remote_path()}/.env")
+    out = conn.run(
+        f"grep -E '^{key}=' {env_file} 2>/dev/null | "
+        f"tail -n1 | cut -d= -f2-",
+        hide=True, warn=True,
+    ).stdout.strip()
+    return out.strip().strip('"').strip("'")
+
+
+def _remote_profile_dir(conn: Connection, mode: str) -> str:
+    """Каталог профиля Avito на сервере, куда смотрит бот.
+
+    Порядок: .deploy.env → .env на сервере → имя по умолчанию.
+    Относительный путь отсчитывается от рабочего каталога сервиса.
+    """
+    key = PROFILE_ENV_KEYS[mode]
+    raw = (
+        _load_env().get(key)
+        or _remote_env_value(conn, key)
+        or f"./{PROFILE_NAMES[mode]}"
+    )
+    path = Path(raw.strip())
+    if not path.is_absolute():
+        path = Path(_service_workdir(conn)) / path
+    return str(path)
+
+
+def _sync_avito_profile(c, mode: str) -> None:
+    """Upload one local Avito profile into the directory the bot uses."""
+    local_profile = Path(PROFILE_NAMES[mode])
+    if not local_profile.exists() or not any(local_profile.iterdir()):
+        raise Exit(f"❌ Local {local_profile}/ is empty or doesn't exist. "
+                   "Solve the Avito CAPTCHA in this profile first.")
+
+    conn = _conn()
+    remote_path = _remote_path()
+    user = _load_env().get("DEPLOY_USER", DEFAULT_USER)
+    remote_profile = _remote_profile_dir(conn, mode)
+    # Пути с пробелами/кавычками — quote'им, иначе shell их разорвёт.
+    q_profile = shlex.quote(remote_profile)
+    q_backup = shlex.quote(f"{remote_profile}.bak")
+    q_archive = shlex.quote(f"{remote_path}/{local_profile}.tar.gz")
+    q_user = shlex.quote(user)
+
+    # Stop bot so it's not holding the profile / Chrome lock
+    print("🛑 Stopping bot...")
+    conn.run("sudo systemctl stop price-tracker.service", pty=True)
+
+    # Back up any existing profile on the server
+    print(f"📦 Backing up existing profile ({remote_profile})...")
+    conn.run(
+        f"test -d {q_profile} && "
+        f"mv {q_profile} {q_backup}.$(date +%s) || true",
+        pty=True,
+    )
+
+    # Pack the local profile into a tar archive (recursive via SFTP's put)
+    archive = Path(tempfile.gettempdir()) / f"{local_profile}.tar.gz"
+    print(f"🗜️  Packing {local_profile}/...")
+    with tarfile.open(archive, "w:gz") as tar:
+        tar.add(local_profile, arcname=str(local_profile))
+
+    print(f"⬆️  Uploading {local_profile}/ → {remote_profile}...")
+    try:
+        conn.put(
+            local=str(archive),
+            remote=f"{remote_path}/{local_profile}.tar.gz",
+        )
+        print("📦 Extracting on server...")
+        conn.run(
+            f"mkdir -p {q_profile} && "
+            f"tar -xzf {q_archive} -C {q_profile} --strip-components=1 && "
+            f"rm -f {q_archive}",
+            pty=True,
+        )
+    finally:
+        archive.unlink(missing_ok=True)
+
+    # Fix ownership (upload runs as the SSH user)
+    conn.run(f"chown -R {q_user}:{q_user} {q_profile}", pty=True)
+
+    # Restart the bot
+    print("▶️  Starting bot...")
+    conn.run("sudo systemctl start price-tracker.service", pty=True)
+    time.sleep(3)
+    active = conn.run(
+        "systemctl is-active price-tracker.service", hide=True
+    ).stdout.strip()
+    print(f"✅ Service status: {active}")
+
+    if active != "active":
+        print("⚠️  Service not active! Showing recent logs:")
+        conn.run("journalctl -u price-tracker.service -n 20 --no-pager", pty=True)
+
+
 @task
 def sync_profile(c):
     """Upload local chrome_profile_avito/ to the server (Avito trusted session).
@@ -283,49 +402,70 @@ def sync_profile(c):
     Examples:
         fab sync-profile
     """
-    local_profile = Path("chrome_profile_avito")
-    if not local_profile.exists() or not any(local_profile.iterdir()):
-        raise Exit("❌ Local chrome_profile_avito/ is empty or doesn't exist. "
-                   "Solve the Avito CAPTCHA in the browser first.")
+    _sync_avito_profile(c, "price")
 
+
+@task
+def sync_books_profile(c):
+    """Upload local chrome_profile_avito_books/ to the server.
+
+    Stops the bot, backs up the existing books profile, uploads the local
+    one, then restarts the bot. Run once after solving the Avito CAPTCHA
+    in the books profile on the dev machine.
+
+    Examples:
+        fab sync-books-profile
+    """
+    _sync_avito_profile(c, "books")
+
+
+# Убивает Chrome, оставшийся от старой версии бота (он запускал Chrome с
+# относительным путём профиля), и убирает висячие SingletonLock.
+_CLEANUP_SCRIPT = """
+import sys
+from pathlib import Path
+from utils.chrome_cleanup import sweep_chrome_tree
+
+for target in sys.argv[1:]:
+    path = Path(target)
+    killed = sweep_chrome_tree(path, (path.name,))
+    for name in ("SingletonLock", "SingletonCookie", "SingletonSocket"):
+        (path / name).unlink(missing_ok=True)
+    print(f"{target}: killed {killed} Chrome process(es)")
+"""
+
+
+@task
+def cleanup_avito_chrome(c):
+    """One-time cleanup of Chrome processes left by the old bot version.
+
+    The old version launched Chrome with a relative profile path
+    (``--user-data-dir=chrome_profile_avito``). Such processes keep the
+    profile lock and are not attached to the new session, so after the
+    update they must be killed once. Only Chrome of the Avito profiles is
+    touched; cookies and the trusted session stay on disk.
+
+    Examples:
+        fab cleanup-avito-chrome
+    """
     conn = _conn()
     remote_path = _remote_path()
-    user = _load_env().get("DEPLOY_USER", DEFAULT_USER)
+    targets = [
+        _remote_profile_dir(conn, mode) for mode in ("price", "books")
+    ]
 
-    # Stop bot so it's not holding the profile / Chrome lock
     print("🛑 Stopping bot...")
     conn.run("sudo systemctl stop price-tracker.service", pty=True)
 
-    # Back up any existing profile on the server
-    print("📦 Backing up existing profile...")
+    print("🧹 Killing Chrome processes of the Avito profiles...")
     conn.run(
-        f"test -d {remote_path}/chrome_profile_avito && "
-        f"mv {remote_path}/chrome_profile_avito {remote_path}/chrome_profile_avito.bak.$(date +%s) || true",
+        f"cd {shlex.quote(remote_path)} && "
+        f"{shlex.quote(f'{remote_path}/venv/bin/python')} -c "
+        f"{shlex.quote(_CLEANUP_SCRIPT)} "
+        + " ".join(shlex.quote(target) for target in targets),
         pty=True,
     )
 
-    # Pack the local profile into a tar archive (recursive via SFTP's put)
-    archive = Path(tempfile.gettempdir()) / "chrome_profile_avito.tar.gz"
-    print("🗜️  Packing chrome_profile_avito/...")
-    with tarfile.open(archive, "w:gz") as tar:
-        tar.add(local_profile, arcname="chrome_profile_avito")
-
-    print("⬆️  Uploading chrome_profile_avito/...")
-    try:
-        conn.put(local=str(archive), remote=f"{remote_path}/chrome_profile_avito.tar.gz")
-        print("📦 Extracting on server...")
-        conn.run(
-            f"cd {remote_path} && tar -xzf chrome_profile_avito.tar.gz "
-            f"&& rm -f chrome_profile_avito.tar.gz",
-            pty=True,
-        )
-    finally:
-        archive.unlink(missing_ok=True)
-
-    # Fix ownership (upload runs as the SSH user)
-    conn.run(f"chown -R {user}:{user} {remote_path}/chrome_profile_avito", pty=True)
-
-    # Restart the bot
     print("▶️  Starting bot...")
     conn.run("sudo systemctl start price-tracker.service", pty=True)
     time.sleep(3)

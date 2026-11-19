@@ -1,206 +1,168 @@
 # Price Tracker
 
-Telegram-бот для отслеживания цен на товары на российских маркетплейсах.
-Пользователь добавляет конкретный URL товара + пороговую цену. Бот периодически
-парсит страницы и присылает уведомление, когда цена опускается ниже порога.
+A Telegram bot for tracking product prices on Russian marketplaces. The user adds a specific product URL and a threshold price. The bot periodically parses the pages and sends a notification when the price drops below the threshold.
 
-## Стек
+## Stack
 
-- Python (версия зафиксирована в `.tool-versions` через asdf)
-- `nodriver` — браузерная автоматизация на базе настоящего Chrome (обход антибота)
-- `aiosqlite` — async-доступ к SQLite
-- `apscheduler` (AsyncIOScheduler) — планировщик опросов цен
-- `python-telegram-bot` v20+ — Telegram-бот (async API)
-- `python-dotenv` — переменные окружения из `.env`
-- `fabric` — деплой на production через `fab deploy` (см. `fabfile.py`)
+- Python (version pinned in `.tool-versions` via asdf)
+- `nodriver`: browser automation on top of real Chrome (anti-bot bypass)
+- `aiosqlite`: async access to SQLite
+- `apscheduler` (AsyncIOScheduler): price polling scheduler
+- `python-telegram-bot` v20+: Telegram bot (async API)
+- `python-dotenv`: environment variables from `.env`
+- `fabric`: deployment to production via `fab deploy` (see `fabfile.py`)
 
-## Структура проекта
+## Project structure
 
 ```
 price-tracker/
-├── .tool-versions          # asdf: фиксированная версия Python
-├── .env                    # секреты (не в git)
-├── .env.example            # шаблон
+├── .tool-versions          # asdf: pinned Python version
+├── .env                    # secrets (not in git)
+├── .env.example            # template
 ├── requirements.txt
-├── fabfile.py               # Fabric tasks: fab deploy / rollback / status / logs / restart / stop / start / setup / sync-profile / check
-├── .deploy.env              # конфиг деплоя (не в git; см. .deploy.env.example)
+├── fabfile.py               # Fabric tasks (deploy, services)
+├── .deploy.env              # deploy config (not in git)
 ├── .deploy.env.example
-├── main.py                 # точка входа: бот + планировщик в одном event loop
-├── db/
-│   ├── database.py         # init_db() и все функции запросов
-│   └── models.py           # dataclass-модели (Product, PriceRecord, Alert, User)
-├── parsers/
-│   ├── base.py             # абстрактный BaseParser
-│   ├── __init__.py         # PARSERS = [...]; get_parser(url) -> BaseParser | None
-│   ├── wildberries.py      # Wildberries
-│   ├── ozon.py             # Ozon
-│   ├── citilink.py         # Citilink
-│   └── avito.py            # Avito (новые объявления + карточка лота)
-├── books/
-│   ├── normalize.py        # лемматизация pymorphy3 + нечёткое сравнение rapidfuzz
-│   ├── catalog.py          # загрузка data/books_catalog.json
-│   ├── matcher.py          # сопоставление текста лота с эталонным списком
-│   └── filters.py          # дата публикации (МСК) и отзывы продавца
-├── data/
-│   └── books_catalog.json  # сгенерированный каталог 50 книг (в git)
+├── main.py                 # entry point: bot + scheduler
+├── db/                     # database.py, models.py
+├── parsers/                # base.py, wildberries.py, ozon.py, citilink.py, avito.py
+├── books/                  # normalize.py, catalog.py, matcher.py, filters.py, prefilter.py, llm_verifier.py
+├── data/                   # books_catalog.json
 ├── tests/
-│   └── test_book_matcher.py
-├── scheduler/
-│   └── jobs.py             # poll_prices() + poll_search_prices() + poll_avito_search() + start_scheduler()
-├── bot/
-│   ├── handlers.py         # ConversationHandler и команды /start /add /link /threshold /list /delete /history /cancel
-│   ├── notifications.py    # send_alert_notification() + send_search_alert_notification() + send_avito_new_item_notification()
-│   ├── bot_instance.py     # глобальный синглтон: set_bot() / get_bot()
-│   └── admin_notify.py     # send_admin_notification() для служебных уведомлений
-├── utils/
-│   ├── logger.py           # единый логгер проекта
-│   └── display.py          # ensure_xvfb() / stop_xvfb() — управление виртуальным дисплеем
-├── scripts/
-│   ├── deploy.sh               # первичная установка на сервер (ставит Chrome, asdf, venv, systemd-юниты)
-│   ├── install-systemd.sh      # устаревший альтернативный путь установки systemd-юнитов
-│   ├── price-tracker-xvfb.service    # systemd-юнит Xvfb
-│   ├── price-tracker-fluxbox.service # systemd-юнит fluxbox (WM поверх Xvfb)
-│   ├── price-tracker.service         # systemd-юнит бота
-│   ├── test_parsers.py         # ручной запуск парсера по URL из CLI
-│   ├── test_fingerprint.py     # ручной тест отпечатков браузера
-│   ├── test_avito_search.py    # ручной тест поиска Avito
-│   ├── test_avito_item.py      # ручной тест карточки объявления Avito
-│   └── build_books_catalog.py  # генерация data/books_catalog.json из docs/books/
-└── docs/
-    ├── PROJECT.md          # архитектура, парсеры, stealth, схема БД
-    ├── INSTALL.md          # инструкция по установке
-    ├── USAGE.md            # команды бота, уведомления, добавление маркетплейсов
-    └── books/              # эталонный список 50 книг и правила отбора
+├── scheduler/              # jobs.py
+├── bot/                    # handlers.py, notifications.py, bot_instance.py, admin_notify.py
+├── utils/                  # logger.py, display.py
+├── scripts/                # deploy.sh, test_*.py, build_books_catalog.py
+└── docs/                   # PROJECT.md, INSTALL.md, USAGE.md, books/
+
+Details for each module are in the code and in docs/. LSP (`basedpyright`), the `codebase` skill, and `grep`/`read` with `offset`/`limit` will help you find your way around without loading whole files into context.
 ```
 
-## Команды
+## Commands
+
+### Local development (frequent)
 
 ```bash
-# Автоматическая установка на сервер (Ubuntu)
-chmod +x scripts/deploy.sh && ./scripts/deploy.sh
-
-# Ручная установка
-asdf install                                  # требуется asdf >= 0.16
+# Installation
+asdf install                                  # requires asdf >= 0.16
 # bash/zsh:
 asdf exec python -m venv venv && source venv/bin/activate
-# fish — см. docs/INSTALL.md
+# fish: see docs/INSTALL.md
 pip install -r requirements.txt
 
-# Запуск
+# Run
 python main.py
 
-# Ручной тест парсера
+# Manual parser test
 python scripts/test_parsers.py "https://www.wildberries.ru/catalog/12345678/detail.aspx"
-
-# Деплой на production (один раз настроить .deploy.env из .deploy.env.example)
-fab check          # проверка соединения с сервером
-fab deploy         # push + SSH + pull + пересоздание venv + restart + логи
-fab deploy --no-push   # если push уже сделан
-fab deploy --branch <name>  # деплой конкретной ветки
-fab status         # статус systemd-сервисов
-fab logs           # последние 50 строк лога бота
-fab logs --lines 200   # последние N строк
-fab restart        # перезапуск бота без деплоя
-fab stop           # остановка бота
-fab start          # запуск бота
-fab sync-profile   # загрузить локальный chrome_profile_avito/ на сервер (Avito, разово)
-fab rollback       # экстренный откат на HEAD~1
-fab rollback --steps 3  # откат на N коммитов назад
 ```
+
+Deployment, rollback, systemd service management, `fab sync-profile` / `fab sync-books-profile`, and other server operations are rare. They live in [README.md "Deploying to the server"](README.md#деплой-на-сервер). Do not keep them in context; open them when needed.
+
+> **Shell compatibility:** the venv activation instructions are given for bash (`source venv/bin/activate`). For fish, use `activate.fish`. For that, the venv is created with `virtualenv` (not `python -m venv`): `asdf exec python -m pip install --user virtualenv && asdf exec python -m virtualenv venv && source venv/bin/activate.fish`. See `docs/INSTALL.md`.
+>
+> **Windows-checkout warning:** if the repository is cloned on Linux with `git config --global core.autocrlf=true`, the asdf python plugin breaks (`'bash\r': No such file or directory`). Before `asdf install`, make sure `git config --get core.autocrlf` returns `false` or `input` for this clone.
 
 ### First-time Avito setup
 
-Avito требует доверенную сессию (обход капчи). На headless-сервере негде открыть
-браузер и решить капчу, поэтому доверенная сессия готовится один раз на
-dev-машине и загружается на сервер:
+Avito requires a trusted session (captcha bypass). On a headless server there is no browser in which to solve the captcha, so the trusted session is prepared once on a dev machine and uploaded to the server:
 
 ```bash
-# 1. На dev-машине (с GUI) открыть https://www.avito.ru в Chrome-профиле бота
-#    (`chrome_profile_avito/`) и один раз вручную решить капчу / подтвердить доступ.
-#    Быстрее всего: `python scripts/test_avito_search.py <url>` и решить капчу,
-#    когда бот откроет окно Chrome.
+# 1. On the dev machine (with a GUI), prepare the price-mode profile
+#    (`chrome_profile_avito/`) and solve the captcha once.
+#    Fastest way: `python scripts/test_avito_search.py <url>` and solve the captcha
+#    when the bot opens the Chrome window.
 
-# 2. Загрузить доверенный профиль на сервер (остановит бота, бэкапит старый,
-#    загрузит новый профиль, перезапустит бота):
+# 2. Prepare the separate books-mode profile (`chrome_profile_avito_books/`) by
+#    opening Avito in Chrome with that user-data-dir and solving the captcha:
+#    google-chrome --user-data-dir="$PWD/chrome_profile_avito_books" https://www.avito.ru/
+
+# 3. Upload both trusted profiles to the server (each task stops the bot,
+#    backs up the old profile, uploads the new one, and restarts the bot):
 fab sync-profile
+fab sync-books-profile
+
+# 4. One-time cleanup after the update: kill Chrome processes left by the old
+#    version (they were started with a relative profile path and keep the
+#    profile lock). Cookies and the trusted session are not touched:
+fab cleanup-avito-chrome
 ```
 
-Профиль `chrome_profile_avito/` (gitignored) хранит доверенную Avito-сессию
-между деплоями — `fab deploy` его не трогает. Парсеры цен (WB/Ozon/Citilink)
-используют отдельный `chrome_profile/`, а Avito — `chrome_profile_avito/`,
-чтобы их 5-минутный и часовой циклы не конфликтовали по `SingletonLock`.
-Файл замков (`SingletonLock`/`SingletonCookie`/`SingletonSocket`) может стать
-stale, если профиль синхронизирован с dev-машины с другим hostname — в таком
-случае `_check_and_reset_chrome_profile` удаляет только замки (куки/сессию
-сохраняет). Повторный `fab sync-profile` не нужен, пока сессия жива;
-при повторной капче — просто повторить оба шага.
+The `chrome_profile_avito/` (price mode) and `chrome_profile_avito_books/` (book mode) profiles are gitignored and keep separate trusted Avito sessions between deployments; `fab deploy` does not touch either one. They also have separate Chrome processes and `SingletonLock` files, so `/add` and `/books` can run in parallel. The lock files (`SingletonLock`/`SingletonCookie`/`SingletonSocket`) can become stale if a profile was synced from a dev machine with a different hostname. In that case `_check_and_reset_chrome_profile` removes only the locks (cookies/session are kept). The sync tasks resolve the target directories from `.deploy.env` → the server `.env` → the defaults, with relative paths counted from the service `WorkingDirectory` (`systemctl show price-tracker.service --property=WorkingDirectory`), so the uploaded profile lands exactly where the bot looks for it. Repeat the corresponding sync task only if that profile's captcha reappears.
 
-
-> **Shell-совместимость:** инструкции активации venv даны для bash
-> (`source venv/bin/activate`). Для fish используйте `activate.fish` —
-> для этого venv создаётся через `virtualenv` (не `python -m venv`):
+> **Shell compatibility:** the venv activation instructions are given for bash
+> (`source venv/bin/activate`). For fish, use `activate.fish`.
+> For that, the venv is created with `virtualenv` (not `python -m venv`):
 > `asdf exec python -m pip install --user virtualenv &&
 >  asdf exec python -m virtualenv venv &&
->  source venv/bin/activate.fish`. См. `docs/INSTALL.md`.
+>  source venv/bin/activate.fish`. See `docs/INSTALL.md`.
 >
-> **Windows-checkout warning:** если репозиторий клонируется на Linux с
-> `git config --global core.autocrlf=true`, asdf-плагин python ломается
-> (`'bash\r': No such file or directory`). Перед `asdf install` убедись,
-> что `git config --get core.autocrlf` возвращает `false` или `input`
-> для этого клона.
+> **Windows-checkout warning:** if the repository is cloned on Linux with
+> `git config --global core.autocrlf=true`, the asdf python plugin breaks
+> (`'bash\r': No such file or directory`). Before `asdf install`, make sure
+> `git config --get core.autocrlf` returns `false` or `input`
+> for this clone.
 
-## Команды бота
+## Bot commands
 
-| Команда | Описание |
+| Command | Description |
 |---|---|
-| `/start` | Приветствие и список команд |
-| `/help` | Справка |
-| `/add` | Добавить новый товар: название + ссылка + порог цены |
-| `/link` | Привязать ссылку к существующему товару (для отслеживания на нескольких маркетплейсах) |
-| `/threshold` | Изменить/отключить пороговую цену уведомления (0 = отключить) |
-| `/privileges` | Настроить привилегии на маркетплейсе (скидка по карте, подписка) |
-| `/books` | Добавить поиск Avito по книгам: новые лоты проверяются по эталонному списку 50 книг |
-| `/list` | Список твоих товаров с текущими ценами |
-| `/delete` | Удалить товар (с подтверждением) |
-| `/history` | История цен товара (с фильтром по типу цены) |
+| `/start` | Greeting and list of commands |
+| `/help` | Help |
+| `/add` | Add a new product: name + link + price threshold |
+| `/link` | Attach a link to an existing product (to track it on several marketplaces) |
+| `/threshold` | Change/disable the notification price threshold (0 = disable) |
+| `/privileges` | Configure marketplace privileges (card discount, subscription) |
+| `/books` | Add an Avito search for books: new lots are checked against a reference list of 68 books |
+| `/list` | List your products with current prices |
+| `/delete` | Delete a product (with confirmation) |
+| `/history` | Price history of a product (with a filter by price type) |
 
-## Переменные окружения
+## Environment variables
 
-| Переменная | Описание |
+| Variable | Description |
 |---|---|
-| `TELEGRAM_BOT_TOKEN` | Токен бота от @BotFather |
-| `DB_PATH` | Путь к SQLite-файлу, например `./data/prices.db` |
-| `POLL_INTERVAL_MINUTES` | Интервал опроса цен (default: 120) |
-| `AVITO_POLL_INTERVAL_MINUTES` | Интервал опроса поисковых страниц Avito (default: 5) |
-| `AVITO_PROFILE_DIR` | Путь к Chrome-профилю для Avito (default: `./chrome_profile_avito`) |
-| `AVITO_BLOCK_RETRY_MINUTES` | Пауза до следующей проверки после заглушки «Доступ ограничен», в минутах (default: 5) |
-| `AVITO_BLOCK_MAX_ATTEMPTS` | Сколько подряд блокировок терпеть перед уведомлением админу (default: 3) |
-| `AVITO_BOOKS_MAX_CHECKS` | Сколько карточек новых лотов открывать за цикл книжного режима (default: 15) |
-| `AVITO_BOOKS_DRY_RUN` | `1` — только логировать совпадения книг, без уведомлений |
-| `PROXY_URL` | SOCKS5-прокси для Telegram-бота (опционально, формат: `socks5://login:pass@host:port`) |
-| `ADMIN_TELEGRAM_ID` | Telegram ID администратора для служебных уведомлений (опционально) |
+| `TELEGRAM_BOT_TOKEN` | Bot token from @BotFather |
+| `DB_PATH` | Path to the SQLite file, e.g. `./data/prices.db` |
+| `POLL_INTERVAL_MINUTES` | Price polling interval (default: 120) |
+| `AVITO_POLL_INTERVAL_MINUTES` | Avito price-mode (`/add`) search page polling interval (default: 5) |
+| `AVITO_BOOKS_POLL_INTERVAL_MINUTES` | Avito book-mode (`/books`) polling interval, minutes (default: 5) |
+| `AVITO_PROFILE_DIR` | Path to the Chrome profile for Avito price mode (`/add`) (default: `./chrome_profile_avito`) |
+| `AVITO_BOOKS_PROFILE_DIR` | Path to the separate Chrome profile for Avito book mode (`/books`) (default: `./chrome_profile_avito_books`) |
+| `AVITO_BLOCK_RETRY_MINUTES` | Pause before the next check after the "Access restricted" stub, in minutes (default: 5) |
+| `AVITO_BLOCK_MAX_ATTEMPTS` | How many consecutive blocks to tolerate before notifying the admin (default: 3) |
+| `AVITO_BOOKS_MAX_CHECKS` | How many new-lot cards to open per book-mode cycle, shared per domain (default: 8) |
+| `AVITO_BOOKS_PAGES_PER_CYCLE` | How many listing pages to fetch per book-mode cycle, shared per domain (default: 4) |
+| `AVITO_BOOKS_MAX_PAGES` | Maximum page depth of one link scan (default: 10) |
+| `AVITO_BOOKS_PAGE_DELAY_MIN` / `AVITO_BOOKS_PAGE_DELAY_MAX` | Pause between pages of one link, seconds (default: 5 / 7) |
+| `AVITO_BOOKS_LLM_ENABLED` | `1`: verify ambiguous lots through the local LLM (default: 1) |
+| `AVITO_BOOKS_LLM_INTERVAL_MINUTES` | Interval of the LLM verification queue job, minutes (default: 10) |
+| `AVITO_BOOKS_LLM_BATCH` | How many queued lots to check per LLM job run (default: 3) |
+| `AVITO_BOOKS_DRY_RUN` | `1`: only log book matches, no notifications |
+| `PROXY_URL` | SOCKS5 proxy for the Telegram bot (optional, format: `socks5://login:pass@host:port`) |
+| `ADMIN_TELEGRAM_ID` | Telegram ID of the administrator for service notifications (optional) |
 
-Загружать через `python-dotenv` только в `main.py`, дальше передавать явно.
+Load via `python-dotenv` only in `main.py`, then pass values explicitly.
 
-## Правила кодирования
+## Coding rules
 
-### Язык общения
-- Общаться с пользователем **только на русском языке** (все ответы, комментарии к коду, сообщения в Telegram-боте)
-- Размышлять (internal reasoning) можно на любом языке
+### Language of communication
+- Communicate with the user **only in Russian** (all replies, code comments, messages in the Telegram bot)
+- Internal reasoning may be in any language
 
-### Async везде
-- Все функции БД — `async def` через `aiosqlite`
-- Все обработчики бота — `async def`
-- Задачи планировщика — `async def`: `poll_prices()`, `poll_search_prices()`, `poll_avito_search()`
-- Никакого `asyncio.run()` внутри модулей — только в `main.py`
+### Async everywhere
+- All DB functions are `async def` via `aiosqlite`
+- All bot handlers are `async def`
+- Scheduler tasks are `async def`: `poll_prices()`, `poll_search_prices()`, `poll_avito_search()`, `poll_avito_books()`, `poll_book_llm_queue()`
+- No `asyncio.run()` inside modules, only in `main.py`
 
-### Обработка ошибок
-- **Никогда** не давать ошибке парсера уронить цикл планировщика
-- Каждый вызов парсера — в `try/except`, логировать и идти дальше
-- Если страница содержит `captcha` — `return None` с WARNING-логом, не ретраить
-- Если товар не в наличии — `return None`, это не ошибка
+### Error handling
+- **Never** let a parser error crash the scheduler cycle
+- Wrap every parser call in `try/except`, log, and move on
+- If the page contains `captcha`, `return None` with a WARNING log; do not retry
+- If the product is out of stock, `return None`; this is not an error
 
-### Логирование
+### Logging
 ```python
 from utils.logger import logger
 
@@ -209,94 +171,129 @@ logger.info("Saved price %.2f for link_id=%d", price, link_id)
 logger.warning("Captcha detected at %s", url)
 logger.error("Parser failed for %s: %s", url, exc)
 ```
-Никогда не использовать `print()` в модулях.
+Never use `print()` in modules.
 
-### База данных
-- Все SQL-функции в `db/database.py`, модели в `db/models.py`
-- Мягкие удаления: `is_active = 0`, никогда `DELETE`
-- Всегда указывать имена столбцов в `INSERT`
-- Передавать соединение явным параметром или через контекстный менеджер
+### Database
+- All SQL functions live in `db/database.py`, models in `db/models.py`
+- Soft deletes: `is_active = 0`, never `DELETE`
+- Always specify column names in `INSERT`
+- Pass the connection as an explicit parameter or via a context manager
 
-### Парсеры
-- Один маркетплейс = один файл в `parsers/`
-- Наследовать от `BaseParser`
-- Обязательно реализовать:
-  - `can_handle(url: str) -> bool` (classmethod, проверка по домену)
+### Parsers
+- One marketplace = one file in `parsers/`
+- Inherit from `BaseParser`
+- Must implement:
+  - `can_handle(url: str) -> bool` (classmethod, checks by domain)
   - `get_price(url: str) -> float | None` (async)
-  - `get_price_tiers(url: str) -> dict[str, float] | None` (async) — возвращает все варианты цен (standard, card, premium, wb_club). По умолчанию обёртка над `get_price()`.
-  - `get_cheapest_from_search(search_url: str, title_filter: str) -> SearchResult | None` (async) — ищет самый дешёвый товар на поисковой странице, фильтрует по `title_filter`. Возвращает `SearchResult(price, product_url, product_title, tiers)`.
-- Доступные типы цен: `standard`, `card`, `premium`, `wb_club`. Словарь `TIER_LABELS` в `parsers/base.py`.
-- Зарегистрировать в `parsers/__init__.py` → список `PARSERS`
-- Добавить типы привилегий маркетплейса в словрь `MARKETPLACE_TIERS` в `parsers/__init__.py`
-- Браузерная автоматизация через `nodriver` (настоящий Chrome, non-headless + Xvfb + fluxbox)
-- **Stealth-маскировка обязательна** — nodriver инжектит `STEALTH_JS` через CDP
-  `Page.addScriptToEvaluateOnNewDocument` в `_inject_stealth()` (вызывается в `start_session()`).
-  Скрипт маскирует: `navigator.webdriver`, `chrome.runtime`, `cdc_*` переменные,
-  индикаторы автоматизации (13 свойств), `navigator.plugins/languages/hardwareConcurrency/deviceMemory`.
-  Chrome-флаги: `--disable-blink-features=AutomationControlled`, nodriver-флаги перезаписываются
-  через `uc.Config._default_browser_args` (только `--no-first-run`).
-  При добавлении нового парсера stealth работает автоматически — наследуется от `BaseParser`.
-- Ozon: переход с главной страницы на товар (прямой URL блокируется антиботом)
-- Avito (`parsers/avito.py`): отслеживает не цену товара, а **появление новых объявлений**
-  на поисковой странице. `get_all_items_from_search()` возвращает список всех текущих
-  объявлений (url/title/price). Первый опрос по ссылке только запоминает текущую выдачу,
-  уведомлений нет. Дальше новые объявления определяются по `notified_at = NULL` в
-  `avito_search_items` и присылаются пользователю с ценой и ссылкой. Уведомление
-  отправляется, только если оно реально доставлено: объявления помечаются `notified_at`
-  ПОСЛЕ успешной отправки, поэтому при сбое Telegram уведомление повторится в следующем
-  цикле. Объявление, пропавшее из выдачи на `AVITO_MISS_THRESHOLD` (=2) успешных опроса
-  подряд, помечается `is_active = 0`; когда оно возвращается, `notified_at` сбрасывается,
-  но повторное уведомление приходит только при снижении цены ниже прежней (иначе
-  объявление помечается уведомлённым молча). Если за один опрос приходит вдвое меньше объявлений, чем
-  отслеживается, пропажа не фиксируется (защита от частично отрендеренной страницы).
-  Схема `avito_search_items`: `item_url`, `item_title`, `price`, `first_seen_at`,
-  `last_seen_at`, `notified_at`, `miss_streak`, `is_active`.
-   Заглушка «Доступ ограничен» означает, что маркетплейс заблокировал сам профиль
-   (cookies), а не IP: тогда `end_session()` пересоздаёт профиль с нуля — старый
-   каталог уходит в `chrome_profile_avito.blocked.<timestamp>` (хранится только
-   последний), авто-сброс не чаще `PROFILE_RESET_MIN_INTERVAL` (30 минут). Ссылки
-   Avito обрабатывает только `poll_avito_search()`: `poll_prices()` и
-   `poll_search_prices()` их пропускают, иначе две джобы поднимают `AvitoParser`
-   на одном профиле и падают на `SingletonLock`.
-   Avito требует доверенную сессию: caches решаются вручную один раз в
-   Chrome-профиле бота (`chrome_profile_avito/`), дальше профиль должен
-   сохраняться (см. `_check_and_reset_chrome_profile`). Парсеры цен
-   (WB/Ozon/Citilink) используют отдельный `chrome_profile/` — между
-   ними нет конфликта замков.
- - Chrome-релиабильность: обязательно включать `--no-sandbox` в
-   `CHROME_ARGS` (`no_sandbox=True` у nodriver на части систем не
-   добавляет флаг). `_check_and_reset_chrome_profile` удаляет только
-   стале-к SingletonLock/Cookie/Socket (куки/сессию сохраняет), а
-   именно весь профиль — только если живой Chrome сам не умирает
-   после SIGTERM. Особый случай: если профиль синхронизирован с
-   dev-машины (`chrome_profile_avito/` с другого хоста), `SingletonLock`
-   будет ссылаться на чужой hostname — Chrome блокирует запуск;
-   `_check_and_reset_chrome_profile` распознаёт это и починяет без
-   потери данных. Повторный `fab sync-profile` не нужен, пока сессия
-   жива; при повторной капче — просто повторить оба шага.
-### Книжный режим Avito (`/books`)
-- `search_links.track_mode = 'books'`; обычный `/add` создаёт `'price'`, его поведение не меняется.
-- Новые лоты проверяются в `_poll_books_link`: **заголовочный фильтр** → дата публикации (МСК) → отзывы продавца → `books.matcher.match_text(title + description)`.
-- Заголовочный фильтр `books/prefilter.py::lot_title_interesting(title)` решает, открывать ли карточку вообще (массовый скрапинг карточек ведёт к бану Avito). Лот интересен, если:
-  - в заголовке есть книга из списка (полный `match_text` по заголовку, специфичное название, автор из списка);
-  - есть серийный/издательский маркер: «Литературные памятники», «Academia»/«Академия» рядом с книжным словом;
-  - есть антикварный/коллекционный маркер: «антикварные», «старинные», «букинистические», «дореволюционные», «винтажные», «редкие книги», «из домашней/личной библиотеки», «коллекция/подборка/много книг», «одним лотом», «всё вместе»;
-  - год целевой эпохи (1922–1937 или 1948–1965) стоит рядом с книжным словом.
-- Если признаков нет («Марафон похудения», «Жириновский. Собрание сочинений», «Учебник по физике»), карточка **не открывается**: лот сохраняется в `avito_lot_checks` со статусом `skipped` и `skip_reason='title_gate'` и помечается уведомлённым.
-- Год в заголовке, противоречащий книге (позднее переиздание, например «Слово о полку Игореве. 1985»), снимает её название с проверки — такой лот тоже не открывается.
-- Первый опрос книжной ссылки только запоминает выдачу, карточки не открываются.
-- Глобальный дедуп по `avito_lot_checks.item_url`; ошибка разбора карточки — до 3 попыток.
-- Продавец с 50+ отзывами пропускается; объявление старше 24 ч — пропускается; неизвестная дата — уходит с пометкой «Дата не определена». Счётчик отзывов берётся из `[data-marker="rating-caption/rating"]` (запасные пути: ссылка `a[href="#open-reviews-list"]` и текст блока `item-view/seller-info`) — старый `seller-info/reviews` Avito больше не отдаёт.
-- Совпадение «только по названию» или «название + автор» (без года, издательства/серии или приметы издания) не уведомляется: у современного переиздания тот же заголовок и тот же автор. Автор подтверждает произведение, но не издание. Такие лоты сохраняются как `skipped`/`no_evidence`. Исключение — неразрешённый дубль издания (`needs_year`), он уходит с пометкой «уточнить год».
-- Соседние строки одной позиции склеиваются перед матчингом (`_merge_year_segments` + `_merge_key_segments`): строка-год, строка только с автором или только с названием из каталога. Примеры: «Робинзон Крузо» + «Дефо. 1929» → сильное совпадение; «Записки о Галльской войне» + «Цезарь. 1948» → сильное. Строка с годом склеивается с соседом только если содержит автора/название той же книги — иначе год из чужой позиции не перетекает.
-- Если в лоте нашлась одна книга (или один дубль названия), склейка не нужна: всё описание относится к ней, поэтому совпадение пересчитывается по всему тексту. Тогда год из дальнего абзаца подтверждает целевое издание или отсекает лот как переиздание («Робинзон Крузо» + «Москва: Эксмо, 2023» → лот отброшен). В лоте из нескольких книг год остаётся привязан к своей позиции.
-- Каталог: `docs/books/02_price_table.md` → `scripts/build_books_catalog.py` → `data/books_catalog.json` (файл в git).
-- Эталон и правила отбора: `docs/books/01_reference_list.md`, `docs/books/03_lots_and_checklist.md`.
+  - `get_price_tiers(url: str) -> dict[str, float] | None` (async): returns all price variants (standard, card, premium, wb_club). By default a wrapper over `get_price()`.
+  - `get_cheapest_from_search(search_url: str, title_filter: str) -> SearchResult | None` (async): finds the cheapest product on a search page, filtered by `title_filter`. Returns `SearchResult(price, product_url, product_title, tiers)`.
+- Available price types: `standard`, `card`, `premium`, `wb_club`. The `TIER_LABELS` dictionary is in `parsers/base.py`.
+- Register in `parsers/__init__.py` → the `PARSERS` list
+- Add the marketplace's privilege types to the `MARKETPLACE_TIERS` dictionary in `parsers/__init__.py`
+- Browser automation via `nodriver` (real Chrome, non-headless + Xvfb + fluxbox)
+- **Stealth masking today = Chrome flags only.** `parsers/base.py::_inject_stealth()` is currently a **no-op** (`pass`): the JS injection it used to perform was switched off because the fake `navigator.plugins` override triggered the Wildberries WAF challenge without helping Ozon or Avito. The constant `STEALTH_JS` is kept for reference but is **not** injected, so no JS-level masking (`navigator.webdriver`, `chrome.runtime`, `cdc_*`, `navigator.plugins/languages/hardwareConcurrency/deviceMemory`) happens today. What actually masks automation now: `CHROME_ARGS` (`--disable-blink-features=AutomationControlled`, `--no-sandbox`, `--disable-dev-shm-usage`, `--disable-gpu`, `--no-zygote`, `--window-size=1920,1080`) plus `uc.Config._default_browser_args`, overwritten with only `--no-first-run` (nodriver's own noisy flags are dropped), and real Chrome runs non-headless under Xvfb. New parsers inherit this automatically from `BaseParser`. Do not describe JS-level masking as active; re-enable `_inject_stealth()` only once the patches are refined, and update this bullet in the same change.
+- Ozon: navigate from the main page to the product (a direct URL is blocked by the anti-bot)
+- Avito (`parsers/avito.py`): tracks not the product price but the **appearance of new listings** on a search page. `get_all_items_from_search()` returns a list of all current listings (url/title/price). The first poll of a link only records the current results, with no notifications. After that, new listings are identified by `notified_at = NULL` in `avito_search_items` and are sent to the user with the price and link. A notification is sent only if it was actually delivered: listings are marked with `notified_at` AFTER a successful send, so if Telegram fails, the notification is repeated in the next cycle. A listing that disappears from the results for `AVITO_MISS_THRESHOLD` (=2) successful polls in a row is marked `is_active = 0`. When it comes back, `notified_at` is reset, but a repeat notification arrives only if the price dropped below the previous one (otherwise the listing is silently marked as notified). If a single poll returns less than half as many listings as are being tracked, disappearance is not recorded (protection against a partially rendered page). Schema of `avito_search_items`: `item_url`, `item_title`, `price`, `first_seen_at`, `last_seen_at`, `notified_at`, `miss_streak`, `is_active`.
+  - The "Access restricted" stub means the marketplace blocked the profile itself (cookies), not the IP. In that case `end_session()` recreates only that mode's profile: the old directory is moved to `<profile>.blocked.<timestamp>` (only the latest one is kept). The automatic reset happens no more often than `PROFILE_RESET_MIN_INTERVAL` (30 minutes). Price mode uses `chrome_profile_avito/`, book mode uses `chrome_profile_avito_books/`; each has its own `_AvitoBrowser`, Chrome process, and `SingletonLock`. `poll_prices()` and `poll_search_prices()` still skip Avito links, which are handled only by `poll_avito_search()` and `poll_avito_books()`.
+  - Avito requires a trusted session in each mode's profile: captchas are solved manually once in `chrome_profile_avito/` and `chrome_profile_avito_books/`, after which both profiles must be preserved (see `_check_and_reset_chrome_profile`). The price parsers (WB/Ozon/Citilink) use a separate `chrome_profile/`.
+  - Chrome reliability: `--no-sandbox` must be included in `CHROME_ARGS` (on some systems `no_sandbox=True` in nodriver does not add the flag). `_check_and_reset_chrome_profile` removes only stale SingletonLock/Cookie/Socket files (cookies/session are kept). Cleanup scans `/proc` and kills only Chrome processes whose argv contains a **complete** profile argument: `--user-data-dir=<path>` or `--user-data-dir <path>` (two-token form). The matched path may be the resolved absolute profile, the configured relative token (the old bot version launched Chrome with e.g. `chrome_profile_avito`), or the path relative to the project directory — `utils/chrome_cleanup.profile_marker_set()` builds that set; it never deletes profile files during a kill/sweep. Before a foreign/stale `SingletonLock` is deleted, a live Chrome still using that profile (in any path variant) is killed first — otherwise two Chromes could open the same profile. Special case: if a profile was synced from a dev machine (another host), `SingletonLock` will point to a foreign hostname and Chrome will refuse to start; `_check_and_reset_chrome_profile` recognizes this and repairs it without data loss. After the update, run `fab cleanup-avito-chrome` once to kill Chrome left over by the old version (it was started with a relative profile path). Repeat only the corresponding `fab sync-profile` or `fab sync-books-profile` task if that profile's captcha reappears.
 
-### Telegram-бот
-- Использовать `ConversationHandler` для многошаговых диалогов (`/add`)
-- Пользователю — дружелюбные сообщения без технических деталей
-- Все сообщения с эмодзи для наглядности (🔔 📦 💰 🏪 🔗)
-- Inline-кнопки для деструктивных действий (удаление с подтверждением)
-- Синглтон `bot_instance.py`: `set_bot()` / `get_bot()` — доступ к Bot из планировщика/уведомлений
-- `admin_notify.py`: `send_admin_notification()` — служебные уведомления администратору (если задан `ADMIN_TELEGRAM_ID`)
+### Avito book mode (`/books`)
+- `search_links.track_mode = 'books'`; a regular `/add` creates `'price'`, and its behavior does not change.
+- New lots are checked in `_poll_books_link`: **title filter** → publication date (Moscow time) → seller reviews → `books.matcher.match_text(title + description)`.
+- The title filter `books/prefilter.py::lot_title_interesting(title)` decides whether to open the card at all (mass scraping of cards leads to an Avito ban). A lot is interesting if:
+  - the title contains a book from the list (full `match_text` on the title, a specific title, an author from the list);
+  - there is a series/publisher marker: "Литературные памятники" (Literary Monuments), "Academia"/"Академия" next to a book word;
+  - there is an antique/collectible marker: "антикварные" (antique), "старинные" (old), "букинистические" (second-hand/rare), "дореволюционные" (pre-revolutionary), "винтажные" (vintage), "редкие книги" (rare books), "из домашней/личной библиотеки" (from a home/personal library), "коллекция/подборка/много книг" (collection/selection/many books), "одним лотом" (as one lot), "всё вместе" (all together);
+  - a year of the target era (1922–1937 or 1948–1965) appears next to a book word.
+- If there are no signs ("Марафон похудения" (Weight-loss marathon), "Жириновский. Собрание сочинений" (Zhirinovsky. Collected Works), "Учебник по физике" (Physics textbook)), the card is **not opened**: the lot is saved in `avito_lot_checks` with status `skipped` and `skip_reason='title_gate'` and is marked as notified.
+- A year in the title that contradicts the book (a later reprint, e.g. "Слово о полку Игореве. 1985") removes its title from the check; such a lot is also not opened.
+- The first poll of a book link only records the results; cards are not opened. The first **deep** scan of an existing link is also a baseline (no notifications), the cursor is stored in `search_links.deep_scan_done` / `search_links.deep_scan_page`.
+- Global deduplication by the numeric Avito lot ID (`avito_lot_checks.lot_id`, extracted from the URL by `db.database.lot_id_from_url`), with the full URL as a fallback key. A re-posted lot that changed its slug is not opened twice; legacy duplicate rows are soft-deleted (`is_active = 0`), never deleted.
+- The listing is walked page by page (`parsers/avito.py::build_page_url`): only the `p` parameter changes, the user's sort (`s=104`) and the opaque `f`/`context`/`cd`/`localPriority`/`q` stay untouched. The scan stops after a fully scanned page yields no unseen lot ID, the depth is capped at `AVITO_BOOKS_MAX_PAGES`, and pages are fetched with a 5–7 s + random delay. `mark_missing_avito_items` is **not** called in book mode: an incomplete scan must not deactivate listings that were never visited.
+- A seller with 50+ reviews is skipped; a listing older than 24 hours is skipped; an unknown date goes through with the note "Date not determined". The review count is taken from `[data-marker="rating-caption/rating"]` (fallbacks: the link `a[href="#open-reviews-list"]` and the text of the `item-view/seller-info` block); Avito no longer serves the old `seller-info/reviews`.
+- A match "by title only" or "title + author" (without a year, publisher/series, or edition marker) is not notified: a modern reprint has the same title and the same author. The author confirms the work, but not the edition. Such lots are saved as `skipped`/`no_evidence`. The exception is an unresolved duplicate of an edition (`needs_year`): it is queued for the LLM (`status = 'llm_pending'`) and notified only after the LLM confirms the target edition.
+- Publisher evidence is taken **only from the segment of the matched position**: a bare generic word ("наука", "академия", "ленинград", "петроград", "памятник", "ссср") counts only next to a publisher marker ("Издательство …", "изд. …"). The author is not edition evidence anymore, and a general collection ("Полный комплект Сочинений … в 4 томах") without a volume/year is downgraded to a weak match.
+- Ambiguous lots (weak match, no evidence, or `needs_year`) go to the LLM queue: `scheduler/jobs.py::poll_book_llm_queue` calls `books/llm_verifier.py::verify_lot` with up to 3 catalog candidates plus the lot title and description, and notifies only on a `match` verdict with `is_target_edition = true`. The provider chain is free-only: kilo → nvidia → opencode; the second model is used only when the first answers `unclear` or fails. When the free quota is exhausted the bot **does not pay**: it waits, tells the user which model/provider hit the limit, and keeps the lot in the queue.
+- Adjacent lines of one item are merged before matching (`_merge_year_segments` + `_merge_key_segments`): a year-only line, a line with only an author, or a line with only a catalog title. Examples: "Робинзон Крузо" + "Дефо. 1929" → strong match; "Записки о Галльской войне" + "Цезарь. 1948" → strong. A year line is merged with its neighbor only if it contains the author/title of the same book; otherwise a year from another item does not leak over.
+- If one book (or one duplicate title) is found in the lot, merging is not needed: the entire description refers to it, so the match is recalculated over the whole text. Then a year from a distant paragraph confirms the target edition or rules the lot out as a reprint ("Робинзон Крузо" + "Москва: Эксмо, 2023" → lot rejected). In a lot with several books, a year stays tied to its own item.
+- Catalog: `docs/books/02_price_table.md` (50 priced editions) + `docs/books/04_avito_catalog_ext.md` (18 further editions without prices) → `scripts/build_books_catalog.py` → `data/books_catalog.json` (file is in git, 68 entries, indices 1–68). New entries may have a year range instead of a single year and no price — the notification then shows no price estimate.
+- Reference list and selection rules: `docs/books/01_reference_list.md`, `docs/books/03_lots_and_checklist.md`.
+- Mode order: price-mode links (`/add`) and book links are polled by **separate scheduler tasks** — `poll_avito_search` (price only) and `poll_avito_books` (books only, `_run_avito_books_periodic`) — with separate intervals (`AVITO_POLL_INTERVAL_MINUTES` and `AVITO_BOOKS_POLL_INTERVAL_MINUTES`). They now use separate trusted Chrome profiles: price mode resolves `AVITO_PROFILE_DIR` (default `./chrome_profile_avito`), book mode resolves `AVITO_BOOKS_PROFILE_DIR` (default `./chrome_profile_avito_books`). The `_AvitoBrowser` registry is keyed by the resolved absolute profile directory, so the modes have different browser managers, request/lifecycle locks, Chrome processes, and profile locks. There is no cross-mode priority wait: price does not wait for books, books does not wait for price, and a books session may start Chrome while a price pass is active. The only serialization is between requests using the same profile. A running book request is capped by `AVITO_REQUEST_TIMEOUT_SECONDS` (75 s constant) — and so is the price page fetch (`browser.price_call`), so a hung Chrome can never freeze the price notifications. On timeout that profile is quarantined: only Chrome processes with that profile (in any path variant) are killed, the stale profile locks are cleared without deleting cookies, the browser is removed from the registry, and the current domain pass is aborted — the next cycle starts a fresh session. A failed `start_session()` sweeps that same profile before retrying. The block flag is sticky per browser/profile, so resetting a blocked books profile never touches the price profile and vice versa. The real bounds are: one request may run for up to 75 s before quarantine; the other mode on its own profile is not delayed by that timeout, but two Chrome sessions from one IP can still trigger Avito anti-bot rules and increase traffic. Books behaviour itself is unchanged (per-domain budgets, 5–7 s page delays, deep-scan cursor, baseline, LLM queue); every actual page fetch (including a retry) consumes the page budget, and the book-link order rotates round-robin so later links are not starved. Price-mode prior state is keyed by numeric lot ID (URL fallback), so a returning lot with a changed slug is not treated as a new listing. If `AVITO_PROFILE_DIR` and `AVITO_BOOKS_PROFILE_DIR` resolve to the same directory, the books task is not started at all: the mismatch is logged as ERROR and reported to the admin (`send_admin_notification`).
+
+### Telegram bot
+- Use `ConversationHandler` for multi-step dialogs (`/add`)
+- Friendly messages to the user, without technical details
+- All messages with emoji for clarity (🔔 📦 💰 🏪 🔗)
+- Inline buttons for destructive actions (deletion with confirmation)
+- The `bot_instance.py` singleton: `set_bot()` / `get_bot()` gives access to the Bot from the scheduler/notifications
+- `admin_notify.py`: `send_admin_notification()` sends service notifications to the administrator (if `ADMIN_TELEGRAM_ID` is set)
+
+### Project documentation updates itself
+
+AGENTS.md and README.md are living project documents, not a one-time instruction. The agent updates them on its own, without a separate instruction from the user, as soon as something changes in the project:
+
+- A new parser, script, module, or folder: reflect it in the "Project structure" section of AGENTS.md.
+- A new dependency or a Python version change: update the "Stack" section in AGENTS.md and `requirements.txt`.
+- A new environment variable: add it to the "Environment variables" table in AGENTS.md.
+- A new bot command or a change in the behavior of an existing one: update the "Bot commands" table in AGENTS.md and the USAGE section in docs/.
+- A change in the deployment process, service management, or server setup: update the "Deploying to the server" section in README.md.
+- This is part of the Definition of Done for any task: if code changes but AGENTS.md/README.md are not updated, the task is not considered complete.
+
+Do not wait for the user to ask for a documentation update; do it immediately after the code change.
+
+## Context discipline
+
+In every session the operator starts from a blank slate: everything learned and not saved to tools is lost forever. Context is not kept in the agent's memory; it is moved out into the project's and system's persistent tools.
+
+### 1. Persistent memory: `lemma` (MCP server)
+
+The MCP server `lemma` is installed and configured (`npx -y lemma-mcp@latest`, database `~/.lemma/lemma.db`, config `~/.lemma/config.json`). It is the only place where knowledge survives the end of a session.
+
+The workflow is **recall → act → record**:
+1. Before starting any task (code, debugging, research, documentation), first call `memory_read` / `semantic_search` / `memory_library` and load what is already known about the project. Do not re-research what is already saved.
+2. Perform the task.
+3. When done, save new conclusions via `memory_add` (fragment types: `fact`, `pattern`, `lesson`, `warning`, `context`), and dead-end paths via `session_attempt`. Whatever is not saved is lost forever.
+4. Fragments are stored **in English** (a search requirement). One idea per fragment, 30–2000 characters.
+5. Link related facts via `memory_relate` (supports / contradicts / replaces / related).
+
+Server limits (from `~/.lemma/config.json`): when injecting context, no more than 15 full fragments, 30 summaries, and 20 guides; token budget: `full_content` 5000, `summary_index` 1000, `guides_detail` 1000, `instructions` 1500, `continuity` 800. Old entries lose weight over time (decay: `fact` 60 days, `warning` 30 days, `lesson` 90 days, `pattern` 180 days, `context` 120 days). Eviction is disabled, and the fragment limit is 10,000.
+
+### 2. In-session conversation compression: `compress`
+
+When a section of the conversation is closed and no longer needed in its original form, replace it with a compressed summary using the `compress` tool. The original content has served its purpose; the summary becomes the authoritative record so that the context window stays high in signal.
+
+### 3. Dynamic context pruning: the DCP plugin
+
+The plugin `@tarquinen/opencode-dcp@latest` is installed, with config `~/.config/opencode/dcp.jsonc` (currently empty, schema only). It automatically prioritizes and prunes context as the session grows. Do not rely on everything in the past being visible to the operator; record important decisions in `lemma`.
+
+### 4. Language servers (LSP)
+
+In `~/.config/opencode/opencode.jsonc`, the `lsp` section: `pyright` is disabled; `basedpyright` (`basedpyright-langserver --stdio`) for `.py` / `.pyi`; `ruby-lsp` for `.rb` / `.rake` / `.gemspec` / `.ru`. Use them for type checking and navigation in Python code, rather than relying only on reading files.
+
+### 5. System skills
+
+The available opencode skills related to context: `lemma` (memory), `codebase` (repository overview without reading file by file), `ponytail` / `ponytail-review` (code and review), `unslop` (editing text for the user), `senate` (complex questions). Load a skill via `skill` no more than once per session.
+
+### 6. What not to do
+
+- Do not rely on the operator remembering details from previous sessions; check `lemma` before starting.
+- Do not read files one by one if an overview via the codebase or `lemma` is enough; it wastes tokens.
+- Do not store decisions only in the conversation; record them via `memory_add`.
+- Do not paste whole files or whole logs into context; read only the needed range and filter logs.
+
+### 7. Searching and reading code
+
+- Search code with `grep` (`rg`); find files with `glob` or `fdfind` (installed on the system).
+- Read only the needed line range of a file, using `offset`/`limit` in `read`; do not load whole files into context.
+- To find a file by content: `rg -l "ClassName"` or `grep`, then read specific lines via `read`.
+
+### 8. Logs
+
+- Never paste whole logs into context. First filter them, for example:
+  - `rg -n "ERROR|Exception|Backtrace" <log_file> | tail -50`
+- Read only the filtered fragment.
+
+### 9. Images and OCR
+
+- **OCR must not be used.** Do not load or read images via `read`. Text and code only.

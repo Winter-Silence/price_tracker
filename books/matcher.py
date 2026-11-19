@@ -186,18 +186,101 @@ def _merge_key_segments(
 
 _PUBLISHER_TERMS = {
     "lp": (
-        ("литературный",), ("памятник",), ("наука",), ("ссср",), ("академия", "наук"),
+        # «Литературные памятники» — название серии, само по себе достаточно.
+        ("литературный", "памятник"),
+        ("академия", "наук"),
+        # Однословные термины слишком общие: «наука» — это и издательство,
+        # и «общество наук». Засчитываются только рядом с маркером издателя.
+        ("наука",),
+        ("памятник",),
+        ("ссср",),
     ),
     "academia": (
-        ("академия",), ("ленинград",), ("петроград",),
+        ("академия",),
+        ("ленинград",),
+        ("петроград",),
     ),
 }
+
+# Маркеры издателя: без них общее слово («наука», «академия»,
+# «ленинград») не считается указанием на издательство.
+_PUBLISHER_MARKERS: tuple[tuple[str, ...], ...] = (
+    ("издательство",), ("издатель",), ("изд",), ("выд",),
+    ("выпуск",), ("типография",), ("книгоиздательство",), ("publisher",),
+)
+# Насколько далеко от термина ещё считается маркер издателя.
+_PUBLISHER_MARKER_DISTANCE = 8
+
+# «Собрание сочинений», «полный комплект» — общий сборник, а не книга.
+_COLLECTION_MARKERS: tuple[tuple[str, ...], ...] = (
+    ("полный", "собрание"),
+    ("собрание", "сочинение"),
+    ("собрание", "творение"),
+    ("сборник", "сочинение"),
+    ("полный", "комплект"),
+    ("комплект", "книга"),
+)
+
+# «Халиф на час. Из тысячи и одной ночи» — цитата из чужого произведения.
+_CITATION_PREFIXES = ("из",)
 
 # Общие стоп-маркеры подделок и перепечаток.
 _GLOBAL_BAD_TERMS: tuple[tuple[str, ...], ...] = (
     ("репринт",), ("репринтный",), ("факсимиле",), ("переиздание",),
     ("репродукция",), ("аудиокнига",),
 )
+
+
+def _publisher_evidence(
+    tokens: list[str], terms: tuple[tuple[str, ...], ...],
+) -> bool:
+    """Издательство засчитано, только если термин ж��т в той же позиции.
+
+    Однословные термины («наука», «академия», «ленинград») слишком общие:
+    они принимаются только рядом с маркером издателя («издательство
+    Академия», «изд. Наука»). Многословные («литературные памятники»)
+    самодостаточны.
+    """
+    if not terms:
+        return False
+    marker_positions: list[int] = []
+    for marker in _PUBLISHER_MARKERS:
+        marker_positions.extend(find_positions(tokens, marker))
+    for term in terms:
+        positions = find_positions(tokens, term)
+        if not positions:
+            continue
+        if len(term) > 1:
+            return True
+        if any(
+            abs(pos - marker_pos) <= _PUBLISHER_MARKER_DISTANCE
+            for pos in positions
+            for marker_pos in marker_positions
+        ):
+            return True
+    return False
+
+
+def _has_collection_marker(tokens: list[str]) -> bool:
+    """В позиции назван общий сборник («собрание сочинений», «комплект»)."""
+    return any(contains_key(tokens, marker) for marker in _COLLECTION_MARKERS)
+
+
+def _is_collection_book(book: Book) -> bool:
+    """Каталожная позиция сама является собранием («Собрание сочинений»)."""
+    for key in book.title_keys:
+        key_set = set(key)
+        if any(set(marker) <= key_set for marker in _COLLECTION_MARKERS):
+            return True
+    return False
+
+
+def _is_cited_work(tokens: list[str], positions: list[int]) -> bool:
+    """Название упомянуто как цитата: «Из тысячи и одной ночи»."""
+    return any(
+        pos > 0 and tokens[pos - 1] in _CITATION_PREFIXES
+        for pos in positions
+    )
 
 
 @dataclass(frozen=True)
@@ -232,17 +315,27 @@ class MatchReport:
         return max((m.confidence for m in self.matches), key=lambda c: rank.get(c, 0), default=WEAK)
 
     def confirmed(self) -> "MatchReport":
-        """Убрать совпадения, подтверждённые только названием.
+        """Оставить только совпадения, подтверждённые доказательством издания.
 
         У современного переиздания тот же заголовок («Робинзон Крузо») и тот
         же автор, поэтому название без года, издательства/серии или приметы
-        издания — не повод для уведомления. Исключение — неразрешённый
-        дубль издания (`needs_year`): там название само указывает на
-        целевую книгу, а год продавец мог не написать.
+        издания — не повод для уведомления. Неразрешённый дубль издания
+        (`needs_year`) тоже не подтверждается: год мог не написать продавец,
+        а издание может оказаться переизданием — такие лоты уходят в
+        LLM-очередь.
         """
-        if self.needs_year:
-            return MatchReport(matches=list(self.matches))
-        return MatchReport(matches=[m for m in self.matches if m.evidence])
+        return MatchReport(matches=[
+            m for m in self.matches
+            if m.evidence and m.confidence != WEAK and not m.needs_year
+        ])
+
+    @property
+    def ambiguous(self) -> list[BookMatch]:
+        """Кандидаты на LLM-проверку: доказательства издания нет."""
+        return [
+            m for m in self.matches
+            if m.needs_year or not m.evidence or m.confidence == WEAK
+        ]
 
     def estimate(self) -> tuple[int, int]:
         """Суммарная оценка по позициям; дубли-варианты считаются один раз."""
@@ -251,11 +344,18 @@ class MatchReport:
         seen_groups: set[str] = set()
         for match in self.matches:
             book = match.book
+            # У изданий без цен (позиции 51–68) оценки нет — не считаем.
+            if book.price_min is None or book.price_max is None:
+                continue
             if book.group:
                 if book.group in seen_groups:
                     continue
                 seen_groups.add(book.group)
-                variants = [m.book for m in self.matches if m.book.group == book.group]
+                variants = [
+                    m.book for m in self.matches
+                    if m.book.group == book.group
+                    and m.book.price_min is not None and m.book.price_max is not None
+                ]
                 total_min += min(b.price_min for b in variants)
                 total_max += max(b.price_max for b in variants)
             else:
@@ -273,15 +373,17 @@ def _has_bad_term(tokens: list[str], terms: tuple[tuple[str, ...], ...]) -> bool
 
 
 def _linked_years(
-    tokens: list[str], positions: list[int], expected: int,
+    tokens: list[str], positions: list[int], year_range: tuple[int, int],
 ) -> tuple[bool, bool]:
     """(год рядом с ожидаемым, найдено только чужое переиздание)."""
+    low, high = year_range
     years: list[int] = []
     for idx, token in enumerate(tokens):
         if not token.isdigit() or len(token) != 4:
             continue
         year = int(token)
-        if not (1900 <= year <= _CURRENT_YEAR):
+        # Диапазон с 1800 года: дореволюционные издания (Брокгауз, журналы).
+        if not (1800 <= year <= _CURRENT_YEAR):
             continue
         if year >= _CURRENT_YEAR - 1:
             # «продаю с 2024» — это не год издания.
@@ -290,9 +392,10 @@ def _linked_years(
             years.append(year)
     if not years:
         return False, False
-    year_near = any(abs(year - expected) <= 1 for year in years)
+    # У диапазона (многотомник, журнал) подходит любой год внутри него.
+    year_near = any(low - 1 <= year <= high + 1 for year in years)
     # Более позднее издание (даже на 2–4 года) — уже не та книга.
-    reprint = not year_near and all(year > expected + 1 for year in years)
+    reprint = not year_near and all(year > high + 1 for year in years)
     return year_near, reprint
 
 
@@ -317,7 +420,7 @@ def _match_book(
         loose_positions = []
 
     positions = strict_positions or loose_positions
-    year_near, reprint = _linked_years(segment_tokens, positions, book.year)
+    year_near, reprint = _linked_years(segment_tokens, positions, book.year_range)
 
     if reprint:
         return None
@@ -332,14 +435,16 @@ def _match_book(
     if book.needs_author and not author_present:
         return None
 
-    publisher_present = any(
-        contains_key(segment_tokens, term) or contains_key(all_tokens, term)
-        for term in publisher_terms
-    )
+    publisher_present = _publisher_evidence(segment_tokens, publisher_terms)
     discriminator = any(contains_key(segment_tokens, term) for term in book.discriminators)
 
     if loose_positions and not (year_near or author_present or publisher_present or discriminator):
         return None
+
+    # «Халиф на час. Из тысячи и одной ночи» — цитата из чужого
+    # произведения, а не «Книга тысячи и одной ночи».
+    if _is_cited_work(segment_tokens, positions):
+        return BookMatch(book=book, confidence=WEAK, evidence=())
 
     if year_near or discriminator:
         confidence = STRONG
@@ -354,15 +459,15 @@ def _match_book(
             and contains_key(segment_tokens, ("статья",)):
         confidence = WEAK
 
+    # «Полное собрание сочинений» — сборник, а не отдельная книга.
+    if not _is_collection_book(book) and _has_collection_marker(segment_tokens):
+        return BookMatch(book=book, confidence=WEAK, evidence=())
+
     evidence: list[str] = []
     if year_near:
-        evidence.append(f"год {book.year}")
+        evidence.append(f"год {book.year_text or book.year}")
     if publisher_present:
         evidence.append("издательство/серия")
-    # Автор подтверждает только произведение, но не издание: у современного
-    # переиздания тот же автор. Поэтому доказательством он не считается.
-    if author_present and confidence != WEAK:
-        evidence.append("автор")
     if discriminator:
         evidence.append("примета издания")
 
@@ -417,6 +522,45 @@ def _resolve_groups(matches: dict[int, BookMatch]) -> list[BookMatch]:
     return sorted(result, key=lambda m: m.book.index)
 
 
+def _refine_single_book_match(match: BookMatch, all_tokens: list[str]) -> BookMatch | None:
+    """Уточнить совпадение по всему тексту лота (только год и плохие термины).
+
+    Лот об одной книге: год издания может стоять в другом абзаце. Если он
+    указывает на более позднее переиздание — лот отбрасывается; если совпадает
+    с целевым годом — совпадение подтверждается. Издательство и автор при
+    этом НЕ переносятся: они относятся к позиции, а не ко всему лоту.
+    """
+    book = match.book
+    positions: list[int] = []
+    for key in book.title_keys:
+        positions.extend(find_positions(all_tokens, key))
+    if not positions:
+        for key in book.loose_keys:
+            positions.extend(find_positions(all_tokens, key))
+    if not positions:
+        return match
+
+    year_near, reprint = _linked_years(all_tokens, positions, book.year_range)
+    if reprint:
+        return None
+    if _has_bad_term(all_tokens, _GLOBAL_BAD_TERMS + book.bad_terms):
+        return None
+    if year_near and not match.year_near:
+        evidence = list(match.evidence)
+        year_evidence = f"год {book.year_text or book.year}"
+        if year_evidence not in evidence:
+            evidence.insert(0, year_evidence)
+        return BookMatch(
+            book=book,
+            confidence=STRONG,
+            year_near=True,
+            discriminator=match.discriminator,
+            needs_year=match.needs_year,
+            evidence=tuple(evidence),
+        )
+    return match
+
+
 def match_text(text: str, catalog: tuple[Book, ...] | None = None) -> MatchReport:
     """Найти в тексте объявления все книги эталонного списка."""
     if not text or not text.strip():
@@ -446,24 +590,17 @@ def match_text(text: str, catalog: tuple[Book, ...] | None = None) -> MatchRepor
             elif found.year_near and not previous.year_near:
                 matches[book.index] = found
 
-    # Лот об одной книге: склеивать строки незачем — всё описание относится
-    # к ней одной. Поэтому год и издательство ищем по всему тексту: год
-    # переиздания в дальнем абзаце отсекает лот, а год целевого издания
-    # подтверждает его. В лоте из нескольких книг так делать нельзя — год
-    # одной позиции относился бы к соседней.
+    # Лот об одной книге: всё описание относится к ней одной, поэтому год
+    # ищем по всему тексту — год из дальнего абзаца либо подтверждает
+    # целевое издание, либо указывает на переиздание. Издательство и автор
+    # при этом НЕ переносятся: они принадлежат позиции, а не всему лоту.
     if matches and len({m.book.group or m.book.index for m in matches.values()}) == 1:
         for index, match in list(matches.items()):
-            book = match.book
-            found = _match_book(
-                book,
-                all_tokens,
-                all_tokens,
-                _PUBLISHER_TERMS.get(book.series, ()),
-            )
-            if found is None:
+            refined = _refine_single_book_match(match, all_tokens)
+            if refined is None:
                 del matches[index]
             else:
-                matches[index] = found
+                matches[index] = refined
 
     return MatchReport(matches=_resolve_groups(matches))
 
