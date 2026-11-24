@@ -27,10 +27,10 @@ def only(text: str):
 
 
 class CatalogTest(unittest.TestCase):
-    def test_catalog_has_68_positions(self):
+    def test_catalog_has_74_positions(self):
         catalog = get_catalog()
-        self.assertEqual(len(catalog), 68)
-        self.assertEqual([book.index for book in catalog], list(range(1, 69)))
+        self.assertEqual(len(catalog), 74)
+        self.assertEqual([book.index for book in catalog], list(range(1, 75)))
 
     def test_prices_and_series(self):
         catalog = {book.index: book for book in get_catalog()}
@@ -42,6 +42,12 @@ class CatalogTest(unittest.TestCase):
         self.assertEqual(catalog[33].series, "academia")
         self.assertEqual(catalog[33].title, "Морфология сказки")
         self.assertEqual(catalog[33].price_min, 15000)
+        # New LP ext entries have series=lp and no prices
+        for idx in (69, 70, 71, 72, 73, 74):
+            self.assertEqual(catalog[idx].series, "lp")
+            self.assertIsNone(catalog[idx].price_min)
+            self.assertIsNone(catalog[idx].price_max)
+            self.assertIsNone(catalog[idx].price_top)
 
 
 class PositiveMatchTest(unittest.TestCase):
@@ -73,10 +79,27 @@ class PositiveMatchTest(unittest.TestCase):
             ("Старшая Эдда. 1963", 24),
             ("Эпос сербского народа. 1963", 25),
             ("Крижанич. Политика. 1965", 26),
+            # Новые LP-издания (69–74): том/глава определяют позицию однозначно
+            ("Марк Аврелий. Размышления. 1985. Наука. Ленинград", 69),
+            ("Марк Аврелий Антонин. Размышления. 1993. Наука. СПб. 2-е издание", 70),
+            ("Цицерон. Письма к Аттику, близким, брату Квинту. Т. II. 1950. Наука", 71),
+            ("Цицерон. Письма к Аттику, близким, брату Квинту. Т. III. 1951. Наука", 72),
+            ("Махабхарата. Кн. 4. Виратапарва. 1967. Наука", 73),
+            ("Махабхарата. Кн. 5. Удьйогапарва. 1976. Наука. Ленинград", 74),
         ]
         for text, expected in cases:
             with self.subTest(text=text):
                 self.assertEqual(indexes(text), [expected])
+
+        # Том цицероновых «Писем» определяется приметой издания: том I
+        # (1949) не должен вылезать рядом с томом II/III.
+        by_idx = {
+            m.book.index: m
+            for m in match_text(
+                "Цицерон. Письма к Аттику. Т. II. 1950. Наука").matches
+        }
+        self.assertIn("примета издания", by_idx[71].evidence)
+        self.assertNotIn(4, by_idx)
 
     def test_academia_books(self):
         cases = [
@@ -375,6 +398,13 @@ class NegativeMatchTest(unittest.TestCase):
             "Манон Леско. 1967",
             "Аристотель. Поэтика. 2007. Академия",
             "Крижанич. Политика. 1985",
+            # Новые LP-издания: современные переиздания должны отбрасываться
+            "Марк Аврелий. Размышления. 2015. Эксмо",
+            "Марк Аврелий. Размышления. 2020. Альпина",
+            "Махабхарата. Виратапарва. 2010",
+            "Махабхарата. Удьйогапарва. 2005",
+            "Цицерон. Письма к Аттику. Т. II. 1990",
+            "Цицерон. Письма к Аттику. Т. III. 1985",
         ):
             with self.subTest(text=text):
                 self.assertEqual(indexes(text), [])
@@ -382,6 +412,17 @@ class NegativeMatchTest(unittest.TestCase):
     def test_reprint_word_is_rejected(self):
         self.assertEqual(indexes("Морфология сказки. Репринт 1928"), [])
         self.assertEqual(indexes("Слово о полку Игореве 1950. Факсимиле"), [])
+        self.assertEqual(indexes("Марк Аврелий. Размышления. 1985. Репринт"), [])
+        self.assertEqual(indexes("Махабхарата. Виратапарва. Факсимиле"), [])
+
+    def test_cicero_volumes_discriminator_works(self):
+        # Номер тома — примета издания: том II (1950) и том III (1951)
+        # не смешиваются с томом I (1949), хотя их годы рядом (±1).
+        self.assertEqual(indexes("Цицерон. Письма к Аттику. Т. II. 1950"), [71])
+        self.assertEqual(indexes("Цицерон. Письма к Аттику. Т. III. 1951"), [72])
+        self.assertEqual(indexes("Цицерон. Письма к Аттику. Т. I. 1949"), [4])
+        # Том без номера: остаётся только том I — год 1949 в допуске ±1.
+        self.assertEqual(indexes("Цицерон. Письма к Аттику. 1950"), [4])
 
     def test_modern_academia_textbook_is_rejected(self):
         self.assertEqual(indexes("Поэтика. Аристотель. Академия. 2015"), [])
@@ -395,6 +436,22 @@ class NegativeMatchTest(unittest.TestCase):
 
     def test_bare_mahabharata_without_year_does_not_match(self):
         self.assertEqual(indexes("Махабхарата, хорошее состояние"), [])
+
+    def test_mahabharata_chapters_do_not_cross_match(self):
+        # Название главы — единственный ключ: «Махабхарата» в лоте другой
+        # главы не должна превращаться в совпадение по Виратапарве/Удьйогапарве.
+        self.assertEqual(indexes("Махабхарата. Кн. 1. Адипарва. 1950"), [6])
+        self.assertEqual(indexes("Махабхарата. Кн. 4. Виратапарва. 1967"), [73])
+        self.assertEqual(indexes("Махабхарата. Кн. 5. Удьйогапарва. 1976"), [74])
+
+    def test_razmyshleniya_requires_mark_aurelius(self):
+        # «Размышления» — слишком общее название: без автора совпадения нет.
+        self.assertEqual(indexes("Размышления. М.: Питер, 2020"), [])
+        self.assertEqual(indexes("Размышления о смысле жизни"), [])
+        # Без года и без приметы издания — спорный лот, не подтверждение.
+        report = match_text("Марк Аврелий. Размышления. Литературные памятники")
+        self.assertTrue(report.confirmed().is_empty)
+        self.assertTrue(all(m.needs_year for m in report.matches))
 
     def test_late_edition_within_few_years_is_rejected(self):
         self.assertEqual(indexes("Пропп. Морфология сказки. 1930"), [])

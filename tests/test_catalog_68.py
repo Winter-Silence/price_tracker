@@ -1,4 +1,4 @@
-"""Тесты каталога книг: 68 позиций (50 старых + 18 новых)."""
+"""Тесты каталога книг: 74 позиции (50 старых + 24 новых)."""
 
 from __future__ import annotations
 
@@ -8,13 +8,13 @@ from books.catalog import Book, get_catalog
 
 
 class CatalogSizeTest(unittest.TestCase):
-    def test_catalog_has_68_positions(self):
+    def test_catalog_has_74_positions(self):
         catalog = get_catalog()
-        assert len(catalog) == 68
+        assert len(catalog) == 74
 
     def test_indices_are_contiguous(self):
         indices = [book.index for book in get_catalog()]
-        assert indices == list(range(1, 69))
+        assert indices == list(range(1, 75))
 
     def test_catalog_loads_all_entries(self):
         assert all(isinstance(book, Book) for book in get_catalog())
@@ -59,13 +59,13 @@ class OldEntriesTest(unittest.TestCase):
 
 
 class NewEntriesTest(unittest.TestCase):
-    """Новые 18 позиций (51–68): без цен, с диапазонами годов."""
+    """Новые 24 позиции (51–74): без цен, с диапазонами годов."""
 
     def setUp(self):
         self.new = [book for book in get_catalog() if book.index >= 51]
 
     def test_count(self):
-        assert len(self.new) == 18
+        assert len(self.new) == 24
 
     def test_no_prices(self):
         for book in self.new:
@@ -96,6 +96,35 @@ class NewEntriesTest(unittest.TestCase):
         assert by_index[60].year_range == (1906, 1909)
         assert by_index[60].year is None
         assert "1906" in by_index[60].year_text
+
+    def test_lp_ext_entries_spot_check(self):
+        """Позиции 69–74 — издания «Литературных памятников» без цен, серия lp."""
+        by_index = {book.index: book for book in get_catalog()}
+        # 69: Марк Аврелий, Размышления, 1985, Наука, Ленинград, серия ЛП
+        assert by_index[69].year == 1985
+        assert by_index[69].year_range == (1985, 1985)
+        assert by_index[69].series == "lp"
+        assert by_index[69].title == "Размышления"
+        assert "марк" in " ".join(" ".join(k) for k in by_index[69].author_keys)
+        assert "аврелий" in " ".join(" ".join(k) for k in by_index[69].author_keys)
+        # 70: Марк Аврелий, Размышления, 1993, Наука, СПб., 2-е изд., серия ЛП
+        assert by_index[70].year == 1993
+        assert by_index[70].series == "lp"
+        # 71: Цицерон, Письма... Т. II, 1950, серия ЛП
+        assert by_index[71].year == 1950
+        assert by_index[71].series == "lp"
+        assert by_index[71].author == "Марк Туллий Цицерон"
+        # 72: Цицерон, Письма... Т. III, 1951, серия ЛП
+        assert by_index[72].year == 1951
+        assert by_index[72].series == "lp"
+        # 73: Махабхарата. Кн. 4. Виратапарва, 1967, серия ЛП
+        assert by_index[73].year == 1967
+        assert by_index[73].series == "lp"
+        assert "виратапарва" in " ".join(" ".join(k) for k in by_index[73].title_keys)
+        # 74: Махабхарата. Кн. 5. Удьйогапарва, 1976, серия ЛП
+        assert by_index[74].year == 1976
+        assert by_index[74].series == "lp"
+        assert "удьйогапарва" in " ".join(" ".join(k) for k in by_index[74].title_keys)
 
 
 if __name__ == "__main__":

@@ -6,7 +6,7 @@
 термины), задаётся в OVERRIDES ниже: таблица — источник фактов, этот файл —
 источник правил матчинга.
 
-Позиции 1–50 — «Литературные памятники» и Academia с ценами; 51–68 —
+Позиции 1–50 — «Литературные памятники» и Academia с ценами; 51–74 —
 издания без цен (только распознавание и приметы издания).
 
 Запуск: ./venv/bin/python scripts/build_books_catalog.py
@@ -28,9 +28,9 @@ SOURCE = ROOT / "docs" / "books" / "02_price_table.md"
 EXT_SOURCE = ROOT / "docs" / "books" / "04_avito_catalog_ext.md"
 TARGET = ROOT / "data" / "books_catalog.json"
 
-# Позиции 1–50 — с ценами, 51–68 — издания без цен.
+# Позиции 1–50 — с ценами, 51–74 — издания без цен.
 EXT_FIRST_INDEX = 51
-EXT_COUNT = 18
+EXT_COUNT = 24
 
 # Ключи названий задаются в исходном виде — builder сам приводит их к леммам.
 # loose_keys срабатывают только при подтверждении годом/автором.
@@ -42,10 +42,11 @@ OVERRIDES: dict[int, dict] = {
     3: {"title_keys": ["Сиасет-намэ", "Сиасет наме", "Сиасет намэ"],
         "author_keys": ["Низам ал-Мульк", "Низам аль-Мульк", "Низам"]},
     4: {"title_keys": ["Письма к Аттику", "Письма Аттику"],
-        "author_keys": ["Цицерон"]},
+        "author_keys": ["Цицерон"], "group": "цицерон_письма"},
     5: {"title_keys": ["Земледелие"], "author_keys": ["Катон"],
         "needs_author": True},
-    6: {"title_keys": ["Адипарва"], "loose_keys": ["Махабхарата"]},
+    6: {"title_keys": ["Адипарва"], "loose_keys": ["Махабхарата"],
+        "group": "махабхарата"},
     7: {"title_keys": ["Письма"], "author_keys": ["Плиний"],
         "needs_author": True},
     8: {"title_keys": ["Повесть временных лет", "ПВЛ"]},
@@ -68,7 +69,8 @@ OVERRIDES: dict[int, dict] = {
     20: {"title_keys": ["Артхашастра"]},
     21: {"title_keys": ["Дигенис Акрит"]},
     22: {"title_keys": ["Книга моего деда Коркута", "Книга деда Коркута", "Коркут"]},
-    23: {"title_keys": ["Сабхапарва"], "loose_keys": ["Махабхарата"]},
+    23: {"title_keys": ["Сабхапарва"], "loose_keys": ["Махабхарата"],
+         "group": "махабхарата"},
     24: {"title_keys": ["Старшая Эдда"], "loose_keys": ["Эдда"],
          "bad_terms": ["младшая"]},
     25: {"title_keys": ["Эпос сербского народа", "Сербский эпос"]},
@@ -113,9 +115,46 @@ OVERRIDES: dict[int, dict] = {
 TITLE_GROUPS = {"слово_о_полку": "Слово о полку Игореве"}
 
 # Дополнение к названиям, которые из таблицы 04 не выводятся автоматически.
+# Поддерживаемые ключи: extra_keys, title_keys, loose_keys, author_keys,
+# needs_author, bad_terms (плюс к BAD_TERMS), discriminators (замена),
+# series, group.
 NEW_OVERRIDES: dict[int, dict] = {
     51: {"extra_keys": ["Супрематический сказ про два квадрата"]},
     62: {"extra_keys": ["Брокгауз и Ефрон"]},
+    # 69–74 — «Литературные памятники» без цен; серия выводится из примет.
+    # «Размышления» — слишком общее название, поэтому требуем автора.
+    69: {"title_keys": ["Размышления"],
+         "author_keys": ["Марк Аврелий", "Марк Аврелий Антонин",
+                         "Аврелий Антонин", "Аврелий"],
+         "needs_author": True,
+         "discriminators": ["Ленинград"], "group": "размышления"},
+    70: {"title_keys": ["Размышления"],
+         "author_keys": ["Марк Аврелий", "Марк Аврелий Антонин",
+                         "Аврелий Антонин", "Аврелий"],
+         "needs_author": True,
+         "discriminators": ["СПб."], "group": "размышления"},
+    # Римский номер тома — часть ключа: без него тома I/II/III неразличимы
+    # (у трёхтомника годы 1949–1951 попадают в допуск ±1 любого тома).
+    # Группа «цицерон_письма» связывает том I (позиция 4) с томами II и III:
+    # при наличии номера тома остаётся только нужный том.
+    71: {"title_keys": [
+             "Письма Марка Туллия Цицерона к Аттику, близким, брату Квинту, "
+             "М. Бруту. Т. II. Годы 51–46",
+             "Письма к Аттику Т. II", "Письма Марка Туллия Цицерона Т. II"],
+         "author_keys": ["Цицерон"], "discriminators": ["Т. II"],
+         "group": "цицерон_письма"},
+    72: {"title_keys": [
+             "Письма Марка Туллия Цицерона к Аттику, близким, брату Квинту, "
+             "М. Бруту. Т. III. Годы 46–43",
+             "Письма к Аттику Т. III", "Письма Марка Туллия Цицерона Т. III"],
+         "author_keys": ["Цицерон"], "discriminators": ["Т. III"],
+         "group": "цицерон_письма"},
+    # Книга «Махабхараты» узнаётся только по имени главы: общее слово
+    # «Махабхарата» в лотах других томов (позиции 6, 23) названием не считается.
+    73: {"title_keys": ["Виратапарва"], "discriminators": [],
+         "group": "махабхарата"},
+    74: {"title_keys": ["Удьйогапарва"], "discriminators": [],
+         "group": "махабхарата"},
 }
 
 # Три поисковых запроса на позицию. В таблице 04 приведён только первый
@@ -163,6 +202,24 @@ EXT_QUERIES: dict[int, list[str]] = {
     68: ["Толстой Гиперболоид инженера Гарина 1927",
          "Гиперболоид Гарина Толстого первое издание 1927",
          "Толстой Гиперболоид 1927 отдельное издание"],
+    69: ["Марк Аврелий Размышления 1985 Литературные памятники",
+         "Марк Аврелий Антонин Размышления 1985 Наука Ленинград",
+         "Размышления Марк Аврелий 1985 серия Литературные памятники"],
+    70: ["Марк Аврелий Размышления 1993 Наука",
+         "Марк Аврелий Антонин Размышления 1993 СПб второе издание",
+         "Размышления 1993 Наука Литературные памятники исправленное"],
+    71: ["Цицерон Письма к Аттику близким том 2 1950",
+         "Цицерон Письма Марка Туллия Цицерона Т. II 1950 Наука",
+         "Письма к Аттику близким брату Квинту том II 1950"],
+    72: ["Цицерон Письма к Аттику близким том 3 1951",
+         "Цицерон Письма Марка Туллия Цицерона Т. III 1951 Наука",
+         "Письма к Аттику близким брату Квинту том III 1951"],
+    73: ["Махабхарата Виратапарва 1967",
+         "Махабхарата книга 4 Виратапарва 1967 Наука",
+         "Виратапарва Махабхарата 1967 Литературные памятники"],
+    74: ["Махабхарата Удьйогапарва 1976",
+         "Махабхарата книга 5 Удьйогапарва 1976 Наука Ленинград",
+         "Удьйогапарва Махабхарата 1976 Литературные памятники"],
 }
 
 # Негативные термины: тот же общий список, что books.matcher._GLOBAL_BAD_TERMS.
@@ -312,29 +369,62 @@ def build_ext(rows: list[dict]) -> list[dict]:
     for index, row in enumerate(rows, start=EXT_FIRST_INDEX):
         override = NEW_OVERRIDES.get(index, {})
         year_from, year_to = parse_year_text(row["year_text"])
-        title_keys = title_keys_for(row["title"], override.get("extra_keys", []))
+        if "title_keys" in override:
+            # Явные ключи: важно для томов и глав («Т. II», «Виратапарва») —
+            # авто-разбор названия дал бы слишком широкое ключевое слово.
+            title_keys = [key_tokens(text) for text in override["title_keys"]]
+            title_keys = [tokens for tokens in title_keys if tokens]
+        else:
+            title_keys = title_keys_for(row["title"], override.get("extra_keys", []))
         if not title_keys:
             raise SystemExit(f"Позиция {index}: пустые ключи названия")
+
+        # Серия: если издательство/примета указывают на «Литературные памятники»,
+        # ставим "lp", иначе пустая строка. NEW_OVERRIDES может переопределить.
+        publisher = row["publisher"].lower()
+        note = row["note"].lower()
+        inferred_series = "lp" if ("(лп)" in publisher or "литературные памятники" in publisher
+                                    or "литературные памятники" in note) else ""
+        series = override.get("series", inferred_series)
+
+        # Ключи автора: по умолчанию из таблицы, но NEW_OVERRIDES может задать author_keys.
+        author_keys = [key_tokens(text) for text in override.get("author_keys", [])]
+        if not author_keys:
+            author_keys = author_keys_for(row["author"])
+        author_keys = [tokens for tokens in author_keys if tokens]
+
+        # loose_keys и title_keys из override
+        loose_keys = [key_tokens(text) for text in override.get("loose_keys", [])]
+        loose_keys = [tokens for tokens in loose_keys if tokens]
+
+        # bad_terms: базовые + доп. из override
+        bad_terms = BAD_TERMS + override.get("bad_terms", [])
+        bad_terms = [key_tokens(term) for term in bad_terms]
+
+        # discriminators: override полностью заменяет автогенерированные
+        if "discriminators" in override:
+            discriminators = [key_tokens(t) for t in override["discriminators"]]
+        else:
+            discriminators = discriminator_keys(
+                row["place"], row["artist"], row["volume"], row["publisher"])
 
         catalog.append({
             "index": index,
             "author": row["author"],
             "title": row["title"],
-            # Единственный год — в year, диапазон — только в year_from/year_to.
             "year": year_from if year_from == year_to else None,
             "publisher": row["publisher"],
-            "series": "",
+            "series": series,
             "price_min": None,
             "price_max": None,
             "price_top": None,
             "title_keys": title_keys,
-            "loose_keys": [],
-            "author_keys": author_keys_for(row["author"]),
-            "discriminators": discriminator_keys(
-                row["place"], row["artist"], row["volume"], row["publisher"]),
-            "bad_terms": [key_tokens(term) for term in BAD_TERMS],
-            "needs_author": False,
-            "group": "",
+            "loose_keys": loose_keys,
+            "author_keys": author_keys,
+            "discriminators": discriminators,
+            "bad_terms": bad_terms,
+            "needs_author": bool(override.get("needs_author", False)),
+            "group": override.get("group", ""),
             "note": row["note"],
             "query": row["query"],
             "year_from": year_from,

@@ -25,6 +25,8 @@ class InterestingTitleTest(unittest.TestCase):
             "Фрейд. Я и Оно",
             "Кабус-намэ",
             "Основания новой науки об общей природе наций",
+            "Марк Аврелий. Размышления. 1985",
+            "Марк Аврелий. Размышления. 1993",
         ):
             with self.subTest(title=title):
                 self.assert_interesting(title)
